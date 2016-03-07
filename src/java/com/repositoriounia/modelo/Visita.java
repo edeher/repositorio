@@ -5,17 +5,15 @@
  */
 package com.repositoriounia.modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author Mi Laptop
  */
-public class Autor {
-    private int idAutor;
-    private Persona persona;
-    private Escuela escuela;
-    private String tipoAutor;
-    private String profesion;
-    private String especialidad;
-    private String grado;
+public class Visita {
+    private int idVisita;
+    private ArchivoPublicacion archivoPublicacion;
+    private Date fecha;
     private boolean estado;
 }

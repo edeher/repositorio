@@ -9,13 +9,8 @@ package com.repositoriounia.modelo;
  *
  * @author Mi Laptop
  */
-public class Autor {
-    private int idAutor;
-    private Persona persona;
-    private Escuela escuela;
-    private String tipoAutor;
-    private String profesion;
-    private String especialidad;
-    private String grado;
+public class AreaInvestigacion {
+    private int idAreaInvestigacion;
+    private String descripcion;
     private boolean estado;
 }
