@@ -5,6 +5,8 @@
  */
 package com.repositoriounia.modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author Mi Laptop
@@ -13,7 +15,12 @@ public class ArchivosSolicitados {
    private int idArchivoSolicitado;
    private Solicitante solicitante;
    private ArchivoPublicacion archivoPublicacion;
-   private String Respuesta;
+   private Date fechaSolicitud;
+   private Respuesta Respuesta;
+   private Date fechaRespuesta;
    private String descripcionRespuesta;
-   private boolean estado;
+   private Estados estado;
+
+    
+    
 }

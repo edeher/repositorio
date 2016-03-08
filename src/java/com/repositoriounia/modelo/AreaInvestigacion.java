@@ -12,5 +12,62 @@ package com.repositoriounia.modelo;
 public class AreaInvestigacion {
     private int idAreaInvestigacion;
     private String descripcion;
-    private boolean estado;
+    private Estados estado;
+
+    /**
+     * @return the idAreaInvestigacion
+     */
+    public int getIdAreaInvestigacion() {
+        return idAreaInvestigacion;
+    }
+
+    /**
+     * @param idAreaInvestigacion the idAreaInvestigacion to set
+     */
+    public void setIdAreaInvestigacion(int idAreaInvestigacion) {
+        this.idAreaInvestigacion = idAreaInvestigacion;
+    }
+
+    /**
+     * @return the descripcion
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * @param descripcion the descripcion to set
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    /**
+     * @return the estado
+     */
+    public Estados getEstado() {
+        return estado;
+    }
+
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(Estados estado) {
+        this.estado = estado;
+    }
+
+    public AreaInvestigacion(int idAreaInvestigacion, String descripcion, Estados estado) {
+        this.idAreaInvestigacion = idAreaInvestigacion;
+        this.descripcion = descripcion;
+        this.estado = estado;
+    }
+
+    public AreaInvestigacion() {
+    }
+
+    @Override
+    public String toString() {
+        return "AreaInvestigacion{" + "idAreaInvestigacion=" + idAreaInvestigacion + ", descripcion=" + descripcion + ", estado=" + estado + '}';
+    }
+    
 }

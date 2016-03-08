@@ -14,10 +14,11 @@ public class Persona {
      private String nombres;
      private String apellidos;
      private String dni;
+     private Sexo sexo;
      private String direccion;
      private String telefono;
      private String correro;
-     private boolean estado;
+     private Estados estado;
 
     /**
      * @return the idPersona
@@ -76,6 +77,20 @@ public class Persona {
     }
 
     /**
+     * @return the sexo
+     */
+    public Sexo getSexo() {
+        return sexo;
+    }
+
+    /**
+     * @param sexo the sexo to set
+     */
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
+    }
+
+    /**
      * @return the direccion
      */
     public String getDireccion() {
@@ -120,22 +135,23 @@ public class Persona {
     /**
      * @return the estado
      */
-    public boolean isEstado() {
+    public Estados getEstado() {
         return estado;
     }
 
     /**
      * @param estado the estado to set
      */
-    public void setEstado(boolean estado) {
+    public void setEstado(Estados estado) {
         this.estado = estado;
     }
 
-    public Persona(int idPersona, String nombres, String apellidos, String dni, String direccion, String telefono, String correro, boolean estado) {
+    public Persona(int idPersona, String nombres, String apellidos, String dni, Sexo sexo, String direccion, String telefono, String correro, Estados estado) {
         this.idPersona = idPersona;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.dni = dni;
+        this.sexo = sexo;
         this.direccion = direccion;
         this.telefono = telefono;
         this.correro = correro;
@@ -147,8 +163,9 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" + "idPersona=" + idPersona + ", nombres=" + nombres + ", apellidos=" + apellidos + ", dni=" + dni + ", direccion=" + direccion + ", telefono=" + telefono + ", correro=" + correro + ", estado=" + estado + '}';
+        return "Persona{" + "idPersona=" + idPersona + ", nombres=" + nombres + ", apellidos=" + apellidos + ", dni=" + dni + ", sexo=" + sexo + ", direccion=" + direccion + ", telefono=" + telefono + ", correro=" + correro + ", estado=" + estado + '}';
     }
+
     
     
 }
