@@ -9,10 +9,12 @@ package com.repositoriounia.modelo;
  *
  * @author Mi Laptop
  */
-public enum TipoAutor {
-    PRINCIPAL("Jefe de proyecto"),
-    COLABORADOR("especialista"),
-    TESISTA("Estudiante");
+public enum DescripcionArchivo {
+    TE("Tesis"),
+    PTE("Proyecto de Tesis"),
+    PIN("Proyecto de Investigacion"),
+    INPIN("Informe Final de Proyecto"),
+    ARCI("Articulo Cientifico");
     
     private String nom;
 
@@ -30,10 +32,9 @@ public enum TipoAutor {
         this.nom = nom;
     }
 
-    private TipoAutor(String nom) {
+    private DescripcionArchivo(String nom) {
         this.nom = nom;
     }
-    
     
     
 }

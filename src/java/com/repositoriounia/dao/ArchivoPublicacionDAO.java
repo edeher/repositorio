@@ -10,9 +10,10 @@ package com.repositoriounia.dao;
  * @author Mi Laptop
  */
 public interface ArchivoPublicacionDAO {
-     public boolean crear( ArchivoPublicacionDAO objarchP) throws DAOException;//asocia la excepcion para usar las ecepciones
-    public boolean modificar(ArchivoPublicacionDAO objarchP)throws DAOException;
+     public boolean crear( ArchivoPublicacionDAO objarchP, int idPublicacion) throws DAOException;//asocia la excepcion para usar las ecepciones
+    public boolean modificar(ArchivoPublicacionDAO objarchP,int idPublicacion)throws DAOException;
     public boolean eliminar(int idArchivoPublicacionDAO)throws DAOException;
     public ArchivoPublicacionDAO leerxid(int idArchivoPublicacionDAO)throws DAOException;
+    public ArchivoPublicacionDAO[] leertodo(int idPublicacion)throws DAOException;
     public ArchivoPublicacionDAO[] leertodo()throws DAOException;
 }

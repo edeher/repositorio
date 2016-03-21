@@ -10,10 +10,10 @@ package com.repositoriounia.modelo;
  * @author Mi Laptop
  */
 public class Archivo {
-    private int idArchivo;
-    private String urlLocal;
-    private String urlWeb;
-    private Estados estado;
+   protected int idArchivo;
+    protected String urlLocal;
+    protected String urlWeb;
+    protected Estados estado;
 
     /**
      * @return the idArchivo
@@ -71,19 +71,21 @@ public class Archivo {
         this.estado = estado;
     }
 
-    public Archivo(int idArchivo, String urlLocal, String urlWeb, Estados estado) {
-        this.idArchivo = idArchivo;
+    public Archivo(String urlLocal, String urlWeb) {
         this.urlLocal = urlLocal;
         this.urlWeb = urlWeb;
-        this.estado = estado;
     }
+
+    
 
     public Archivo() {
     }
 
     @Override
     public String toString() {
-        return "Archivo{" + "idArchivo=" + idArchivo + ", urlLocal=" + urlLocal + ", urlWeb=" + urlWeb + ", estado=" + estado + '}';
+        return "Archivo{" + "urlLocal=" + urlLocal + ", urlWeb=" + urlWeb + '}';
     }
+
+    
     
 }

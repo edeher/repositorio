@@ -10,15 +10,15 @@ package com.repositoriounia.modelo;
  * @author Mi Laptop
  */
 public class Persona {
-     private  int idPersona;
-     private String nombres;
-     private String apellidos;
-     private String dni;
-     private Sexo sexo;
-     private String direccion;
-     private String telefono;
-     private String correro;
-     private Estados estado;
+     protected int idPersona;
+    protected String nombres;
+     protected String apellidos;
+     protected String dni;
+     protected Sexo sexo;
+     protected String direccion;
+    protected String telefono;
+     protected String correro;
+     protected Estados estado;
 
     /**
      * @return the idPersona
@@ -146,8 +146,10 @@ public class Persona {
         this.estado = estado;
     }
 
-    public Persona(int idPersona, String nombres, String apellidos, String dni, Sexo sexo, String direccion, String telefono, String correro, Estados estado) {
-        this.idPersona = idPersona;
+   
+   
+
+    public Persona(String nombres, String apellidos, String dni, Sexo sexo, String direccion, String telefono, String correro) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.dni = dni;
@@ -155,9 +157,8 @@ public class Persona {
         this.direccion = direccion;
         this.telefono = telefono;
         this.correro = correro;
-        this.estado = estado;
     }
-
+       
     public Persona() {
     }
 

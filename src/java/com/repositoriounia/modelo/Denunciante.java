@@ -9,10 +9,16 @@ package com.repositoriounia.modelo;
  *
  * @author Mi Laptop
  */
-public class Denunciante {
+public class Denunciante extends Persona{
     private int idDenunciante;
-    private Persona persona;
-    private Estados estado;
+
+    public Denunciante(int idDenunciante, String nombres, String apellidos, String dni, Sexo sexo, String direccion, String telefono, String correro) {
+        super(nombres, apellidos, dni, sexo, direccion, telefono, correro);
+        this.idDenunciante = idDenunciante;
+    }
+    
+    
+    
 
     /**
      * @return the idDenunciante
@@ -28,48 +34,12 @@ public class Denunciante {
         this.idDenunciante = idDenunciante;
     }
 
-    /**
-     * @return the persona
-     */
-    public Persona getPersona() {
-        return persona;
-    }
-
-    /**
-     * @param persona the persona to set
-     */
-    public void setPersona(Persona persona) {
-        this.persona = persona;
-    }
-
-    /**
-     * @return the estado
-     */
-    public Estados getEstado() {
-        return estado;
-    }
-
-    /**
-     * @param estado the estado to set
-     */
-    public void setEstado(Estados estado) {
-        this.estado = estado;
-    }
-
-    public Denunciante(int idDenunciante, Persona persona, Estados estado) {
-        this.idDenunciante = idDenunciante;
-        this.persona = persona;
-        this.estado = estado;
-    }
-
-    public Denunciante() {
-    }
-
     @Override
     public String toString() {
-        return "Denunciante{" + "idDenunciante=" + idDenunciante + ", persona=" + persona + ", estado=" + estado + '}';
+        return "Denunciante{" + "idDenunciante=" + idDenunciante + ", nombres=" + nombres + ", apellidos=" + apellidos + ", dni=" + dni + ", sexo=" + sexo + ", direccion=" + direccion + ", telefono=" + telefono + ", correro=" + correro + ", estado=" + estado + '}';
+   
     }
+   
 
-    
     
 }

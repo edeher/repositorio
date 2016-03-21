@@ -12,12 +12,12 @@ package com.repositoriounia.dao;
 public class ArchivoPublicacionDAOJDBC implements ArchivoPublicacionDAO{
 
     @Override
-    public boolean crear(ArchivoPublicacionDAO objarchP) throws DAOException {
+    public boolean crear(ArchivoPublicacionDAO objarchP, int idPublicacion) throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean modificar(ArchivoPublicacionDAO objarchP) throws DAOException {
+    public boolean modificar(ArchivoPublicacionDAO objarchP, int idPublicacion) throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -32,8 +32,15 @@ public class ArchivoPublicacionDAOJDBC implements ArchivoPublicacionDAO{
     }
 
     @Override
+    public ArchivoPublicacionDAO[] leertodo(int idPublicacion) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
     public ArchivoPublicacionDAO[] leertodo() throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
     
 }

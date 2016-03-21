@@ -9,13 +9,16 @@ package com.repositoriounia.modelo;
  *
  * @author Mi Laptop
  */
-public class Solicitante {
+public class Solicitante extends Persona{
     private int idSolicitante;
-    private Persona persona;
     private TipoEntidad tipoEntidad;
     private String entidad;
     private String areaTrabajo;
-    private Estados estado;
+  
+    
+    
+    
+    
 
     /**
      * @return the idSolicitante
@@ -29,20 +32,6 @@ public class Solicitante {
      */
     public void setIdSolicitante(int idSolicitante) {
         this.idSolicitante = idSolicitante;
-    }
-
-    /**
-     * @return the persona
-     */
-    public Persona getPersona() {
-        return persona;
-    }
-
-    /**
-     * @param persona the persona to set
-     */
-    public void setPersona(Persona persona) {
-        this.persona = persona;
     }
 
     /**
@@ -87,35 +76,18 @@ public class Solicitante {
         this.areaTrabajo = areaTrabajo;
     }
 
-    /**
-     * @return the estado
-     */
-    public Estados getEstado() {
-        return estado;
-    }
-
-    /**
-     * @param estado the estado to set
-     */
-    public void setEstado(Estados estado) {
-        this.estado = estado;
-    }
-
-    public Solicitante(int idSolicitante, Persona persona, TipoEntidad tipoEntidad, String entidad, String areaTrabajo, Estados estado) {
+    public Solicitante(int idSolicitante, TipoEntidad tipoEntidad, String entidad, String areaTrabajo, String nombres, String apellidos, String dni, Sexo sexo, String direccion, String telefono, String correro) {
+        super(nombres, apellidos, dni, sexo, direccion, telefono, correro);
         this.idSolicitante = idSolicitante;
-        this.persona = persona;
         this.tipoEntidad = tipoEntidad;
         this.entidad = entidad;
         this.areaTrabajo = areaTrabajo;
-        this.estado = estado;
-    }
-
-    public Solicitante() {
     }
 
     @Override
     public String toString() {
-        return "Solicitante{" + "idSolicitante=" + idSolicitante + ", persona=" + persona + ", tipoEntidad=" + tipoEntidad + ", entidad=" + entidad + ", areaTrabajo=" + areaTrabajo + ", estado=" + estado + '}';
+        return "Solicitante{" + "idSolicitante=" + idSolicitante + ", tipoEntidad=" + tipoEntidad + ", entidad=" + entidad + ", areaTrabajo=" + areaTrabajo + ", nombres=" + nombres + ", apellidos=" + apellidos + ", dni=" + dni + ", sexo=" + sexo + ", direccion=" + direccion + ", telefono=" + telefono + ", correro=" + correro + ", estado=" + estado + '}';
+   
     }
 
     

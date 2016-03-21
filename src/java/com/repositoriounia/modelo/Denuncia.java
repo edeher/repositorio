@@ -5,6 +5,8 @@
  */
 package com.repositoriounia.modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author Mi Laptop
@@ -13,83 +15,15 @@ public class Denuncia {
     private int idDenuncia;
     private Denunciante denunciante;
     private ArchivoPublicacion archivoPublicacion;
+    private Date fecha;
     private String descripcion;
     private Estados estado;
 
-    /**
-     * @return the idDenuncia
-     */
-    public int getIdDenuncia() {
-        return idDenuncia;
-    }
-
-    /**
-     * @param idDenuncia the idDenuncia to set
-     */
-    public void setIdDenuncia(int idDenuncia) {
-        this.idDenuncia = idDenuncia;
-    }
-
-    /**
-     * @return the denunciante
-     */
-    public Denunciante getDenunciante() {
-        return denunciante;
-    }
-
-    /**
-     * @param denunciante the denunciante to set
-     */
-    public void setDenunciante(Denunciante denunciante) {
-        this.denunciante = denunciante;
-    }
-
-    /**
-     * @return the archivoPublicacion
-     */
-    public ArchivoPublicacion getArchivoPublicacion() {
-        return archivoPublicacion;
-    }
-
-    /**
-     * @param archivoPublicacion the archivoPublicacion to set
-     */
-    public void setArchivoPublicacion(ArchivoPublicacion archivoPublicacion) {
-        this.archivoPublicacion = archivoPublicacion;
-    }
-
-    /**
-     * @return the descripcion
-     */
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    /**
-     * @param descripcion the descripcion to set
-     */
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    /**
-     * @return the estado
-     */
-    public Estados getEstado() {
-        return estado;
-    }
-
-    /**
-     * @param estado the estado to set
-     */
-    public void setEstado(Estados estado) {
-        this.estado = estado;
-    }
-
-    public Denuncia(int idDenuncia, Denunciante denunciante, ArchivoPublicacion archivoPublicacion, String descripcion, Estados estado) {
+    public Denuncia(int idDenuncia, Denunciante denunciante, ArchivoPublicacion archivoPublicacion, Date fecha, String descripcion, Estados estado) {
         this.idDenuncia = idDenuncia;
         this.denunciante = denunciante;
         this.archivoPublicacion = archivoPublicacion;
+        this.fecha = fecha;
         this.descripcion = descripcion;
         this.estado = estado;
     }
@@ -99,7 +33,63 @@ public class Denuncia {
 
     @Override
     public String toString() {
-        return "Denuncia{" + "idDenuncia=" + idDenuncia + ", denunciante=" + denunciante + ", archivoPublicacion=" + archivoPublicacion + ", descripcion=" + descripcion + ", estado=" + estado + '}';
+        return "Denuncia{" + "idDenuncia=" + idDenuncia + ", denunciante=" + denunciante + ", archivoPublicacion=" + archivoPublicacion + ", fecha=" + fecha + ", descripcion=" + descripcion + ", estado=" + estado + '}';
     }
+
+    public Denuncia(int idDenuncia) {
+        this.idDenuncia = idDenuncia;
+    }
+
+    
+     
+    
+    public int getIdDenuncia() {
+        return idDenuncia;
+    }
+
+    public void setIdDenuncia(int idDenuncia) {
+        this.idDenuncia = idDenuncia;
+    }
+
+    public Denunciante getDenunciante() {
+        return denunciante;
+    }
+
+    public void setDenunciante(Denunciante denunciante) {
+        this.denunciante = denunciante;
+    }
+
+    public ArchivoPublicacion getArchivoPublicacion() {
+        return archivoPublicacion;
+    }
+
+    public void setArchivoPublicacion(ArchivoPublicacion archivoPublicacion) {
+        this.archivoPublicacion = archivoPublicacion;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Estados getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estados estado) {
+        this.estado = estado;
+    }
+
     
 }

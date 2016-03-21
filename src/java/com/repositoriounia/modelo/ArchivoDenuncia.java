@@ -9,11 +9,20 @@ package com.repositoriounia.modelo;
  *
  * @author Mi Laptop
  */
-public class ArchivoDenuncia {
+public class ArchivoDenuncia extends Archivo{
     private int idArchivoDenuncia;
-    private Archivo archivo;
     private Denuncia denuncia;
-    private Estados estado;
+
+    public ArchivoDenuncia(int idArchivoDenuncia, Denuncia denuncia, String urlLocal, String urlWeb) {
+        super(urlLocal, urlWeb);
+        this.idArchivoDenuncia = idArchivoDenuncia;
+        this.denuncia = denuncia;
+    }
+
+    public ArchivoDenuncia() {
+    }
+    
+    
 
     /**
      * @return the idArchivoDenuncia
@@ -30,20 +39,6 @@ public class ArchivoDenuncia {
     }
 
     /**
-     * @return the archivo
-     */
-    public Archivo getArchivo() {
-        return archivo;
-    }
-
-    /**
-     * @param archivo the archivo to set
-     */
-    public void setArchivo(Archivo archivo) {
-        this.archivo = archivo;
-    }
-
-    /**
      * @return the denuncia
      */
     public Denuncia getDenuncia() {
@@ -57,33 +52,11 @@ public class ArchivoDenuncia {
         this.denuncia = denuncia;
     }
 
-    /**
-     * @return the estado
-     */
-    public Estados getEstado() {
-        return estado;
-    }
-
-    /**
-     * @param estado the estado to set
-     */
-    public void setEstado(Estados estado) {
-        this.estado = estado;
-    }
-
-    public ArchivoDenuncia(int idArchivoDenuncia, Archivo archivo, Denuncia denuncia, Estados estado) {
-        this.idArchivoDenuncia = idArchivoDenuncia;
-        this.archivo = archivo;
-        this.denuncia = denuncia;
-        this.estado = estado;
-    }
-
-    public ArchivoDenuncia() {
-    }
-
     @Override
     public String toString() {
-        return "ArchivoDenuncia{" + "idArchivoDenuncia=" + idArchivoDenuncia + ", archivo=" + archivo + ", denuncia=" + denuncia + ", estado=" + estado + '}';
+        return "ArchivoDenuncia{" + "idArchivoDenuncia=" + idArchivoDenuncia + ", denuncia=" + denuncia + "urlLocal=" + urlLocal + ", urlWeb=" + urlWeb + '}';
     }
-    
+  
+
+   
 }

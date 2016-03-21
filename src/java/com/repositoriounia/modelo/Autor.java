@@ -9,15 +9,25 @@ package com.repositoriounia.modelo;
  *
  * @author Mi Laptop
  */
-public class Autor {
+public class Autor extends Persona{
     private int idAutor;
-    private Persona persona;
     private Escuela escuela;
     private TipoAutor tipoAutor;
     private String profesion;
     private String especialidad;
     private String grado;
-    private Estados estado;
+
+    public Autor(int idAutor, Escuela escuela, TipoAutor tipoAutor, String profesion, String especialidad, String grado, String nombres, String apellidos, String dni, Sexo sexo, String direccion, String telefono, String correro) {
+        super(nombres, apellidos, dni, sexo, direccion, telefono, correro);
+        this.idAutor = idAutor;
+        this.escuela = escuela;
+        this.tipoAutor = tipoAutor;
+        this.profesion = profesion;
+        this.especialidad = especialidad;
+        this.grado = grado;
+    }
+    
+    
 
     /**
      * @return the idAutor
@@ -31,20 +41,6 @@ public class Autor {
      */
     public void setIdAutor(int idAutor) {
         this.idAutor = idAutor;
-    }
-
-    /**
-     * @return the persona
-     */
-    public Persona getPersona() {
-        return persona;
-    }
-
-    /**
-     * @param persona the persona to set
-     */
-    public void setPersona(Persona persona) {
-        this.persona = persona;
     }
 
     /**
@@ -117,39 +113,11 @@ public class Autor {
         this.grado = grado;
     }
 
-    /**
-     * @return the estado
-     */
-    public Estados getEstado() {
-        return estado;
-    }
-
-    /**
-     * @param estado the estado to set
-     */
-    public void setEstado(Estados estado) {
-        this.estado = estado;
-    }
-
-    public Autor(int idAutor, Persona persona, Escuela escuela, TipoAutor tipoAutor, String profesion, String especialidad, String grado, Estados estado) {
-        this.idAutor = idAutor;
-        this.persona = persona;
-        this.escuela = escuela;
-        this.tipoAutor = tipoAutor;
-        this.profesion = profesion;
-        this.especialidad = especialidad;
-        this.grado = grado;
-        this.estado = estado;
-    }
-
-    public Autor() {
-    }
-
     @Override
     public String toString() {
-        return "Autor{" + "idAutor=" + idAutor + ", persona=" + persona + ", escuela=" + escuela + ", tipoAutor=" + tipoAutor + ", profesion=" + profesion + ", especialidad=" + especialidad + ", grado=" + grado + ", estado=" + estado + '}';
+        return "Autor{" + "idAutor=" + idAutor + ", escuela=" + escuela + ", tipoAutor=" + tipoAutor + ", profesion=" + profesion + ", especialidad=" + especialidad + ", grado=" + grado + ", nombres=" + nombres + ", apellidos=" + apellidos + ", dni=" + dni + ", sexo=" + sexo + ", direccion=" + direccion + ", telefono=" + telefono + ", correro=" + correro + ", estado=" + estado + '}';
+   
     }
-
-    
+   
     
 }

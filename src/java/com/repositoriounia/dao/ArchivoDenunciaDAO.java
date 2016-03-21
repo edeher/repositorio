@@ -12,9 +12,10 @@ import com.repositoriounia.modelo.ArchivoDenuncia;
  * @author Mi Laptop
  */
 public interface ArchivoDenunciaDAO {
-     public boolean crear( ArchivoDenuncia objarchD) throws DAOException;//asocia la excepcion para usar las ecepciones
-    public boolean modificar(ArchivoDenuncia objarchD)throws DAOException;
+    public boolean crear( ArchivoDenuncia objarchD, int idDenuncia) throws DAOException;//asocia la excepcion para usar las ecepciones
+    public boolean modificar(ArchivoDenuncia objarchD, int idDenuncia)throws DAOException;
     public boolean eliminar(int idArchivoDenuncia)throws DAOException;
     public ArchivoDenuncia leerxid(int idArchivoDenuncia)throws DAOException;
+    public ArchivoDenuncia []leertodo(int idDenuncia)throws DAOException;
     public ArchivoDenuncia[] leertodo()throws DAOException;
 }
