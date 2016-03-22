@@ -6,15 +6,20 @@
 package com.repositoriounia.dao;
 
 import com.repositoriounia.modelo.ArchivosSolicitados;
+import com.repositoriounia.modelo.Solicitante;
 
 /**
  *
  * @author Mi Laptop
  */
 public interface ArchivosSolicitadosDAO {
-     public boolean crear( ArchivosSolicitados objarchS) throws DAOException;//asocia la excepcion para usar las ecepciones
-    public boolean modificar(ArchivosSolicitados objarchS)throws DAOException;
+     public boolean crear( int idSolicitante, int idArchivoPublicacion) throws DAOException;//asocia la excepcion para usar las ecepciones
+    public boolean crear( Solicitante objsolici,int idArchivoPublicacion) throws DAOException;
+     public boolean modificar(ArchivosSolicitados objarchS,int idSolicitante, int idArchivoPublicacion)throws DAOException;
     public boolean eliminar(int idArchivoSolicitado)throws DAOException;
     public ArchivosSolicitados leerxid(int idArchivoSolicitado)throws DAOException;
+    public ArchivosSolicitados[] leertodo(int idSolicitante)throws DAOException;
+    public ArchivosSolicitados[] leertodo2( int idArchivoPublicacion)throws DAOException;
     public ArchivosSolicitados[] leertodo()throws DAOException;
+    
 }

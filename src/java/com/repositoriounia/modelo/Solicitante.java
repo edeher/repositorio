@@ -14,6 +14,13 @@ public class Solicitante extends Persona{
     private TipoEntidad tipoEntidad;
     private String entidad;
     private String areaTrabajo;
+
+    public Solicitante(int idSolicitante) {
+        this.idSolicitante = idSolicitante;
+    }
+
+    public Solicitante() {
+    }
   
     
     

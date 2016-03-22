@@ -5,15 +5,17 @@
  */
 package com.repositoriounia.dao;
 
+import com.repositoriounia.modelo.ArchivoPublicacion;
+
 /**
  *
  * @author Mi Laptop
  */
 public interface ArchivoPublicacionDAO {
-     public boolean crear( ArchivoPublicacionDAO objarchP, int idPublicacion) throws DAOException;//asocia la excepcion para usar las ecepciones
-    public boolean modificar(ArchivoPublicacionDAO objarchP,int idPublicacion)throws DAOException;
-    public boolean eliminar(int idArchivoPublicacionDAO)throws DAOException;
-    public ArchivoPublicacionDAO leerxid(int idArchivoPublicacionDAO)throws DAOException;
-    public ArchivoPublicacionDAO[] leertodo(int idPublicacion)throws DAOException;
-    public ArchivoPublicacionDAO[] leertodo()throws DAOException;
+     public boolean crear( ArchivoPublicacion objarchP, int idPublicacion) throws DAOException;//asocia la excepcion para usar las ecepciones
+    public boolean modificar(ArchivoPublicacion objarchP,int idPublicacion)throws DAOException;
+    public boolean eliminar(int idArchivoPublicacion)throws DAOException;
+    public ArchivoPublicacion leerxid(int idArchivoPublicacion)throws DAOException;
+    public ArchivoPublicacion[] leertodo(int idPublicacion)throws DAOException;
+    public ArchivoPublicacion[] leertodo()throws DAOException;
 }

@@ -115,6 +115,10 @@ public class Publicacion {
     public Publicacion() {
     }
 
+    public Publicacion(int idPublicacion) {
+        this.idPublicacion = idPublicacion;
+    }
+
     @Override
     public String toString() {
         return "Publicacion{" + "idPublicacion=" + idPublicacion + ", lineaInvestigacion=" + lineaInvestigacion + ", titulo=" + titulo + ", fechaCarga=" + fechaCarga + ", fechaPublicacion=" + fechaPublicacion + ", estado=" + estado + '}';

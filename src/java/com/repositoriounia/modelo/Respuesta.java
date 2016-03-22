@@ -2,9 +2,11 @@
 package com.repositoriounia.modelo;
 
 public enum Respuesta {
-   ATENDIDO("Se entrego link"),
+   ATENDIDOWEB("Se entrego link"),
+   ATENDIDOFISICO("Se entrego en Fisico"),
    NOATENDIDO("Sin respuesta"),
    RECHAZADO("No procede");
+   
    
    private String nom;
 

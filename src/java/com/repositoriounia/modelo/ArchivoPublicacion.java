@@ -23,9 +23,19 @@ public class ArchivoPublicacion extends Archivo{
 
     public ArchivoPublicacion() {
     }
-@Override
+
+    public ArchivoPublicacion(int idArchivoPublicacion) {
+        this.idArchivoPublicacion = idArchivoPublicacion;
+    }
+
+    @Override
     public String toString() {
-        return "ArchivoPublicacion{" + "idArchivoPublicacion=" + idArchivoPublicacion + ", publicacion=" + publicacion + ", descripcion=" + descripcion + "urlLocal=" + urlLocal + ", urlWeb=" + urlWeb + '}';
+        return "ArchivoPublicacion{" + "idArchivoPublicacion=" + idArchivoPublicacion + ", publicacion=" + publicacion + ", descripcion=" + descripcion + '}';
+    }
+    
+
+    public String toString2() {
+        return "ArchivoPublicacion{" + "idArchivoPublicacion=" + idArchivoPublicacion + ", publicacion=" + publicacion + ", descripcion=" + descripcion.getNom() + ", urlLocal=" + urlLocal + ", urlWeb=" + urlWeb + '}';
     }
     
     

@@ -79,14 +79,14 @@ public class ArchivosSolicitados {
 
    
    
-    public ArchivosSolicitados(int idArchivoSolicitado, Solicitante solicitante, ArchivoPublicacion archivoPublicacion, Date fechaSolicitud, Respuesta Respuesta, Date fechaRespuesta, Estados estado) {
+    public ArchivosSolicitados(int idArchivoSolicitado, Solicitante solicitante, ArchivoPublicacion archivoPublicacion, Date fechaSolicitud, Respuesta Respuesta, Date fechaRespuesta) {
         this.idArchivoSolicitado = idArchivoSolicitado;
         this.solicitante = solicitante;
         this.archivoPublicacion = archivoPublicacion;
         this.fechaSolicitud = fechaSolicitud;
         this.Respuesta = Respuesta;
         this.fechaRespuesta = fechaRespuesta;
-        this.estado = estado;
+       
     }
 
     public ArchivosSolicitados() {
@@ -94,7 +94,7 @@ public class ArchivosSolicitados {
 
     @Override
     public String toString() {
-        return "ArchivosSolicitados{" + "idArchivoSolicitado=" + idArchivoSolicitado + ", solicitante=" + solicitante + ", archivoPublicacion=" + archivoPublicacion + ", fechaSolicitud=" + fechaSolicitud + ", Respuesta=" + Respuesta + ", fechaRespuesta=" + fechaRespuesta + ", estado=" + estado + '}';
+        return "ArchivosSolicitados{" + "idArchivoSolicitado=" + idArchivoSolicitado + ", solicitante=" + solicitante + ", archivoPublicacion=" + archivoPublicacion + ", fechaSolicitud=" + fechaSolicitud + ", Respuesta=" + Respuesta.getNom() + ", fechaRespuesta=" + fechaRespuesta + '}';
     }
 
    
