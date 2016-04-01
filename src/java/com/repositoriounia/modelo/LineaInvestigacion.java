@@ -81,6 +81,10 @@ public class LineaInvestigacion {
     public LineaInvestigacion() {
     }
 
+    public LineaInvestigacion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     @Override
     public String toString() {
         return "LineaInvestigacion{" + "idLineaInvestigacion=" + idLineaInvestigacion + ", areaInvestigacion=" + areaInvestigacion + ", descripcion=" + descripcion + ", estado=" + estado + '}';

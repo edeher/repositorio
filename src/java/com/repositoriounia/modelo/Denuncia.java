@@ -33,11 +33,19 @@ public class Denuncia {
 
     @Override
     public String toString() {
-        return "Denuncia{" + "idDenuncia=" + idDenuncia + ", denunciante=" + denunciante + ", archivoPublicacion=" + archivoPublicacion + ", fecha=" + fecha + ", descripcion=" + descripcion + ", estado=" + estado + '}';
+        return "Denuncia{" + "idDenuncia=" + idDenuncia + ", denunciante=" + denunciante + ", archivoPublicacion=" + archivoPublicacion + ", fecha=" + fecha + ", descripcion=" + descripcion  + '}';
     }
 
     public Denuncia(int idDenuncia) {
         this.idDenuncia = idDenuncia;
+    }
+
+    public Denuncia(int idDenuncia, Denunciante denunciante, ArchivoPublicacion archivoPublicacion, Date fecha, String descripcion) {
+        this.idDenuncia = idDenuncia;
+        this.denunciante = denunciante;
+        this.archivoPublicacion = archivoPublicacion;
+        this.fecha = fecha;
+        this.descripcion = descripcion;
     }
 
     

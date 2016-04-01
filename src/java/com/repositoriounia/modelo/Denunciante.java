@@ -16,9 +16,13 @@ public class Denunciante extends Persona{
         super(nombres, apellidos, dni, sexo, direccion, telefono, correro);
         this.idDenunciante = idDenunciante;
     }
-    
-    
-    
+
+    public Denunciante(String nombres) {
+        super(nombres);
+    }
+
+    public Denunciante() {
+    }
 
     /**
      * @return the idDenunciante

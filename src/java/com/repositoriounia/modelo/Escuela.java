@@ -81,9 +81,25 @@ public class Escuela {
     public Escuela() {
     }
 
+    public Escuela(int idEscuela, Facultad facultad, String descripcion) {
+        this.idEscuela = idEscuela;
+        this.facultad = facultad;
+        this.descripcion = descripcion;
+    }
+
+    public Escuela(int idEscuela) {
+        this.idEscuela = idEscuela;
+    }
+
+    public Escuela(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     @Override
     public String toString() {
-        return "Escuela{" + "idEscuela=" + idEscuela + ", facultad=" + facultad + ", descripcion=" + descripcion + ", estado=" + estado + '}';
+        return "Escuela{" + "idEscuela=" + idEscuela + ", facultad=" + facultad + ", descripcion=" + descripcion + '}';
     }
+
+   
     
 }

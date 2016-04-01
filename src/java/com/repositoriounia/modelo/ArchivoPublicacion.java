@@ -28,6 +28,10 @@ public class ArchivoPublicacion extends Archivo{
         this.idArchivoPublicacion = idArchivoPublicacion;
     }
 
+    public ArchivoPublicacion(DescripcionArchivo descripcion) {
+        this.descripcion = descripcion;
+    }
+
     @Override
     public String toString() {
         return "ArchivoPublicacion{" + "idArchivoPublicacion=" + idArchivoPublicacion + ", publicacion=" + publicacion + ", descripcion=" + descripcion + '}';

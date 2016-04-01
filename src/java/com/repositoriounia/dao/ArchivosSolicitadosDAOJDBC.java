@@ -71,13 +71,13 @@ private final Connection con;
 	                   
 	           if (st.execute()) //devuelve verdadero si fallo
             {
-               throw new DAOException("Error creando archivossolicitados denuncia");
+               throw new DAOException("Error modificando archivossolicitados denuncia");
             }
             st.close();
             
             
         } catch (SQLException se) {
-            throw new DAOException("Error añadiendo archivo archivossolicitados en DAO", se);
+            throw new DAOException("Error modificando archivo archivossolicitados en DAO", se);
         }
         return true;
     
@@ -96,12 +96,12 @@ private final Connection con;
 
             if (st.execute()) //devuelve verdadero si fallo
             {
-                throw new DAOException("Error modificando archivossolicitados");
+                throw new DAOException("Error eliminado archivossolicitados");
             }
             st.close();
             
         } catch (SQLException se) {
-            throw new DAOException("Error añadiendo archivo archivossolicitados en DAO", se);
+            throw new DAOException("Error eliminando archivo archivossolicitados en DAO", se);
         }
         return true; 
     

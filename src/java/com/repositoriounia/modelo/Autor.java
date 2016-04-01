@@ -26,6 +26,9 @@ public class Autor extends Persona{
         this.especialidad = especialidad;
         this.grado = grado;
     }
+
+    public Autor() {
+    }
     
     
 
@@ -115,7 +118,7 @@ public class Autor extends Persona{
 
     @Override
     public String toString() {
-        return "Autor{" + "idAutor=" + idAutor + ", escuela=" + escuela + ", tipoAutor=" + tipoAutor + ", profesion=" + profesion + ", especialidad=" + especialidad + ", grado=" + grado + ", nombres=" + nombres + ", apellidos=" + apellidos + ", dni=" + dni + ", sexo=" + sexo + ", direccion=" + direccion + ", telefono=" + telefono + ", correro=" + correro + ", estado=" + estado + '}';
+        return "Autor{" + "idAutor=" + idAutor + ", escuela=" + escuela + ", tipoAutor=" + tipoAutor.getNom() + ", profesion=" + profesion + ", especialidad=" + especialidad + ", grado=" + grado + ", nombres=" + nombres + ", apellidos=" + apellidos + ", dni=" + dni + ", sexo=" + sexo + ", direccion=" + direccion + ", telefono=" + telefono + ", correro=" + correro + '}';
    
     }
    

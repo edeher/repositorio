@@ -65,9 +65,14 @@ public class AreaInvestigacion {
     public AreaInvestigacion() {
     }
 
+    public AreaInvestigacion(int idAreaInvestigacion, String descripcion) {
+        this.idAreaInvestigacion = idAreaInvestigacion;
+        this.descripcion = descripcion;
+    }
+
     @Override
     public String toString() {
-        return "AreaInvestigacion{" + "idAreaInvestigacion=" + idAreaInvestigacion + ", descripcion=" + descripcion + ", estado=" + estado + '}';
+        return "AreaInvestigacion{" + "idAreaInvestigacion=" + idAreaInvestigacion + ", descripcion=" + descripcion + '}';
     }
     
 }

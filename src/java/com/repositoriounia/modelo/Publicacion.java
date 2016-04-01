@@ -103,13 +103,13 @@ public class Publicacion {
         this.estado = estado;
     }
 
-    public Publicacion(int idPublicacion, LineaInvestigacion lineaInvestigacion, String titulo, Date fechaCarga, Date fechaPublicacion, Estados estado) {
+    public Publicacion(int idPublicacion, LineaInvestigacion lineaInvestigacion, String titulo, Date fechaCarga, Date fechaPublicacion) {
         this.idPublicacion = idPublicacion;
         this.lineaInvestigacion = lineaInvestigacion;
         this.titulo = titulo;
         this.fechaCarga = fechaCarga;
         this.fechaPublicacion = fechaPublicacion;
-        this.estado = estado;
+       
     }
 
     public Publicacion() {
@@ -121,7 +121,7 @@ public class Publicacion {
 
     @Override
     public String toString() {
-        return "Publicacion{" + "idPublicacion=" + idPublicacion + ", lineaInvestigacion=" + lineaInvestigacion + ", titulo=" + titulo + ", fechaCarga=" + fechaCarga + ", fechaPublicacion=" + fechaPublicacion + ", estado=" + estado + '}';
+        return "Publicacion{" + "idPublicacion=" + idPublicacion + ", lineaInvestigacion=" + lineaInvestigacion + ", titulo=" + titulo + ", fechaCarga=" + fechaCarga + ", fechaPublicacion=" + fechaPublicacion +  '}';
     }
     
 }

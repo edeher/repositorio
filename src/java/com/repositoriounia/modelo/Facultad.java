@@ -65,9 +65,13 @@ public class Facultad {
     public Facultad() {
     }
 
+    public Facultad(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     @Override
     public String toString() {
-        return "Facultad{" + "idFacultad=" + idFacultad + ", descripcion=" + descripcion + ", estado=" + estado + '}';
+        return "Facultad{" + "idFacultad=" + idFacultad + ", descripcion=" + descripcion + '}';
     }
     
 }

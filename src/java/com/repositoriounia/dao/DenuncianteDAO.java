@@ -13,6 +13,7 @@ import com.repositoriounia.modelo.Denunciante;
  */
 public interface DenuncianteDAO {
      public boolean crear( Denunciante objDe) throws DAOException;//asocia la excepcion para usar las ecepciones
+     public boolean crear(int idPersona)throws DAOException;
     public boolean modificar(Denunciante objDe)throws DAOException;
     public boolean eliminar(int idDenunciante)throws DAOException;
     public Denunciante leerxid (int idDenunciante)throws DAOException;
