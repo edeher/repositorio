@@ -5,37 +5,224 @@
  */
 package com.repositoriounia.dao;
 
+import com.repositoriounia.modelo.Solicitante;
 import com.repositoriounia.modelo.TemasSugeridos;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
  * @author Mi Laptop
  */
 public class TemasSugeridosDAOJDBC implements TemasSugeridosDAO{
+    private final Connection con;
+
+    public TemasSugeridosDAOJDBC() {
+        this.con = DBManager.getConnection();
+    }
+    
+    @Override
+    public boolean crear(TemasSugeridos objTe, Solicitante objSo) throws DAOException {
+       try 
+	        {
+	           CallableStatement st=con.prepareCall("{call sp_temasugerido_n(?,?,?,?,?,?,?,?,?,?,?,?)}");
+	                   
+	                    st.setString(1,objSo.getNombres());
+                            st.setString(2,objSo.getApellidos());
+                            st.setString(3,objSo.getDni());
+                            st.setString(4,objSo.getSexo().name());
+                            st.setString(5,objSo.getDireccion());
+                            st.setString(6,objSo.getTelefono());
+                            st.setString(7,objSo.getCorrero());
+                            st.setString(8,objSo.getTipoEntidad().name());
+                            st.setString(9,objSo.getEntidad());
+                            st.setString(10,objSo.getAreaTrabajo());
+                            
+                            st.setString(11,objTe.getTema());
+                            st.setString(12,objTe.getAreaTematica());
+                            
+	                   
+	           if (st.execute()) //devuelve verdadero si fallo
+            {
+               throw new DAOException("Error creando temasugerido");
+            }
+            st.close();
+            
+            
+        } catch (SQLException se) {
+            throw new DAOException("Error añadiendo tema sugerido en DAO", se);
+        }
+        return true; 
+    }
 
     @Override
-    public boolean crear(TemasSugeridos objTe) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean crear(TemasSugeridos objTe, int idSolicitante) throws DAOException {
+         try 
+	        {
+	           CallableStatement st=con.prepareCall("{call sp_temasugerido_n1(?,?,?)}");
+	                   
+	                   st.setInt(1, idSolicitante);
+                            
+                            st.setString(2,objTe.getTema());
+                            st.setString(3,objTe.getAreaTematica());
+                            
+	                   
+	           if (st.execute()) //devuelve verdadero si fallo
+            {
+               throw new DAOException("Error creando temasugerido");
+            }
+            st.close();
+            
+            
+        } catch (SQLException se) {
+            throw new DAOException("Error añadiendo tema sugerido en DAO", se);
+        }
+        return true; 
+    
     }
 
     @Override
     public boolean modificar(TemasSugeridos objTe) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    try 
+	        {
+	           CallableStatement st=con.prepareCall("{call sp_temasugerido_m(?,?,?)}");
+	                   
+	                   st.setInt(1, objTe.getIdTemaSugerido());
+                            
+                            st.setString(2,objTe.getTema());
+                            st.setString(3,objTe.getAreaTematica());
+                            
+	                   
+	           if (st.execute()) //devuelve verdadero si fallo
+            {
+               throw new DAOException("Error modificando temasugerido");
+            }
+            st.close();
+            
+            
+        } catch (SQLException se) {
+            throw new DAOException("Error modificando tema sugerido en DAO", se);
+        }
+        return true;    
     }
 
     @Override
     public boolean eliminar(int idTemasSugeridos) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try  {
+	           CallableStatement st=con.prepareCall("{call sp_temasugerido_e(?) }");
+            
+            st.setInt(1,idTemasSugeridos);
+
+
+            if (st.execute()) //devuelve verdadero si fallo
+            {
+                throw new DAOException("Error eliminado TemasSugeridos");
+            }
+            st.close();
+            
+        } catch (SQLException se) {
+            throw new DAOException("Error eliminando TemasSugeridos en DAO", se);
+        }
+        return true; 
     }
 
     @Override
     public TemasSugeridos leerxid(int idTemasSugeridos) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+        CallableStatement st=con.prepareCall("{call sp_temasugerido_bco(?)}");
+            st.setInt(1,idTemasSugeridos);
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                    new TemasSugeridos(
+                            rs.getInt("idTemasSugeridos"),
+                            new Solicitante(
+                            rs.getString("nombres")
+                            ),
+                           rs.getDate("fecha"),
+                            rs.getString("tema"),
+                            rs.getString("areaTematica"))
+                            
+                            
+                   );
+            
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error buscando TemasSugeridos en DAO", se);
+        }
+    }
+
+    @Override
+    public TemasSugeridos[] leertodo(int idSolicitante) throws DAOException {
+         try{
+        CallableStatement st=con.prepareCall("{call sp_temasugerido_all2(?)}");
+            st.setInt(1,idSolicitante);
+             ResultSet rs = st.executeQuery();
+                      
+            ArrayList<TemasSugeridos> tribs = new ArrayList<>(); 
+            
+            while (rs.next()) {
+                tribs.add(
+                        
+                     new TemasSugeridos(
+                            rs.getInt("idTemasSugeridos"),
+                            new Solicitante(
+                            rs.getString("nombres")
+                            ),
+                           rs.getDate("fecha"),
+                            rs.getString("tema"),
+                            rs.getString("areaTematica"))
+                            
+                            
+                   );
+            }
+            return tribs.toArray(new TemasSugeridos[0]);
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error obteniedo todos los TemasSugeridos en DAO: " 
+                    + se.getMessage(), se);
+        }    
     }
 
     @Override
     public TemasSugeridos[] leertodo() throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try  {
+             CallableStatement stm=con.prepareCall("{call sp_temasugerido_all()}");
+            ResultSet rs=stm.executeQuery();
+                      
+            ArrayList<TemasSugeridos> tribs = new ArrayList<>(); 
+            
+            while (rs.next()) {
+                tribs.add(
+                        
+                 new TemasSugeridos(
+                            rs.getInt("idTemasSugeridos"),
+                            new Solicitante(
+                            rs.getString("nombres")
+                            ),
+                           rs.getDate("fecha"),
+                            rs.getString("tema"),
+                            rs.getString("areaTematica"))
+                            
+                            
+                   );
+            }
+            return tribs.toArray(new TemasSugeridos[0]);
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error obteniedo todos los TemasSugeridos en DAO: " 
+                    + se.getMessage(), se);
+        }     
     }
+
+   
     
 }

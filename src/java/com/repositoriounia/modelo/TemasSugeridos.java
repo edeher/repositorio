@@ -19,24 +19,25 @@ public class TemasSugeridos {
    private String areaTematica;
    private Estados estado;
 
-    public TemasSugeridos(int idTemaSugerido, Solicitante solicitante, Date fecha, String tema, String areaTematica, Estados estado) {
+    public TemasSugeridos(int idTemaSugerido, Solicitante solicitante, Date fecha, String tema, String areaTematica) {
         this.idTemaSugerido = idTemaSugerido;
         this.solicitante = solicitante;
         this.fecha = fecha;
         this.tema = tema;
         this.areaTematica = areaTematica;
-        this.estado = estado;
+       
     }
 
     public TemasSugeridos() {
     }
 
+    
+
     @Override
     public String toString() {
-        return "TemasSugeridos{" + "idTemaSugerido=" + idTemaSugerido + ", solicitante=" + solicitante + ", fecha=" + fecha + ", tema=" + tema + ", areaTematica=" + areaTematica + ", estado=" + estado + '}';
+        return "TemasSugeridos{" + "idTemaSugerido=" + idTemaSugerido + ", solicitante=" + solicitante + ", fecha=" + fecha + ", tema=" + tema + ", areaTematica=" + areaTematica + '}';
     }
 
-   
     /**
      * @return the idTemaSugerido
      */

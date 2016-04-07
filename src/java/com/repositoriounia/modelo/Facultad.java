@@ -65,6 +65,11 @@ public class Facultad {
     public Facultad() {
     }
 
+    public Facultad(int idFacultad, String descripcion) {
+        this.idFacultad = idFacultad;
+        this.descripcion = descripcion;
+    }
+    
     public Facultad(String descripcion) {
         this.descripcion = descripcion;
     }

@@ -5,6 +5,7 @@
  */
 package com.repositoriounia.dao;
 
+import com.repositoriounia.modelo.Solicitante;
 import com.repositoriounia.modelo.TemasSugeridos;
 
 /**
@@ -12,9 +13,11 @@ import com.repositoriounia.modelo.TemasSugeridos;
  * @author Mi Laptop
  */
 public interface TemasSugeridosDAO {
-    public boolean crear( TemasSugeridos objTe) throws DAOException;//asocia la excepcion para usar las ecepciones
+    public boolean crear( TemasSugeridos objTe, Solicitante objSo) throws DAOException;//asocia la excepcion para usar las ecepciones
+     public boolean crear( TemasSugeridos objTe, int idSolicitante) throws DAOException;
     public boolean modificar(TemasSugeridos objTe)throws DAOException;
     public boolean eliminar(int idTemasSugeridos)throws DAOException;
     public TemasSugeridos leerxid (int idTemasSugeridos)throws DAOException;
+    public TemasSugeridos[] leertodo(int idSolicitante)throws DAOException;
     public TemasSugeridos[] leertodo()throws DAOException;
 }

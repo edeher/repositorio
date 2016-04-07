@@ -13,6 +13,7 @@ import com.repositoriounia.modelo.Solicitante;
  */
 public interface SolicitanteDAO {
      public boolean crear( Solicitante objSo) throws DAOException;//asocia la excepcion para usar las ecepciones
+     public boolean crear( Solicitante objSo,int idPersona) throws DAOException;
     public boolean modificar(Solicitante objSo)throws DAOException;
     public boolean eliminar(int idSolicitante)throws DAOException;
     public Solicitante leerxid (int idSolicitante)throws DAOException;

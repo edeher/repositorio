@@ -21,13 +21,7 @@ public class Solicitante extends Persona{
 
     public Solicitante() {
     }
-  
-    
-    
-    
-    
-
-    /**
+     /**
      * @return the idSolicitante
      */
     public int getIdSolicitante() {
@@ -91,9 +85,14 @@ public class Solicitante extends Persona{
         this.areaTrabajo = areaTrabajo;
     }
 
+    public Solicitante(String nombres) {
+        super(nombres);
+    }
+
+    
     @Override
     public String toString() {
-        return "Solicitante{" + "idSolicitante=" + idSolicitante + ", tipoEntidad=" + tipoEntidad + ", entidad=" + entidad + ", areaTrabajo=" + areaTrabajo + ", nombres=" + nombres + ", apellidos=" + apellidos + ", dni=" + dni + ", sexo=" + sexo + ", direccion=" + direccion + ", telefono=" + telefono + ", correro=" + correro + ", estado=" + estado + '}';
+        return "Solicitante{" + "idSolicitante=" + idSolicitante + ", tipoEntidad=" + tipoEntidad + ", entidad=" + entidad + ", areaTrabajo=" + areaTrabajo + ", nombres=" + nombres + ", apellidos=" + apellidos + ", dni=" + dni + ", sexo=" + sexo + ", direccion=" + direccion + ", telefono=" + telefono + ", correro=" + correro +  '}';
    
     }
 

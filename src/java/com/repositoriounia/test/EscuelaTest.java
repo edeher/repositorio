@@ -21,7 +21,10 @@ public class EscuelaTest {
      */
     public static void main(String[] args) throws DAOException{
         // TODO code application logic here
-        crearescuela();
+//        crearescuela();
+//        modificarescuela();
+//        leer();
+        leertodo();
     }
      public static void crearescuela() throws DAOException
     {
@@ -29,10 +32,57 @@ public class EscuelaTest {
          EscuelaDAO daote= fabricate.metodoDAO();
          Escuela objEs=new Escuela();
           int idFacultad=1;
-             objEs.setDescripcion("acuicola");
+             objEs.setDescripcion("educaion secundaria");
               
               daote.crear(objEs,idFacultad);
                
            
     }
+     public static void modificarescuela() throws DAOException
+    {
+        EscuelaDAOFactory fabricate= new  EscuelaDAOFactory();
+         EscuelaDAO daote= fabricate.metodoDAO();
+         Escuela objEs=new Escuela();
+          int idFacultad=1;
+             objEs.setIdEscuela(5);
+             objEs.setDescripcion("educaion secundaria bilingüe");
+              
+              daote.modificar(objEs,idFacultad);
+               
+           
+    }
+     public static void eliminardenuncia() throws DAOException
+    {
+          EscuelaDAOFactory fabricate= new  EscuelaDAOFactory();
+          EscuelaDAO daote= fabricate.metodoDAO();
+          int idEscuela=1;
+              
+              daote.eliminar(idEscuela);
+   
+    }
+     public static void leer()throws DAOException
+	{
+		  EscuelaDAOFactory fabricate= new  EscuelaDAOFactory();
+                 EscuelaDAO daote= fabricate.metodoDAO();
+       
+               
+	  Escuela objEs=daote.leerxid(3);
+	 System.out.println(" "+objEs.toString());
+        
+	    
+	}
+      public static void leertodo()throws DAOException
+	{
+		  EscuelaDAOFactory fabricate= new  EscuelaDAOFactory();
+                  EscuelaDAO daote= fabricate.metodoDAO();
+	 Escuela[] usuv=daote.leertodo();
+	  
+	  for(Escuela usuv1:usuv)
+	  {
+	      
+	      System.out.println(" "+usuv1.toString());
+	  
+	  }
+	 
+        } 
 }

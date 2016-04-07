@@ -39,9 +39,6 @@ private final Connection con;
                             st.setString(6,objDe.getTelefono());
                             st.setString(7,objDe.getCorrero());
                             
-                           
-                           
-                       
 	           if (st.execute()) //devuelve verdadero si fallo
             {
                throw new DAOException("Error creando denunciante ");

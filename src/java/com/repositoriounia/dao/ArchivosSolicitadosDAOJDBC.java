@@ -49,9 +49,7 @@ private final Connection con;
             throw new DAOException("Error añadiendo archivo archivossolicitados en DAO", se);
         }
         return true;
-    
-        
-        
+           
     }
 
     @Override
@@ -263,9 +261,6 @@ private final Connection con;
             throw new DAOException("Error añadiendo archivo archivossolicitados en DAO", se);
         }
         return true;
-    
-    
-    
     
     }
 

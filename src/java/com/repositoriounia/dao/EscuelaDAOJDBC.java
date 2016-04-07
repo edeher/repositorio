@@ -46,10 +46,10 @@ private final Connection con;
     @Override
     public boolean modificar(Escuela objEs, int idFacultad) throws DAOException {
        try{
-	           CallableStatement st=con.prepareCall("{call sp_escuela_m(?,?)}");
-	                   
-	                    st.setInt(1,idFacultad);
-                            st.setString(2,objEs.getDescripcion());
+	           CallableStatement st=con.prepareCall("{call sp_escuela_m(?,?,?)}");
+                            st.setInt(1,objEs.getIdEscuela());
+	                    st.setInt(2,idFacultad);
+                            st.setString(3,objEs.getDescripcion());
                                                       
 	           if (st.execute()) //devuelve verdadero si fallo
             {
@@ -86,7 +86,7 @@ private final Connection con;
     @Override
     public Escuela leerxid(int idEscuela) throws DAOException {
          try{
-        CallableStatement st=con.prepareCall("{call sp_denunciante_bco(?)}");
+        CallableStatement st=con.prepareCall("{call sp_escuela_bco(?)}");
             st.setInt(1,idEscuela);
               ResultSet rs = st.executeQuery();
             if (!rs.next()) {

@@ -85,9 +85,15 @@ public class LineaInvestigacion {
         this.descripcion = descripcion;
     }
 
+    public LineaInvestigacion(int idLineaInvestigacion, AreaInvestigacion areaInvestigacion, String descripcion) {
+        this.idLineaInvestigacion = idLineaInvestigacion;
+        this.areaInvestigacion = areaInvestigacion;
+        this.descripcion = descripcion;
+    }
+
     @Override
     public String toString() {
-        return "LineaInvestigacion{" + "idLineaInvestigacion=" + idLineaInvestigacion + ", areaInvestigacion=" + areaInvestigacion + ", descripcion=" + descripcion + ", estado=" + estado + '}';
+        return "LineaInvestigacion{" + "idLineaInvestigacion=" + idLineaInvestigacion + ", areaInvestigacion=" + areaInvestigacion + ", descripcion=" + descripcion +  '}';
     }
     
 }

@@ -12,8 +12,8 @@ import com.repositoriounia.modelo.LineaInvestigacion;
  * @author Mi Laptop
  */
 public interface LineaInvestigacionDAO {
-    public boolean crear( LineaInvestigacion objLi) throws DAOException;//asocia la excepcion para usar las ecepciones
-    public boolean modificar(LineaInvestigacion objLi)throws DAOException;
+    public boolean crear( LineaInvestigacion objLi, int idAreaInvestigacion) throws DAOException;//asocia la excepcion para usar las ecepciones
+    public boolean modificar(LineaInvestigacion objLi, int idAreaInvestigacion)throws DAOException;
     public boolean eliminar(int idLineaInvestigacion)throws DAOException;
     public LineaInvestigacion leerxid (int idLineaInvestigacion)throws DAOException;
     public LineaInvestigacion[] leertodo()throws DAOException;
