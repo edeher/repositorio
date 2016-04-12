@@ -81,11 +81,18 @@ public class Visita {
     }
 
     public Visita() {
+        this.archivoPublicacion=new ArchivoPublicacion();
+    }
+
+    public Visita(int idVisita, ArchivoPublicacion archivoPublicacion, Date fecha) {
+        this.idVisita = idVisita;
+        this.archivoPublicacion = archivoPublicacion;
+        this.fecha = fecha;
     }
 
     @Override
     public String toString() {
-        return "Visita{" + "idVisita=" + idVisita + ", archivoPublicacion=" + archivoPublicacion + ", fecha=" + fecha + ", estado=" + estado + '}';
+        return "Visita{" + "idVisita=" + idVisita + ", archivoPublicacion=" + archivoPublicacion + ", fecha=" + fecha + '}';
     }
     
     

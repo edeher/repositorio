@@ -22,20 +22,21 @@ public class LineaInvestigacionTest {
     public static void main(String[] args) throws DAOException{
         // TODO code application logic here
 //        crearlinea();
-//        modificarlinea();
+        modificarlinea();
 //        eliminarlinea();
 //        leer();
-        leertodo();
+//        leertodo();
     }
      public static void crearlinea() throws DAOException
     {
         LineaInvestigacionDAOFactory fabricate= new  LineaInvestigacionDAOFactory();
          LineaInvestigacionDAO daote= fabricate.metodoDAO();
          LineaInvestigacion objLi=new LineaInvestigacion();
-          int idAreaInvestigacion=1;
+          
+            objLi.getAreaInvestigacion().setIdAreaInvestigacion(1);
              objLi.setDescripcion("plantas plantotas");
               
-              daote.crear(objLi,idAreaInvestigacion);
+              daote.crear(objLi);
                
            
     }
@@ -44,11 +45,12 @@ public class LineaInvestigacionTest {
         LineaInvestigacionDAOFactory fabricate= new  LineaInvestigacionDAOFactory();
          LineaInvestigacionDAO daote= fabricate.metodoDAO();
          LineaInvestigacion objLi=new LineaInvestigacion();
-          int idAreaInvestigacion=1;
+          
              objLi.setIdLineaInvestigacion(1);
-             objLi.setDescripcion("plantas plantotas plantitas");
+              objLi.getAreaInvestigacion().setIdAreaInvestigacion(1);
+             objLi.setDescripcion("plantas plantotas plantitasxxxx");
               
-              daote.modificar(objLi,idAreaInvestigacion);
+              daote.modificar(objLi);
                
            
     }

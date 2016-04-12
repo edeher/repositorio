@@ -14,10 +14,10 @@ import com.repositoriounia.modelo.Publicacion;
  * @author Mi Laptop
  */
 public interface AutorPublicacionDAO {
-    public boolean crear(  Autor objAu, Publicacion objPu) throws DAOException;
-    public boolean crear(  int idAutor, Publicacion objPu)throws DAOException;
+    public boolean crear(  AutorPublicacion objAu) throws DAOException;
+    public boolean crear(  int idAutor, AutorPublicacion objAu)throws DAOException;
     public boolean crear(  int idAutor, int idPublicacion)throws DAOException;
-    public boolean crear(  Autor objAu, int idPublicacion) throws DAOException; 
+    public boolean crear(  AutorPublicacion objAu, int idPublicacion) throws DAOException; 
     
     public boolean modificar(AutorPublicacion objAuP,Autor objAu, Publicacion objPu)throws DAOException;
     public boolean eliminar(int idAutorPublicacion)throws DAOException;

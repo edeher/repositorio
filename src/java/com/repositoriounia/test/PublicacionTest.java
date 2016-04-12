@@ -25,10 +25,10 @@ public class PublicacionTest {
     public static void main(String[] args) throws DAOException{
         // TODO code application logic here
 //        crearpublicacion();
-//        modificarpublicacion();
+        modificarpublicacion();
 //        eliminarpublicacion();
 //        leerpublicacion();
-        leertodo();
+//        leertodo();
     }
     public static void crearpublicacion() throws DAOException
     {
@@ -39,12 +39,13 @@ public class PublicacionTest {
           try{
           SimpleDateFormat fe=new SimpleDateFormat("yyyy-MM-dd");
           Date fec = new Date(fe.parse("2016-02-20").getTime());
-          int idLineaInvestigacion=1;
+          
+                objPu.getLineaInvestigacion().setIdLineaInvestigacion(1);
                 objPu.setTitulo("buqueda de algas");
                 objPu.setFechaPublicacion(fec);
              
               
-              daote.crear(objPu, idLineaInvestigacion);
+              daote.crear(objPu);
                
             } 
                           catch (ParseException e) {
@@ -60,14 +61,15 @@ public class PublicacionTest {
           try{
           SimpleDateFormat fe=new SimpleDateFormat("yyyy-MM-dd");
           Date fec = new Date(fe.parse("2016-02-20").getTime());
-          int idLineaInvestigacion=1;
+     
           objPu.setIdPublicacion(1);
-                objPu.setTitulo("buqueda de algas en pucallpa");
+          objPu.getLineaInvestigacion().setIdLineaInvestigacion(1);
+                objPu.setTitulo("buqueda de algas en pucallpaxxxxxxxxxx");
                 objPu.setFechaCarga(fec);
                 objPu.setFechaPublicacion(fec);
              
               
-              daote.modificar(objPu, idLineaInvestigacion);
+              daote.modificar(objPu);
                
             } 
                           catch (ParseException e) {

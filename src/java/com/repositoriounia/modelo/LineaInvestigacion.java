@@ -79,6 +79,7 @@ public class LineaInvestigacion {
     }
 
     public LineaInvestigacion() {
+        this.areaInvestigacion=new AreaInvestigacion();
     }
 
     public LineaInvestigacion(String descripcion) {

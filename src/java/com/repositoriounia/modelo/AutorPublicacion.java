@@ -14,8 +14,8 @@ public class AutorPublicacion {
     private Autor autor;
     private Publicacion publicacion;
     private Estados estado;
-
-    /**
+    
+     /**
      * @return the idAutorPublicacion
      */
     public int getIdAutorPublicacion() {
@@ -73,17 +73,19 @@ public class AutorPublicacion {
 
     public AutorPublicacion(int idAutorPublicacion, Autor autor, Publicacion publicacion, Estados estado) {
         this.idAutorPublicacion = idAutorPublicacion;
-        this.autor = autor;
-        this.publicacion = publicacion;
+        this.autor = new Autor();
+        this.publicacion = new Publicacion();
         this.estado = estado;
     }
 
     public AutorPublicacion() {
+        
     }
-
-    @Override
+    
+  @Override
     public String toString() {
         return "AutorPublicacion{" + "idAutorPublicacion=" + idAutorPublicacion + ", autor=" + autor + ", publicacion=" + publicacion + ", estado=" + estado + '}';
     }
+    
     
 }

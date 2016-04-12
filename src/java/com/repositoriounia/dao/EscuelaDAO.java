@@ -12,8 +12,8 @@ import com.repositoriounia.modelo.Escuela;
  * @author Mi Laptop
  */
 public interface EscuelaDAO {
-    public boolean crear( Escuela objEs,int idFacultad) throws DAOException;//asocia la excepcion para usar las ecepciones
-    public boolean modificar(Escuela objEs,int idFacultad)throws DAOException;
+    public boolean crear( Escuela objEs) throws DAOException;//asocia la excepcion para usar las ecepciones
+    public boolean modificar(Escuela objEs)throws DAOException;
     public boolean eliminar(int idEscuela)throws DAOException;
     public Escuela leerxid (int idEscuela)throws DAOException;
     public Escuela[] leertodo()throws DAOException;

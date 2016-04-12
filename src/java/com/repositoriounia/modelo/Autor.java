@@ -16,11 +16,13 @@ public class Autor extends Persona{
     private String profesion;
     private String especialidad;
     private String grado;
+    
+    
 
     public Autor(int idAutor, Escuela escuela, TipoAutor tipoAutor, String profesion, String especialidad, String grado, String nombres, String apellidos, String dni, Sexo sexo, String direccion, String telefono, String correro) {
         super(nombres, apellidos, dni, sexo, direccion, telefono, correro);
         this.idAutor = idAutor;
-        this.escuela = escuela;
+        this.escuela =escuela;
         this.tipoAutor = tipoAutor;
         this.profesion = profesion;
         this.especialidad = especialidad;
@@ -28,13 +30,11 @@ public class Autor extends Persona{
     }
 
     public Autor() {
+        this.escuela=new Escuela();
     }
-    
-    
 
-    /**
-     * @return the idAutor
-     */
+   
+   
     public int getIdAutor() {
         return idAutor;
     }

@@ -27,12 +27,12 @@ public class LineaInvestigacionDAOJDBC implements LineaInvestigacionDAO{
     }
 
     @Override
-    public boolean crear(LineaInvestigacion objLi, int idAreaInvestigacion) throws DAOException {
+    public boolean crear(LineaInvestigacion objLi) throws DAOException {
        
     try{
 	           CallableStatement st=con.prepareCall("{call sp_lineainvestigacion_n(?,?)}");
 	                   
-	                    st.setInt(1,idAreaInvestigacion);
+	                    st.setInt(1,objLi.getAreaInvestigacion().getIdAreaInvestigacion());
                             st.setString(2,objLi.getDescripcion());
                                                       
 	           if (st.execute()) 
@@ -47,12 +47,12 @@ public class LineaInvestigacionDAOJDBC implements LineaInvestigacionDAO{
     }
 
     @Override
-    public boolean modificar(LineaInvestigacion objLi, int idAreaInvestigacion) throws DAOException {
+    public boolean modificar(LineaInvestigacion objLi) throws DAOException {
      try{
 	           CallableStatement st=con.prepareCall("{call sp_lineainvestigacion_m(?,?,?)}");
 	                   
 	                    st.setInt(1, objLi.getIdLineaInvestigacion());
-                            st.setInt(2,idAreaInvestigacion);
+                            st.setInt(2,objLi.getAreaInvestigacion().getIdAreaInvestigacion());
                             st.setString(3,objLi.getDescripcion());
                                                       
 	           if (st.execute()) 

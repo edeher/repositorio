@@ -28,20 +28,20 @@ public class DenunciaDAOJDBC implements DenunciaDAO{
     }
 
     @Override
-    public boolean crear(Denuncia objD, Denunciante objDente, int idArchivoPublicacion) throws DAOException {
+    public boolean crear(Denuncia objD) throws DAOException {
          try 
 	        {
 	           CallableStatement st=con.prepareCall("{call sp_denuncia_n(?,?,?,?,?,?,?,?,?)}");
 	                   
-	                    st.setString(1,objDente.getNombres());
-                            st.setString(2,objDente.getApellidos());
-                            st.setString(3,objDente.getDni());
-                            st.setString(4,objDente.getSexo().name());
-                            st.setString(5,objDente.getDireccion());
-                            st.setString(6,objDente.getTelefono());
-                            st.setString(7,objDente.getCorrero());
+	                    st.setString(1,objD.getDenunciante().getNombres());
+                            st.setString(2,objD.getDenunciante().getApellidos());
+                            st.setString(3,objD.getDenunciante().getDni());
+                            st.setString(4,objD.getDenunciante().getSexo().name());
+                            st.setString(5,objD.getDenunciante().getDireccion());
+                            st.setString(6,objD.getDenunciante().getTelefono());
+                            st.setString(7,objD.getDenunciante().getCorrero());
                             
-                            st.setInt(8, idArchivoPublicacion);
+                            st.setInt(8, objD.getArchivoPublicacion().getIdArchivoPublicacion());
                             
                             st.setString(9, objD.getDescripcion());
                            
@@ -60,7 +60,7 @@ public class DenunciaDAOJDBC implements DenunciaDAO{
     }
 
     @Override
-    public boolean crear(Denuncia objD, int idDenunciante, int idArchivoPublicacion) throws DAOException {
+    public boolean crear(Denuncia objD, int idDenunciante) throws DAOException {
         
      try 
 	        {
@@ -68,7 +68,7 @@ public class DenunciaDAOJDBC implements DenunciaDAO{
 	                   
 	                    st.setInt(1, idDenunciante);
                             
-                            st.setInt(2, idArchivoPublicacion);
+                            st.setInt(2, objD.getArchivoPublicacion().getIdArchivoPublicacion());
                             
                             st.setString(3, objD.getDescripcion());
                            

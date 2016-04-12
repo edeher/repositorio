@@ -28,12 +28,12 @@ public class PublicacionDAOJDBC implements PublicacionDAO{
             
 
     @Override
-    public boolean crear(Publicacion objPu, int idLineaInvestigacion) throws DAOException {
+    public boolean crear(Publicacion objPu) throws DAOException {
          try 
 	        {
 	           CallableStatement st=con.prepareCall("{call sp_publicacion_n(?,?,?)}");
 	                   
-	                  st.setInt(1, idLineaInvestigacion);
+	                  st.setInt(1, objPu.getLineaInvestigacion().getIdLineaInvestigacion());
                           st.setString(2, objPu.getTitulo());
                           st.setDate(3,new java.sql.Date(objPu.getFechaPublicacion().getTime()));
                             
@@ -52,13 +52,13 @@ public class PublicacionDAOJDBC implements PublicacionDAO{
     }
 
     @Override
-    public boolean modificar(Publicacion objPu, int idLineaInvestigacion) throws DAOException {
+    public boolean modificar(Publicacion objPu) throws DAOException {
         try 
 	        {
 	           CallableStatement st=con.prepareCall("{call sp_publicacion_m(?,?,?,?,?)}");
                    
 	                  st.setInt(1, objPu.getIdPublicacion());
-	                  st.setInt(2, idLineaInvestigacion);
+	                  st.setInt(2, objPu.getLineaInvestigacion().getIdLineaInvestigacion());
                           st.setString(3, objPu.getTitulo());
                            st.setDate(4,new java.sql.Date(objPu.getFechaCarga().getTime()));
                           st.setDate(5,new java.sql.Date(objPu.getFechaPublicacion().getTime()));

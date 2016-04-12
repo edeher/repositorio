@@ -79,6 +79,7 @@ public class Escuela {
     }
 
     public Escuela() {
+        this.facultad=new Facultad();
     }
 
     public Escuela(int idEscuela, Facultad facultad, String descripcion) {

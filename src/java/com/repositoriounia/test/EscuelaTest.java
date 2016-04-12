@@ -22,19 +22,20 @@ public class EscuelaTest {
     public static void main(String[] args) throws DAOException{
         // TODO code application logic here
 //        crearescuela();
-//        modificarescuela();
+        modificarescuela();
 //        leer();
-        leertodo();
+//        leertodo();
     }
      public static void crearescuela() throws DAOException
     {
         EscuelaDAOFactory fabricate= new  EscuelaDAOFactory();
          EscuelaDAO daote= fabricate.metodoDAO();
          Escuela objEs=new Escuela();
-          int idFacultad=1;
+         
+          objEs.getFacultad().setIdFacultad(1);
              objEs.setDescripcion("educaion secundaria");
               
-              daote.crear(objEs,idFacultad);
+              daote.crear(objEs);
                
            
     }
@@ -43,11 +44,12 @@ public class EscuelaTest {
         EscuelaDAOFactory fabricate= new  EscuelaDAOFactory();
          EscuelaDAO daote= fabricate.metodoDAO();
          Escuela objEs=new Escuela();
-          int idFacultad=1;
+          
              objEs.setIdEscuela(5);
-             objEs.setDescripcion("educaion secundaria bilingüe");
+             objEs.getFacultad().setIdFacultad(1);
+             objEs.setDescripcion("educaion secundaria bilingüexxxxx");
               
-              daote.modificar(objEs,idFacultad);
+              daote.modificar(objEs);
                
            
     }

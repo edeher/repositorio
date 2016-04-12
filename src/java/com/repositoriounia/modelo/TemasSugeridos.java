@@ -29,6 +29,7 @@ public class TemasSugeridos {
     }
 
     public TemasSugeridos() {
+        this.solicitante=new Solicitante();
     }
 
     

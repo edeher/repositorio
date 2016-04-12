@@ -12,9 +12,9 @@ import com.repositoriounia.modelo.Autor;
  * @author Mi Laptop
  */
 public interface AutorDAO {
-    public boolean crear( Autor objAu,int idEscuela) throws DAOException;//asocia la excepcion para usar las ecepciones
-    public boolean crear( Autor objAu, int idPersona,int idEscuela) throws DAOException;
-    public boolean modificar(Autor objAu, int idEscuela)throws DAOException;
+    public boolean crear( Autor objAu) throws DAOException;//asocia la excepcion para usar las ecepciones
+    public boolean crear( Autor objAu, int idPersona) throws DAOException;
+    public boolean modificar(Autor objAu)throws DAOException;
     public boolean eliminar(int idAutor)throws DAOException;
     public Autor leerxid (int idAutor)throws DAOException;
     public Autor[] leertodo()throws DAOException;

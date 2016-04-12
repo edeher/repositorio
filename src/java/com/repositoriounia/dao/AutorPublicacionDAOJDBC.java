@@ -29,27 +29,27 @@ public class AutorPublicacionDAOJDBC implements AutorPublicacionDAO{
     
 
     @Override
-    public boolean crear(Autor objAu, Publicacion objPu) throws DAOException {
+    public boolean crear(AutorPublicacion objAu) throws DAOException {
         try 
 	        {
 	           CallableStatement st=con.prepareCall("{call sp_autorpublicacion_n(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");
 	                   
-	                    st.setString(1,objAu.getNombres());
-                            st.setString(2,objAu.getApellidos());
-                            st.setString(3,objAu.getDni());
-                            st.setString(4,objAu.getSexo().name());
-                            st.setString(5,objAu.getDireccion());
-                            st.setString(6,objAu.getTelefono());
-                            st.setString(7,objAu.getCorrero());
-                            st.setInt(8, objAu.getEscuela().getIdEscuela());
-                            st.setString(9,objAu.getTipoAutor().name());
-                            st.setString(10,objAu.getProfesion());
-                            st.setString(11, objAu.getEspecialidad());
-                            st.setString(12,objAu.getGrado());
+	                    st.setString(1,objAu.getAutor().getNombres());
+                            st.setString(2,objAu.getAutor().getApellidos());
+                            st.setString(3,objAu.getAutor().getDni());
+                            st.setString(4,objAu.getAutor().getSexo().name());
+                            st.setString(5,objAu.getAutor().getDireccion());
+                            st.setString(6,objAu.getAutor().getTelefono());
+                            st.setString(7,objAu.getAutor().getCorrero());
+                            st.setInt(8, objAu.getAutor().getEscuela().getIdEscuela());
+                            st.setString(9,objAu.getAutor().getTipoAutor().name());
+                            st.setString(10,objAu.getAutor().getProfesion());
+                            st.setString(11, objAu.getAutor().getEspecialidad());
+                            st.setString(12,objAu.getAutor().getGrado());
                             
-                            st.setInt(13,objPu.getLineaInvestigacion().getIdLineaInvestigacion());
-                            st.setString(14,objPu.getTitulo());
-                            st.setDate(15, new java.sql.Date(objPu.getFechaPublicacion().getTime()));
+                            st.setInt(13,objAu.getPublicacion().getLineaInvestigacion().getIdLineaInvestigacion());
+                            st.setString(14,objAu.getPublicacion().getTitulo());
+                            st.setDate(15, new java.sql.Date(objAu.getPublicacion().getFechaPublicacion().getTime()));
                            
                        
 	           if (st.execute()) //devuelve verdadero si fallo
@@ -67,7 +67,7 @@ public class AutorPublicacionDAOJDBC implements AutorPublicacionDAO{
     }
 
     @Override
-    public boolean crear(int idAutor, Publicacion objPu) throws DAOException {
+    public boolean crear(int idAutor, AutorPublicacion objAu) throws DAOException {
          try 
 	        {
 	           CallableStatement st=con.prepareCall("{call sp_autorpublicacion_n1(?,?,?,?)}");
@@ -76,9 +76,9 @@ public class AutorPublicacionDAOJDBC implements AutorPublicacionDAO{
                             st.setInt(1,idAutor);
                             
                             
-                            st.setInt(2,objPu.getLineaInvestigacion().getIdLineaInvestigacion());
-                            st.setString(3,objPu.getTitulo());
-                            st.setDate(4, new java.sql.Date(objPu.getFechaPublicacion().getTime()));
+                            st.setInt(2,objAu.getPublicacion().getLineaInvestigacion().getIdLineaInvestigacion());
+                            st.setString(3,objAu.getPublicacion().getTitulo());
+                            st.setDate(4, new java.sql.Date(objAu.getPublicacion().getFechaPublicacion().getTime()));
                            
                        
 	           if (st.execute()) //devuelve verdadero si fallo
@@ -120,23 +120,23 @@ public class AutorPublicacionDAOJDBC implements AutorPublicacionDAO{
     }
 
     @Override
-    public boolean crear(Autor objAu, int idPublicacion) throws DAOException {
+    public boolean crear(AutorPublicacion objAu, int idPublicacion) throws DAOException {
          try 
 	        {
 	           CallableStatement st=con.prepareCall("{call sp_autorpublicacion_n3(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
 	                   
-	                    st.setString(1,objAu.getNombres());
-                            st.setString(2,objAu.getApellidos());
-                            st.setString(3,objAu.getDni());
-                            st.setString(4,objAu.getSexo().name());
-                            st.setString(5,objAu.getDireccion());
-                            st.setString(6,objAu.getTelefono());
-                            st.setString(7,objAu.getCorrero());
-                            st.setInt(8, objAu.getEscuela().getIdEscuela());
-                            st.setString(9,objAu.getTipoAutor().name());
-                            st.setString(10,objAu.getProfesion());
-                            st.setString(11, objAu.getEspecialidad());
-                            st.setString(12,objAu.getGrado());
+	                    st.setString(1,objAu.getAutor().getNombres());
+                            st.setString(2,objAu.getAutor().getApellidos());
+                            st.setString(3,objAu.getAutor().getDni());
+                            st.setString(4,objAu.getAutor().getSexo().name());
+                            st.setString(5,objAu.getAutor().getDireccion());
+                            st.setString(6,objAu.getAutor().getTelefono());
+                            st.setString(7,objAu.getAutor().getCorrero());
+                            st.setInt(8, objAu.getAutor().getEscuela().getIdEscuela());
+                            st.setString(9,objAu.getAutor().getTipoAutor().name());
+                            st.setString(10,objAu.getAutor().getProfesion());
+                            st.setString(11, objAu.getAutor().getEspecialidad());
+                            st.setString(12,objAu.getAutor().getGrado());
                             
                             st.setInt(13,idPublicacion);
                            

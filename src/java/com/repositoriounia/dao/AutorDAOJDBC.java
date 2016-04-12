@@ -27,7 +27,7 @@ public class AutorDAOJDBC implements AutorDAO{
     }
 
     @Override
-    public boolean crear(Autor objAu, int idEscuela) throws DAOException {
+    public boolean crear(Autor objAu) throws DAOException {
         
     try 
 	        {
@@ -41,7 +41,7 @@ public class AutorDAOJDBC implements AutorDAO{
                             st.setString(6,objAu.getTelefono());
                             st.setString(7,objAu.getCorrero());
                             
-                            st.setInt(8, idEscuela);
+                            st.setInt(8,objAu.getEscuela().getIdEscuela());
                             
                             st.setString(9,objAu.getTipoAutor().name());
                             st.setString(10,objAu.getProfesion());
@@ -61,14 +61,14 @@ public class AutorDAOJDBC implements AutorDAO{
         return true;
           }
  @Override
-    public boolean crear(Autor objAu, int idPersona, int idEscuela) throws DAOException {
+    public boolean crear(Autor objAu,int idPersona) throws DAOException {
        try 
 	        {
 	           CallableStatement st=con.prepareCall("{call sp_autor_n1(?,?,?,?,?,?)}");
 	                   
 	                    st.setInt(1, idPersona);
                             
-                            st.setInt(2, idEscuela);
+                            st.setInt(2, objAu.getEscuela().getIdEscuela());
                             
                             st.setString(3,objAu.getTipoAutor().name());
                             st.setString(4,objAu.getProfesion());
@@ -90,7 +90,7 @@ public class AutorDAOJDBC implements AutorDAO{
     
     }
     @Override
-    public boolean modificar(Autor objAu, int idEscuela) throws DAOException {
+    public boolean modificar(Autor objAu) throws DAOException {
        try 
 	        {
 	           CallableStatement st=con.prepareCall("{call sp_autor_m(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
@@ -104,7 +104,7 @@ public class AutorDAOJDBC implements AutorDAO{
                             st.setString(7,objAu.getTelefono());
                             st.setString(8,objAu.getCorrero());
                             
-                            st.setInt(9, idEscuela);
+                            st.setInt(9, objAu.getEscuela().getIdEscuela());
                             st.setString(10,objAu.getTipoAutor().name());
                             st.setString(11,objAu.getProfesion());
                             st.setString(12, objAu.getEspecialidad());

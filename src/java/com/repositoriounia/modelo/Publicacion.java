@@ -113,6 +113,7 @@ public class Publicacion {
     }
 
     public Publicacion() {
+        this.lineaInvestigacion=new LineaInvestigacion();
     }
 
     public Publicacion(int idPublicacion) {

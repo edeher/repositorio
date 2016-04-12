@@ -23,19 +23,19 @@ public class AutorTest {
      */
     public static void main(String[] args) throws DAOException{
         // TODO code application logic here
-//        crearAutor();
+        crearAutor();
 //        modificarrAutor();
 //        eliminararautor();
 //        leerautor();
 //        leertodo();
-        crearAutor1();
+//        crearAutor1();
     }
      public static void crearAutor() throws DAOException
     {
         AutorDAOFactory fabricate= new AutorDAOFactory();
         AutorDAO daote= fabricate.metodoDAO();
           Autor objAu = new Autor();
-          int idescuela=1;
+          
            
              objAu.setNombres("edeher");
               objAu.setApellidos("ponce");
@@ -44,13 +44,13 @@ public class AutorTest {
              objAu.setDireccion("aca toy");
              objAu.setTelefono("942154007");
               objAu.setCorrero("edercin@qqqqq");
-              
+              objAu.getEscuela().setIdEscuela(2);
               objAu.setTipoAutor(TipoAutor.PRINCIPAL);
               objAu.setProfesion("agroforestal");
               objAu.setEspecialidad(" fauna");
               objAu.setGrado("magister");
               
-              daote.crear(objAu, idescuela);
+              daote.crear(objAu);
                
            
     }
@@ -60,16 +60,16 @@ public class AutorTest {
         AutorDAO daote= fabricate.metodoDAO();
           Autor objAu = new Autor();
           int idPersona=1;
-          int idescuela=1;
+          
            
              
-              
+              objAu.getEscuela().setIdEscuela(1);
               objAu.setTipoAutor(TipoAutor.COLABORADOR);
               objAu.setProfesion("agroforestal");
               objAu.setEspecialidad(" fauna");
               objAu.setGrado("magister");
               
-              daote.crear(objAu,idPersona, idescuela);
+              daote.crear(objAu,idPersona);
                
            
     }
@@ -78,22 +78,22 @@ public class AutorTest {
         AutorDAOFactory fabricate= new AutorDAOFactory();
         AutorDAO daote= fabricate.metodoDAO();
           Autor objAu = new Autor();
-          int idescuela=1;
+         
                 objAu.setIdAutor(2);
-             objAu.setNombres("edeher rossetti");
+             objAu.setNombres("edeher rossetti   xxxxxx");
               objAu.setApellidos("ponce morales");
               objAu.setDni("43056714");
               objAu.setSexo(Sexo.M);
              objAu.setDireccion("aca toy");
              objAu.setTelefono("942154007");
               objAu.setCorrero("edercin@qqqqq");
-              
+              objAu.getEscuela().setIdEscuela(2);
               objAu.setTipoAutor(TipoAutor.PRINCIPAL);
-              objAu.setProfesion("agroforestal acuicola");
-              objAu.setEspecialidad(" fauna y flora ");
+              objAu.setProfesion("agroforestal acuicola xxxxxxxx");
+              objAu.setEspecialidad(" fauna y flora xxxxx");
               objAu.setGrado("magister");
               
-              daote.modificar(objAu, idescuela);
+              daote.modificar(objAu);
                
            
     }

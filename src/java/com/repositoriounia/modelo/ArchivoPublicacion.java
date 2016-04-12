@@ -34,7 +34,7 @@ public class ArchivoPublicacion extends Archivo{
 
     @Override
     public String toString() {
-        return "ArchivoPublicacion{" + "idArchivoPublicacion=" + idArchivoPublicacion + ", publicacion=" + publicacion + ", descripcion=" + descripcion + '}';
+        return "ArchivoPublicacion{" + "idArchivoPublicacion=" + idArchivoPublicacion + ", publicacion=" + publicacion + ", descripcion=" + descripcion.getNom() + '}';
     }
     
 

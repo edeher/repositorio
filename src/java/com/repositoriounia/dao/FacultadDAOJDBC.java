@@ -29,7 +29,7 @@ private final Connection con;
 	           CallableStatement st=con.prepareCall("{call sp_facultad_n(?)}");
 	                   
 	                   
-                            st.setString(2,objFa.getDescripcion());
+                            st.setString(1,objFa.getDescripcion());
                                                       
 	           if (st.execute()) //devuelve verdadero si fallo
             {

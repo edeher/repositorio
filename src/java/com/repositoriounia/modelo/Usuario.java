@@ -14,9 +14,26 @@ public class Usuario {
    private Persona persona;
    private String usuario;
    private String password;
-   private String tipo;
+   private TipoUsuario tipo;
+   private String estado;
 
-    public Usuario(int idUsuario, Persona persona, String usuario, String password, String tipo) {
+    @Override
+    public String toString() {
+        return "Usuario{" + "idUsuario=" + idUsuario + ", persona=" + persona + ", usuario=" + usuario + ", password=" + password + ", tipo=" + tipo.getNom() + '}';
+    }
+   
+   
+   
+
+    public Usuario() {
+        this.persona=new Persona();
+    }
+
+    public Usuario(Persona persona) {
+        this.persona = persona;
+    }
+
+    public Usuario(int idUsuario, Persona persona, String usuario, String password, TipoUsuario tipo) {
         this.idUsuario = idUsuario;
         this.persona = persona;
         this.usuario = usuario;
@@ -24,82 +41,56 @@ public class Usuario {
         this.tipo = tipo;
     }
 
-    public Usuario() {
-    }
-
-    @Override
-    public String toString() {
-        return "Usuario{" + "idUsuario=" + idUsuario + ", persona=" + persona + ", usuario=" + usuario + ", password=" + password + ", tipo=" + tipo + '}';
-    }
-
    
-    /**
-     * @return the idUsuario
-     */
+   
     public int getIdUsuario() {
         return idUsuario;
     }
 
-    /**
-     * @param idUsuario the idUsuario to set
-     */
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 
-    /**
-     * @return the persona
-     */
     public Persona getPersona() {
         return persona;
     }
 
-    /**
-     * @param persona the persona to set
-     */
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
 
-    /**
-     * @return the usuario
-     */
     public String getUsuario() {
         return usuario;
     }
 
-    /**
-     * @param usuario the usuario to set
-     */
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
-    /**
-     * @return the password
-     */
     public String getPassword() {
         return password;
     }
 
-    /**
-     * @param password the password to set
-     */
     public void setPassword(String password) {
         this.password = password;
     }
 
-    /**
-     * @return the tipo
-     */
-    public String getTipo() {
+    public TipoUsuario getTipo() {
         return tipo;
     }
 
-    /**
-     * @param tipo the tipo to set
-     */
-    public void setTipo(String tipo) {
+    public void setTipo(TipoUsuario tipo) {
         this.tipo = tipo;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+   
+   
 }

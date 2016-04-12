@@ -20,19 +20,37 @@ import java.sql.SQLException;
  *
  * @author fn
  */
-public class DBManager {
-    static String url = "jdbc:mysql://localhost:3306/reposiunia";
-    static String username = "root";
-    static String password = "poderoso";
+
+  public class DBManager {    
     
-        
-    static Connection getConnection(){
-        try {
-            return DriverManager.getConnection(url, username, password);
-        } catch (SQLException se) {
-            System.out.println("Error obtaining connection with the database: " + se);
-            System.exit(-1);
+    static private final String url="jdbc:mysql://localhost:3306/reposiunia";
+    static private final String driver="com.mysql.jdbc.Driver";
+    static private final String user="root";
+    static private final String pass="poderoso";
+    
+    static private String error;
+    
+    public String getError()
+    {
+        return error;
+    }
+    public static Connection getConnection(){
+        error = null;
+        try{
+            Class.forName(driver);
+            return (DriverManager.getConnection(url,user,pass));            
+        }catch (ClassNotFoundException | SQLException e){
+            e.toString();
+            System.out.println("ERROR DBMANAGER");
+            System.out.println(e.getMessage());
         }
-    return null;
-    }    
+        return null;
+    } 
+    public void closeConnection(Connection con){
+        error = null;
+        try{
+            con.close();
+        }catch (SQLException e){error=e.toString();}
+    }
+    
 }

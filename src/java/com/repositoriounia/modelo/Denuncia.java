@@ -21,7 +21,7 @@ public class Denuncia {
 
     public Denuncia(int idDenuncia, Denunciante denunciante, ArchivoPublicacion archivoPublicacion, Date fecha, String descripcion, Estados estado) {
         this.idDenuncia = idDenuncia;
-        this.denunciante = denunciante;
+        this.denunciante =denunciante;
         this.archivoPublicacion = archivoPublicacion;
         this.fecha = fecha;
         this.descripcion = descripcion;
@@ -29,6 +29,8 @@ public class Denuncia {
     }
 
     public Denuncia() {
+        this.denunciante=new Denunciante();
+        this.archivoPublicacion=new ArchivoPublicacion();
     }
 
     @Override
