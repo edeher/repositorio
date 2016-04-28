@@ -100,6 +100,7 @@ public class LineaInvestigacionDAOJDBC implements LineaInvestigacionDAO{
                     new LineaInvestigacion(
                             rs.getInt("idLineaInvestigacion"),
                            new AreaInvestigacion(
+                                   rs.getInt("idAreaInvestigacion"),
                            rs.getString("descripcion1")
                            ),
                             rs.getString("descripcion2"))
@@ -126,6 +127,7 @@ public class LineaInvestigacionDAOJDBC implements LineaInvestigacionDAO{
                 new LineaInvestigacion(
                             rs.getInt("idLineaInvestigacion"),
                            new AreaInvestigacion(
+                                   rs.getInt("idAreaInvestigacion"),
                            rs.getString("descripcion1")
                            ),
                             rs.getString("descripcion2"))
@@ -138,6 +140,37 @@ public class LineaInvestigacionDAOJDBC implements LineaInvestigacionDAO{
             throw new DAOException("Error obteniedo todos las lineas de investigacion en DAO: " 
                     + se.getMessage(), se);
         }     
+    }
+
+    @Override
+    public LineaInvestigacion[] leertodo(int idAreaInvestigacion) throws DAOException {
+       
+        try{
+        CallableStatement st=con.prepareCall("{call sp_lineainvestigacion_bco2(?)}");
+            st.setInt(1,idAreaInvestigacion);
+             ResultSet rs = st.executeQuery();
+                      
+            ArrayList<LineaInvestigacion> tribs = new ArrayList<>(); 
+            
+            while (rs.next()) {
+                tribs.add(
+                        
+                     new LineaInvestigacion(
+                            rs.getInt("idLineaInvestigacion"),
+                           new AreaInvestigacion(
+                                   rs.getInt("idAreaInvestigacion"),
+                           rs.getString("descripcion1")
+                           ),
+                            rs.getString("descripcion2"))
+                         
+                   );
+            }
+            return tribs.toArray(new LineaInvestigacion[0]);
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error obteniedo todos los TemasSugeridos en DAO: " 
+                    + se.getMessage(), se);
+        }    
     }
 
    

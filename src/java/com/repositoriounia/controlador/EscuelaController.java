@@ -5,11 +5,14 @@
  */
 package com.repositoriounia.controlador;
 
+import com.repositoriounia.dao.DAOException;
 import com.repositoriounia.dao.EscuelaDAO;
 import com.repositoriounia.dao.EscuelaDAOFactory;
 import com.repositoriounia.modelo.Escuela;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,14 +39,15 @@ public class EscuelaController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, DAOException {
         response.setContentType("text/html;charset=UTF-8");
         String accion=request.getParameter("accion");
         fabricate=new EscuelaDAOFactory();
         daote=fabricate.metodoDAO();
         switch(accion)
         {
-            case "1":
+            case "buscarporFacultad":
+                buscarporFacultad(request, response);
                 break;
             case "2":
                 break;
@@ -73,7 +77,11 @@ public class EscuelaController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(EscuelaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -87,7 +95,11 @@ public class EscuelaController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(EscuelaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -99,5 +111,19 @@ public class EscuelaController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void buscarporFacultad(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out=response.getWriter();
+        int idFacultad=Integer.parseInt(request.getParameter("codigo"));
+        Escuela []escu=daote.leertodo(idFacultad);
+        StringBuilder escuelas=new StringBuilder();
+        for(Escuela escu1: escu)
+        {
+            escuelas.append("<option value='").append(escu1.getIdEscuela()).append("'>")
+                    .append(escu1.getDescripcion()).append("</option>");
+        }
+        out.print(escuelas.toString());
+    }
 
 }

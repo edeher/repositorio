@@ -76,7 +76,9 @@ public class Facultad {
 
     @Override
     public String toString() {
-        return "Facultad{" + "idFacultad=" + idFacultad + ", descripcion=" + descripcion + '}';
+        return "Facultad{" + "idFacultad=" + idFacultad + ", descripcion=" + descripcion +  '}';
     }
+
+    
     
 }

@@ -16,5 +16,7 @@ public interface PublicacionDAO {
     public boolean modificar(Publicacion objPu)throws DAOException;
     public boolean eliminar(int idPublicacion)throws DAOException;
     public Publicacion leerxid (int idPublicacion)throws DAOException;
+    public Publicacion crearleer(Publicacion objPu)throws DAOException;
+    public Publicacion modificarleer(Publicacion objPu)throws DAOException;
     public Publicacion[] leertodo()throws DAOException;
 }

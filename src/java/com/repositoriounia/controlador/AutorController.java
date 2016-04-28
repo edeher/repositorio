@@ -41,7 +41,8 @@ public class AutorController extends HttpServlet {
         String accion=request.getParameter("accion");
         switch(accion)
         {
-            case "1":
+            case "buscarpordni":
+                buscarpordni(request,response);
                 break;
             case "2":
                 break;
@@ -97,5 +98,9 @@ public class AutorController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void buscarpordni(HttpServletRequest request, HttpServletResponse response) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

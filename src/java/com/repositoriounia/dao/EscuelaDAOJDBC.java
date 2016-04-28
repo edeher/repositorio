@@ -6,6 +6,7 @@
 package com.repositoriounia.dao;
 
 import com.repositoriounia.modelo.Escuela;
+import com.repositoriounia.modelo.Estados;
 import com.repositoriounia.modelo.Facultad;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -135,6 +136,40 @@ private final Connection con;
             throw new DAOException("Error obteniedo todos las escuelas en DAO: " 
                     + se.getMessage(), se);
         }     
+    }
+
+    @Override
+    public Escuela[] leertodo(int idFacultad) throws DAOException {
+          try{
+        CallableStatement st=con.prepareCall("{call sp_escuelas_bcofa(?)}");
+            st.setInt(1,idFacultad);
+             ResultSet rs = st.executeQuery();
+                      
+            ArrayList<Escuela> tribs = new ArrayList<>(); 
+            
+            while (rs.next()) {
+                tribs.add(
+                        
+                     new Escuela(
+                            rs.getInt("idEscuela"),
+                            new Facultad(
+                            rs.getInt("idFacultad"),
+                                    rs.getString("facultad"),
+                                    Estados.valueOf( rs.getString("estado1"))
+                            ),
+                           
+                            rs.getString("escuela"),
+                            Estados.valueOf(rs.getString("estado2")))
+                            
+                            
+                   );
+            }
+            return tribs.toArray(new Escuela[0]);
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error obteniedo todos las escuelas en DAO: " 
+                    + se.getMessage(), se);
+        }    
     }
 
    

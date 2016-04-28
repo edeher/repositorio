@@ -17,4 +17,5 @@ public interface LineaInvestigacionDAO {
     public boolean eliminar(int idLineaInvestigacion)throws DAOException;
     public LineaInvestigacion leerxid (int idLineaInvestigacion)throws DAOException;
     public LineaInvestigacion[] leertodo()throws DAOException;
+    public LineaInvestigacion[] leertodo(int idAreaInvestigacion)throws DAOException;
 }

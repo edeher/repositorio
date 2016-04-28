@@ -5,11 +5,14 @@
  */
 package com.repositoriounia.controlador;
 
+import com.repositoriounia.dao.DAOException;
 import com.repositoriounia.dao.LineaInvestigacionDAO;
 import com.repositoriounia.dao.LineaInvestigacionDAOFactory;
 import com.repositoriounia.modelo.LineaInvestigacion;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,14 +39,15 @@ public class LineaInvestigacionController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, DAOException {
         response.setContentType("text/html;charset=UTF-8");
        String accion=request.getParameter("accion");
        fabricate=new LineaInvestigacionDAOFactory();
        daote=fabricate.metodoDAO();
        switch(accion)
        {
-           case "1":
+           case "BuscarPorArea":
+               BuscarPorArea(request,response);
                break;
            case "12":
                break;
@@ -74,7 +78,11 @@ public class LineaInvestigacionController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(LineaInvestigacionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -88,7 +96,11 @@ public class LineaInvestigacionController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(LineaInvestigacionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -100,5 +112,23 @@ public class LineaInvestigacionController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void BuscarPorArea(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+        response.setContentType("text/html");
+        
+        PrintWriter out=response.getWriter();
+        
+        int codigo=Integer.parseInt(request.getParameter("codigo"));
+        LineaInvestigacion []linea=daote.leertodo(codigo);
+        
+        StringBuilder lineas=new StringBuilder();
+        
+        for(LineaInvestigacion linea1: linea)
+        {
+            lineas.append("<option value='").append(linea1.getIdLineaInvestigacion()).append("'>")
+                    .append(linea1.getDescripcion()).append("</option>");
+        }
+        out.print(lineas.toString());
+    }
 
 }

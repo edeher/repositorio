@@ -7,6 +7,7 @@ package com.repositoriounia.dao;
 
 import com.repositoriounia.modelo.Autor;
 import com.repositoriounia.modelo.Escuela;
+import com.repositoriounia.modelo.Facultad;
 import com.repositoriounia.modelo.Sexo;
 import com.repositoriounia.modelo.TipoAutor;
 import java.sql.CallableStatement;
@@ -31,7 +32,7 @@ public class AutorDAOJDBC implements AutorDAO{
         
     try 
 	        {
-	           CallableStatement st=con.prepareCall("{call sp_autor_n(?,?,?,?,?,?,?,?,?,?,?,?)}");
+	           CallableStatement st=con.prepareCall("{call sp_autor_n(?,?,?,?,?,?,?,?,?,?,?)}");
 	                   
 	                    st.setString(1,objAu.getNombres());
                             st.setString(2,objAu.getApellidos());
@@ -43,10 +44,10 @@ public class AutorDAOJDBC implements AutorDAO{
                             
                             st.setInt(8,objAu.getEscuela().getIdEscuela());
                             
-                            st.setString(9,objAu.getTipoAutor().name());
-                            st.setString(10,objAu.getProfesion());
-                            st.setString(11, objAu.getEspecialidad());
-                            st.setString(12,objAu.getGrado());
+                          
+                            st.setString(9,objAu.getProfesion());
+                            st.setString(10, objAu.getEspecialidad());
+                            st.setString(11,objAu.getGrado());
                            
                        
 	           if (st.execute()) //devuelve verdadero si fallo
@@ -64,16 +65,16 @@ public class AutorDAOJDBC implements AutorDAO{
     public boolean crear(Autor objAu,int idPersona) throws DAOException {
        try 
 	        {
-	           CallableStatement st=con.prepareCall("{call sp_autor_n1(?,?,?,?,?,?)}");
+	           CallableStatement st=con.prepareCall("{call sp_autor_n1(?,?,?,?,?)}");
 	                   
 	                    st.setInt(1, idPersona);
                             
                             st.setInt(2, objAu.getEscuela().getIdEscuela());
                             
-                            st.setString(3,objAu.getTipoAutor().name());
-                            st.setString(4,objAu.getProfesion());
-                            st.setString(5, objAu.getEspecialidad());
-                            st.setString(6,objAu.getGrado());
+                           
+                            st.setString(3,objAu.getProfesion());
+                            st.setString(4, objAu.getEspecialidad());
+                            st.setString(5,objAu.getGrado());
                            
                        
 	           if (st.execute()) //devuelve verdadero si fallo
@@ -93,7 +94,7 @@ public class AutorDAOJDBC implements AutorDAO{
     public boolean modificar(Autor objAu) throws DAOException {
        try 
 	        {
-	           CallableStatement st=con.prepareCall("{call sp_autor_m(?,?,?,?,?,?,?,?,?,?,?,?,?)}");
+	           CallableStatement st=con.prepareCall("{call sp_autor_m(?,?,?,?,?,?,?,?,?,?,?,?)}");
 	                   
 	                    st.setInt(1, objAu.getIdAutor());
                             st.setString(2,objAu.getNombres());
@@ -105,10 +106,10 @@ public class AutorDAOJDBC implements AutorDAO{
                             st.setString(8,objAu.getCorrero());
                             
                             st.setInt(9, objAu.getEscuela().getIdEscuela());
-                            st.setString(10,objAu.getTipoAutor().name());
-                            st.setString(11,objAu.getProfesion());
-                            st.setString(12, objAu.getEspecialidad());
-                            st.setString(13,objAu.getGrado());
+                            
+                            st.setString(10,objAu.getProfesion());
+                            st.setString(11, objAu.getEspecialidad());
+                            st.setString(12,objAu.getGrado());
                            
                            
                             
@@ -162,9 +163,16 @@ public class AutorDAOJDBC implements AutorDAO{
             return (
                     new Autor(
                             rs.getInt("idAutor"),
-                            new Escuela(rs.getString("descripcion")),
+                            new Escuela(
+                                    rs.getInt("idEscuela"),
+                                    new Facultad(
+                                            rs.getInt("idFacultad"),
+                                            rs.getString("descripcion1")
+                                    ),
+                                    rs.getString("descripcion2")
+                                                        ),
                             
-                            TipoAutor.valueOf(rs.getString("tipoAutor")),
+                            
                             rs.getString("profesion"),
                             rs.getString("especialidad"),
                             rs.getString("grado"),
@@ -203,9 +211,16 @@ public class AutorDAOJDBC implements AutorDAO{
                         
                   new Autor(
                             rs.getInt("idAutor"),
-                            new Escuela(rs.getString("descripcion")),
+                            new Escuela(
+                                    rs.getInt("idEscuela"),
+                                    new Facultad(
+                                            rs.getInt("idFacultad"),
+                                            rs.getString("descripcion1")
+                                    ),
+                                    rs.getString("descripcion2")
+                                                        ),
                             
-                            TipoAutor.valueOf(rs.getString("tipoAutor")),
+                            
                             rs.getString("profesion"),
                             rs.getString("especialidad"),
                             rs.getString("grado"),
@@ -230,8 +245,103 @@ public class AutorDAOJDBC implements AutorDAO{
     
     }
 
-   
+    @Override
+    public Autor crearverileer(Autor objAu) throws DAOException {
+       try{
+        CallableStatement st=con.prepareCall("{call sp_autor_nbcon(?,?,?,?,?,?,?,?,?,?,?)}");
+                            st.setString(1,objAu.getNombres());
+                            st.setString(2,objAu.getApellidos());
+                            st.setString(3,objAu.getDni());
+                            st.setString(4,objAu.getSexo().name());
+                            st.setString(5,objAu.getDireccion());
+                            st.setString(6,objAu.getTelefono());
+                            st.setString(7,objAu.getCorrero());
+                            
+                            st.setInt(8,objAu.getEscuela().getIdEscuela());
+                            
+                          
+                            st.setString(9,objAu.getProfesion());
+                            st.setString(10, objAu.getEspecialidad());
+                            st.setString(11,objAu.getGrado());
+             ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                        
+                     new Autor(
+                            rs.getInt("idAutor"),
+                            new Escuela(
+                                    rs.getInt("idEscuela"),
+                                    new Facultad(
+                                            rs.getInt("idFacultad"),
+                                            rs.getString("descripcion1")
+                                    ),
+                                    rs.getString("descripcion2")
+                                                        ),
+                            rs.getString("profesion"),
+                            rs.getString("especialidad"),
+                            rs.getString("grado"),
+                            
+                            rs.getString("nombres"),
+                            rs.getString("apellidos"),
+                            rs.getString("dni"),
+                            Sexo.valueOf(rs.getString("sexo")),
+                            rs.getString("direccion"),
+                            rs.getString("telefono"),
+                            rs.getString("correo"))
+                            
+                            
+                   );
+           } catch (SQLException se) {
+            
+            throw new DAOException("Error buscando autor en DAO", se);
+        }
+         
+    }
 
- 
-    
+    @Override
+    public Autor leerxdni(String dni) throws DAOException {
+        try{
+        CallableStatement st=con.prepareCall("{call sp_autor_bcodni(?)}");
+            st.setString(1,dni);
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                    new Autor(
+                            rs.getInt("idAutor"),
+                            new Escuela(
+                                    rs.getInt("idEscuela"),
+                                    new Facultad(
+                                            rs.getInt("idFacultad"),
+                                            rs.getString("descripcion1")
+                                    ),
+                                    rs.getString("descripcion2")
+                                                        ),
+                            
+                            
+                            rs.getString("profesion"),
+                            rs.getString("especialidad"),
+                            rs.getString("grado"),
+                            
+                            rs.getString("nombres"),
+                            rs.getString("apellidos"),
+                            rs.getString("dni"),
+                            Sexo.valueOf(rs.getString("sexo")),
+                            rs.getString("direccion"),
+                            rs.getString("telefono"),
+                            rs.getString("correo"))
+                            
+                            
+                   );
+            
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error buscando autor en DAO", se);
+        }
+    }
 }

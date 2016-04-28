@@ -156,6 +156,44 @@ public class PublicacionDAOJDBC implements PublicacionDAO{
     
     }
 
+    @Override
+    public Publicacion crearleer(Publicacion objPu) throws DAOException {
+        try{
+        CallableStatement st=con.prepareCall("{call sp_publicacion_n2(?,?,?)}");
+        
+                          st.setInt(1, objPu.getLineaInvestigacion().getIdLineaInvestigacion());
+                          st.setString(2, objPu.getTitulo());
+                          st.setDate(3,new java.sql.Date(objPu.getFechaPublicacion().getTime()));
+                          
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                    new Publicacion(
+                            
+                            rs.getInt("idPublicacion"),
+                            new LineaInvestigacion(rs.getString("descripcion")),
+                            rs.getString("titulo"),
+                            rs.getDate("fechaCarga"),
+                            rs.getDate("fechaPublicacion"))
+                   );
+            
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error buscando publicacion en DAO", se);
+        }
+         
+	   
+    
+    }
+
+    @Override
+    public Publicacion modificarleer(Publicacion objPu) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
    
     
 }

@@ -98,9 +98,10 @@ public class Escuela {
 
     @Override
     public String toString() {
-        return "Escuela{" + "idEscuela=" + idEscuela + ", facultad=" + facultad + ", descripcion=" + descripcion + '}';
+        return "Escuela{" + "idEscuela=" + idEscuela + ", facultad=" + facultad + ", descripcion=" + descripcion +  '}';
     }
 
+   
    
     
 }

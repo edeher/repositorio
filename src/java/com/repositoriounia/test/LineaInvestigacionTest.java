@@ -22,10 +22,11 @@ public class LineaInvestigacionTest {
     public static void main(String[] args) throws DAOException{
         // TODO code application logic here
 //        crearlinea();
-        modificarlinea();
+//        modificarlinea();
 //        eliminarlinea();
 //        leer();
 //        leertodo();
+        leertodo2();
     }
      public static void crearlinea() throws DAOException
     {
@@ -80,6 +81,20 @@ public class LineaInvestigacionTest {
 		   LineaInvestigacionDAOFactory fabricate= new  LineaInvestigacionDAOFactory();
                    LineaInvestigacionDAO daote= fabricate.metodoDAO();
 	 LineaInvestigacion[] usuv=daote.leertodo();
+	  
+	  for(LineaInvestigacion usuv1:usuv)
+	  {
+	      
+	      System.out.println(" "+usuv1.toString());
+	  
+	  }
+	 
+        } 
+       public static void leertodo2()throws DAOException
+	{
+		   LineaInvestigacionDAOFactory fabricate= new  LineaInvestigacionDAOFactory();
+                   LineaInvestigacionDAO daote= fabricate.metodoDAO();
+	 LineaInvestigacion[] usuv=daote.leertodo(3);
 	  
 	  for(LineaInvestigacion usuv1:usuv)
 	  {

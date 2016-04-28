@@ -23,12 +23,14 @@ public class AutorTest {
      */
     public static void main(String[] args) throws DAOException{
         // TODO code application logic here
-        crearAutor();
+//        crearAutor();
 //        modificarrAutor();
 //        eliminararautor();
 //        leerautor();
 //        leertodo();
 //        crearAutor1();
+//        crearverileer();
+        leerxdni();
     }
      public static void crearAutor() throws DAOException
     {
@@ -45,7 +47,7 @@ public class AutorTest {
              objAu.setTelefono("942154007");
               objAu.setCorrero("edercin@qqqqq");
               objAu.getEscuela().setIdEscuela(2);
-              objAu.setTipoAutor(TipoAutor.PRINCIPAL);
+             
               objAu.setProfesion("agroforestal");
               objAu.setEspecialidad(" fauna");
               objAu.setGrado("magister");
@@ -64,7 +66,7 @@ public class AutorTest {
            
              
               objAu.getEscuela().setIdEscuela(1);
-              objAu.setTipoAutor(TipoAutor.COLABORADOR);
+              
               objAu.setProfesion("agroforestal");
               objAu.setEspecialidad(" fauna");
               objAu.setGrado("magister");
@@ -88,7 +90,7 @@ public class AutorTest {
              objAu.setTelefono("942154007");
               objAu.setCorrero("edercin@qqqqq");
               objAu.getEscuela().setIdEscuela(2);
-              objAu.setTipoAutor(TipoAutor.PRINCIPAL);
+              
               objAu.setProfesion("agroforestal acuicola xxxxxxxx");
               objAu.setEspecialidad(" fauna y flora xxxxx");
               objAu.setGrado("magister");
@@ -117,6 +119,17 @@ public class AutorTest {
         
 	    
 	}
+       public static void leerxdni()throws DAOException
+	{
+		AutorDAOFactory fabricate= new AutorDAOFactory();
+                AutorDAO daote= fabricate.metodoDAO();
+       
+               
+	   Autor autorr=daote.leerxdni("43056760");
+	 System.out.println(" "+autorr.toString());
+        
+	    
+	}
       public static void leertodo()throws DAOException
 	{
 		AutorDAOFactory fabricate= new AutorDAOFactory();
@@ -135,5 +148,30 @@ public class AutorTest {
 	  
 	  }
 	 
-        } 
+        }
+        public static void crearverileer() throws DAOException
+	{
+		AutorDAOFactory fabricate= new AutorDAOFactory();
+                AutorDAO daote= fabricate.metodoDAO();
+                
+		Autor objAu= new Autor();
+		 objAu.setNombres("edeher");
+              objAu.setApellidos("ponce");
+              objAu.setDni("43056799");
+              objAu.setSexo(Sexo.M);
+             objAu.setDireccion("aca toy");
+             objAu.setTelefono("942154007");
+              objAu.setCorrero("edercin@qqqqq");
+              objAu.getEscuela().setIdEscuela(2);
+             
+              objAu.setProfesion("agroforestal");
+              objAu.setEspecialidad(" fauna");
+              objAu.setGrado("magister");
+                
+              
+                
+                 Autor autorr=daote.crearverileer(objAu);
+	 System.out.println(" "+autorr.toString());
+		
+		}
 }

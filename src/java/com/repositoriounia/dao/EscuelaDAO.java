@@ -17,4 +17,5 @@ public interface EscuelaDAO {
     public boolean eliminar(int idEscuela)throws DAOException;
     public Escuela leerxid (int idEscuela)throws DAOException;
     public Escuela[] leertodo()throws DAOException;
+    public Escuela[] leertodo(int idFacultad)throws DAOException;
 }
