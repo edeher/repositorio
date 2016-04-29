@@ -39,6 +39,7 @@ public class FacultadController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String accion=request.getParameter("accion");
+        fabricate =new FacultadDAOFactory();
         daote=fabricate.metodoDAO();
         switch(accion)
         {

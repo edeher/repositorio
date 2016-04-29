@@ -39,6 +39,8 @@ public class SolicitanteController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
        String accion=request.getParameter("accion");
+       fabricate =new SolicitanteDAOFactory();
+       daote=fabricate.metodoDAO();
        switch(accion)
        {
            case "1":

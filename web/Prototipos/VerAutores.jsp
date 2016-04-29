@@ -40,12 +40,12 @@
                 <tbody>
                     <% for(AutorPublicacion objAuP1:objAuP )
                     {
-                        int i=1;
-                            i++;
+                       
+                          
                     
                     %>
                     <tr>
-                        <td><%=i%></td>
+                        <td><%=1%></td>
                         <td><%=objAuP1.getAutor().getNombres() %></td>
                        <td><%=objAuP1.getAutor().getProfesion() %></td>
                        <td><%=objAuP1.getAutor().getGrado() %></td>

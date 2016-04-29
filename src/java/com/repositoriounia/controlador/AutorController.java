@@ -7,9 +7,14 @@ package com.repositoriounia.controlador;
 
 import com.repositoriounia.dao.AutorDAO;
 import com.repositoriounia.dao.AutorDAOFactory;
+import com.repositoriounia.dao.DAOException;
 import com.repositoriounia.modelo.Autor;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +30,7 @@ public class AutorController extends HttpServlet {
     private Autor objAu;
     private AutorDAOFactory fabricate;
     private AutorDAO daote;
-
+ private RequestDispatcher rd=null;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,9 +41,11 @@ public class AutorController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, DAOException {
         response.setContentType("text/html;charset=UTF-8");
         String accion=request.getParameter("accion");
+        fabricate=new AutorDAOFactory();
+        daote=fabricate.metodoDAO();
         switch(accion)
         {
             case "buscarpordni":
@@ -54,10 +61,7 @@ public class AutorController extends HttpServlet {
                 break;
             case "6":
                 break;
-            
-            
-        
-        }
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,7 +76,11 @@ public class AutorController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(AutorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -86,7 +94,11 @@ public class AutorController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(AutorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -99,8 +111,27 @@ public class AutorController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void buscarpordni(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void buscarpordni(HttpServletRequest request, HttpServletResponse response) throws ServletException, DAOException, IOException {
+       
+        String dni=request.getParameter("dni").toUpperCase();
+        int idPublicacion=Integer.parseInt(request.getParameter("idPublicacion"));
+        System.out.println("llego dni="+dni+", idpublicacion ="+idPublicacion);
+        
+       Autor  Au=daote.leerxdni(dni);
+        
+        if(Au!=null){
+            System.out.println(Au.toString());
+          request.setAttribute("Au",Au);
+        rd = getServletContext().getRequestDispatcher("/Prototipos/crearAutor.jsp?val=nue1&idPublicacion="+idPublicacion);
+        rd.forward(request, response);
+        
+        }
+        else if(Au==null)
+        {
+                System.out.println("es nulo");
+        rd = getServletContext().getRequestDispatcher("/Prototipos/crearAutor.jsp?val=nue&idPublicacion="+idPublicacion);
+        rd.forward(request, response);
+        }
     }
 
 }

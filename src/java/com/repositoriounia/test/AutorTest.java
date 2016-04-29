@@ -123,9 +123,9 @@ public class AutorTest {
 	{
 		AutorDAOFactory fabricate= new AutorDAOFactory();
                 AutorDAO daote= fabricate.metodoDAO();
-       
+       String dni="11111111";
                
-	   Autor autorr=daote.leerxdni("43056760");
+	   Autor autorr=daote.leerxdni(dni);
 	 System.out.println(" "+autorr.toString());
         
 	    
