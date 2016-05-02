@@ -5,7 +5,9 @@
  */
 package com.repositoriounia.dao;
 import com.repositoriounia.modelo.ArchivoPublicacion;
+import com.repositoriounia.modelo.AreaInvestigacion;
 import com.repositoriounia.modelo.DescripcionArchivo;
+import com.repositoriounia.modelo.LineaInvestigacion;
 import com.repositoriounia.modelo.Publicacion;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -114,9 +116,19 @@ public class ArchivoPublicacionDAOJDBC implements ArchivoPublicacionDAO{
                             rs.getInt("idArchivoPublicacion"),
                            
                            new Publicacion(
-                                   rs.getInt("idPublicacion")                         
+                                   rs.getInt("idPublicacion"),
+                            new LineaInvestigacion(
+                                    rs.getInt("idLineaInvestigacion"),
+                                    new AreaInvestigacion(
+                                    rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")
+                                    ),
+                                    rs.getString("linea")),
+                            rs.getString("titulo"),
+                            rs.getDate("fechaCarga"),
+                            rs.getDate("fechaPublicacion")                       
                            ),
-                             DescripcionArchivo.valueOf(rs.getString("descripcion")),
+                            DescripcionArchivo.valueOf(rs.getString("descripcion")),
                             rs.getString("urlLocal"),
                             rs.getString("urlWeb"))
                    );
@@ -131,7 +143,7 @@ public class ArchivoPublicacionDAOJDBC implements ArchivoPublicacionDAO{
     }
 
     @Override
-    public ArchivoPublicacion[] leertodo(int idPublicacion) throws DAOException {
+    public ArchivoPublicacion[] leertodoidpublicacion(int idPublicacion) throws DAOException {
        try  {
              CallableStatement st=con.prepareCall("{call sp_archivopublicacion_bco1(?)}");
             st.setInt(1,idPublicacion);
@@ -146,7 +158,17 @@ public class ArchivoPublicacionDAOJDBC implements ArchivoPublicacionDAO{
                             rs.getInt("idArchivoPublicacion"),
                            
                            new Publicacion(
-                                   rs.getInt("idPublicacion")                         
+                                   rs.getInt("idPublicacion"),
+                            new LineaInvestigacion(
+                                    rs.getInt("idLineaInvestigacion"),
+                                    new AreaInvestigacion(
+                                    rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")
+                                    ),
+                                    rs.getString("linea")),
+                            rs.getString("titulo"),
+                            rs.getDate("fechaCarga"),
+                            rs.getDate("fechaPublicacion")                      
                            ),
                              DescripcionArchivo.valueOf(rs.getString("descripcion")),
                             rs.getString("urlLocal"),
@@ -160,10 +182,6 @@ public class ArchivoPublicacionDAOJDBC implements ArchivoPublicacionDAO{
             throw new DAOException("Error obteniedo todos los archivopublicacion en DAO: " 
                     + se.getMessage(), se);
         }   
-    
-    
-    
-    
     
     }
 
@@ -183,7 +201,17 @@ public class ArchivoPublicacionDAOJDBC implements ArchivoPublicacionDAO{
                             rs.getInt("idArchivoPublicacion"),
                            
                            new Publicacion(
-                                   rs.getInt("idPublicacion")                         
+                                   rs.getInt("idPublicacion"),
+                            new LineaInvestigacion(
+                                    rs.getInt("idLineaInvestigacion"),
+                                    new AreaInvestigacion(
+                                    rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")
+                                    ),
+                                    rs.getString("linea")),
+                            rs.getString("titulo"),
+                            rs.getDate("fechaCarga"),
+                            rs.getDate("fechaPublicacion")                      
                            ),
                              DescripcionArchivo.valueOf(rs.getString("descripcion")),
                             rs.getString("urlLocal"),

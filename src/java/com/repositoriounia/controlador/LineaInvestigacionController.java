@@ -8,11 +8,16 @@ package com.repositoriounia.controlador;
 import com.repositoriounia.dao.DAOException;
 import com.repositoriounia.dao.LineaInvestigacionDAO;
 import com.repositoriounia.dao.LineaInvestigacionDAOFactory;
+import com.repositoriounia.modelo.AreaInvestigacion;
 import com.repositoriounia.modelo.LineaInvestigacion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,7 +54,8 @@ public class LineaInvestigacionController extends HttpServlet {
            case "BuscarPorArea":
                BuscarPorArea(request,response);
                break;
-           case "12":
+           case "ObtenerTodos":
+               ObtenerTodos(request,response);
                break;
            case "31":
                break;
@@ -129,6 +135,29 @@ public class LineaInvestigacionController extends HttpServlet {
                     .append(linea1.getDescripcion()).append("</option>");
         }
         out.print(lineas.toString());
+    }
+
+    private void ObtenerTodos(HttpServletRequest request, HttpServletResponse response) throws IOException, DAOException {
+         LineaInvestigacion[] lin = daote.leertodo();         
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();  
+        JsonArrayBuilder  arrayLinea = Json.createArrayBuilder();        
+        JsonArrayBuilder  arrayDatosLinea; 
+       for (LineaInvestigacion Linea : lin) {
+            //System.out.println(solicitud.toString());            
+            arrayDatosLinea = Json.createArrayBuilder();
+            arrayDatosLinea.add(Linea .getIdLineaInvestigacion());
+             arrayDatosLinea.add(Linea .getAreaInvestigacion().getDescripcion());
+            arrayDatosLinea.add(Linea .getDescripcion());
+           
+            arrayLinea.add(arrayDatosLinea);
+        }
+        objbuilder.add("data", arrayLinea );
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        }
     }
 
 }

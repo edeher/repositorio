@@ -25,8 +25,8 @@ public class AutorPublicacionTest {
         // TODO code application logic here
 //        crearporids();
 //        crearconautor();
-//        leerXID();
-        leertodoPORPUBLICACION();
+        leerXID();
+//        leertodoPORPUBLICACION();
 //        leertodoPORAUTOR();
 //        leertodo();
     }

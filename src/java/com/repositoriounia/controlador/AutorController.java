@@ -9,11 +9,16 @@ import com.repositoriounia.dao.AutorDAO;
 import com.repositoriounia.dao.AutorDAOFactory;
 import com.repositoriounia.dao.DAOException;
 import com.repositoriounia.modelo.Autor;
+import com.repositoriounia.modelo.Publicacion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -51,7 +56,8 @@ public class AutorController extends HttpServlet {
             case "buscarpordni":
                 buscarpordni(request,response);
                 break;
-            case "2":
+            case "ObtenerTodos":
+                ObtenerTodos(request,response);
                 break;
             case "3":
                 break;
@@ -126,7 +132,7 @@ public class AutorController extends HttpServlet {
         rd.forward(request, response);
         
         }
-        else if(Au==null)
+        else 
         {
                 System.out.println("es nulo");
         rd = getServletContext().getRequestDispatcher("/Prototipos/crearAutor.jsp?val=nue&idPublicacion="+idPublicacion);
@@ -134,4 +140,29 @@ public class AutorController extends HttpServlet {
         }
     }
 
+    private void ObtenerTodos(HttpServletRequest request, HttpServletResponse response) throws IOException, DAOException {
+        Autor[] Au = daote.leertodo();         
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();  
+        JsonArrayBuilder  arrayAutores = Json.createArrayBuilder();        
+        JsonArrayBuilder  arrayDatosAutores; 
+       for (Autor Autor : Au) {
+            //System.out.println(solicitud.toString());            
+            arrayDatosAutores = Json.createArrayBuilder();
+            arrayDatosAutores.add(Autor .getIdAutor());
+             arrayDatosAutores.add(Autor .getProfesion());
+            arrayDatosAutores.add( Autor .getGrado()); 
+            arrayDatosAutores.add(Autor .getNombres()+" "+Autor.getApellidos());
+            arrayDatosAutores.add(Autor .getEscuela().getFacultad().getDescripcion());
+            arrayDatosAutores.add(Autor .getEscuela().getDescripcion());
+            arrayDatosAutores.add( Autor .getEspecialidad()); 
+            arrayAutores.add(arrayDatosAutores);
+        }
+        objbuilder.add("data", arrayAutores);
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        }
+    }
 }

@@ -25,10 +25,12 @@ public class PublicacionTest {
     public static void main(String[] args) throws DAOException{
         // TODO code application logic here
 //        crearpublicacion();
-        modificarpublicacion();
+//        modificarpublicacion();
 //        eliminarpublicacion();
 //        leerpublicacion();
 //        leertodo();
+//        crearpublicacionleer();
+        modificarpublicacionleer();
     }
     public static void crearpublicacion() throws DAOException
     {
@@ -46,6 +48,30 @@ public class PublicacionTest {
              
               
               daote.crear(objPu);
+               
+            } 
+                          catch (ParseException e) {
+			System.out.println("Fecha invalida: " + e.getMessage());
+                        }
+    }
+    public static void crearpublicacionleer() throws DAOException
+    {
+        PublicacionDAOFactory fabricate= new PublicacionDAOFactory();
+        PublicacionDAO daote= fabricate.metodoDAO();
+          Publicacion objPu = new Publicacion();
+          
+          try{
+          SimpleDateFormat fe=new SimpleDateFormat("yyyy-MM-dd");
+          Date fec = new Date(fe.parse("2016-02-20").getTime());
+          
+                objPu.getLineaInvestigacion().setIdLineaInvestigacion(1);
+                objPu.setTitulo("buqueda de algas");
+                objPu.setFechaPublicacion(fec);
+             
+              
+              
+               Publicacion publica=daote.crearleer(objPu);
+	 System.out.println(" "+publica.toString());
                
             } 
                           catch (ParseException e) {
@@ -70,6 +96,31 @@ public class PublicacionTest {
              
               
               daote.modificar(objPu);
+               
+            } 
+                          catch (ParseException e) {
+			System.out.println("Fecha invalida: " + e.getMessage());
+                        }
+    }
+     public static void modificarpublicacionleer() throws DAOException
+    {
+        PublicacionDAOFactory fabricate= new PublicacionDAOFactory();
+        PublicacionDAO daote= fabricate.metodoDAO();
+          Publicacion objPu = new Publicacion();
+          
+          try{
+          SimpleDateFormat fe=new SimpleDateFormat("yyyy-MM-dd");
+          Date fec = new Date(fe.parse("2016-03-20").getTime());
+     
+          objPu.setIdPublicacion(1);
+          objPu.getLineaInvestigacion().setIdLineaInvestigacion(1);
+                objPu.setTitulo("xxxxxxxxxx");
+                objPu.setFechaCarga(fec);
+                objPu.setFechaPublicacion(fec);
+             
+              
+              Publicacion publica=daote.modificarleer(objPu);
+	 System.out.println(" "+publica.toString());
                
             } 
                           catch (ParseException e) {

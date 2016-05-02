@@ -5,8 +5,10 @@
  */
 package com.repositoriounia.dao;
 
+import com.repositoriounia.modelo.Sexo;
 import com.repositoriounia.modelo.Solicitante;
 import com.repositoriounia.modelo.TemasSugeridos;
+import com.repositoriounia.modelo.TipoEntidad;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -145,7 +147,18 @@ public class TemasSugeridosDAOJDBC implements TemasSugeridosDAO{
                     new TemasSugeridos(
                             rs.getInt("idTemasSugeridos"),
                             new Solicitante(
-                            rs.getString("nombres")
+                            rs.getInt("idSolicitante"),
+                            TipoEntidad.valueOf(rs.getString("tipoEntidad")),
+                            rs.getString("entidad"),
+                            rs.getString("areaTrabajo"),
+                            
+                            rs.getString("nombres"),
+                            rs.getString("apellidos"),
+                            rs.getString("dni"),
+                            Sexo.valueOf(rs.getString("sexo")),
+                            rs.getString("direccion"),
+                            rs.getString("telefono"),
+                            rs.getString("correo")
                             ),
                            rs.getDate("fecha"),
                             rs.getString("tema"),
@@ -175,7 +188,18 @@ public class TemasSugeridosDAOJDBC implements TemasSugeridosDAO{
                      new TemasSugeridos(
                             rs.getInt("idTemasSugeridos"),
                             new Solicitante(
-                            rs.getString("nombres")
+                            rs.getInt("idSolicitante"),
+                            TipoEntidad.valueOf(rs.getString("tipoEntidad")),
+                            rs.getString("entidad"),
+                            rs.getString("areaTrabajo"),
+                            
+                            rs.getString("nombres"),
+                            rs.getString("apellidos"),
+                            rs.getString("dni"),
+                            Sexo.valueOf(rs.getString("sexo")),
+                            rs.getString("direccion"),
+                            rs.getString("telefono"),
+                            rs.getString("correo")
                             ),
                            rs.getDate("fecha"),
                             rs.getString("tema"),
@@ -206,7 +230,18 @@ public class TemasSugeridosDAOJDBC implements TemasSugeridosDAO{
                  new TemasSugeridos(
                             rs.getInt("idTemasSugeridos"),
                             new Solicitante(
-                            rs.getString("nombres")
+                            rs.getInt("idSolicitante"),
+                            TipoEntidad.valueOf(rs.getString("tipoEntidad")),
+                            rs.getString("entidad"),
+                            rs.getString("areaTrabajo"),
+                            
+                            rs.getString("nombres"),
+                            rs.getString("apellidos"),
+                            rs.getString("dni"),
+                            Sexo.valueOf(rs.getString("sexo")),
+                            rs.getString("direccion"),
+                            rs.getString("telefono"),
+                            rs.getString("correo")
                             ),
                            rs.getDate("fecha"),
                             rs.getString("tema"),

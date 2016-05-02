@@ -29,14 +29,14 @@ public class ArchivosSolicitadosTest {
      */
     public static void main(String[] args)throws DAOException{
         // TODO code application logic here
-        creararchivossolicitados();
+//        creararchivossolicitados();
 //        creararchivossolicitados2();
 //        modificararchivosolicitados();
 //        eliminararchivosolicitados();
-//        leerarchivosolicitado();
-//        leertodo1();
-//        leertodo2();
-//        leertodo3();
+//leerarchivosolicitado();
+//leertodo();
+//leertodoxarchivopublicacion();
+leertodoxsolicitante();
        
     }
     public static void creararchivossolicitados() throws DAOException
@@ -124,7 +124,7 @@ public class ArchivosSolicitadosTest {
         
 	    
 	}
-       public static void leertodo1()throws DAOException
+       public static void leertodoxsolicitante()throws DAOException
 	{
 		ArchivosSolicitadosDAOFactory fabricate= new ArchivosSolicitadosDAOFactory();
                 ArchivosSolicitadosDAO daote= fabricate.metodoDAO();
@@ -133,7 +133,7 @@ public class ArchivosSolicitadosTest {
                   
 		
 	 
-	 ArchivosSolicitados[] usuv=daote.leertodo(2);
+	 ArchivosSolicitados[] usuv=daote.leertodoxidsolicitante(1);
 	  
 	  for(ArchivosSolicitados usuv1:usuv)
 	  {
@@ -143,7 +143,7 @@ public class ArchivosSolicitadosTest {
 	  }
 	 
         } 
-       public static void leertodo2()throws DAOException
+       public static void leertodoxarchivopublicacion()throws DAOException
 	{
 		ArchivosSolicitadosDAOFactory fabricate= new ArchivosSolicitadosDAOFactory();
                 ArchivosSolicitadosDAO daote= fabricate.metodoDAO();
@@ -152,7 +152,7 @@ public class ArchivosSolicitadosTest {
                   
 		
 	 
-	 ArchivosSolicitados[] usuv=daote.leertodo2(3);
+	 ArchivosSolicitados[] usuv=daote.leertodoxidarchivopublicacion(1);
 	  
 	  for(ArchivosSolicitados usuv1:usuv)
 	  {
@@ -162,7 +162,7 @@ public class ArchivosSolicitadosTest {
 	  }
 	 
         } 
-       public static void leertodo3()throws DAOException
+       public static void leertodo()throws DAOException
 	{
 		ArchivosSolicitadosDAOFactory fabricate= new ArchivosSolicitadosDAOFactory();
                 ArchivosSolicitadosDAO daote= fabricate.metodoDAO();

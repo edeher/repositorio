@@ -24,13 +24,13 @@ public class TemasSugeridosTest {
      */
     public static void main(String[] args) throws DAOException{
         // TODO code application logic here
-        crearartemas();
+//        crearartemas();
 //        crearartemas2();
 //        modificartema();
 //        eliminartemas();
-//        leer();
+        leer();
 //        leertodo();
-        leertodo2();
+//        leertodo2();
       
     }
      public static void crearartemas() throws DAOException

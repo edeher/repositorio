@@ -6,9 +6,13 @@
 package com.repositoriounia.dao;
 
 import com.repositoriounia.modelo.ArchivoPublicacion;
+import com.repositoriounia.modelo.AreaInvestigacion;
 import com.repositoriounia.modelo.Denuncia;
 import com.repositoriounia.modelo.Denunciante;
 import com.repositoriounia.modelo.DescripcionArchivo;
+import com.repositoriounia.modelo.LineaInvestigacion;
+import com.repositoriounia.modelo.Publicacion;
+import com.repositoriounia.modelo.Sexo;
 import java.sql.Connection;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -143,19 +147,37 @@ public class DenunciaDAOJDBC implements DenunciaDAO{
             }
            
             return (
-                    new Denuncia(
+                     new Denuncia(
                             rs.getInt("idDenuncia"),
                             new Denunciante(
-                                    rs.getString("nombres")
-                            ),
-                            
+                                rs.getInt("idDenunciante"),
+
+                                rs.getString("nombres"),
+                                rs.getString("apellidos"),
+                                rs.getString("dni"),
+                                Sexo.valueOf(rs.getString("sexo")),
+                                rs.getString("direccion"),
+                                rs.getString("telefono"),
+                                rs.getString("correo")),
                             new ArchivoPublicacion(
-                                    DescripcionArchivo.valueOf(rs.getString("descripcion1"))
-                            ),
+                                rs.getInt("idArchivoPublicacion"),
+                                new Publicacion(
+                                    rs.getInt("idPublicacion"),
+                                    new LineaInvestigacion(
+                                        rs.getInt("idLineaInvestigacion"),
+                                        new AreaInvestigacion(
+                                            rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")),
+                                        rs.getString("linea")),
+                                    rs.getString("titulo"),
+                                    rs.getDate("fechaCarga"),
+                                    rs.getDate("fechaPublicacion")),
+                                DescripcionArchivo.valueOf(rs.getString("descripcion1")),
+                                rs.getString("urlLocal"),
+                                rs.getString("urlWeb") ),
                             rs.getDate("fecha"),
                             rs.getString("descripcion2"))
-                           
-                   );
+                     );
             
         } catch (SQLException se) {
             
@@ -178,16 +200,34 @@ public class DenunciaDAOJDBC implements DenunciaDAO{
                     new Denuncia(
                             rs.getInt("idDenuncia"),
                             new Denunciante(
-                                    rs.getString("nombres")
-                            ),
-                            
+                                rs.getInt("idDenunciante"),
+
+                                rs.getString("nombres"),
+                                rs.getString("apellidos"),
+                                rs.getString("dni"),
+                                Sexo.valueOf(rs.getString("sexo")),
+                                rs.getString("direccion"),
+                                rs.getString("telefono"),
+                                rs.getString("correo")),
                             new ArchivoPublicacion(
-                                    DescripcionArchivo.valueOf(rs.getString("descripcion1"))
-                            ),
+                                rs.getInt("idArchivoPublicacion"),
+                                new Publicacion(
+                                    rs.getInt("idPublicacion"),
+                                    new LineaInvestigacion(
+                                        rs.getInt("idLineaInvestigacion"),
+                                        new AreaInvestigacion(
+                                            rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")),
+                                        rs.getString("linea")),
+                                    rs.getString("titulo"),
+                                    rs.getDate("fechaCarga"),
+                                    rs.getDate("fechaPublicacion")),
+                                DescripcionArchivo.valueOf(rs.getString("descripcion1")),
+                                rs.getString("urlLocal"),
+                                rs.getString("urlWeb") ),
                             rs.getDate("fecha"),
                             rs.getString("descripcion2"))
-                
-                  );
+                     );
             }
             return tribs.toArray(new Denuncia[0]);
         } catch (SQLException se) {

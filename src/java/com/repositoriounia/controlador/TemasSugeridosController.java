@@ -5,11 +5,19 @@
  */
 package com.repositoriounia.controlador;
 
+import com.repositoriounia.dao.DAOException;
 import com.repositoriounia.dao.TemasSugeridosDAO;
 import com.repositoriounia.dao.TemasSugeridosDAOFactory;
+import com.repositoriounia.modelo.Solicitante;
 import com.repositoriounia.modelo.TemasSugeridos;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,14 +44,14 @@ public class TemasSugeridosController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, DAOException {
         response.setContentType("text/html;charset=UTF-8");
         String accion=request.getParameter("accion");
         fabricate=new TemasSugeridosDAOFactory();
         daote=fabricate.metodoDAO();
         switch(accion)
         {
-            case "1":
+            case "ObtenerTodos":ObtenerTodos(request,response);
                 break;
             case "21":
                 break;
@@ -68,7 +76,11 @@ public class TemasSugeridosController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(TemasSugeridosController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -82,7 +94,11 @@ public class TemasSugeridosController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(TemasSugeridosController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -94,5 +110,31 @@ public class TemasSugeridosController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void ObtenerTodos(HttpServletRequest request, HttpServletResponse response) throws IOException, DAOException {
+       TemasSugeridos[] tema = daote.leertodo();         
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();  
+        JsonArrayBuilder  arrayTemas = Json.createArrayBuilder();        
+        JsonArrayBuilder  arrayDatosTemas; 
+       for (TemasSugeridos temas : tema) {
+            //System.out.println(solicitud.toString());            
+            arrayDatosTemas = Json.createArrayBuilder();
+            arrayDatosTemas.add(temas.getIdTemaSugerido());
+            arrayDatosTemas.add(temas.getSolicitante().getNombres()+" "+temas.getSolicitante().getApellidos());
+            arrayDatosTemas.add( temas.getFecha().toString());  
+            arrayDatosTemas.add(temas.getTema());
+            arrayDatosTemas.add(temas.getAreaTematica());
+           
+          
+             arrayTemas.add(arrayDatosTemas);
+        }
+        objbuilder.add("data", arrayTemas);
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        }
+    }
 
 }

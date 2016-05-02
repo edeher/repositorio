@@ -7,8 +7,14 @@ package com.repositoriounia.dao;
 
 import com.repositoriounia.modelo.ArchivoPublicacion;
 import com.repositoriounia.modelo.ArchivosSolicitados;
+import com.repositoriounia.modelo.AreaInvestigacion;
+import com.repositoriounia.modelo.DescripcionArchivo;
+import com.repositoriounia.modelo.LineaInvestigacion;
+import com.repositoriounia.modelo.Publicacion;
 import com.repositoriounia.modelo.Respuesta;
+import com.repositoriounia.modelo.Sexo;
 import com.repositoriounia.modelo.Solicitante;
+import com.repositoriounia.modelo.TipoEntidad;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -118,8 +124,40 @@ private final Connection con;
             return (
                     new ArchivosSolicitados(
                             rs.getInt("idArchivoSolicitado"),
-                            new Solicitante(rs.getInt("idSolicitante")),
-                            new ArchivoPublicacion(rs.getInt("idArchivoPublicacion")),
+                            new Solicitante(
+                                    rs.getInt("idSolicitante"),
+                            TipoEntidad.valueOf(rs.getString("tipoEntidad")),
+                            rs.getString("entidad"),
+                            rs.getString("areaTrabajo"),
+                            
+                            rs.getString("nombres"),
+                            rs.getString("apellidos"),
+                            rs.getString("dni"),
+                            Sexo.valueOf(rs.getString("sexo")),
+                            rs.getString("direccion"),
+                            rs.getString("telefono"),
+                            rs.getString("correo")
+                            ),
+                            new ArchivoPublicacion(
+                                   rs.getInt("idArchivoPublicacion"),
+                           
+                           new Publicacion(
+                                   rs.getInt("idPublicacion"),
+                            new LineaInvestigacion(
+                                    rs.getInt("idLineaInvestigacion"),
+                                    new AreaInvestigacion(
+                                    rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")
+                                    ),
+                                    rs.getString("linea")),
+                            rs.getString("titulo"),
+                            rs.getDate("fechaCarga"),
+                            rs.getDate("fechaPublicacion")                      
+                           ),
+                             DescripcionArchivo.valueOf(rs.getString("descripcion")),
+                            rs.getString("urlLocal"),
+                            rs.getString("urlWeb")
+                            ),
                             rs.getDate("fechaSolicitud"),
                             Respuesta.valueOf(rs.getString("respuesta")),
                             rs.getDate("fechaRespuesta"))
@@ -135,7 +173,7 @@ private final Connection con;
     }
 
     @Override
-    public ArchivosSolicitados[] leertodo(int idSolicitante) throws DAOException {
+    public ArchivosSolicitados[] leertodoxidsolicitante(int idSolicitante) throws DAOException {
        try{
         CallableStatement st=con.prepareCall("{call sp_archivossolicitados_bco1(?)}");
             st.setInt(1,idSolicitante);
@@ -148,8 +186,40 @@ private final Connection con;
                         
                       new ArchivosSolicitados(
                             rs.getInt("idArchivoSolicitado"),
-                            new Solicitante(rs.getInt("idSolicitante")),
-                            new ArchivoPublicacion(rs.getInt("idArchivoPublicacion")),
+                            new Solicitante(
+                                   rs.getInt("idSolicitante"),
+                            TipoEntidad.valueOf(rs.getString("tipoEntidad")),
+                            rs.getString("entidad"),
+                            rs.getString("areaTrabajo"),
+                            
+                            rs.getString("nombres"),
+                            rs.getString("apellidos"),
+                            rs.getString("dni"),
+                            Sexo.valueOf(rs.getString("sexo")),
+                            rs.getString("direccion"),
+                            rs.getString("telefono"),
+                            rs.getString("correo")
+                            ),
+                            new ArchivoPublicacion(
+                                 rs.getInt("idArchivoPublicacion"),
+                           
+                           new Publicacion(
+                                   rs.getInt("idPublicacion"),
+                            new LineaInvestigacion(
+                                    rs.getInt("idLineaInvestigacion"),
+                                    new AreaInvestigacion(
+                                    rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")
+                                    ),
+                                    rs.getString("linea")),
+                            rs.getString("titulo"),
+                            rs.getDate("fechaCarga"),
+                            rs.getDate("fechaPublicacion")                      
+                           ),
+                             DescripcionArchivo.valueOf(rs.getString("descripcion")),
+                            rs.getString("urlLocal"),
+                            rs.getString("urlWeb")
+                            ),
                             rs.getDate("fechaSolicitud"),
                             Respuesta.valueOf(rs.getString("respuesta")),
                             rs.getDate("fechaRespuesta"))
@@ -168,7 +238,7 @@ private final Connection con;
     }
 
     @Override
-    public ArchivosSolicitados[] leertodo2(int idArchivoPublicacion) throws DAOException {
+    public ArchivosSolicitados[] leertodoxidarchivopublicacion(int idArchivoPublicacion) throws DAOException {
        try{
         CallableStatement st=con.prepareCall("{call sp_archivossolicitados_bco2(?)}");
             st.setInt(1,idArchivoPublicacion);
@@ -181,8 +251,40 @@ private final Connection con;
                         
                       new ArchivosSolicitados(
                             rs.getInt("idArchivoSolicitado"),
-                            new Solicitante(rs.getInt("idSolicitante")),
-                            new ArchivoPublicacion(rs.getInt("idArchivoPublicacion")),
+                            new Solicitante(
+                                   rs.getInt("idSolicitante"),
+                            TipoEntidad.valueOf(rs.getString("tipoEntidad")),
+                            rs.getString("entidad"),
+                            rs.getString("areaTrabajo"),
+                            
+                            rs.getString("nombres"),
+                            rs.getString("apellidos"),
+                            rs.getString("dni"),
+                            Sexo.valueOf(rs.getString("sexo")),
+                            rs.getString("direccion"),
+                            rs.getString("telefono"),
+                            rs.getString("correo")
+                            ),
+                            new ArchivoPublicacion(
+                                   rs.getInt("idArchivoPublicacion"),
+                           
+                           new Publicacion(
+                                   rs.getInt("idPublicacion"),
+                            new LineaInvestigacion(
+                                    rs.getInt("idLineaInvestigacion"),
+                                    new AreaInvestigacion(
+                                    rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")
+                                    ),
+                                    rs.getString("linea")),
+                            rs.getString("titulo"),
+                            rs.getDate("fechaCarga"),
+                            rs.getDate("fechaPublicacion")                      
+                           ),
+                             DescripcionArchivo.valueOf(rs.getString("descripcion")),
+                            rs.getString("urlLocal"),
+                            rs.getString("urlWeb")
+                            ),
                             rs.getDate("fechaSolicitud"),
                             Respuesta.valueOf(rs.getString("respuesta")),
                             rs.getDate("fechaRespuesta"))
@@ -212,8 +314,40 @@ private final Connection con;
                         
                    new ArchivosSolicitados(
                             rs.getInt("idArchivoSolicitado"),
-                            new Solicitante(rs.getInt("idSolicitante")),
-                            new ArchivoPublicacion(rs.getInt("idArchivoPublicacion")),
+                            new Solicitante(
+                                   rs.getInt("idSolicitante"),
+                            TipoEntidad.valueOf(rs.getString("tipoEntidad")),
+                            rs.getString("entidad"),
+                            rs.getString("areaTrabajo"),
+                            
+                            rs.getString("nombres"),
+                            rs.getString("apellidos"),
+                            rs.getString("dni"),
+                            Sexo.valueOf(rs.getString("sexo")),
+                            rs.getString("direccion"),
+                            rs.getString("telefono"),
+                            rs.getString("correo")
+                            ),
+                            new ArchivoPublicacion(
+                                  rs.getInt("idArchivoPublicacion"),
+                           
+                           new Publicacion(
+                                   rs.getInt("idPublicacion"),
+                            new LineaInvestigacion(
+                                    rs.getInt("idLineaInvestigacion"),
+                                    new AreaInvestigacion(
+                                    rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")
+                                    ),
+                                    rs.getString("linea")),
+                            rs.getString("titulo"),
+                            rs.getDate("fechaCarga"),
+                            rs.getDate("fechaPublicacion")                      
+                           ),
+                             DescripcionArchivo.valueOf(rs.getString("descripcion")),
+                            rs.getString("urlLocal"),
+                            rs.getString("urlWeb")
+                            ),
                             rs.getDate("fechaSolicitud"),
                             Respuesta.valueOf(rs.getString("respuesta")),
                             rs.getDate("fechaRespuesta"))

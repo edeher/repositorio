@@ -16,6 +16,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonValue;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -139,10 +144,27 @@ public class PublicacionController extends HttpServlet {
     }
 
     private void ObtenerTodos(HttpServletRequest request, HttpServletResponse response) throws DAOException, ServletException, IOException {
-        Publicacion []publi=daote.leertodo();
-        request.setAttribute("publi", publi);
-        rd = getServletContext().getRequestDispatcher("/Prototipos/RequestBucarPubli.jsp");
-        rd.forward(request, response);
-    }
-
+        Publicacion[] puv = daote.leertodo();         
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();  
+        JsonArrayBuilder  arrayPublicaciones = Json.createArrayBuilder();        
+        JsonArrayBuilder  arrayDatosPublicaciones; 
+       for (Publicacion publi : puv) {
+            //System.out.println(solicitud.toString());            
+            arrayDatosPublicaciones = Json.createArrayBuilder();
+            arrayDatosPublicaciones.add(publi.getIdPublicacion());
+            arrayDatosPublicaciones.add(publi.getLineaInvestigacion().getAreaInvestigacion().getDescripcion());
+            arrayDatosPublicaciones.add(publi.getLineaInvestigacion().getDescripcion());
+            arrayDatosPublicaciones.add(publi.getTitulo());
+           arrayDatosPublicaciones.add( publi.getFechaPublicacion().toString());  
+            arrayDatosPublicaciones.add( publi.getFechaCarga().toString()); 
+            arrayPublicaciones.add(arrayDatosPublicaciones);
+        }
+        objbuilder.add("data", arrayPublicaciones);
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        }
+}
 }

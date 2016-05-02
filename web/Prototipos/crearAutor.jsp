@@ -39,7 +39,7 @@
                 }
                 else
                 {
-                f.action="../AutorController?accion=buscarpordni&val=nue1"
+                f.action="../AutorController?accion=buscarpordni"
                 f.target=""
                 f.submit();
                 f.reset();
@@ -255,14 +255,14 @@
 
     </body>
 
-    <script src="../js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">        
         $(document).ready(function() {   
             $('#Selectfacultad').on('change',function(){
                 var codigo=this.value;
                $.ajax({
                    type: 'POST',
-                   url:'../EscuelaController?accion=buscarporFacultad&codigo='+codigo,
+                   url:'EscuelaController?accion=buscarporFacultad&codigo='+codigo,
                    data:$(this).serialize(),
                    success:function(data){
                        $('#Selectescuelas').html(data);

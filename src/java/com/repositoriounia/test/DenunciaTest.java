@@ -25,11 +25,11 @@ public class DenunciaTest {
         // TODO code application logic here
         
 //        creardenuncia();
-        creardenuncia2();
+//        creardenuncia2();
 //        modificardenuncia();
 //        eliminardenuncia();
 //        leer();
-//        leertodo();
+        leertodo();
     }
      public static void creardenuncia() throws DAOException
     {

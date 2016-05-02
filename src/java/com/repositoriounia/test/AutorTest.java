@@ -27,10 +27,10 @@ public class AutorTest {
 //        modificarrAutor();
 //        eliminararautor();
 //        leerautor();
-//        leertodo();
+        leertodo();
 //        crearAutor1();
 //        crearverileer();
-        leerxdni();
+//        leerxdni();
     }
      public static void crearAutor() throws DAOException
     {

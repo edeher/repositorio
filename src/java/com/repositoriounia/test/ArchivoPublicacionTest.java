@@ -25,9 +25,9 @@ public class ArchivoPublicacionTest {
 //        creararchivopublicacion();
 //        modificararchivopublicacion();
 //        eliminararchivopublicacion();
-//        leerarchivopublicacion();
-//        leertodo2();
-        leertodo();
+//        leerporidpublicacion();
+leerxid();
+//leertodo();
     }
     
     public static void creararchivopublicacion() throws DAOException
@@ -82,19 +82,19 @@ public class ArchivoPublicacionTest {
 	 
 	    
 	}
-      public static void leerarchivopublicacion()throws DAOException
+      public static void leerxid()throws DAOException
 	{
 		 ArchivoPublicacionDAOFactory fabricate= new ArchivoPublicacionDAOFactory();
         ArchivoPublicacionDAO daote= fabricate.metodoDAO();
        
                
-	   ArchivoPublicacion archinun=daote.leerxid(3);
+	   ArchivoPublicacion archinun=daote.leerxid(1);
 	 System.out.println(" "+archinun.toString());
         
 	    
 	}
       
-       public static void leertodo2()throws DAOException
+       public static void leerporidpublicacion()throws DAOException
 	{
 		ArchivoPublicacionDAOFactory fabricate= new ArchivoPublicacionDAOFactory();
         ArchivoPublicacionDAO daote= fabricate.metodoDAO();
@@ -103,7 +103,7 @@ public class ArchivoPublicacionTest {
                   
 		
 	 
-	 ArchivoPublicacion[] usuv=daote.leertodo(1);
+	 ArchivoPublicacion[] usuv=daote.leertodoidpublicacion(1);
 	  
 	  for(ArchivoPublicacion usuv1:usuv)
 	  {

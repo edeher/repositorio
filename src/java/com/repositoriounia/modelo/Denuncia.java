@@ -27,6 +27,7 @@ public class Denuncia {
         this.descripcion = descripcion;
         this.estado = estado;
     }
+    
 
     public Denuncia() {
         this.denunciante=new Denunciante();
@@ -35,8 +36,10 @@ public class Denuncia {
 
     @Override
     public String toString() {
-        return "Denuncia{" + "idDenuncia=" + idDenuncia + ", denunciante=" + denunciante + ", archivoPublicacion=" + archivoPublicacion + ", fecha=" + fecha + ", descripcion=" + descripcion  + '}';
+        return "Denuncia{" + "idDenuncia=" + idDenuncia + ", denunciante=" + denunciante + ", archivoPublicacion=" + archivoPublicacion + ", fecha=" + fecha + ", descripcion=" + descripcion + ", estado=" + estado + '}';
     }
+
+    
 
     public Denuncia(int idDenuncia) {
         this.idDenuncia = idDenuncia;

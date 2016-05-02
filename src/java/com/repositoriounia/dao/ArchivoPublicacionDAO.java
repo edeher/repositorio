@@ -16,6 +16,6 @@ public interface ArchivoPublicacionDAO {
     public boolean modificar(ArchivoPublicacion objarchP,int idPublicacion)throws DAOException;
     public boolean eliminar(int idArchivoPublicacion)throws DAOException;
     public ArchivoPublicacion leerxid(int idArchivoPublicacion)throws DAOException;
-    public ArchivoPublicacion[] leertodo(int idPublicacion)throws DAOException;
+    public ArchivoPublicacion[] leertodoidpublicacion(int idPublicacion)throws DAOException;
     public ArchivoPublicacion[] leertodo()throws DAOException;
 }

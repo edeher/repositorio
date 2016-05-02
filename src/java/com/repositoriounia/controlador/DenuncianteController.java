@@ -5,11 +5,19 @@
  */
 package com.repositoriounia.controlador;
 
+import com.repositoriounia.dao.DAOException;
 import com.repositoriounia.dao.DenuncianteDAO;
 import com.repositoriounia.dao.DenuncianteDAOFactory;
 import com.repositoriounia.modelo.Denunciante;
+import com.repositoriounia.modelo.LineaInvestigacion;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,14 +45,15 @@ public class DenuncianteController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, DAOException {
         response.setContentType("text/html;charset=UTF-8");
         String accion=request.getParameter("accion");
         fabricate =new DenuncianteDAOFactory();
         daote=fabricate.metodoDAO();
         switch(accion)
         {
-            case "1":
+            case "ObtenerTodos":
+                ObtenerTodos(request,response);
                 break;
             case "2":
                 break;
@@ -73,7 +82,11 @@ public class DenuncianteController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(DenuncianteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -87,7 +100,11 @@ public class DenuncianteController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(DenuncianteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -99,5 +116,29 @@ public class DenuncianteController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void ObtenerTodos(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+         Denunciante[] denun = daote.leertodo();         
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();  
+        JsonArrayBuilder  arrayDenunciante = Json.createArrayBuilder();        
+        JsonArrayBuilder  arrayDatosDenunciante; 
+       for (Denunciante denunciante :  denun) {
+            //System.out.println(solicitud.toString());            
+            arrayDatosDenunciante = Json.createArrayBuilder();
+            arrayDatosDenunciante.add(denunciante .getIdDenunciante());
+             arrayDatosDenunciante.add(denunciante .getNombres()+" "+denunciante.getApellidos());
+            arrayDatosDenunciante.add(denunciante  .getTelefono());
+            arrayDatosDenunciante.add(denunciante  .getCorrero());
+             arrayDenunciante.add(arrayDatosDenunciante);
+        }
+        objbuilder.add("data", arrayDenunciante );
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        }
+    
+    }
 
 }

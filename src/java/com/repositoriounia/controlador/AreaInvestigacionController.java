@@ -7,9 +7,17 @@ package com.repositoriounia.controlador;
 
 import com.repositoriounia.dao.AreaInvestigacionDAO;
 import com.repositoriounia.dao.AreaInvestigacionDAOFactory;
+import com.repositoriounia.dao.DAOException;
 import com.repositoriounia.modelo.AreaInvestigacion;
+import com.repositoriounia.modelo.Autor;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +44,7 @@ public class AreaInvestigacionController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, DAOException {
         response.setContentType("text/html;charset=UTF-8");
         String accion=request.getParameter("accion");
         fabricate =new AreaInvestigacionDAOFactory();
@@ -44,7 +52,8 @@ public class AreaInvestigacionController extends HttpServlet {
         
         switch(accion)
         {
-            case "1":
+            case "ObtenerTodos":
+                ObtenerTodos(request,response);
                 break;
             case "2":
                 break;
@@ -74,7 +83,11 @@ public class AreaInvestigacionController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(AreaInvestigacionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -88,7 +101,11 @@ public class AreaInvestigacionController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(AreaInvestigacionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -100,5 +117,27 @@ public class AreaInvestigacionController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void ObtenerTodos(HttpServletRequest request, HttpServletResponse response) throws IOException, DAOException {
+        AreaInvestigacion[] Are = daote.leertodo();         
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();  
+        JsonArrayBuilder  arrayArea = Json.createArrayBuilder();        
+        JsonArrayBuilder  arrayDatosArea; 
+       for (AreaInvestigacion Area : Are) {
+            //System.out.println(solicitud.toString());            
+            arrayDatosArea = Json.createArrayBuilder();
+            arrayDatosArea.add(Area .getIdAreaInvestigacion());
+            arrayDatosArea.add(Area .getDescripcion());
+           
+            arrayArea.add(arrayDatosArea);
+        }
+        objbuilder.add("data", arrayArea );
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        }
+    }
 
 }

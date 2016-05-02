@@ -5,6 +5,7 @@
  */
 package com.repositoriounia.dao;
 
+import com.repositoriounia.modelo.AreaInvestigacion;
 import com.repositoriounia.modelo.LineaInvestigacion;
 import com.repositoriounia.modelo.Publicacion;
 import java.sql.CallableStatement;
@@ -111,7 +112,13 @@ public class PublicacionDAOJDBC implements PublicacionDAO{
                     new Publicacion(
                             
                             rs.getInt("idPublicacion"),
-                            new LineaInvestigacion(rs.getString("descripcion")),
+                            new LineaInvestigacion(
+                                    rs.getInt("idLineaInvestigacion"),
+                                    new AreaInvestigacion(
+                                    rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")
+                                    ),
+                                    rs.getString("linea")),
                             rs.getString("titulo"),
                             rs.getDate("fechaCarga"),
                             rs.getDate("fechaPublicacion"))
@@ -138,10 +145,16 @@ public class PublicacionDAOJDBC implements PublicacionDAO{
             while (rs.next()) {
                 tribs.add(
                         
-                   new Publicacion(
+                  new Publicacion(
                             
                             rs.getInt("idPublicacion"),
-                            new LineaInvestigacion(rs.getString("descripcion")),
+                            new LineaInvestigacion(
+                                    rs.getInt("idLineaInvestigacion"),
+                                    new AreaInvestigacion(
+                                    rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")
+                                    ),
+                                    rs.getString("linea")),
                             rs.getString("titulo"),
                             rs.getDate("fechaCarga"),
                             rs.getDate("fechaPublicacion"))
@@ -171,10 +184,16 @@ public class PublicacionDAOJDBC implements PublicacionDAO{
             }
            
             return (
-                    new Publicacion(
+                   new Publicacion(
                             
                             rs.getInt("idPublicacion"),
-                            new LineaInvestigacion(rs.getString("descripcion")),
+                            new LineaInvestigacion(
+                                    rs.getInt("idLineaInvestigacion"),
+                                    new AreaInvestigacion(
+                                    rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")
+                                    ),
+                                    rs.getString("linea")),
                             rs.getString("titulo"),
                             rs.getDate("fechaCarga"),
                             rs.getDate("fechaPublicacion"))
@@ -191,7 +210,42 @@ public class PublicacionDAOJDBC implements PublicacionDAO{
 
     @Override
     public Publicacion modificarleer(Publicacion objPu) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+        CallableStatement st=con.prepareCall("{call sp_publicacion_m2(?,?,?,?,?)}");
+        
+                          st.setInt(1, objPu.getIdPublicacion());
+                          st.setInt(2, objPu.getLineaInvestigacion().getIdLineaInvestigacion());
+                          st.setString(3, objPu.getTitulo());
+                           st.setDate(4,new java.sql.Date(objPu.getFechaCarga().getTime()));
+                          st.setDate(5,new java.sql.Date(objPu.getFechaPublicacion().getTime()));
+                          
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                   new Publicacion(
+                            
+                            rs.getInt("idPublicacion"),
+                            new LineaInvestigacion(
+                                    rs.getInt("idLineaInvestigacion"),
+                                    new AreaInvestigacion(
+                                    rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")
+                                    ),
+                                    rs.getString("linea")),
+                            rs.getString("titulo"),
+                            rs.getDate("fechaCarga"),
+                            rs.getDate("fechaPublicacion"))
+                   );
+            
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error buscando publicacion en DAO", se);
+        }
+         
+	   
     }
 
    
