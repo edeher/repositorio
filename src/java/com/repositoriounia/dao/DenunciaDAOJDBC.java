@@ -147,7 +147,7 @@ public class DenunciaDAOJDBC implements DenunciaDAO{
             }
            
             return (
-                     new Denuncia(
+                      new Denuncia(
                             rs.getInt("idDenuncia"),
                             new Denunciante(
                                 rs.getInt("idDenunciante"),
@@ -174,7 +174,7 @@ public class DenunciaDAOJDBC implements DenunciaDAO{
                                     rs.getDate("fechaPublicacion")),
                                 DescripcionArchivo.valueOf(rs.getString("descripcion1")),
                                 rs.getString("urlLocal"),
-                                rs.getString("urlWeb") ),
+                                rs.getString("urlWeb")),
                             rs.getDate("fecha"),
                             rs.getString("descripcion2"))
                      );
@@ -224,7 +224,7 @@ public class DenunciaDAOJDBC implements DenunciaDAO{
                                     rs.getDate("fechaPublicacion")),
                                 DescripcionArchivo.valueOf(rs.getString("descripcion1")),
                                 rs.getString("urlLocal"),
-                                rs.getString("urlWeb") ),
+                                rs.getString("urlWeb")),
                             rs.getDate("fecha"),
                             rs.getString("descripcion2"))
                      );

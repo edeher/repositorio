@@ -6,7 +6,10 @@
 package com.repositoriounia.dao;
 
 import com.repositoriounia.modelo.ArchivoPublicacion;
+import com.repositoriounia.modelo.AreaInvestigacion;
 import com.repositoriounia.modelo.DescripcionArchivo;
+import com.repositoriounia.modelo.LineaInvestigacion;
+import com.repositoriounia.modelo.Publicacion;
 import com.repositoriounia.modelo.Visita;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -100,7 +103,26 @@ public class VisitaDAOJDBC implements VisitaDAO{
                     new Visita(
                             rs.getInt("idVisita"),
                            new ArchivoPublicacion(
-                                   DescripcionArchivo.valueOf(rs.getString("descripcion"))),
+                                 rs.getInt("idArchivoPublicacion"),
+                           
+                           new Publicacion(
+                                   rs.getInt("idPublicacion"),
+                            new LineaInvestigacion(
+                                    rs.getInt("idLineaInvestigacion"),
+                                    new AreaInvestigacion(
+                                    rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")
+                                    ),
+                                    rs.getString("linea")),
+                            rs.getString("titulo"),
+                            rs.getDate("fechaCarga"),
+                            rs.getDate("fechaPublicacion")                      
+                           ),
+                             DescripcionArchivo.valueOf(rs.getString("descripcion")),
+                            rs.getString("urlLocal"),
+                            rs.getString("urlWeb"),
+                     rs.getBytes("archivo")
+                           ),
                             rs.getDate("fecha"))
                          
                    );
@@ -125,7 +147,26 @@ public class VisitaDAOJDBC implements VisitaDAO{
                 new Visita(
                             rs.getInt("idVisita"),
                            new ArchivoPublicacion(
-                                   DescripcionArchivo.valueOf(rs.getString("descripcion"))),
+                                   rs.getInt("idArchivoPublicacion"),
+                           
+                           new Publicacion(
+                                   rs.getInt("idPublicacion"),
+                            new LineaInvestigacion(
+                                    rs.getInt("idLineaInvestigacion"),
+                                    new AreaInvestigacion(
+                                    rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")
+                                    ),
+                                    rs.getString("linea")),
+                            rs.getString("titulo"),
+                            rs.getDate("fechaCarga"),
+                            rs.getDate("fechaPublicacion")                      
+                           ),
+                             DescripcionArchivo.valueOf(rs.getString("descripcion")),
+                            rs.getString("urlLocal"),
+                            rs.getString("urlWeb"),
+                     rs.getBytes("archivo")
+                           ),
                             rs.getDate("fecha"))
                          
                    );

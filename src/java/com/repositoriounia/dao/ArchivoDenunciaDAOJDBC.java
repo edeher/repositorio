@@ -6,7 +6,14 @@
 package com.repositoriounia.dao;
 
 import com.repositoriounia.modelo.ArchivoDenuncia;
+import com.repositoriounia.modelo.ArchivoPublicacion;
+import com.repositoriounia.modelo.AreaInvestigacion;
 import com.repositoriounia.modelo.Denuncia;
+import com.repositoriounia.modelo.Denunciante;
+import com.repositoriounia.modelo.DescripcionArchivo;
+import com.repositoriounia.modelo.LineaInvestigacion;
+import com.repositoriounia.modelo.Publicacion;
+import com.repositoriounia.modelo.Sexo;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -105,10 +112,40 @@ public class ArchivoDenunciaDAOJDBC implements ArchivoDenunciaDAO{
                     new ArchivoDenuncia(
                             rs.getInt("idArchivoDenuncia"),
                            new Denuncia(
-                                   rs.getInt("idDenuncia")                         
+                                  rs.getInt("idDenuncia"),
+                            new Denunciante(
+                                rs.getInt("idDenunciante"),
+
+                                rs.getString("nombres"),
+                                rs.getString("apellidos"),
+                                rs.getString("dni"),
+                                Sexo.valueOf(rs.getString("sexo")),
+                                rs.getString("direccion"),
+                                rs.getString("telefono"),
+                                rs.getString("correo")),
+                            new ArchivoPublicacion(
+                                rs.getInt("idArchivoPublicacion"),
+                                new Publicacion(
+                                    rs.getInt("idPublicacion"),
+                                    new LineaInvestigacion(
+                                        rs.getInt("idLineaInvestigacion"),
+                                        new AreaInvestigacion(
+                                            rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")),
+                                        rs.getString("linea")),
+                                    rs.getString("titulo"),
+                                    rs.getDate("fechaCarga"),
+                                    rs.getDate("fechaPublicacion")),
+                                DescripcionArchivo.valueOf(rs.getString("descripcion1")),
+                                rs.getString("urlLocal"),
+                                rs.getString("urlWeb") ,
+                     rs.getBytes("archivo")),
+                            rs.getDate("fecha"),
+                            rs.getString("descripcion2")                       
                            ),
-                            rs.getString("urlLocal"),
-                            rs.getString("urlWeb"))
+                            rs.getString("urlLocalD"),
+                            rs.getString("urlWebD"),
+                     rs.getBytes("archivoD"))
                    );
         } catch (SQLException se) {
             
@@ -132,10 +169,40 @@ public class ArchivoDenunciaDAOJDBC implements ArchivoDenunciaDAO{
                      new ArchivoDenuncia(
                             rs.getInt("idArchivoDenuncia"),
                            new Denuncia(
-                                   rs.getInt("idDenuncia")                         
+                                  rs.getInt("idDenuncia"),
+                            new Denunciante(
+                                rs.getInt("idDenunciante"),
+
+                                rs.getString("nombres"),
+                                rs.getString("apellidos"),
+                                rs.getString("dni"),
+                                Sexo.valueOf(rs.getString("sexo")),
+                                rs.getString("direccion"),
+                                rs.getString("telefono"),
+                                rs.getString("correo")),
+                            new ArchivoPublicacion(
+                                rs.getInt("idArchivoPublicacion"),
+                                new Publicacion(
+                                    rs.getInt("idPublicacion"),
+                                    new LineaInvestigacion(
+                                        rs.getInt("idLineaInvestigacion"),
+                                        new AreaInvestigacion(
+                                            rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")),
+                                        rs.getString("linea")),
+                                    rs.getString("titulo"),
+                                    rs.getDate("fechaCarga"),
+                                    rs.getDate("fechaPublicacion")),
+                                DescripcionArchivo.valueOf(rs.getString("descripcion1")),
+                                rs.getString("urlLocal"),
+                                rs.getString("urlWeb") ,
+                     rs.getBytes("archivo")),
+                            rs.getDate("fecha"),
+                            rs.getString("descripcion2")                        
                            ),
-                            rs.getString("urlLocal"),
-                            rs.getString("urlWeb"))
+                            rs.getString("urlLocalD"),
+                            rs.getString("urlWebD"),
+                     rs.getBytes("archivoD"))
                 
                   );
             }
@@ -165,10 +232,40 @@ public class ArchivoDenunciaDAOJDBC implements ArchivoDenunciaDAO{
                      new ArchivoDenuncia(
                             rs.getInt("idArchivoDenuncia"),
                            new Denuncia(
-                                   rs.getInt("idDenuncia")                         
+                                    rs.getInt("idDenuncia"),
+                            new Denunciante(
+                                rs.getInt("idDenunciante"),
+
+                                rs.getString("nombres"),
+                                rs.getString("apellidos"),
+                                rs.getString("dni"),
+                                Sexo.valueOf(rs.getString("sexo")),
+                                rs.getString("direccion"),
+                                rs.getString("telefono"),
+                                rs.getString("correo")),
+                            new ArchivoPublicacion(
+                                rs.getInt("idArchivoPublicacion"),
+                                new Publicacion(
+                                    rs.getInt("idPublicacion"),
+                                    new LineaInvestigacion(
+                                        rs.getInt("idLineaInvestigacion"),
+                                        new AreaInvestigacion(
+                                            rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")),
+                                        rs.getString("linea")),
+                                    rs.getString("titulo"),
+                                    rs.getDate("fechaCarga"),
+                                    rs.getDate("fechaPublicacion")),
+                                DescripcionArchivo.valueOf(rs.getString("descripcion1")),
+                                rs.getString("urlLocal"),
+                                rs.getString("urlWeb") ,
+                     rs.getBytes("archivo")),
+                            rs.getDate("fecha"),
+                            rs.getString("descripcion2")                      
                            ),
-                            rs.getString("urlLocal"),
-                            rs.getString("urlWeb"))
+                            rs.getString("urlLocalD"),
+                            rs.getString("urlWebD"),
+                     rs.getBytes("archivoD"))
                 
                   );
             }

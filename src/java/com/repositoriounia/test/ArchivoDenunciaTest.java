@@ -25,7 +25,8 @@ public class ArchivoDenunciaTest {
 //        modificarchivodenuncia();
 //        eliminararchivodenuncia();
 //        leerarchivodenuncia();
-        leertodo2();
+//        leertodo2();
+        leertodo();
     }
     
      public static void creararchivodenuncia() throws DAOException

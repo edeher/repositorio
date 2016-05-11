@@ -20,6 +20,7 @@ public interface AutorPublicacionDAO {
 //    public boolean modificar(AutorPublicacion objAuP,Autor objAu, Publicacion objPu)throws DAOException;
 //    public boolean eliminar(int idAutorPublicacion)throws DAOException;
 public AutorPublicacion leerxid (int idAutorPublicacion)throws DAOException;
+public AutorPublicacion leerxidPubliPrincipal (int idPublicacion)throws DAOException;
    public AutorPublicacion[] leertodoporpublicacion(int idPublicacion)throws DAOException;
    public AutorPublicacion[] leertodoporautor(int idAutor)throws DAOException;
    public AutorPublicacion[] leertodo()throws DAOException;

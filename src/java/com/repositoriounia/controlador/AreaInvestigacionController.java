@@ -12,6 +12,7 @@ import com.repositoriounia.modelo.AreaInvestigacion;
 import com.repositoriounia.modelo.Autor;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.json.Json;
@@ -19,6 +20,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +31,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Mi Laptop
  */
 @WebServlet(name = "AreaInvestigacionController", urlPatterns = {"/AreaInvestigacionController"})
+@MultipartConfig
 public class AreaInvestigacionController extends HttpServlet {
     private AreaInvestigacion objAIn;
     private AreaInvestigacionDAOFactory fabricate;
@@ -55,7 +58,7 @@ public class AreaInvestigacionController extends HttpServlet {
             case "ObtenerTodos":
                 ObtenerTodos(request,response);
                 break;
-            case "2":
+            case "modificarArea":modificarArea(request,response);
                 break;
             case "3":
                 break;
@@ -138,6 +141,20 @@ public class AreaInvestigacionController extends HttpServlet {
         try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
             pw.println(obj.toString()); 
         }
+    }
+
+    private void modificarArea(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+        objAIn = new AreaInvestigacion();
+        Enumeration enumeration=request.getParameterNames();
+        while (enumeration.hasMoreElements())
+        {
+        System.out.println(enumeration.nextElement());
+        }
+        objAIn.setIdAreaInvestigacion(Integer.parseInt(request.getParameter("idArea")));
+       
+       objAIn.setDescripcion(request.getParameter("descripcion"));
+       
+       daote.modificar(objAIn);
     }
 
 }

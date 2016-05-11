@@ -12,6 +12,7 @@ import com.repositoriounia.modelo.AreaInvestigacion;
 import com.repositoriounia.modelo.LineaInvestigacion;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.json.Json;
@@ -19,6 +20,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +31,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Mi Laptop
  */
 @WebServlet(name = "LineaInvestigacionController", urlPatterns = {"/LineaInvestigacionController"})
+@MultipartConfig
 public class LineaInvestigacionController extends HttpServlet {
     private LineaInvestigacion objLiIn;
     private LineaInvestigacionDAOFactory fabricate;
@@ -57,7 +60,7 @@ public class LineaInvestigacionController extends HttpServlet {
            case "ObtenerTodos":
                ObtenerTodos(request,response);
                break;
-           case "31":
+           case "modificarLinea":modificarLinea(request,response);
                break;
            case "14":
                break;
@@ -158,6 +161,21 @@ public class LineaInvestigacionController extends HttpServlet {
         try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
             pw.println(obj.toString()); 
         }
+    }
+
+    private void modificarLinea(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+        objLiIn = new LineaInvestigacion();
+        Enumeration enumeration=request.getParameterNames();
+        while (enumeration.hasMoreElements())
+        {
+        System.out.println(enumeration.nextElement());
+        }
+        objLiIn.setIdLineaInvestigacion(Integer.parseInt(request.getParameter("idLinea")));
+        objLiIn.getAreaInvestigacion().setIdAreaInvestigacion(Integer.parseInt(request.getParameter("idArea")));
+       
+       objLiIn.setDescripcion(request.getParameter("descripcion"));
+       
+       daote.modificar(objLiIn);
     }
 
 }

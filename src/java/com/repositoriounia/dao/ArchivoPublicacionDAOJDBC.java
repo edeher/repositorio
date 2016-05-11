@@ -9,6 +9,7 @@ import com.repositoriounia.modelo.AreaInvestigacion;
 import com.repositoriounia.modelo.DescripcionArchivo;
 import com.repositoriounia.modelo.LineaInvestigacion;
 import com.repositoriounia.modelo.Publicacion;
+import java.io.InputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -27,17 +28,17 @@ public class ArchivoPublicacionDAOJDBC implements ArchivoPublicacionDAO{
 	        this.con = DBManager.getConnection();
  }
     @Override
-    public boolean crear(ArchivoPublicacion objarchP, int idPublicacion) throws DAOException {
+    public boolean crear(ArchivoPublicacion objarchP) throws DAOException {
     
          try 
 	        {
-	           CallableStatement st=con.prepareCall("{call sp_archivopublicacion_n(?,?,?,?)}");
+	           CallableStatement st=con.prepareCall("{call sp_archivopublicacion_n(?,?,?,?,?)}");
 	                   
-	                    st.setInt(1,idPublicacion);
+	                    st.setInt(1,objarchP.getPublicacion().getIdPublicacion());
                             st.setString(2,objarchP.getDescripcion().name() );
 	                    st.setString(3,objarchP.getUrlLocal());
 	                    st.setString(4,objarchP.getUrlWeb());
-                            
+                            st.setBytes(5, objarchP.getArchivo());
 	                   
 	           if (st.execute()) //devuelve verdadero si fallo
             {
@@ -58,13 +59,13 @@ public class ArchivoPublicacionDAOJDBC implements ArchivoPublicacionDAO{
     public boolean modificar(ArchivoPublicacion objarchP, int idPublicacion) throws DAOException {
         try 
 	        {
-	           CallableStatement st=con.prepareCall("{call sp_archivopublicacion_m(?,?,?,?,?)}");
+	           CallableStatement st=con.prepareCall("{call sp_archivopublicacion_m(?,?,?,?,?,?)}");
 	                   st.setInt(1,objarchP.getIdArchivoPublicacion());
                             st.setInt(2,idPublicacion);
                             st.setString(3,objarchP.getDescripcion().name() );
 	                    st.setString(4,objarchP.getUrlLocal());
 	                    st.setString(5,objarchP.getUrlWeb());
-                            
+                            st.setBytes(6,objarchP.getArchivo());
 	                   
 	           if (st.execute()) //devuelve verdadero si fallo
             {
@@ -130,7 +131,8 @@ public class ArchivoPublicacionDAOJDBC implements ArchivoPublicacionDAO{
                            ),
                             DescripcionArchivo.valueOf(rs.getString("descripcion")),
                             rs.getString("urlLocal"),
-                            rs.getString("urlWeb"))
+                            rs.getString("urlWeb"),
+                            rs.getBytes("archivo"))
                    );
             
         } catch (SQLException se) {
@@ -172,7 +174,8 @@ public class ArchivoPublicacionDAOJDBC implements ArchivoPublicacionDAO{
                            ),
                              DescripcionArchivo.valueOf(rs.getString("descripcion")),
                             rs.getString("urlLocal"),
-                            rs.getString("urlWeb"))
+                            rs.getString("urlWeb"),
+                            null)
                 
                   );
             }
@@ -215,7 +218,8 @@ public class ArchivoPublicacionDAOJDBC implements ArchivoPublicacionDAO{
                            ),
                              DescripcionArchivo.valueOf(rs.getString("descripcion")),
                             rs.getString("urlLocal"),
-                            rs.getString("urlWeb"))
+                            rs.getString("urlWeb"),
+                            null)
                 
                   );
             }
@@ -225,6 +229,75 @@ public class ArchivoPublicacionDAOJDBC implements ArchivoPublicacionDAO{
             throw new DAOException("Error obteniedo todos los archivopublicaciona en DAO: " 
                     + se.getMessage(), se);
         }   
+    }
+
+    @Override
+    public ArchivoPublicacion crearleer(ArchivoPublicacion objArchip) throws DAOException {
+        try{
+        CallableStatement st=con.prepareCall("{call sp_archivopublicacion_n1(?,?,?,?,?)}");
+        
+                           st.setInt(1,objArchip.getPublicacion().getIdPublicacion());
+                            st.setString(2,objArchip.getDescripcion().name() );
+	                    st.setString(3,objArchip.getUrlLocal());
+	                    st.setString(4,objArchip.getUrlWeb());
+                            st.setBytes(5, objArchip.getArchivo());
+                          
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                  new ArchivoPublicacion(
+                            rs.getInt("idArchivoPublicacion"),
+                           
+                           new Publicacion(
+                                   rs.getInt("idPublicacion"),
+                            new LineaInvestigacion(
+                                    rs.getInt("idLineaInvestigacion"),
+                                    new AreaInvestigacion(
+                                    rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")
+                                    ),
+                                    rs.getString("linea")),
+                            rs.getString("titulo"),
+                            rs.getDate("fechaCarga"),
+                            rs.getDate("fechaPublicacion")                      
+                           ),
+                             DescripcionArchivo.valueOf(rs.getString("descripcion")),
+                            rs.getString("urlLocal"),
+                            rs.getString("urlWeb"),null)
+                
+                  );
+            
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error buscando publicacion en DAO", se);
+        }
+         
+	   
+    }
+
+    @Override
+    public InputStream ArchivoPublico(int idArchivoPublicacion) throws DAOException {
+        InputStream pdf = null;
+        try {
+            CallableStatement st = con.prepareCall("{call sp_archivopublicacion_bcArchi(?)}");
+            st.setInt(1, idArchivoPublicacion);
+            ResultSet rs = st.executeQuery();            
+            rs.next();
+            
+            pdf = rs.getBinaryStream("archivo");
+            
+            rs.close();
+            st.close();
+            con.close();
+
+        } catch (SQLException se) {
+
+            throw new DAOException("Error extrayendo archivo en DAO", se);
+        }
+        return pdf;
     }
 
     

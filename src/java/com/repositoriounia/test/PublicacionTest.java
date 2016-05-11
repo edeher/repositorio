@@ -91,7 +91,7 @@ public class PublicacionTest {
           objPu.setIdPublicacion(1);
           objPu.getLineaInvestigacion().setIdLineaInvestigacion(1);
                 objPu.setTitulo("buqueda de algas en pucallpaxxxxxxxxxx");
-                objPu.setFechaCarga(fec);
+                
                 objPu.setFechaPublicacion(fec);
              
               
@@ -115,7 +115,7 @@ public class PublicacionTest {
           objPu.setIdPublicacion(1);
           objPu.getLineaInvestigacion().setIdLineaInvestigacion(1);
                 objPu.setTitulo("xxxxxxxxxx");
-                objPu.setFechaCarga(fec);
+              
                 objPu.setFechaPublicacion(fec);
              
               

@@ -129,7 +129,7 @@
                                                         
 							<div class="row x_title">
 								<div class="col-md-6">
-									<h3>DENUNCIAS <small></small></h3>
+									<h3>VISITAS <small></small></h3>
 								</div>
 								<div class="col-md-6">
                                                                     
@@ -213,21 +213,20 @@
                     "url": "css/datatables/Spanish.json"
                 },
                 "columns": [{ "title": "Cod" },
-                            { "title": "Denunciante" },
-                             { "title": "Fecha de Denuncia" },
-                             { "title": "Motivo" },
-                             { "title": "Publicacion" },
-                             { "title": "Archivo Denunciado" },
+                            { "title": "Publicacion" },
+                             { "title": "Archivo" },
+                             { "title": "Fecha de Visita" },
+                             
                              { "title": "<a href='#'><i class='fa fa-plus'></i></a>" }],
                 "columnDefs": [                         
-                   {"targets": [ 6 ],
+                   {"targets": [ 4 ],
                     "orderable": false,
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
                     "defaultContent": '<button name="btnEditar" data-toggle="modal" data-target=".bs-example-modal-lg"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button>'}
                 ],
-                "ajax": "DenunciaController?accion=ObtenerTodos",
+                "ajax": "VisitaController?accion=ObtenerTodos",
                 "initComplete": function() {
                     
                 }

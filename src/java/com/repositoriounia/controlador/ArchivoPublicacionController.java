@@ -7,22 +7,39 @@ package com.repositoriounia.controlador;
 
 import com.repositoriounia.dao.ArchivoPublicacionDAO;
 import com.repositoriounia.dao.ArchivoPublicacionDAOFactory;
+import com.repositoriounia.dao.DAOException;
 import com.repositoriounia.modelo.ArchivoPublicacion;
+import com.repositoriounia.modelo.DescripcionArchivo;
+import com.repositoriounia.modelo.Publicacion;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import static org.apache.jasper.tagplugins.jstl.core.Out.output;
 
 /**
  *
  * @author Mi Laptop
  */
 @WebServlet(name = "ArchivoPublicacionController", urlPatterns = {"/ArchivoPublicacionController"})
+@MultipartConfig
 public class ArchivoPublicacionController extends HttpServlet {
-    private ArchivoPublicacion objArPu;
+    private ArchivoPublicacion archipu;
     private ArchivoPublicacionDAOFactory fabricate;
     private ArchivoPublicacionDAO daote;
 
@@ -36,16 +53,33 @@ public class ArchivoPublicacionController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+            throws ServletException, IOException, DAOException {
+        
         String accion =request.getParameter("accion");
         fabricate =new ArchivoPublicacionDAOFactory();
         daote=fabricate.metodoDAO();
+        
+        System.out.println("Archivopublicacion controller");
+        
+        Enumeration enumeration=request.getParameterNames();
+        while (enumeration.hasMoreElements())
+        {
+        System.out.println(" enum"+enumeration.nextElement());
+        }
+        
+        ArchivoPublicacion archipu=new ArchivoPublicacion();
+        
         switch(accion)
         {
-            case "1":break;
-            case "2":break;
-            case "3":break;
+            case "cargarArchivo":cargarArchivo(request,response);
+               
+                
+                break;
+            case "verArchivo":verArchivo(request,response);
+                
+                
+                break;
+            case "ObtenerArchivos":ObtenerArchivos(request,response);break;
             case "4":break;
             case "5":break;
             case "6":break;
@@ -67,7 +101,11 @@ public class ArchivoPublicacionController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(ArchivoPublicacionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -81,7 +119,11 @@ public class ArchivoPublicacionController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(ArchivoPublicacionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -93,5 +135,80 @@ public class ArchivoPublicacionController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    
+
+    private void cargarArchivo(HttpServletRequest request, HttpServletResponse response) throws IOException, DAOException, ServletException {
+        archipu =new ArchivoPublicacion();
+        System.out.println("cargando archivo..en metodo..");
+                Part filePart=request.getPart("archivo");
+                InputStream imput=filePart.getInputStream();
+                ByteArrayOutputStream output=new ByteArrayOutputStream();
+                byte[] buffer =new byte[4999999];
+                for(int length=0;(length=imput.read(buffer))>0; ){
+                    output.write(buffer,0,length);
+                }
+                archipu.setArchivo(output.toByteArray());
+                archipu.getPublicacion().setIdPublicacion(Integer.parseInt(request.getParameter("idpublicacion")));
+                archipu.setUrlLocal(request.getParameter("urllocal"));
+                archipu.setUrlWeb(request.getParameter("urlweb"));
+                archipu.setDescripcion(DescripcionArchivo.valueOf(request.getParameter("descripcion")));
+                System.out.println("codigo en emtodo "+archipu.getPublicacion().getIdPublicacion());
+                 System.out.println(" en metodo"+archipu.getUrlLocal());
+                 System.out.println("en metodo "+archipu.getUrlWeb());
+                archipu=daote.crearleer(archipu);
+    }
+
+    private void verArchivo(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+       int codigo=Integer.parseInt(request.getParameter("idpublicacion"));
+                InputStream pdf=daote.ArchivoPublico(codigo);
+                OutputStream pdfsa=response.getOutputStream();
+                byte[] buffer2 =new byte[4999999];
+                for(;;){
+                int nbytes=pdf.read(buffer2);
+                if(nbytes==-1){
+                    break;
+                }
+                pdfsa.write(buffer2, 0, nbytes);
+                }
+                response.setContentType("application/pdf");
+                pdf.close();
+                pdfsa.flush();
+                pdfsa.close();
+    }
+
+    private void ObtenerArchivos(HttpServletRequest request, HttpServletResponse response) throws IOException, DAOException {
+         int idPublicacion=Integer.parseInt(request.getParameter("codigo"));
+          System.out.println("codigo "+idPublicacion);
+        ArchivoPublicacion[] puv = daote.leertodoidpublicacion(idPublicacion);
+        
+          for(ArchivoPublicacion usuv1:puv)
+	  {
+	      
+	      System.out.println(" "+usuv1.toString());
+	  
+	  }
+        
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();  
+        JsonArrayBuilder  arrayArchivoPublicacion = Json.createArrayBuilder();        
+        JsonArrayBuilder  arrayDatosArchivoPublicacion; 
+        
+       for (ArchivoPublicacion publi : puv) {
+            //System.out.println(solicitud.toString());            
+            arrayDatosArchivoPublicacion = Json.createArrayBuilder();
+            arrayDatosArchivoPublicacion.add(publi.getIdArchivoPublicacion());
+            arrayDatosArchivoPublicacion.add(publi.getDescripcion().getNom());
+            
+          
+            arrayArchivoPublicacion.add(arrayDatosArchivoPublicacion);
+        }
+        objbuilder.add("data", arrayArchivoPublicacion);
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        }
+    }
 
 }

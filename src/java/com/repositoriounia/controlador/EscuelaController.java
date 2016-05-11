@@ -116,6 +116,7 @@ public class EscuelaController extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
         int idFacultad=Integer.parseInt(request.getParameter("codigo"));
+        
         Escuela []escu=daote.leertodo(idFacultad);
         StringBuilder escuelas=new StringBuilder();
         for(Escuela escu1: escu)

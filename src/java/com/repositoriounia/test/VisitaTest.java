@@ -22,10 +22,10 @@ public class VisitaTest {
     public static void main(String[] args)throws DAOException{
         // TODO code application logic here
 //        crearVisita();
-        modificarVisita();
+//        modificarVisita();
 //        eliminarlinea();
 //        leer();
-//        leertodo();
+        leertodo();
         
     }
     public static void crearVisita() throws DAOException

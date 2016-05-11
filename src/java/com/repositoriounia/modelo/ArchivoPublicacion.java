@@ -14,6 +14,28 @@ public class ArchivoPublicacion extends Archivo{
     private Publicacion publicacion;
     private DescripcionArchivo descripcion;
 
+    public ArchivoPublicacion(int idArchivoPublicacion, Publicacion publicacion, DescripcionArchivo descripcion, int idArchivo, String urlLocal, String urlWeb, byte[] archivo, Estados estado) {
+        super(idArchivo, urlLocal, urlWeb, archivo, estado);
+        this.idArchivoPublicacion = idArchivoPublicacion;
+        this.publicacion = publicacion;
+        this.descripcion = descripcion;
+        
+    }
+
+    public ArchivoPublicacion(int idArchivoPublicacion, Publicacion publicacion, DescripcionArchivo descripcion, int idArchivo, String urlLocal, String urlWeb, byte[] archivo) {
+        super(idArchivo, urlLocal, urlWeb, archivo);
+        this.idArchivoPublicacion = idArchivoPublicacion;
+        this.publicacion = publicacion;
+        this.descripcion = descripcion;
+    }
+
+    public ArchivoPublicacion(int idArchivoPublicacion, Publicacion publicacion, DescripcionArchivo descripcion, String urlLocal, String urlWeb, byte[] archivo) {
+        super(urlLocal, urlWeb, archivo);
+        this.idArchivoPublicacion = idArchivoPublicacion;
+        this.publicacion = publicacion;
+        this.descripcion = descripcion;
+    }
+
     public ArchivoPublicacion(int idArchivoPublicacion, Publicacion publicacion, DescripcionArchivo descripcion, String urlLocal, String urlWeb) {
         super(urlLocal, urlWeb);
         this.idArchivoPublicacion = idArchivoPublicacion;
@@ -21,7 +43,11 @@ public class ArchivoPublicacion extends Archivo{
         this.descripcion = descripcion;
     }
 
+    
+   
+
     public ArchivoPublicacion() {
+        this.publicacion=new Publicacion();
     }
 
     public ArchivoPublicacion(int idArchivoPublicacion) {
@@ -32,13 +58,9 @@ public class ArchivoPublicacion extends Archivo{
         this.descripcion = descripcion;
     }
 
-    @Override
-    public String toString() {
-        return "ArchivoPublicacion{" + "idArchivoPublicacion=" + idArchivoPublicacion + ", publicacion=" + publicacion + ", descripcion=" + descripcion.getNom() + '}';
-    }
     
 
-    public String toString2() {
+    public String toString() {
         return "ArchivoPublicacion{" + "idArchivoPublicacion=" + idArchivoPublicacion + ", publicacion=" + publicacion + ", descripcion=" + descripcion.getNom() + ", urlLocal=" + urlLocal + ", urlWeb=" + urlWeb + '}';
     }
     

@@ -165,7 +165,7 @@
 			</div>
 			<!-- /page content -->
                         
-                        <div id="miModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div id="miModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                           <div class="modal-dialog modal-lg">
                             <div class="modal-content">
 
@@ -177,8 +177,7 @@
 
 		</div>
 	</div>	        
-	<!-- /footer content -->
-        
+	<!-- /footer content -->        
         <script src="js/jquery.min.js"></script>	
 	<script src="js/bootstrap.min.js"></script>
         <!-- bootstrap progress js -->
@@ -202,11 +201,14 @@
         <script src="js/datatables/dataTables.keyTable.min.js"></script>
         <script src="js/datatables/dataTables.responsive.min.js"></script>
         <script src="js/datatables/responsive.bootstrap.min.js"></script>
-        <script src="js/datatables/dataTables.scroller.min.js"></script>    
+        <script src="js/datatables/dataTables.scroller.min.js"></script>
+        
+        
         
         <script type="text/javascript">
+            var table,band,msj;
         $(document).ready(function() {            
-             var table =$('#datatable-responsive').DataTable({
+            table =$('#datatable-responsive').DataTable({
                 "language": {
                     "url": "css/datatables/Spanish.json"
                 },
@@ -223,7 +225,7 @@
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnEditar" data-toggle="modal" data-target=".bs-example-modal-lg"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnAsignar"><a><i class="fa fa-mail-forward"></i></a></button>'}
+                    "defaultContent": '<button name="btnEditar"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnVerAutores"><a><i class="fa fa-search-plus"></i></a></button>&nbsp&nbsp <button name="btnVerArchivos"><a><i class="fa fa-file-pdf-o"></i></a></button>'}
                 ],
                 "ajax": "PublicacionController?accion=ObtenerTodos",
                 "initComplete": function() {
@@ -235,20 +237,64 @@
                 var nombre = $(this).attr('name');
                 var data = table.row( $(this).parents('tr') ).data();
                 if(nombre=='btnEditar'){
-                    $('#miModal .modal-content').load('crearSolicitud.jsp?codigo='+data[0], function(){
-                        
-                        $('#miModal').modal('show');s
-                    });
+                    mostrarModal('ModificarPublicacion.jsp?codigo='+data[0]);
                 }
-                                    
+                  if(nombre=='btnVerAutores'){
+                    mostrarModal('verAutores.jsp?codigo='+data[0])
+                   ;
+                }                  
                 if(nombre=='btnRechazar')
                     alert( "modal RECHAZAR con codigo: "+ data[ 0 ] );                
-                if(nombre=='btnAsignar')
-                    alert( "modal ASIGNAR con codigo: "+ data[ 0 ] );                
+                if(nombre=='btnVerArchivos'){
+                     mostrarModal('verycargarArchivos.jsp?codigo='+data[0])
+                   ;  }            
             } );
             
         });        
+            /*-------------------------------------------------------------*/
+         
+         
+         /*funcion independiete que MUESTRA EL MODAL*/
+         function mostrarModal(url)
+         {     
+                $('#miModal .modal-content').load(url, function(){                        
+                   $('#miModal').modal('show');
+                });
+         }
+         /*-------------------------------------------------------------*/
+         
+         
+         /*funcion independiete que ACTUALIZA LA TABLA*/
+          function actualizar()
+          {     
+            table.ajax.reload(function(){
+                table.columns.adjust().draw();                  
+            },false);              
+          }
+          /*-------------------------------------------------------------*/
           
+          
+          /*funcion independiete que OCULTA EL MODAL*/
+          function ocultarmodal()
+          {
+              $('#miModal').modal('hide');
+          }
+          
+          /*-------------------------------------------------------------*/
+          
+          /*funcion independiete que ENVIA EL MENSAJE DE CONFIRMACION*/
+          function alerta(msj,band){
+              $("#div-alerta").fadeOut(0,function() {
+                    band===true ? 
+                        $("#div-alerta").removeClass("alert-danger").addClass("alert-success") : 
+                        $("#div-alerta").removeClass("alert-success").addClass("alert-danger");                
+                    $("#div-alerta").html("<h5 style='margin: 6px;'>"+
+                        "<strong>"+msj+"</strong>"+
+                        "</h5>");                
+                    $("#div-alerta").fadeIn();                    
+                }); 
+          }
+          /*-------------------------------------------------------------*/
         </script>
 </body>
 

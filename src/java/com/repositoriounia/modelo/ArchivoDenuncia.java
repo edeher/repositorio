@@ -13,13 +13,22 @@ public class ArchivoDenuncia extends Archivo{
     private int idArchivoDenuncia;
     private Denuncia denuncia;
 
+    public ArchivoDenuncia(int idArchivoDenuncia, Denuncia denuncia, String urlLocal, String urlWeb, byte[] archivo) {
+        super(urlLocal, urlWeb, archivo);
+        this.idArchivoDenuncia = idArchivoDenuncia;
+        this.denuncia = denuncia;
+    }
+
     public ArchivoDenuncia(int idArchivoDenuncia, Denuncia denuncia, String urlLocal, String urlWeb) {
         super(urlLocal, urlWeb);
         this.idArchivoDenuncia = idArchivoDenuncia;
         this.denuncia = denuncia;
     }
 
+   
+
     public ArchivoDenuncia() {
+        this.denuncia=new Denuncia();
     }
     
     

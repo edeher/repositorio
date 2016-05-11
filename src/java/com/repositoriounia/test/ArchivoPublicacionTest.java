@@ -25,8 +25,8 @@ public class ArchivoPublicacionTest {
 //        creararchivopublicacion();
 //        modificararchivopublicacion();
 //        eliminararchivopublicacion();
-//        leerporidpublicacion();
-leerxid();
+        leerporidpublicacion();
+//leerxid();
 //leertodo();
     }
     
@@ -40,6 +40,7 @@ leerxid();
        
         ArchivoPublicacion archiPu= new ArchivoPublicacion();
                 int codigo=1;
+                archiPu.getPublicacion().setIdPublicacion(1);
                 archiPu.setDescripcion(DescripcionArchivo.TE);
                  archiPu.setUrlLocal("wwwwww");
                  archiPu.setUrlWeb("https:");
@@ -47,7 +48,7 @@ leerxid();
 		 
         
       
-        daote.crear(archiPu,codigo);
+        daote.crear(archiPu);
         
     }
     public static void modificararchivopublicacion() throws DAOException

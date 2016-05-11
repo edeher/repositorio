@@ -56,13 +56,13 @@ public class PublicacionDAOJDBC implements PublicacionDAO{
     public boolean modificar(Publicacion objPu) throws DAOException {
         try 
 	        {
-	           CallableStatement st=con.prepareCall("{call sp_publicacion_m(?,?,?,?,?)}");
+	           CallableStatement st=con.prepareCall("{call sp_publicacion_m(?,?,?,?)}");
                    
 	                  st.setInt(1, objPu.getIdPublicacion());
 	                  st.setInt(2, objPu.getLineaInvestigacion().getIdLineaInvestigacion());
                           st.setString(3, objPu.getTitulo());
-                           st.setDate(4,new java.sql.Date(objPu.getFechaCarga().getTime()));
-                          st.setDate(5,new java.sql.Date(objPu.getFechaPublicacion().getTime()));
+                          
+                          st.setDate(4,new java.sql.Date(objPu.getFechaPublicacion().getTime()));
                             
 	                   
 	           if (st.execute()) //devuelve verdadero si fallo
@@ -211,13 +211,13 @@ public class PublicacionDAOJDBC implements PublicacionDAO{
     @Override
     public Publicacion modificarleer(Publicacion objPu) throws DAOException {
         try{
-        CallableStatement st=con.prepareCall("{call sp_publicacion_m2(?,?,?,?,?)}");
+        CallableStatement st=con.prepareCall("{call sp_publicacion_m2(?,?,?,?)}");
         
                           st.setInt(1, objPu.getIdPublicacion());
                           st.setInt(2, objPu.getLineaInvestigacion().getIdLineaInvestigacion());
                           st.setString(3, objPu.getTitulo());
-                           st.setDate(4,new java.sql.Date(objPu.getFechaCarga().getTime()));
-                          st.setDate(5,new java.sql.Date(objPu.getFechaPublicacion().getTime()));
+                           
+                          st.setDate(4,new java.sql.Date(objPu.getFechaPublicacion().getTime()));
                           
               ResultSet rs = st.executeQuery();
             if (!rs.next()) {

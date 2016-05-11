@@ -156,7 +156,8 @@ private final Connection con;
                            ),
                              DescripcionArchivo.valueOf(rs.getString("descripcion")),
                             rs.getString("urlLocal"),
-                            rs.getString("urlWeb")
+                            rs.getString("urlWeb"),
+                    null
                             ),
                             rs.getDate("fechaSolicitud"),
                             Respuesta.valueOf(rs.getString("respuesta")),
@@ -218,7 +219,8 @@ private final Connection con;
                            ),
                              DescripcionArchivo.valueOf(rs.getString("descripcion")),
                             rs.getString("urlLocal"),
-                            rs.getString("urlWeb")
+                            rs.getString("urlWeb"),
+                    null
                             ),
                             rs.getDate("fechaSolicitud"),
                             Respuesta.valueOf(rs.getString("respuesta")),
@@ -283,7 +285,8 @@ private final Connection con;
                            ),
                              DescripcionArchivo.valueOf(rs.getString("descripcion")),
                             rs.getString("urlLocal"),
-                            rs.getString("urlWeb")
+                            rs.getString("urlWeb"),
+                     null
                             ),
                             rs.getDate("fechaSolicitud"),
                             Respuesta.valueOf(rs.getString("respuesta")),
@@ -346,7 +349,8 @@ private final Connection con;
                            ),
                              DescripcionArchivo.valueOf(rs.getString("descripcion")),
                             rs.getString("urlLocal"),
-                            rs.getString("urlWeb")
+                            rs.getString("urlWeb"),
+                     null
                             ),
                             rs.getDate("fechaSolicitud"),
                             Respuesta.valueOf(rs.getString("respuesta")),

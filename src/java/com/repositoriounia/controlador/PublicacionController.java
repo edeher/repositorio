@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.json.Json;
@@ -23,6 +24,7 @@ import javax.json.JsonObjectBuilder;
 import javax.json.JsonValue;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +35,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Mi Laptop
  */
 @WebServlet(name = "PublicacionController", urlPatterns = {"/PublicacionController"})
+@MultipartConfig
 public class PublicacionController extends HttpServlet {
 
     private Publicacion objPu;
@@ -61,7 +64,8 @@ public class PublicacionController extends HttpServlet {
             case "ObtenerTodos":
                 ObtenerTodos(request,response);
                 break;
-            case "13":
+            case "modificarPublicacion":
+                modificarPublicacion(request,response);
                 break;
             case "14":
                 break;
@@ -167,4 +171,24 @@ public class PublicacionController extends HttpServlet {
             pw.println(obj.toString()); 
         }
 }
+
+    private void modificarPublicacion(HttpServletRequest request, HttpServletResponse response) throws DAOException, ParseException {
+        System.out.println("entrando al servlet");
+        
+        Enumeration enumeration=request.getParameterNames();
+        while (enumeration.hasMoreElements())
+        {
+        System.out.println(enumeration.nextElement());
+        }
+        SimpleDateFormat fe=new SimpleDateFormat("yyyy-MM-dd");
+          Date fec = new Date(fe.parse(request.getParameter("fecha")).getTime());
+        objPu = new Publicacion();
+        
+        objPu.setIdPublicacion(Integer.parseInt(request.getParameter("idPublicacion")));
+       objPu.setTitulo(request.getParameter("titulo"));
+        objPu.getLineaInvestigacion().setIdLineaInvestigacion(Integer.parseInt(request.getParameter("linea")));
+        objPu.setFechaPublicacion(fec);
+        
+       Publicacion objPu1 = daote.modificarleer(objPu);
+    }
 }
