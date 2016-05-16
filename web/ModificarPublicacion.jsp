@@ -148,7 +148,7 @@
                 var codigo = this.value;
                 $.ajax({
                     type: 'POST',
-                    url: 'EscuelaController?accion=buscarporFacultad&codigo=' + codigo,
+                    url: 'LineaInvestigacionController?accion=BuscarPorArea&codigo='+ codigo,
                     data: $(this).serialize(),
                     success: function (data) {
                         $('#SelectLinea').html(data);

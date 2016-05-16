@@ -13,6 +13,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+<script> 
+$ ( 'a.media' ). media ({ width : 500 , height : 400 }); 
+</script> 
     </head>
     <%
        ArchivoPublicacionDAOFactory fabricate=new ArchivoPublicacionDAOFactory();
@@ -72,7 +76,7 @@
                     <tr>
                         <td><%=obj.getPublicacion().getTitulo() %> </td>
                         <td><%=obj.getDescripcion().getNom()%> </td>
-                        <td><a href="ArchivoPublicacionController?accion=verArchivo&idpublicacion=<%=obj.getIdArchivoPublicacion()%>">Ver archivo</a></td>
+                        <td><a href="ArchivoPublicacionController?accion=verArchivo&idArchivo=<%=obj.getIdArchivoPublicacion()%>">Ver archivo</a></td>
                     </tr>
                    <%}%>
                 </tbody>

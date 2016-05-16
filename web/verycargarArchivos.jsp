@@ -19,71 +19,85 @@
         <!-- Meta, title, CSS, favicons, etc. -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <script src="js/jquery.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.min.js" type="text/javascript"></script>
-
-        <link href="css/fileinput.css" rel="stylesheet" type="text/css"/>
-        <script src="js/fileinput.min.js" type="text/javascript"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">        
+        <link href="css/fileinput.css" rel="stylesheet" type="text/css"/>        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
     <%
         int idPublicacion = Integer.parseInt(request.getParameter("codigo"));
     %>
+    
     <body>
 
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
             </button>
             <h4 class="modal-title" id="myModalLabel">Archivos de la  Publicacion N°<%=idPublicacion %>  </h4>
-            <input type="hidden" name="idpublicacion" id="idpublicacion" value="<%=idPublicacion %>" />
-
         </div>
-        <div class="modal-body">     
-            <div class="container">
-
-                <form enctype="multipart/form-data" name="cargaform">
-                    <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">AREA INV.</label>
-                    <div class="col-md-9 col-sm-9 col-xs-12">
-                        <select name="descripcion"id="" class="btn btn-primary dropdown-toggle btn-sm">
-                           <option value="--">--</option>
-                            <%for (DescripcionArchivo es : DescripcionArchivo.values()) {
-
-                            %>
-                            <option value="<%=es.name()%>"  >
-                                <%=es.getNom()%></option>
-                                <%}%>
-                        </select>
-                    </div>
-
-                </div>  
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">ARCHIVO</label>
-                        <input type="hidden" name="urllocal" value="xxx" />
-                        <input type="hidden" name="urlweb" value="xxx" />
-                        <input id="file-1" accept=".pdf" name="archivo" type="file" class="file"  data-preview-file-type="any" value="">
-                    </div>
-
-
-                    <div class="form-group">
-                        <button class="btn btn-primary" id="btnCargar" >Cargar</button>
-                        <button class="btn btn-default" type="reset">Cancelar</button>
-                    </div>;
-                </form>
-
-            </div> 
-
-            <div class="x_content">
-                &nbsp;
-                <table id="mio" class="table table-bordered" >
+        
+        <div class="modal-body"> 
+            
+            <ul id="myTabs" class="nav nav-tabs bar_tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">
+                        Publicacion N°<%=idPublicacion %>
+                    </a>
+                </li>               
+                <li role="presentation" class="">
+                    <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">
+                        Visor PDF
+                    </a>
+                </li>                
+            </ul>
                     
-                </table>
+            <div class="container">
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                        <form enctype="multipart/form-data" id="cargaform">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">TIPO DE ARCHIVO</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <select name="descripcion"id="" class="btn btn-primary dropdown-toggle btn-sm">
+                                        <option value="--">--</option>
+                                        <%for (DescripcionArchivo es : DescripcionArchivo.values()) {
 
-            </div>
+                                        %>
+                                        <option value="<%=es.name()%>"  >
+                                            <%=es.getNom()%></option>
+                                            <%}%>
+                                    </select>
+                                    <input type="hidden" name="idpublicacion" id="idpublicacion" value="<%=idPublicacion%>" />
+                                </div>
+                            </div>  
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">ARCHIVO</label>
+                                <input type="hidden" name="urllocal" value="xxx" />
+                                <input type="hidden" name="urlweb" value="xxx" />
+                                <input id="file-1" accept=".pdf" name="archivo" type="file" class="file"  data-preview-file-type="any" value="" data-show-preview="false">
+                            </div>
+
+
+                            <div class="form-group">
+                                <button class="btn btn-primary" id="btnCargar" >Cargar</button>
+                                <button class="btn btn-default" type="reset">Cancelar</button>
+                            </div>
+                        </form>
+                        <div class="x_content">                    
+                            <table id="mio" class="table table-bordered" >                    
+                            </table>
+                        </div>
+                    </div> 
+                    <div role="tabpanel" class="tab-pane fade " id="tab_content2" aria-labelledby="profile-tab">
+                        <div class="iframe-container">
+                            <iframe id="iframepdf" src="" width="99.6%" height="460" frameborder="0">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>                    
         </div>
+                        
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 
@@ -113,14 +127,14 @@
         <script src="js/datatables/dataTables.responsive.min.js"></script>
         <script src="js/datatables/responsive.bootstrap.min.js"></script>
         <script src="js/datatables/dataTables.scroller.min.js"></script>
-
-
-
+        <!-- fileinput-->
+        <script src="js/fileinput.min.js" type="text/javascript"></script>
+<!--   ----------------------------------------------------------------------- -->
         <script type="text/javascript">
-            var table, band, msj;
+            var table1, band, msj;
             $(document).ready(function () {
                  
-                table = $('#mio').DataTable({
+                table1 = $('#mio').DataTable({
                     "paging": false,
                     "filter": false,
                     "bInfo": false,
@@ -144,17 +158,22 @@
                     }
                 });
 
-                $('#mio tbody').on('click', 'button', function () {
-                    var nombre = $(this).attr('name');
-                    var data = table.row($(this).parents('tr')).data();
-                    if (nombre == 'btnEditar') {
-                        mostrarModal('ModificarPublicacion.jsp?codigo=' + data[0]);
-                    }
-                   
+                $('#mio tbody').on('click', 'button', function () {                    
+                    var data = table1.row($(this).parents('tr')).data();                    
+                    //alert("cargar pdf codigo "+ data[0]); 
+                    $('#iframepdf').attr('src', 'ArchivoPublicacionController?accion=verArchivo&idArchivo='+ data[0]);
+                    $('#myTabs a:last').tab('show');
+                    $('#iframepdf').contentWindow.location.reload(true);
+                    
                 });
-
             });
-            /*-------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------*/
+            $('#file-1').fileinput({
+                browseLabel: 'Buscar',
+                showUpload: false,
+                showRemove: false
+            });
+
             $('#btnCargar').click(function () {
              var formdata = new FormData($("#cargaform")[0]);
             $.ajax({
@@ -164,54 +183,33 @@
                 data: formdata,
                 processData: false,
                 cache: false})
+                    .done(function (resp) {
+                        alert("done: "+resp);                       
+                    })
+                    .fail(function (jqXHR, textStatus, errorThrown) {
+                        alert("fail: "+jqXHR.status+" -- "+textStatus+" -- "+errorThrown);                       
+                    })
                     .always(function () {
-                        actualizar();
-                        
-                        
+                        //actualizar1();                        
                     });
         });
+/*-------------------------------------------------------------------------------*/
+            
 
-            /*funcion independiete que MUESTRA EL MODAL*/
-            function mostrarModal(url)
-            {
-                $('#miModal .modal-content').load(url, function () {
-                    $('#miModal').modal('show');
-                });
-            }
-            /*-------------------------------------------------------------*/
-
-
+/*-------------------------------------------------------------------------------*/
             /*funcion independiete que ACTUALIZA LA TABLA*/
-            function actualizar()
-            {
-                table.ajax.reload(function () {
-                    table.columns.adjust().draw();
+            function actualizar1()
+            {   
+                table1.ajax.reload(function () {
+                    table1.columns.adjust().draw();
                 }, false);
             }
-            /*-------------------------------------------------------------*/
+/*-------------------------------------------------------------*/
 
 
-            /*funcion independiete que OCULTA EL MODAL*/
-            function ocultarmodal()
-            {
-                $('#miModal').modal('hide');
-            }
+            
 
-            /*-------------------------------------------------------------*/
-
-            /*funcion independiete que ENVIA EL MENSAJE DE CONFIRMACION*/
-            function alerta(msj, band) {
-                $("#div-alerta").fadeOut(0, function () {
-                    band === true ?
-                            $("#div-alerta").removeClass("alert-danger").addClass("alert-success") :
-                            $("#div-alerta").removeClass("alert-success").addClass("alert-danger");
-                    $("#div-alerta").html("<h5 style='margin: 6px;'>" +
-                            "<strong>" + msj + "</strong>" +
-                            "</h5>");
-                    $("#div-alerta").fadeIn();
-                });
-            }
-            /*-------------------------------------------------------------*/
+            
         </script>
     </body>
 

@@ -41,7 +41,7 @@
                                     
                                         <!-- nombre y logo -->
 					<div class="navbar nav_title" style="border: 0;">
-						<a href="" class="site_title"><i class="fa fa-laptop"></i> <span>SEBATEC</span></a>
+						<a href="" class="site_title"><i class="fa fa-laptop"></i> <span>REPOSITORIO VIP</span></a>
 					</div>
 					<div class="clearfix"></div>
                                         <!-- /nombre y logo -->
