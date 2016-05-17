@@ -49,86 +49,83 @@
             <h4 class="modal-title" id="myModalLabel">Editar Publicacion N° <%=publi.getIdPublicacion()%> </h4>
 
         </div>
-        <div class="modal-body">     
+            <div class="modal-body">     
 
-            <form class="form-horizontal form-label-left " id="modificaform" enctype="multipart/form-data">
+                <form class="form-horizontal form-label-left " id="modificaform" enctype="multipart/form-data">
 
-                <input type="hidden" name="idPublicacion" value="<%=publi.getIdPublicacion()%>" />
+                    <input type="hidden" name="idPublicacion" value="<%=publi.getIdPublicacion()%>" />
 
+                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">ENCARGADO</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input type="text" class="form-control has-feedback-left" readonly="readonly" value="<%=autopu.getAutor().getGrado() + " " + autopu.getAutor().getNombres()%> ">
 
+                            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                    </div>         
 
-                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">ENCARGADO</label>
-                    <div class="col-md-9 col-sm-9 col-xs-12">
-                        <input type="text" class="form-control has-feedback-left" readonly="readonly" value="<%=autopu.getAutor().getGrado() + " " + autopu.getAutor().getNombres()%> ">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">AREA INV.</label>
 
-                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <select name="area"id="SelectArea" class="form-control">
+                                <option value="--">--</option>
+                                <%for (AreaInvestigacion area1 : area) {
+
+                                %>
+                                <option value="<%=area1.getIdAreaInvestigacion()%>"
+                                        <%if (publi.getLineaInvestigacion().getAreaInvestigacion().getIdAreaInvestigacion() == area1.getIdAreaInvestigacion()) {
+                                                out.print("selected");
+                                            }
+                                        %>
+                                        >
+                                    <%=area1.getDescripcion()%></option>
+                                    <%}%>
+                            </select>
+
+                        </div>
+
+                    </div>  
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">LINEA INV.</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <select name="linea"  id="SelectLinea" class="form-control">
+
+                            </select>
+                        </div>
+                    </div>             
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">TITULO</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input name="titulo" type="text" class="form-control" value="<%=publi.getTitulo()%>">
+                        </div>
                     </div>
-                </div>         
 
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">AREA INV.</label>
-                    <div class="col-md-9 col-sm-9 col-xs-12">
-                        <select name="area"id="SelectArea" class="btn btn-primary dropdown-toggle btn-sm">
-                            <option value="--">--</option>
-                             <%for (AreaInvestigacion area1: area) {
-                                
-                        %>
-                            <option value="<%=area1.getIdAreaInvestigacion() %>"
-                                     <%if(publi.getLineaInvestigacion().getAreaInvestigacion().getIdAreaInvestigacion() ==area1.getIdAreaInvestigacion() )
-                                            
-                                            out.print("selected");
-                                     %>
-                                    >
-                                <%=area1.getDescripcion() %></option>
-                             <%}%>
-                        </select>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">PUBLICACION</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            <input name="fecha" type="text" class="form-control has-feedback-left" id="input_fpublicacion" value="<%=publi.getFechaPublicacion()%> ">
+                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>     
+                        </div>
                     </div>
 
-                </div>  
-                <div class="form-group">
-
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">LINEA INV.</label>
-                    <div class="col-md-9 col-sm-9 col-xs-12">
-                        <select name="linea"  id="SelectLinea" class="btn btn-primary dropdown-toggle btn-sm">
-
-                        </select>
-                    </div>
-                </div>             
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">TITULO</label>
-                    <div class="col-md-9 col-sm-9 col-xs-12">
-                        <input name="titulo" type="text" class="form-control" value="<%=publi.getTitulo()%>">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">PUBLICACION</label>
-                    <div class="col-md-9 col-sm-9 col-xs-12">
-                        <input name="fecha" type="text" class="form-control has-feedback-left" id="input_fpublicacion" value="<%=publi.getFechaPublicacion()%> ">
-                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>     
-                    </div>
-                </div>
-
-
-
-            </form>                          
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary" id="btnguardar" >Guardar Cambios</button>
-        </div>
+                </form>                          
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btnguardar" >Guardar Cambios</button>
+            </div>
     </body>
     <!--LIBRERIAS NECESARIAS PARA EL SCRIPT*-->
-         
-    
-   
+
+
+
     <script src="js/jquery.min.js" type="text/javascript"></script>
-      <script src="js/bootstrap.min.js" type="text/javascript"></script>
-      
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+
     <script src="js/moment/moment.min.js"></script>
     <script src="js/datepicker/daterangepicker.js"></script>  
-  
+
 
     <!-------------------------------------------------------------------->
     <script type="text/javascript">

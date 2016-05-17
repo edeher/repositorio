@@ -85,7 +85,7 @@ public class ArchivoPublicacionController extends HttpServlet {
                 out = response.getWriter();
                 out.println(json);
                 break;
-            case "4":
+            case "eliminarArchivo":eliminarArchivo(request,response);
                 break;
             case "5":
                 break;
@@ -222,6 +222,14 @@ public class ArchivoPublicacionController extends HttpServlet {
         
              
         
+    }
+
+    private void eliminarArchivo(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+       int codigo=Integer.parseInt(request.getParameter("idArchivo"));
+       
+       daote.eliminar(codigo);
+       
+       
     }
 
 }

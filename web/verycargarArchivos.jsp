@@ -27,21 +27,21 @@
     <%
         int idPublicacion = Integer.parseInt(request.getParameter("codigo"));
     %>
-    
-    <body>
 
+    <body>
+<!--cabecera--->
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">Archivos de la  Publicacion N°<%=idPublicacion %>  </h4>
+            <h4 class="modal-title" id="myModalLabel">Archivos de la  Publicacion N°<%=idPublicacion%>  </h4>
         </div>
-        
+<!---cuerpo--->
         <div class="modal-body"> 
-            
+
             <ul id="myTabs" class="nav nav-tabs bar_tabs" role="tablist">
                 <li role="presentation" class="active">
                     <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">
-                        Publicacion N°<%=idPublicacion %>
+                        Publicacion N°<%=idPublicacion%>
                     </a>
                 </li>               
                 <li role="presentation" class="">
@@ -50,45 +50,61 @@
                     </a>
                 </li>                
             </ul>
-                    
+
             <div class="container">
                 <div id="myTabContent" class="tab-content">
                     <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+  <!-------------seccion de carga ----------------------------------------- --->                 
                         <form enctype="multipart/form-data" id="cargaform">
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">TIPO DE ARCHIVO</label>
-                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <select name="descripcion"id="" class="btn btn-primary dropdown-toggle btn-sm">
-                                        <option value="--">--</option>
-                                        <%for (DescripcionArchivo es : DescripcionArchivo.values()) {
+                               
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">TIPO DE ARCHIVO</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <select name="descripcion"id="" class="form-control">
+                                            <option value="--">--</option>
+                                            <%for (DescripcionArchivo es : DescripcionArchivo.values()) {
 
-                                        %>
-                                        <option value="<%=es.name()%>"  >
-                                            <%=es.getNom()%></option>
-                                            <%}%>
-                                    </select>
+                                            %>
+                                            <option value="<%=es.name()%>"  >
+                                                <%=es.getNom()%></option>
+                                                <%}%>
+                                        </select>
+                                    </div>
                                     <input type="hidden" name="idpublicacion" id="idpublicacion" value="<%=idPublicacion%>" />
+                                    &nbsp;
+                               
+                            </div>
+                            <div class="form-group">      
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">ARCHIVO</label>
+                                    <input type="hidden" name="urllocal" value="xxx" />
+                                    <input type="hidden" name="urlweb" value="xxx" />
+                                    <input id="file-1" accept=".pdf" name="archivo" type="file" class="file"  data-preview-file-type="any" value="" data-show-preview="false">
+
                                 </div>
                             </div>  
+                  <!-------------------------botones de carga         ------------------------>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">ARCHIVO</label>
-                                <input type="hidden" name="urllocal" value="xxx" />
-                                <input type="hidden" name="urlweb" value="xxx" />
-                                <input id="file-1" accept=".pdf" name="archivo" type="file" class="file"  data-preview-file-type="any" value="" data-show-preview="false">
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <button class="btn btn-primary" id="btnCargar" >Cargar</button>
+                                    <button class="btn btn-default" type="reset">Cancelar</button>
+                                </div>
                             </div>
 
-
-                            <div class="form-group">
-                                <button class="btn btn-primary" id="btnCargar" >Cargar</button>
-                                <button class="btn btn-default" type="reset">Cancelar</button>
-                            </div>
                         </form>
+     <!--------------------fin de carga de documento--->
+     
+     <!-------------------------tabla de archivos----------------------------->
                         <div class="x_content">                    
                             <table id="mio" class="table table-bordered" >                    
                             </table>
                         </div>
+     
                     </div> 
-                    <div role="tabpanel" class="tab-pane fade " id="tab_content2" aria-labelledby="profile-tab">
+       <!-------------------------fin tabla .----------------------------->                              
+  <!---fin tabpanel----> <div role="tabpanel" class="tab-pane fade " id="tab_content2" aria-labelledby="profile-tab">
+                        
+                        
                         <div class="iframe-container">
                             <iframe id="iframepdf" src="" width="99.6%" height="460" frameborder="0">
                             </iframe>
@@ -97,7 +113,7 @@
                 </div>
             </div>                    
         </div>
-                        
+ <!-------------------------pie de docuemnto----------------------------->
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 
@@ -129,11 +145,11 @@
         <script src="js/datatables/dataTables.scroller.min.js"></script>
         <!-- fileinput-->
         <script src="js/fileinput.min.js" type="text/javascript"></script>
-<!--   ----------------------------------------------------------------------- -->
+        <!--   ----------------------------------------------------------------------- -->
         <script type="text/javascript">
             var table1, band, msj;
             $(document).ready(function () {
-                 
+
                 table1 = $('#mio').DataTable({
                     "paging": false,
                     "filter": false,
@@ -150,24 +166,39 @@
                             "className": 'text-center'},
                         {"targets": -1,
                             "data": null,
-                            "defaultContent": '<button name="btnVerArchivo"><a><i class="fa fa-file-pdf-o"></i></a></button>'}
+                            "defaultContent": '<button name="btnVerArchivo"><a><i class="fa fa-search"></i></a></button>&nbsp&nbsp <button name="btnEliminar"><a><i class="fa fa-trash"></i></a></button>'}
                     ],
-                    "ajax": "ArchivoPublicacionController?accion=ObtenerArchivos&codigo="+<%=idPublicacion %>,
+                    "ajax": "ArchivoPublicacionController?accion=ObtenerArchivos&codigo=" +<%=idPublicacion%>,
                     "initComplete": function () {
 
                     }
                 });
 
-                $('#mio tbody').on('click', 'button', function () {                    
-                    var data = table1.row($(this).parents('tr')).data();                    
+                $('#mio tbody').on('click', 'button', function () {
+                    var data = table1.row($(this).parents('tr')).data();
                     //alert("cargar pdf codigo "+ data[0]); 
-                    $('#iframepdf').attr('src', 'ArchivoPublicacionController?accion=verArchivo&idArchivo='+ data[0]);
+                    var nombre = $(this).attr('name')
+                     if(nombre=='btnVerArchivo'){
+                    $('#iframepdf').attr('src', 'ArchivoPublicacionController?accion=verArchivo&idArchivo=' + data[0]);
                     $('#myTabs a:last').tab('show');
                     $('#iframepdf').contentWindow.location.reload(true);
-                    
+                     }
+                     if(nombre=='btnEliminar'){
+                        if(confirm("seguro que desea eliminar el Archivo")==true)
+                        {
+                            $.ajax({
+                                     url:"ArchivoPublicacionController?accion=eliminarArchivo&idArchivo="+data[0],
+                                    })
+                             .always(function()
+                                {
+                                    actualizar1();
+
+                                });  
+                        }
+                     }
                 });
             });
-/*-------------------------------------------------------------------------------*/
+            /*-------------------------------------------------------------------------------*/
             $('#file-1').fileinput({
                 browseLabel: 'Buscar',
                 showUpload: false,
@@ -175,41 +206,41 @@
             });
 
             $('#btnCargar').click(function () {
-             var formdata = new FormData($("#cargaform")[0]);
-            $.ajax({
-                url: "ArchivoPublicacionController?accion=cargarArchivo",
-                type: "post",
-                contentType: false,
-                data: formdata,
-                processData: false,
-                cache: false})
-                    .done(function (resp) {
-                        alert("done: "+resp);                       
-                    })
-                    .fail(function (jqXHR, textStatus, errorThrown) {
-                        alert("fail: "+jqXHR.status+" -- "+textStatus+" -- "+errorThrown);                       
-                    })
-                    .always(function () {
-                        //actualizar1();                        
-                    });
-        });
-/*-------------------------------------------------------------------------------*/
-            
+                var formdata = new FormData($("#cargaform")[0]);
+                $.ajax({
+                    url: "ArchivoPublicacionController?accion=cargarArchivo",
+                    type: "post",
+                    contentType: false,
+                    data: formdata,
+                    processData: false,
+                    cache: false})
+                        .done(function (resp) {
+                            alert("done: " + resp);
+                        })
+                        .fail(function (jqXHR, textStatus, errorThrown) {
+                            alert("fail: " + jqXHR.status + " -- " + textStatus + " -- " + errorThrown);
+                        })
+                        .always(function () {
+                            //actualizar1();                        
+                        });
+            });
+            /*-------------------------------------------------------------------------------*/
 
-/*-------------------------------------------------------------------------------*/
+
+            /*-------------------------------------------------------------------------------*/
             /*funcion independiete que ACTUALIZA LA TABLA*/
             function actualizar1()
-            {   
+            {
                 table1.ajax.reload(function () {
                     table1.columns.adjust().draw();
                 }, false);
             }
-/*-------------------------------------------------------------*/
+            /*-------------------------------------------------------------*/
 
 
-            
 
-            
+
+
         </script>
     </body>
 

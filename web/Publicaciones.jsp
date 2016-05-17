@@ -130,9 +130,9 @@
 								<div class="col-md-6">
 									<h3>PUBLICACIONES <small></small></h3>
 								</div>
-								<div class="col-md-6">
-                                                                    
-								</div>
+								  <div id="div-alerta" style="padding: 1px;display:none " class=" alert alert-success pull-right"  >
+                                                           
+                                                        </div>
 							</div>
 
 							<div class="x_content">
@@ -218,45 +218,71 @@
                             { "title": "Titulo" },
                             { "title": "Fecha Publicacion" },   
                             { "title": "Fecha de Carga" }, 
-                            { "title": "<a href='#'><i class='fa fa-plus'></i></a>" }],
+                            { "title": "<a id='enlace' href='#' ><i class='fa fa-plus'></i></a>" }],
                 "columnDefs": [                         
                    {"targets": [ 6 ],
                     "orderable": false,
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnEditar"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnVerAutores"><a><i class="fa fa-search-plus"></i></a></button>&nbsp&nbsp <button name="btnVerArchivos"><a><i class="fa fa-file-pdf-o"></i></a></button>'}
+                    "defaultContent": '<button name="btnEditar"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnVerAutores"><a><i class="fa fa-users"></i></a></button>&nbsp&nbsp <button name="btnVerArchivos"><a><i class="fa fa-file-pdf-o"></i></a></button>'}
                 ],
                 "ajax": "PublicacionController?accion=ObtenerTodos",
                 "initComplete": function() {
-                    
+                   /* $('#enlace').click(function() {
+                        var data = table.row( $(this).parents('tr') ).data();
+                        mostrarModal('nuevaPublicacion.jsp?codigo='+data[0])
+                        alert("en prueba");
+                    });*/
                 }
             });  
             
             $('#datatable-responsive tbody').on( 'click', 'button', function () {
                 var nombre = $(this).attr('name');
-                var data = table.row( $(this).parents('tr') ).data();
+                var data = table.row( $(this).parents('tr') ).data();                              
                 if(nombre=='btnEditar'){
                     mostrarModal('ModificarPublicacion.jsp?codigo='+data[0]);
                 }
-                  if(nombre=='btnVerAutores'){
-                    mostrarModal('verAutores.jsp?codigo='+data[0])
-                   ;
+                if(nombre=='btnVerAutores'){
+                    mostrarModal('verAutores.jsp?codigo='+data[0]);
                 }                  
-                if(nombre=='btnRechazar')
-                    alert( "modal RECHAZAR con codigo: "+ data[ 0 ] );                
+                if(nombre=='btnRechazar'){
+                     if(confirm("seguro que desea eliminar la Publicacion")==true)
+                        {
+                                $.ajax(
+                                       {
+                                            url:"PublicacionController?accion=eliminarPublicacion&idpublicacion="+data[0],
+                                        }
+                                       )
+                                    
+                                .always(function()
+                                    {
+                                        actualizar();
+                                        alerta("publicacion Eliminada",true);
+                                    });  
+                        }
+                }
+                                   
                 if(nombre=='btnVerArchivos'){
-                     mostrarModal('verycargarArchivos.jsp?codigo='+data[0])
-                   ;  }            
+                     mostrarModal('verycargarArchivos.jsp?codigo='+data[0]);  
+                }                
+            });
+              
+            $('#datatable-responsive thead').on( 'click', 'a', function () {
+                var nombre = $(this).attr('id');              
+                if(nombre=='enlace')
+                    
+                mostrarModal('nuevaPublicacion.jsp');
             } );
+               
+            
             
         });        
             /*-------------------------------------------------------------*/
          
          
          /*funcion independiete que MUESTRA EL MODAL*/
-         function mostrarModal(url)
-         {     
+         function mostrarModal(url){     
                 $('#miModal .modal-content').load(url, function(){                        
                    $('#miModal').modal('show');
                 });
@@ -265,8 +291,7 @@
          
          
          /*funcion independiete que ACTUALIZA LA TABLA*/
-          function actualizar()
-          {     
+          function actualizar(){     
             table.ajax.reload(function(){
                 table.columns.adjust().draw();                  
             },false);              
@@ -275,8 +300,7 @@
           
           
           /*funcion independiete que OCULTA EL MODAL*/
-          function ocultarmodal()
-          {
+          function ocultarmodal(){
               $('#miModal').modal('hide');
           }
           

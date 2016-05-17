@@ -131,9 +131,9 @@
 								<div class="col-md-6">
 									<h3>DENUNCIAS <small></small></h3>
 								</div>
-								<div class="col-md-6">
-                                                                    
-								</div>
+								  <div id="div-alerta" style="padding: 1px;display:none " class=" alert alert-success pull-right"  >
+                                                           
+                                                        </div>
 							</div>
 
 							<div class="x_content">

@@ -67,7 +67,7 @@ public class PublicacionController extends HttpServlet {
             case "modificarPublicacion":
                 modificarPublicacion(request,response);
                 break;
-            case "14":
+            case "eliminarPublicacion":eliminarPublicacion(request,response);
                 break;
             case "17":
                 break;
@@ -134,16 +134,12 @@ public class PublicacionController extends HttpServlet {
     private void crearPublicacion(HttpServletRequest request, HttpServletResponse response) throws ParseException, ServletException, DAOException, IOException {
         System.out.println("entro a servlet");
         SimpleDateFormat fe=new SimpleDateFormat("yyyy-MM-dd");
-          Date fec = new Date(fe.parse(request.getParameter("fechapublica")).getTime());
+          Date fec = new Date(fe.parse(request.getParameter("fecha")).getTime());
         objPu= new Publicacion();
         objPu.getLineaInvestigacion().setIdLineaInvestigacion(Integer.parseInt(request.getParameter("linea")));
         objPu.setTitulo(request.getParameter("titulo"));
         objPu.setFechaPublicacion(fec);
         Publicacion publi=daote.crearleer(objPu);
-        request.setAttribute("publi", publi);
-
-        rd = getServletContext().getRequestDispatcher("/Prototipos/PublicacionAutores.jsp");
-        rd.forward(request, response);
         
     }
 
@@ -190,5 +186,10 @@ public class PublicacionController extends HttpServlet {
         objPu.setFechaPublicacion(fec);
         
        Publicacion objPu1 = daote.modificarleer(objPu);
+    }
+
+    private void eliminarPublicacion(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+       int codigo=Integer.parseInt(request.getParameter("idpublicacion") );
+       daote.eliminar(codigo);
     }
 }
