@@ -152,10 +152,10 @@ public class PublicacionController extends HttpServlet {
             //System.out.println(solicitud.toString());            
             arrayDatosPublicaciones = Json.createArrayBuilder();
             arrayDatosPublicaciones.add(publi.getIdPublicacion());
+            arrayDatosPublicaciones.add(publi.getTitulo());
             arrayDatosPublicaciones.add(publi.getLineaInvestigacion().getAreaInvestigacion().getDescripcion());
             arrayDatosPublicaciones.add(publi.getLineaInvestigacion().getDescripcion());
-            arrayDatosPublicaciones.add(publi.getTitulo());
-           arrayDatosPublicaciones.add( publi.getFechaPublicacion().toString());  
+            arrayDatosPublicaciones.add( publi.getFechaPublicacion().toString());  
             arrayDatosPublicaciones.add( publi.getFechaCarga().toString()); 
             arrayPublicaciones.add(arrayDatosPublicaciones);
         }

@@ -128,7 +128,7 @@
                                                         
 							<div class="row x_title">
 								<div class="col-md-6">
-									<h3>SOLICITANTES <small></small></h3>
+									<h3>PUBLICACIONES <small></small></h3>
 								</div>
 								  <div id="div-alerta" style="padding: 1px;display:none " class=" alert alert-success pull-right"  >
                                                            
@@ -165,7 +165,7 @@
 			</div>
 			<!-- /page content -->
                         
-                        <div id="miModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div id="miModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
                           <div class="modal-dialog modal-lg">
                             <div class="modal-content">
 
@@ -177,8 +177,7 @@
 
 		</div>
 	</div>	        
-	<!-- /footer content -->
-        
+	<!-- /footer content -->        
         <script src="js/jquery.min.js"></script>	
 	<script src="js/bootstrap.min.js"></script>
         <!-- bootstrap progress js -->
@@ -202,51 +201,73 @@
         <script src="js/datatables/dataTables.keyTable.min.js"></script>
         <script src="js/datatables/dataTables.responsive.min.js"></script>
         <script src="js/datatables/responsive.bootstrap.min.js"></script>
-        <script src="js/datatables/dataTables.scroller.min.js"></script>    
+        <script src="js/datatables/dataTables.scroller.min.js"></script>
+        
+        
         
         <script type="text/javascript">
+            var table,band,msj;
         $(document).ready(function() {            
-             var table =$('#datatable-responsive').DataTable({
+            table =$('#datatable-responsive').DataTable({
                 "language": {
                     "url": "css/datatables/Spanish.json"
                 },
                 "columns": [{ "title": "Cod" },
-                            { "title": "Nombres y Apellidos" },
-                            
-                               { "title": "Area de Trabajo" },
-                             { "title": "Tipo de Institucion" },
-                             { "title": "Nombre de Institucion" },
-                                                        
-                            { "title": "<a href='#' id='btnNuevo'><i class='fa fa-plus'></i></a>" }],
+                            { "title": "Titulo" },
+                            { "title": "Area Investigacion" },
+                            { "title": "Linea Investigacion" },
+                            { "title": "Fecha Publicacion" },   
+                            { "title": "Fecha de Carga" }, 
+                            { "title": "<a id='btnNuevo' href='#' ><i class='fa fa-plus'></i></a>" }],
                 "columnDefs": [                         
-                   {"targets": [ 5 ],
+                   {"targets": [ 6 ],
                     "orderable": false,
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnEditar" data-toggle="modal" data-target=".bs-example-modal-lg"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnAsignar"><a><i class="fa fa-mail-forward"></i></a></button>'}
+                    "defaultContent": '<button name="btnEditar"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnVerAutores"><a><i class="fa fa-users"></i></a></button>&nbsp&nbsp <button name="btnVerArchivos"><a><i class="fa fa-file-pdf-o"></i></a></button>'}
                 ],
-                "ajax": "SolicitanteController?accion=ObtenerTodos",
+                "ajax": "PublicacionController?accion=ObtenerTodos",
                 "initComplete": function() {
-                    
+                   /* $('#enlace').click(function() {
+                        var data = table.row( $(this).parents('tr') ).data();
+                        mostrarModal('nuevaPublicacion.jsp?codigo='+data[0])
+                        alert("en prueba");
+                    });*/
                 }
             });  
             
             $('#datatable-responsive tbody').on( 'click', 'button', function () {
                 var nombre = $(this).attr('name');
-                var data = table.row( $(this).parents('tr') ).data();
+                var data = table.row( $(this).parents('tr') ).data();                              
                 if(nombre=='btnEditar'){
-                    $('#miModal .modal-content').load('crearSolicitud.jsp?codigo='+data[0], function(){
-                        
-                        $('#miModal').modal('show');s
-                    });
+                    mostrarModal('ModificarPublicacion.jsp?codigo='+data[0]);
                 }
+                if(nombre=='btnVerAutores'){
+                    mostrarModal('verAutores.jsp?codigo='+data[0]);
+                }                  
+                if(nombre=='btnRechazar'){
+                     if(confirm("seguro que desea eliminar la Publicacion")==true)
+                        {
+                                $.ajax(
+                                       {
+                                            url:"PublicacionController?accion=eliminarPublicacion&idpublicacion="+data[0],
+                                        }
+                                       )
                                     
-                if(nombre=='btnRechazar')
-                    alert( "modal RECHAZAR con codigo: "+ data[ 0 ] );                
-                if(nombre=='btnAsignar')
-                    alert( "modal ASIGNAR con codigo: "+ data[ 0 ] );                
-            } );
+                                .always(function()
+                                    {
+                                        actualizar();
+                                        alerta("publicacion Eliminada",true);
+                                    });  
+                        }
+                }
+                                   
+                if(nombre=='btnVerArchivos'){
+                     mostrarModal('verycargarArchivos1.jsp?codigo='+data[0]);  
+                }                
+            });
+              
             $('#datatable-responsive thead').on( 'click', 'a', function () {
                 var nombre = $(this).attr('id');              
                 if(nombre=='btnNuevo')
@@ -254,7 +275,7 @@
                 mostrarModal('nuevaPublicacion.jsp');
             } );
         });        
-          /*-------------------------------------------------------------*/
+            /*-------------------------------------------------------------*/
          
          
          /*funcion independiete que MUESTRA EL MODAL*/

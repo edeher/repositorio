@@ -214,7 +214,7 @@
                 "columns": [{ "title": "Codigo" },
                             { "title": "Area de Investigacion" },
                              { "title": "Linea de Investigacion" },
-                            { "title": "<a href='#'><i class='fa fa-plus'></i></a>" }],
+                            { "title": "<a href='#'id='btnNuevo'><i class='fa fa-plus'></i></a>" }],
                 "columnDefs": [                         
                    {"targets": [ 3 ],
                     "orderable": false,
@@ -241,7 +241,12 @@
                 if(nombre=='btnAsignar')
                     alert( "modal ASIGNAR con codigo: "+ data[ 0 ] );                
             } );
-            
+            $('#datatable-responsive thead').on( 'click', 'a', function () {
+                var nombre = $(this).attr('id');              
+                if(nombre=='btnNuevo')
+                    
+                mostrarModal('nuevaPublicacion.jsp');
+            } );
         });  
          /*-------------------------------------------------------------*/
          

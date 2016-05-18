@@ -97,7 +97,16 @@
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">TITULO</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input name="titulo" type="text" class="form-control" value="<%=publi.getTitulo()%>">
+                            
+                            <label for="message">Mensaje (20 palabras  maximo) :</label>
+                        <textarea id="" required="required" name="titulo" 
+                                  class="form-control"  
+                                  data-parsley-trigger="keyup" 
+                                  data-parsley-minlength="20" 
+                                  data-parsley-maxlength="100" 
+                                  data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
+                                  data-parsley-validation-threshold="10" ><%=publi.getTitulo()%>
+                        </textarea>
                         </div>
                     </div>
 

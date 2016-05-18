@@ -213,12 +213,12 @@
                     "url": "css/datatables/Spanish.json"
                 },
                 "columns": [{ "title": "Cod" },
+                            { "title": "Titulo" },
                             { "title": "Area Investigacion" },
                             { "title": "Linea Investigacion" },
-                            { "title": "Titulo" },
                             { "title": "Fecha Publicacion" },   
                             { "title": "Fecha de Carga" }, 
-                            { "title": "<a id='enlace' href='#' ><i class='fa fa-plus'></i></a>" }],
+                            { "title": "<a id='btnNuevo' href='#' ><i class='fa fa-plus'></i></a>" }],
                 "columnDefs": [                         
                    {"targets": [ 6 ],
                     "orderable": false,
@@ -270,13 +270,10 @@
               
             $('#datatable-responsive thead').on( 'click', 'a', function () {
                 var nombre = $(this).attr('id');              
-                if(nombre=='enlace')
+                if(nombre=='btnNuevo')
                     
                 mostrarModal('nuevaPublicacion.jsp');
             } );
-               
-            
-            
         });        
             /*-------------------------------------------------------------*/
          

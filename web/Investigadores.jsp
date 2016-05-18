@@ -217,7 +217,7 @@
                             { "title": "Facultad" },   
                             { "title": "Escuela" }, 
                             { "title": "Especialidad" }, 
-                            { "title": "<a href='#'><i class='fa fa-plus'></i></a>" }],
+                            { "title": "<a href='#'id='btnNuevo'><i class='fa fa-plus'></i></a>" }],
                 "columnDefs": [                         
                    {"targets": [ 7 ],
                     "orderable": false,
@@ -247,9 +247,54 @@
                 if(nombre=='btnAsignar')
                     alert( "modal ASIGNAR con codigo: "+ data[ 0 ] );                
             } );
-            
+            $('#datatable-responsive thead').on( 'click', 'a', function () {
+                var nombre = $(this).attr('id');              
+                if(nombre=='btnNuevo')
+                    
+                mostrarModal('nuevaPublicacion.jsp');
+            } );
         });        
+            /*-------------------------------------------------------------*/
+         
+         
+         /*funcion independiete que MUESTRA EL MODAL*/
+         function mostrarModal(url){     
+                $('#miModal .modal-content').load(url, function(){                        
+                   $('#miModal').modal('show');
+                });
+         }
+         /*-------------------------------------------------------------*/
+         
+         
+         /*funcion independiete que ACTUALIZA LA TABLA*/
+          function actualizar(){     
+            table.ajax.reload(function(){
+                table.columns.adjust().draw();                  
+            },false);              
+          }
+          /*-------------------------------------------------------------*/
           
+          
+          /*funcion independiete que OCULTA EL MODAL*/
+          function ocultarmodal(){
+              $('#miModal').modal('hide');
+          }
+          
+          /*-------------------------------------------------------------*/
+          
+          /*funcion independiete que ENVIA EL MENSAJE DE CONFIRMACION*/
+          function alerta(msj,band){
+              $("#div-alerta").fadeOut(0,function() {
+                    band===true ? 
+                        $("#div-alerta").removeClass("alert-danger").addClass("alert-success") : 
+                        $("#div-alerta").removeClass("alert-success").addClass("alert-danger");                
+                    $("#div-alerta").html("<h5 style='margin: 6px;'>"+
+                        "<strong>"+msj+"</strong>"+
+                        "</h5>");                
+                    $("#div-alerta").fadeIn();                    
+                }); 
+          }
+          /*-------------------------------------------------------------*/
         </script>
 </body>
 
