@@ -105,8 +105,8 @@
   <!---fin tabpanel----> <div role="tabpanel" class="tab-pane fade " id="tab_content2" aria-labelledby="profile-tab">
                         
                         
-                        <div id="pdfvie" class="iframe-container">
-                            
+                        <div id="pdfvie" class="">
+                            <iframe id="iframepdf" src="" width="99.6%" height="460" frameborder="0">
                             </iframe>
                         </div>
                     </div>
@@ -177,14 +177,12 @@
                 $('#mio tbody').on('click', 'button', function () {
                     var data = table1.row($(this).parents('tr')).data();
                     //alert("cargar pdf codigo "+ data[0]); 
-                    var nombre = $(this).attr('name')
-                    
-                     if(nombre=='btnVerArchivo'){
-                         
-                        $('#pdfvie').load('pdf.jsp?codigo='+data[0]);
+                    var nombre = $(this).attr('name');                    
+                    if(nombre=='btnVerArchivo'){                         
+                        $('#iframepdf').attr('src', 'pdf.jsp?codigo='+ data[0]);
                         $('#myTabs a:last').tab('show');
-                    //$('#pdfvie').contentWindow.location.reload(true);
-                     }
+                        $('#iframepdf').contentWindow.location.reload(true);                    
+                    }
                      if(nombre=='btnEliminar'){
                         if(confirm("seguro que desea eliminar el Archivo")==true)
                         {

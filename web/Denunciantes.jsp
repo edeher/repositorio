@@ -73,7 +73,8 @@
                                                                 <li><a href="Denuncia.jsp"><i class="fa fa-table"></i> Denuncias </a></li>
                                                                 <li><a href="TemasSugeridos.jsp"><i class="fa fa-table"></i>Temas Sugeridos </a></li>
                                                                 <li><a href="ArchivosSolicitados.jsp"><i class="fa fa-table"></i> Archivos Solicitados </a></li>
-                                                                
+                                                                 <li><a href="Facultades.jsp"><i class="fa fa-table"></i>Facultades </a></li>
+                                                                <li><a href="Escuelas.jsp"><i class="fa fa-table"></i>Escuelas </a></li>
 								<li><a href="Investigadores.jsp"><i class="fa fa-group"></i> Investigadores </a></li>
                                                                 <li><a href="Solicitantes.jsp"><i class="fa fa-group"></i> Solicitantes </a></li>
                                                                 <li><a href="Denunciantes.jsp"><i class="fa fa-group"></i> Denunciantes </a></li>

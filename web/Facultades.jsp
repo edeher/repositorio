@@ -129,7 +129,7 @@
                                                         
 							<div class="row x_title">
 								<div class="col-md-6">
-									<h3>PUBLICACIONES <small></small></h3>
+									<h3>Facultades <small></small></h3>
 								</div>
 								  <div id="div-alerta" style="padding: 1px;display:none " class=" alert alert-success pull-right"  >
                                                            
@@ -204,9 +204,6 @@
         <script src="js/datatables/responsive.bootstrap.min.js"></script>
         <script src="js/datatables/dataTables.scroller.min.js"></script>
         
-         <script type="text/javascript" src="js/notify/pnotify.core.js"></script>
-        <script type="text/javascript" src="js/notify/pnotify.buttons.js"></script>
-        <script type="text/javascript" src="js/notify/pnotify.nonblock.js"></script>
         
         
         <script type="text/javascript">
@@ -217,21 +214,18 @@
                     "url": "css/datatables/Spanish.json"
                 },
                 "columns": [{ "title": "Cod" },
-                            { "title": "Titulo" },
-                            { "title": "Area Investigacion" },
-                            { "title": "Linea Investigacion" },
-                            { "title": "Fecha Publicacion" },   
-                            { "title": "Fecha de Carga" }, 
+                            { "title": "Descripcion" },
+                          
                             { "title": "<a id='btnNuevo' href='#' ><i class='fa fa-plus'></i></a>" }],
                 "columnDefs": [                         
-                   {"targets": [ 6 ],
+                   {"targets": [ 2 ],
                     "orderable": false,
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnEditar"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnVerPublicacion"><a href=""><i class="fa fa-search"></i></a></button>'}
+                    "defaultContent": '<button name="btnEditar"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button>'}
                 ],
-                "ajax": "PublicacionController?accion=ObtenerTodos",
+                "ajax": "FacultadController?accion=ObtenerTodos",
                 "initComplete": function() {
                    /* $('#enlace').click(function() {
                         var data = table.row( $(this).parents('tr') ).data();
@@ -245,24 +239,22 @@
                 var nombre = $(this).attr('name');
                 var data = table.row( $(this).parents('tr') ).data();                              
                 if(nombre=='btnEditar'){
-                    mostrarModal('ModificarPublicacion.jsp?codigo='+data[0]);
+                    mostrarModal('ModificarFacultad.jsp?codigo='+data[0]);
                 }
-                if(nombre=='btnVerAutores'){
-                    mostrarModal('verAutores.jsp?codigo='+data[0]);
-                }                  
+                               
                 if(nombre=='btnRechazar'){
-                     if(confirm("seguro que desea eliminar la Publicacion")==true)
+                     if(confirm("seguro que desea eliminar la Facultad")==true)
                         {
                                 $.ajax(
                                        {
-                                            url:"PublicacionController?accion=eliminarPublicacion&idpublicacion="+data[0],
+                                            url:"FacultadController?accion=eliminarFacultad&codigo="+data[0],
                                         }
                                        )
                                     
                                 .always(function()
                                     {
                                         actualizar();
-                                        alerta("publicacion Eliminada",true);
+                                        alerta("Facultad Eliminada",true);
                                     });  
                         }
                 }
@@ -276,7 +268,7 @@
                 var nombre = $(this).attr('id');              
                 if(nombre=='btnNuevo')
                     
-                mostrarModal('NuevaPublicacion.jsp');
+                mostrarModal('NuevaFacultad.jsp');
             } );
         });        
             /*-------------------------------------------------------------*/
@@ -320,32 +312,6 @@
                 }); 
           }
           /*-------------------------------------------------------------*/
-        </script>
-         <script type="text/javascript">
-            var permanotice, tooltip, _alert;
-            $(function () {
-                new PNotify({
-                    title: "IMPORTANTE",
-                    type: "dark",
-                    text: "Revisa nuestra ultima Publicacion ",
-                    nonblock: {
-                        nonblock: true
-                    },
-                    before_close: function (PNotify) {
-                        // You can access the notice's options with this. It is read only.
-                        //PNotify.options.text;
-
-                        // You can change the notice's options after the timer like this:
-                        PNotify.update({
-                            title: PNotify.options.title + " - Enjoy your Stay",
-                            before_close: null
-                        });
-                        PNotify.queueRemove();
-                        return false;
-                    }
-                });
-
-            });
         </script>
 </body>
 

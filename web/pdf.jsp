@@ -17,7 +17,7 @@
 <%
 int codigo =Integer.parseInt(request.getParameter("codigo"));
 //System.out.println("codigo "+codigo);
-//int codigo=16;
+//int codigo=9;
 System.out.println("codigo "+codigo);
 %>
 <body >

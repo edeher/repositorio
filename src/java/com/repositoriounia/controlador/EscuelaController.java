@@ -9,11 +9,18 @@ import com.repositoriounia.dao.DAOException;
 import com.repositoriounia.dao.EscuelaDAO;
 import com.repositoriounia.dao.EscuelaDAOFactory;
 import com.repositoriounia.modelo.Escuela;
+import com.repositoriounia.modelo.Facultad;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +31,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Mi Laptop
  */
 @WebServlet(name = "EscuelaController", urlPatterns = {"/EscuelaController"})
+@MultipartConfig
 public class EscuelaController extends HttpServlet {
     private Escuela objEs;
     private EscuelaDAOFactory fabricate;
@@ -49,13 +57,13 @@ public class EscuelaController extends HttpServlet {
             case "buscarporFacultad":
                 buscarporFacultad(request, response);
                 break;
-            case "2":
+            case "ObtenerTodos":ObtenerTodos(request,response);
                 break;
-            case "3":
+            case "NuevaEscuela":NuevaEscuela(request,response);
                 break;
-            case "4":
+            case "modificarEscuela":modificarEscuela(request,response);
                 break;
-            case "5":
+            case "eliminarEscuela":eliminarEscuela(request,response);
                 break;
             case "6":
                 break;
@@ -125,6 +133,71 @@ public class EscuelaController extends HttpServlet {
                     .append(escu1.getDescripcion()).append("</option>");
         }
         out.print(escuelas.toString());
+    }
+
+    private void ObtenerTodos(HttpServletRequest request, HttpServletResponse response) throws IOException, DAOException {
+        Escuela[] es = daote.leertodo();         
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();  
+        JsonArrayBuilder  arrayEscuela = Json.createArrayBuilder();        
+        JsonArrayBuilder  arrayDatosEscuela; 
+       for (Escuela es1 : es) {
+            //System.out.println(solicitud.toString());            
+            arrayDatosEscuela = Json.createArrayBuilder();
+           arrayDatosEscuela.add(es1 .getIdEscuela());
+           arrayDatosEscuela.add(es1 .getFacultad().getDescripcion());
+            arrayDatosEscuela.add(es1 .getDescripcion());
+           
+            arrayEscuela.add(arrayDatosEscuela);
+        }
+        objbuilder.add("data",  arrayEscuela );
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        }
+    }
+
+    private void NuevaEscuela(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+       objEs = new Escuela();
+        Enumeration enumeration=request.getParameterNames();
+        while (enumeration.hasMoreElements())
+        {
+        System.out.println(enumeration.nextElement());
+        }
+        
+        objEs.getFacultad().setIdFacultad(Integer.parseInt(request.getParameter("facultad")));
+       
+       objEs.setDescripcion(request.getParameter("descripcion").toString().toUpperCase());
+       
+       daote.crear(objEs);
+    }
+
+    private void modificarEscuela(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+       objEs = new Escuela();
+        Enumeration enumeration=request.getParameterNames();
+        while (enumeration.hasMoreElements())
+        {
+        System.out.println(enumeration.nextElement());
+        }
+        objEs.setIdEscuela(Integer.parseInt(request.getParameter("idEscuela")));
+        objEs.getFacultad().setIdFacultad(Integer.parseInt(request.getParameter("facultad")));
+       
+       objEs.setDescripcion(request.getParameter("descripcion").toString().toUpperCase());
+       
+       daote.modificar(objEs);
+    }
+
+    private void eliminarEscuela(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+         
+        Enumeration enumeration=request.getParameterNames();
+        while (enumeration.hasMoreElements())
+        {
+        System.out.println(enumeration.nextElement());
+        }
+        int codigo=Integer.parseInt(request.getParameter("codigo"));
+       
+       daote.eliminar(codigo); 
     }
 
 }

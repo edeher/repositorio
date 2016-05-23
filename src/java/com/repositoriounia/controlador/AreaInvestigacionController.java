@@ -60,9 +60,9 @@ public class AreaInvestigacionController extends HttpServlet {
                 break;
             case "modificarArea":modificarArea(request,response);
                 break;
-            case "3":
+            case "crearArea":crearArea(request,response);
                 break;
-            case "4":
+            case "eliminarArea":eliminarArea(request,response);
                 break;
             case "5":
                 break;
@@ -152,9 +152,38 @@ public class AreaInvestigacionController extends HttpServlet {
         }
         objAIn.setIdAreaInvestigacion(Integer.parseInt(request.getParameter("idArea")));
        
-       objAIn.setDescripcion(request.getParameter("descripcion"));
+       objAIn.setDescripcion(request.getParameter("descripcion").toString().toUpperCase());
        
        daote.modificar(objAIn);
+    }
+
+    private void crearArea(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+         objAIn = new AreaInvestigacion();
+        Enumeration enumeration=request.getParameterNames();
+        while (enumeration.hasMoreElements())
+        {
+        System.out.println(enumeration.nextElement());
+        }
+        
+       
+       objAIn.setDescripcion(request.getParameter("descripcion").toString().toUpperCase());
+       
+       daote.crear(objAIn);
+    
+    }
+
+    private void eliminarArea(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+        objAIn = new AreaInvestigacion();
+        Enumeration enumeration=request.getParameterNames();
+        while (enumeration.hasMoreElements())
+        {
+        System.out.println(enumeration.nextElement());
+        }
+        int codigo=Integer.parseInt(request.getParameter("codigo"));
+       
+       
+       
+       daote.eliminar(codigo);
     }
 
 }

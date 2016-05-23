@@ -98,7 +98,9 @@ private final Connection con;
                     new Escuela(
                             rs.getInt("idEscuela"),
                            new Facultad(
-                           rs.getString("facultad")
+                            rs.getInt("idFacultad"),
+                           
+                            rs.getString("facultad")
                            ),
                             rs.getString("escuela"))
                          

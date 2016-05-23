@@ -62,7 +62,7 @@ public class LineaInvestigacionController extends HttpServlet {
                break;
            case "modificarLinea":modificarLinea(request,response);
                break;
-           case "14":
+           case "NuevaLinea":NuevaLinea(request,response);
                break;
            case "15":
                break;
@@ -171,11 +171,26 @@ public class LineaInvestigacionController extends HttpServlet {
         System.out.println(enumeration.nextElement());
         }
         objLiIn.setIdLineaInvestigacion(Integer.parseInt(request.getParameter("idLinea")));
-        objLiIn.getAreaInvestigacion().setIdAreaInvestigacion(Integer.parseInt(request.getParameter("idArea")));
+        objLiIn.getAreaInvestigacion().setIdAreaInvestigacion(Integer.parseInt(request.getParameter("area")));
        
-       objLiIn.setDescripcion(request.getParameter("descripcion"));
+       objLiIn.setDescripcion(request.getParameter("descripcion").toString().toUpperCase());
        
        daote.modificar(objLiIn);
+    }
+
+    private void NuevaLinea(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+       objLiIn = new LineaInvestigacion();
+        Enumeration enumeration=request.getParameterNames();
+        while (enumeration.hasMoreElements())
+        {
+        System.out.println(enumeration.nextElement());
+        }
+        
+        objLiIn.getAreaInvestigacion().setIdAreaInvestigacion(Integer.parseInt(request.getParameter("area")));
+       
+       objLiIn.setDescripcion(request.getParameter("descripcion").toString().toUpperCase());
+       
+       daote.crear(objLiIn);
     }
 
 }

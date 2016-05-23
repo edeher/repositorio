@@ -23,9 +23,9 @@ public class EscuelaTest {
         // TODO code application logic here
 //        crearescuela();
 //        modificarescuela();
-//        leer();
+        leer();
 //        leertodo();
-        leertodoFacultad();
+//        leertodoFacultad();
     }
      public static void crearescuela() throws DAOException
     {

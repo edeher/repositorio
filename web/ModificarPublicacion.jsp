@@ -5,6 +5,9 @@
 --%>
 
 
+<%@page import="com.repositoriounia.modelo.LineaInvestigacion"%>
+<%@page import="com.repositoriounia.dao.LineaInvestigacionDAO"%>
+<%@page import="com.repositoriounia.dao.LineaInvestigacionDAOFactory"%>
 <%@page import="com.repositoriounia.dao.AreaInvestigacionDAOFactory"%>
 <%@page import="com.repositoriounia.dao.AreaInvestigacionDAO"%>
 <%@page import="com.repositoriounia.modelo.AreaInvestigacion"%>
@@ -38,6 +41,10 @@
          AreaInvestigacionDAOFactory fabricate1= new   AreaInvestigacionDAOFactory();
           AreaInvestigacionDAO daote1= fabricate1.metodoDAO();
           AreaInvestigacion[] area=daote1.leertodo();
+          
+          LineaInvestigacionDAOFactory fabricate3= new   LineaInvestigacionDAOFactory();
+          LineaInvestigacionDAO daote3= fabricate3.metodoDAO();
+          LineaInvestigacion[] linea=daote3.leertodo();
     %>
     <body>
         <style>
@@ -90,7 +97,18 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">LINEA INV.</label>
                         <div class="col-md-9 col-sm-9 col-xs-12">
                             <select name="linea"  id="SelectLinea" class="form-control">
+                                     <option value="--">--</option>
+                                <%for (LineaInvestigacion linea1 : linea) {
 
+                                %>
+                                <option value="<%=linea1.getIdLineaInvestigacion()%>"
+                                        <%if (publi.getLineaInvestigacion().getIdLineaInvestigacion() == linea1.getIdLineaInvestigacion()) {
+                                                out.print("selected");
+                                            }
+                                        %>
+                                        >
+                                    <%=linea1.getDescripcion()%></option>
+                                    <%}%>
                             </select>
                         </div>
                     </div>             

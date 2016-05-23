@@ -73,7 +73,8 @@
                                                                 <li><a href="Denuncia.jsp"><i class="fa fa-table"></i> Denuncias </a></li>
                                                                 <li><a href="TemasSugeridos.jsp"><i class="fa fa-table"></i>Temas Sugeridos </a></li>
                                                                 <li><a href="ArchivosSolicitados.jsp"><i class="fa fa-table"></i> Archivos Solicitados </a></li>
-                                                                
+                                                                 <li><a href="Facultades.jsp"><i class="fa fa-table"></i>Facultades </a></li>
+                                                                <li><a href="Escuelas.jsp"><i class="fa fa-table"></i>Escuelas </a></li>
 								<li><a href="Investigadores.jsp"><i class="fa fa-group"></i> Investigadores </a></li>
                                                                 <li><a href="Solicitantes.jsp"><i class="fa fa-group"></i> Solicitantes </a></li>
                                                                 <li><a href="Denunciantes.jsp"><i class="fa fa-group"></i> Denunciantes </a></li>
@@ -222,7 +223,7 @@
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnEditar" ><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button>'}
+                    "defaultContent": '<button name="btnEditar" ><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnEliminar"><a><i class="fa fa-remove"></i></a></button>'}
                 ],
                 "ajax": "AreaInvestigacionController?accion=ObtenerTodos",
                 "initComplete": function() {
@@ -237,16 +238,31 @@
                     mostrarModal('ModificarArea.jsp?codigo='+data[0]);
                 }
                                     
-                if(nombre=='btnRechazar')
-                    alert( "modal RECHAZAR con codigo: "+ data[ 0 ] );                
-                if(nombre=='btnAsignar')
-                    alert( "modal ASIGNAR con codigo: "+ data[ 0 ] );                
+                if(nombre=='btnEliminar'){
+                    if(confirm("seguro que desea eliminar El Area")==true)
+                        {
+                                $.ajax(
+                                       {
+                                            url:"AreaInvestigacionController?accion=eliminarArea&codigo="+data[0],
+                                        }
+                                       )
+                                    
+                                .always(function()
+                                    {
+                                        actualizar();
+                                        alerta("Area Eliminada",true);
+                                    });  
+                        }
+                    
+                }
+                                    
+                             
             } );
             $('#datatable-responsive thead').on( 'click', 'a', function () {
                 var nombre = $(this).attr('id');              
                 if(nombre=='btnNuevo')
                     
-                mostrarModal('nuevaPublicacion.jsp');
+                mostrarModal('NuevaArea.jsp');
             } );
             
         });        

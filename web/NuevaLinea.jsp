@@ -5,9 +5,7 @@
 --%>
 
 
-<%@page import="com.repositoriounia.dao.LineaInvestigacionDAO"%>
-<%@page import="com.repositoriounia.dao.LineaInvestigacionDAOFactory"%>
-<%@page import="com.repositoriounia.modelo.LineaInvestigacion"%>
+
 <%@page import="com.repositoriounia.dao.AreaInvestigacionDAOFactory"%>
 <%@page import="com.repositoriounia.dao.AreaInvestigacionDAO"%>
 <%@page import="com.repositoriounia.modelo.AreaInvestigacion"%>
@@ -20,15 +18,9 @@
 
     </head>
     <%
-       LineaInvestigacionDAOFactory fabricate=new LineaInvestigacionDAOFactory();
-       LineaInvestigacionDAO daote=fabricate.metodoDAO();
-
-      int codigo=Integer.parseInt(request.getParameter("codigo"));
-        LineaInvestigacion linea= daote.leerxid(codigo);
-
-         AreaInvestigacionDAOFactory fabricate1= new   AreaInvestigacionDAOFactory();
-          AreaInvestigacionDAO daote1= fabricate1.metodoDAO();
-          AreaInvestigacion[] area=daote1.leertodo();
+        AreaInvestigacionDAOFactory fabricate1 = new AreaInvestigacionDAOFactory();
+        AreaInvestigacionDAO daote1 = fabricate1.metodoDAO();
+        AreaInvestigacion[] area = daote1.leertodo();
     %>
     <body>
         <style>
@@ -37,46 +29,44 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">Editar Linea de Investigacion N° <%=linea.getIdLineaInvestigacion() %> </h4>
+            <h4 class="modal-title" id="myModalLabel">Nueva Linea de Investigacion </h4>
 
         </div>
         <div class="modal-body">     
 
             <form class="form-horizontal form-label-left input_mask" id="modificaform" enctype="multipart/form-data">
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">CODIGO</label>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <input type="text" class="form-control has-feedback-left" readonly="readonly" value="AUTOGENARADO">
 
-                <input type="hidden" name="idLinea" value="<%=linea.getIdLineaInvestigacion() %>" />
-
-
-
-               
-
-                 <div class="form-group">
+                        <span class="fa fa-cc form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                </div>  
+                <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">AREA INV.</label>
                     <div class="col-md-9 col-sm-9 col-xs-12">
                         <select name="area" id="SelectArea" class="form-control">
                             <option value="--">--</option>
-                             <%for (AreaInvestigacion area1: area) {
-                                
-                        %>
-                            <option value="<%=area1.getIdAreaInvestigacion() %>"
-                                     <%if(linea.getAreaInvestigacion().getIdAreaInvestigacion() ==area1.getIdAreaInvestigacion() )
-                                            
-                                            out.print("selected");
-                                     %>
+                            <%for (AreaInvestigacion area1 : area) {
+
+                            %>
+                            <option value="<%=area1.getIdAreaInvestigacion()%>"
+
                                     >
-                                <%=area1.getDescripcion() %></option>
-                             <%}%>
+                                <%=area1.getDescripcion()%></option>
+                                <%}%>
                         </select>
                     </div>
 
                 </div>  
-               <div class="form-group">
+                <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Descripcion</label>
                     <div class="col-md-9 col-sm-9 col-xs-12">
-                        <input name="descripcion" type="text" class="form-control" value="<%=linea.getDescripcion() %>">
+                        <input name="descripcion" type="text" class="form-control" value="">
                     </div>
                 </div>     
-               
+
             </form>                          
         </div>
         <div class="modal-footer">
@@ -85,26 +75,26 @@
         </div>
     </body>
     <!--LIBRERIAS NECESARIAS PARA EL SCRIPT*-->
-         
-    
-   
+
+
+
     <script src="js/jquery.min.js" type="text/javascript"></script>
-      <script src="js/bootstrap.min.js" type="text/javascript"></script>
-      
+    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+
     <script src="js/moment/moment.min.js"></script>
     <script src="js/datepicker/daterangepicker.js"></script>  
-  
+
 
     <!-------------------------------------------------------------------->
     <script type="text/javascript">
         $(document).ready(function () {
-          
+
         });
 
         $('#btnguardar').click(function () {
             var formdata = new FormData($("#modificaform")[0]);
             $.ajax({
-                url: "LineaInvestigacionController?accion=modificarLinea",
+                url: "LineaInvestigacionController?accion=NuevaLinea",
                 type: "post",
                 contentType: false,
                 data: formdata,
@@ -113,7 +103,7 @@
                     .always(function () {
                         actualizar();
                         ocultarmodal();
-                        alerta("Linea de Investigacion modificada", true);
+                        alerta("Linea de Investigacion creada", true);
                     });
         });
 

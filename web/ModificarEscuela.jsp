@@ -5,13 +5,14 @@
 --%>
 
 
-<%@page import="com.repositoriounia.dao.LineaInvestigacionDAO"%>
-<%@page import="com.repositoriounia.dao.LineaInvestigacionDAOFactory"%>
-<%@page import="com.repositoriounia.modelo.LineaInvestigacion"%>
-<%@page import="com.repositoriounia.dao.AreaInvestigacionDAOFactory"%>
-<%@page import="com.repositoriounia.dao.AreaInvestigacionDAO"%>
-<%@page import="com.repositoriounia.modelo.AreaInvestigacion"%>
 
+
+<%@page import="com.repositoriounia.modelo.Facultad"%>
+<%@page import="com.repositoriounia.dao.FacultadDAO"%>
+<%@page import="com.repositoriounia.dao.FacultadDAOFactory"%>
+<%@page import="com.repositoriounia.modelo.Escuela"%>
+<%@page import="com.repositoriounia.dao.EscuelaDAO"%>
+<%@page import="com.repositoriounia.dao.EscuelaDAOFactory"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,15 +21,15 @@
 
     </head>
     <%
-       LineaInvestigacionDAOFactory fabricate=new LineaInvestigacionDAOFactory();
-       LineaInvestigacionDAO daote=fabricate.metodoDAO();
+       EscuelaDAOFactory fabricate=new EscuelaDAOFactory();
+       EscuelaDAO daote=fabricate.metodoDAO();
 
       int codigo=Integer.parseInt(request.getParameter("codigo"));
-        LineaInvestigacion linea= daote.leerxid(codigo);
+        Escuela escuela= daote.leerxid(codigo);
 
-         AreaInvestigacionDAOFactory fabricate1= new   AreaInvestigacionDAOFactory();
-          AreaInvestigacionDAO daote1= fabricate1.metodoDAO();
-          AreaInvestigacion[] area=daote1.leertodo();
+         FacultadDAOFactory fabricate1= new   FacultadDAOFactory();
+          FacultadDAO daote1= fabricate1.metodoDAO();
+          Facultad[] facul=daote1.leertodo();
     %>
     <body>
         <style>
@@ -37,29 +38,29 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">Editar Linea de Investigacion N° <%=linea.getIdLineaInvestigacion() %> </h4>
+            <h4 class="modal-title" id="myModalLabel">Editar Escuela N° <%=escuela.getIdEscuela() %> </h4>
 
         </div>
         <div class="modal-body">     
 
             <form class="form-horizontal form-label-left input_mask" id="modificaform" enctype="multipart/form-data">
 
-                <input type="hidden" name="idLinea" value="<%=linea.getIdLineaInvestigacion() %>" />
+                <input type="hidden" name="idEscuela" value="<%=escuela.getIdEscuela() %>" />
 
 
 
                
 
                  <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">AREA INV.</label>
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Facultad</label>
                     <div class="col-md-9 col-sm-9 col-xs-12">
-                        <select name="area" id="SelectArea" class="form-control">
+                        <select name="facultad" id="SelectArea" class="form-control">
                             <option value="--">--</option>
-                             <%for (AreaInvestigacion area1: area) {
+                             <%for (Facultad area1: facul) {
                                 
                         %>
-                            <option value="<%=area1.getIdAreaInvestigacion() %>"
-                                     <%if(linea.getAreaInvestigacion().getIdAreaInvestigacion() ==area1.getIdAreaInvestigacion() )
+                            <option value="<%=area1.getIdFacultad() %>"
+                                     <%if(escuela.getFacultad().getIdFacultad() ==area1.getIdFacultad() )
                                             
                                             out.print("selected");
                                      %>
@@ -73,7 +74,7 @@
                <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Descripcion</label>
                     <div class="col-md-9 col-sm-9 col-xs-12">
-                        <input name="descripcion" type="text" class="form-control" value="<%=linea.getDescripcion() %>">
+                        <input name="descripcion" type="text" class="form-control" value="<%=escuela.getDescripcion() %>">
                     </div>
                 </div>     
                
@@ -104,7 +105,7 @@
         $('#btnguardar').click(function () {
             var formdata = new FormData($("#modificaform")[0]);
             $.ajax({
-                url: "LineaInvestigacionController?accion=modificarLinea",
+                url: "EscuelaController?accion=modificarEscuela",
                 type: "post",
                 contentType: false,
                 data: formdata,
@@ -113,7 +114,7 @@
                     .always(function () {
                         actualizar();
                         ocultarmodal();
-                        alerta("Linea de Investigacion modificada", true);
+                        alerta("Escuela modificada", true);
                     });
         });
 

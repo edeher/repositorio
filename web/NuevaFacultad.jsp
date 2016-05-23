@@ -1,9 +1,8 @@
 <%-- 
-    Document   : crearSolicitud
-    Created on : 21/04/2016, 11:46:47 PM
+    Document   : nuevaPublicacion
+    Created on : 16/05/2016, 09:51:20 AM
     Author     : Mi Laptop
 --%>
-
 
 <%@page import="com.repositoriounia.dao.AreaInvestigacionDAOFactory"%>
 <%@page import="com.repositoriounia.dao.AreaInvestigacionDAO"%>
@@ -25,12 +24,18 @@
 
     </head>
     <%
-       
-        int codigo = Integer.parseInt(request.getParameter("codigo"));
+        PublicacionDAOFactory fabricate = new PublicacionDAOFactory();
+        PublicacionDAO daote = fabricate.metodoDAO();
         
+
+        AutorPublicacionDAOFactory fabricate2 = new AutorPublicacionDAOFactory();
+        AutorPublicacionDAO daote2 = fabricate2.metodoDAO();
+
+        
+
          AreaInvestigacionDAOFactory fabricate1= new   AreaInvestigacionDAOFactory();
           AreaInvestigacionDAO daote1= fabricate1.metodoDAO();
-          AreaInvestigacion area=daote1.leerxid(codigo);
+          AreaInvestigacion[] area=daote1.leertodo();
     %>
     <body>
         <style>
@@ -39,80 +44,63 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">Editar Area de Investigacion N° <%=area.getIdAreaInvestigacion() %> </h4>
+            <h4 class="modal-title" id="myModalLabel">Nueva Area de Investigación  </h4>
 
         </div>
         <div class="modal-body">     
 
-            <form class="form-horizontal form-label-left input_mask" id="modificaform" enctype="multipart/form-data">
+            <form class="form-horizontal form-label-left " id="crearform" enctype="multipart/form-data">
 
-                <input type="hidden" name="idArea" value="<%=area.getIdAreaInvestigacion() %>" />
-
-
-
+              
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">CODIGO</label>
                     <div class="col-md-9 col-sm-9 col-xs-12">
-                        <input type="text" class="form-control has-feedback-left" readonly="readonly" value="<%=area.getIdAreaInvestigacion() %> ">
+                        <input type="text" class="form-control has-feedback-left" readonly="readonly" value="AUTOGENARADO">
 
-                        <span class="fa fa-barcode form-control-feedback left" aria-hidden="true"></span>
+                        <span class="fa fa-cc form-control-feedback left" aria-hidden="true"></span>
                     </div>
                 </div>         
 
-               
-               
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">TITULO</label>
+                 
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">DESCRIPCION</label>
                     <div class="col-md-9 col-sm-9 col-xs-12">
-                        <input name="descripcion" type="text" class="form-control" value="<%=area.getDescripcion() %>">
+                        <input name="descripcion" type="text" class="form-control" value="">
                     </div>
                 </div>
 
-             
-
-
-
+               
             </form>                          
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary" id="btnguardar" >Guardar Cambios</button>
+            <button type="button" class="btn btn-primary" id="btnguardar" >Guardar</button>
         </div>
     </body>
     <!--LIBRERIAS NECESARIAS PARA EL SCRIPT*-->
+         
+    
+   
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+      <script src="js/bootstrap.min.js" type="text/javascript"></script>
+      
     <script src="js/moment/moment.min.js"></script>
-    <script src="js/datepicker/daterangepicker.js"></script>    
+    <script src="js/datepicker/daterangepicker.js"></script>  
+    
+   <!--LIBRERIAS NECESARIAS PARA EL SCRIPT*-->
+   <script src="js/parsley/parsley.min.js" type="text/javascript"></script>
+   <script src="js/select/select2.full.js" type="text/javascript"></script>
     <!-------------------------------------------------------------------->
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#input_fpublicacion').daterangepicker({
-                format: 'YYYY-MM-DD',
-                singleDatePicker: true,
-                calender_style: "picker_4"
-
-
-
-            },
-            function (start, end, label) {
-                console.log(start.toISOString(), end.toISOString(), label);
-            });
-            $('#SelectArea').on('change', function () {
-                var codigo = this.value;
-                $.ajax({
-                    type: 'POST',
-                    url: 'EscuelaController?accion=buscarporFacultad&codigo=' + codigo,
-                    data: $(this).serialize(),
-                    success: function (data) {
-                        $('#SelectLinea').html(data);
-                    }
-                });
-            });
+            
+     
         });
 
         $('#btnguardar').click(function () {
-            var formdata = new FormData($("#modificaform")[0]);
+            var formdata = new FormData($("#crearform")[0]);
             $.ajax({
-                url: "PublicacionController?accion=modificarPublicacion",
+                url: "FacultadController?accion=crearFacultad",
                 type: "post",
                 contentType: false,
                 data: formdata,
@@ -121,12 +109,9 @@
                     .always(function () {
                         actualizar();
                         ocultarmodal();
-                        alerta("Solicitud modificada", true);
+                        alerta("Facultad creada", true);
                     });
         });
-
-
-
     </script>
 
 </html>

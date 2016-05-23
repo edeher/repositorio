@@ -461,5 +461,25 @@ public class AutorPublicacionDAOJDBC implements AutorPublicacionDAO{
         }
     }
 
+    @Override
+    public boolean eliminar(int idAutorPublicacion) throws DAOException {
+       try  {
+	           CallableStatement st=con.prepareCall("{call sp_autorpublicacion_e(?) }");
+            
+            st.setInt(1,idAutorPublicacion);
+
+
+            if (st.execute()) //devuelve verdadero si fallo
+            {
+                throw new DAOException("Error eliminado autorpublicacion");
+            }
+            st.close();
+            
+        } catch (SQLException se) {
+            throw new DAOException("Error eliminando autorpublicacion en DAO", se);
+        }
+        return true;  
+    }
+
     
 }

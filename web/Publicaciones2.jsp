@@ -177,7 +177,9 @@
                         </div>
 
 		</div>
-	</div>	        
+	</div>	
+    
+     
 	<!-- /footer content -->        
         <script src="js/jquery.min.js"></script>	
 	<script src="js/bootstrap.min.js"></script>
@@ -204,9 +206,6 @@
         <script src="js/datatables/responsive.bootstrap.min.js"></script>
         <script src="js/datatables/dataTables.scroller.min.js"></script>
         
-         <script type="text/javascript" src="js/notify/pnotify.core.js"></script>
-        <script type="text/javascript" src="js/notify/pnotify.buttons.js"></script>
-        <script type="text/javascript" src="js/notify/pnotify.nonblock.js"></script>
         
         
         <script type="text/javascript">
@@ -229,7 +228,7 @@
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnEditar"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnVerPublicacion"><a href=""><i class="fa fa-search"></i></a></button>'}
+                    "defaultContent": '<button name="btnEditar"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnVerAutores"><a><i class="fa fa-users"></i></a></button>&nbsp&nbsp <button name="btnVerArchivos"><a><i class="fa fa-file-pdf-o"></i></a></button>'}
                 ],
                 "ajax": "PublicacionController?accion=ObtenerTodos",
                 "initComplete": function() {
@@ -268,7 +267,7 @@
                 }
                                    
                 if(nombre=='btnVerArchivos'){
-                     mostrarModal('verycargarArchivos.jsp?codigo='+data[0]);  
+                     mostrarModal('verycargarArchivos1.jsp?codigo='+data[0]);  
                 }                
             });
               
@@ -276,7 +275,7 @@
                 var nombre = $(this).attr('id');              
                 if(nombre=='btnNuevo')
                     
-                mostrarModal('NuevaPublicacion.jsp');
+                mostrarModal('nuevaPublicacion.jsp');
             } );
         });        
             /*-------------------------------------------------------------*/
@@ -320,32 +319,6 @@
                 }); 
           }
           /*-------------------------------------------------------------*/
-        </script>
-         <script type="text/javascript">
-            var permanotice, tooltip, _alert;
-            $(function () {
-                new PNotify({
-                    title: "IMPORTANTE",
-                    type: "dark",
-                    text: "Revisa nuestra ultima Publicacion ",
-                    nonblock: {
-                        nonblock: true
-                    },
-                    before_close: function (PNotify) {
-                        // You can access the notice's options with this. It is read only.
-                        //PNotify.options.text;
-
-                        // You can change the notice's options after the timer like this:
-                        PNotify.update({
-                            title: PNotify.options.title + " - Enjoy your Stay",
-                            before_close: null
-                        });
-                        PNotify.queueRemove();
-                        return false;
-                    }
-                });
-
-            });
         </script>
 </body>
 

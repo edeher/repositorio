@@ -73,7 +73,8 @@
                                                                 <li><a href="Denuncia.jsp"><i class="fa fa-table"></i> Denuncias </a></li>
                                                                 <li><a href="TemasSugeridos.jsp"><i class="fa fa-table"></i>Temas Sugeridos </a></li>
                                                                 <li><a href="ArchivosSolicitados.jsp"><i class="fa fa-table"></i> Archivos Solicitados </a></li>
-                                                                
+                                                                 <li><a href="Facultades.jsp"><i class="fa fa-table"></i>Facultades </a></li>
+                                                                <li><a href="Escuelas.jsp"><i class="fa fa-table"></i>Escuelas </a></li>
 								<li><a href="Investigadores.jsp"><i class="fa fa-group"></i> Investigadores </a></li>
                                                                 <li><a href="Solicitantes.jsp"><i class="fa fa-group"></i> Solicitantes </a></li>
                                                                 <li><a href="Denunciantes.jsp"><i class="fa fa-group"></i> Denunciantes </a></li>
@@ -202,7 +203,9 @@
         <script src="js/datatables/dataTables.responsive.min.js"></script>
         <script src="js/datatables/responsive.bootstrap.min.js"></script>
         <script src="js/datatables/dataTables.scroller.min.js"></script>
-        
+         <script type="text/javascript" src="js/notify/pnotify.core.js"></script>
+        <script type="text/javascript" src="js/notify/pnotify.buttons.js"></script>
+        <script type="text/javascript" src="js/notify/pnotify.nonblock.js"></script>
         
         
         <script type="text/javascript">
@@ -264,7 +267,7 @@
                 }
                                    
                 if(nombre=='btnVerArchivos'){
-                     mostrarModal('verycargarArchivos1.jsp?codigo='+data[0]);  
+                     mostrarModal('verycargarArchivos.jsp?codigo='+data[0]);  
                 }                
             });
               
@@ -272,7 +275,7 @@
                 var nombre = $(this).attr('id');              
                 if(nombre=='btnNuevo')
                     
-                mostrarModal('nuevaPublicacion.jsp');
+                mostrarModal('NuevaPublicacion.jsp');
             } );
         });        
             /*-------------------------------------------------------------*/
@@ -316,6 +319,32 @@
                 }); 
           }
           /*-------------------------------------------------------------*/
+        </script>
+         <script type="text/javascript">
+            var permanotice, tooltip, _alert;
+            $(function () {
+                new PNotify({
+                    title: "IMPORTANTE",
+                    type: "dark",
+                    text: "Revisa nuestra ultima Publicacion ",
+                    nonblock: {
+                        nonblock: true
+                    },
+                    before_close: function (PNotify) {
+                        // You can access the notice's options with this. It is read only.
+                        //PNotify.options.text;
+
+                        // You can change the notice's options after the timer like this:
+                        PNotify.update({
+                            title: PNotify.options.title + " - Enjoy your Stay",
+                            before_close: null
+                        });
+                        PNotify.queueRemove();
+                        return false;
+                    }
+                });
+
+            });
         </script>
 </body>
 
