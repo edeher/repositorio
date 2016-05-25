@@ -72,7 +72,7 @@
         <script>
 
             //demo 01
-            $("#demo01").animatedModal({ color:'#404040'});
+            //$("#demo01").animatedModal({ color:'#404040'});
 
             //demo 02
             $("#demo02").animatedModal({

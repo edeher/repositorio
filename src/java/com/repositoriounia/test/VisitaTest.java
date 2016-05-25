@@ -25,7 +25,7 @@ public class VisitaTest {
 //        modificarVisita();
 //        eliminarlinea();
 //        leer();
-        leertodo();
+//        leertodo();
         
     }
     public static void crearVisita() throws DAOException
@@ -69,7 +69,7 @@ public class VisitaTest {
          VisitaDAO daote= fabricate.metodoDAO();
        
                
-	  Visita objEs=daote.leerxid(3);
+	  Visita objEs=daote.leerxid(9);
 	 System.out.println(" "+objEs.toString());
         
 	    

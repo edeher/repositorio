@@ -102,8 +102,8 @@ public class VisitaDAOJDBC implements VisitaDAO{
             return (
                     new Visita(
                             rs.getInt("idVisita"),
-                           new ArchivoPublicacion(
-                                 rs.getInt("idArchivoPublicacion"),
+                          new ArchivoPublicacion(
+                            rs.getInt("idArchivoPublicacion"),
                            
                            new Publicacion(
                                    rs.getInt("idPublicacion"),
@@ -120,9 +120,7 @@ public class VisitaDAOJDBC implements VisitaDAO{
                            ),
                              DescripcionArchivo.valueOf(rs.getString("descripcion")),
                             rs.getString("urlLocal"),
-                            rs.getString("urlWeb"),
-                     rs.getBytes("archivo")
-                           ),
+                            rs.getString("urlWeb"),null),
                             rs.getDate("fecha"))
                          
                    );
@@ -146,8 +144,8 @@ public class VisitaDAOJDBC implements VisitaDAO{
                         
                 new Visita(
                             rs.getInt("idVisita"),
-                           new ArchivoPublicacion(
-                                   rs.getInt("idArchivoPublicacion"),
+                          new ArchivoPublicacion(
+                            rs.getInt("idArchivoPublicacion"),
                            
                            new Publicacion(
                                    rs.getInt("idPublicacion"),
@@ -164,9 +162,7 @@ public class VisitaDAOJDBC implements VisitaDAO{
                            ),
                              DescripcionArchivo.valueOf(rs.getString("descripcion")),
                             rs.getString("urlLocal"),
-                            rs.getString("urlWeb"),
-                     rs.getBytes("archivo")
-                           ),
+                            rs.getString("urlWeb"),null),
                             rs.getDate("fecha"))
                          
                    );

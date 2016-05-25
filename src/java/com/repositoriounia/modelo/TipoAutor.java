@@ -10,9 +10,9 @@ package com.repositoriounia.modelo;
  * @author Mi Laptop
  */
 public enum TipoAutor {
-    PRINCIPAL("Jefe de proyecto"),
-    COLABORADOR("especialista"),
-    TESISTA("Estudiante");
+    PRINCIPAL("JEFE DE PROYECTO"),
+    COLABORADOR("ESPECIALISTA"),
+    TESISTA("TESISTA");
     
     private String nom;
 

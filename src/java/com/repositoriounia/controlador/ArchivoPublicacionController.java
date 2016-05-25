@@ -8,6 +8,8 @@ package com.repositoriounia.controlador;
 import com.repositoriounia.dao.ArchivoPublicacionDAO;
 import com.repositoriounia.dao.ArchivoPublicacionDAOFactory;
 import com.repositoriounia.dao.DAOException;
+import com.repositoriounia.dao.VisitaDAO;
+import com.repositoriounia.dao.VisitaDAOFactory;
 import com.repositoriounia.modelo.ArchivoPublicacion;
 import com.repositoriounia.modelo.DescripcionArchivo;
 import com.repositoriounia.modelo.Publicacion;
@@ -43,7 +45,8 @@ public class ArchivoPublicacionController extends HttpServlet {
     private ArchivoPublicacionDAOFactory fabricate;
     private ArchivoPublicacionDAO daote;
     private PrintWriter out;
-
+    private VisitaDAOFactory fabricate1;
+    private VisitaDAO daote1;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -57,8 +60,12 @@ public class ArchivoPublicacionController extends HttpServlet {
             throws ServletException, IOException, DAOException {
   
         String accion = request.getParameter("accion");
+        
         fabricate = new ArchivoPublicacionDAOFactory();
         daote = fabricate.metodoDAO();
+        fabricate1=new VisitaDAOFactory();
+        daote1=fabricate1.metodoDAO();
+        
         System.out.println("Archivopublicacion controller");
         System.out.println("==============================");
         Enumeration enumeration = request.getParameterNames();
@@ -172,7 +179,9 @@ public class ArchivoPublicacionController extends HttpServlet {
     }
 
     private void verArchivo(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+       
         int codigo = Integer.parseInt(request.getParameter("idArchivo"));
+        daote1.crear(codigo);
         OutputStream pdfsa;
         try (InputStream pdf = daote.ArchivoPublico(codigo)) {
             pdfsa = response.getOutputStream();

@@ -29,6 +29,10 @@
         <link href="js/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="js/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="js/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
+         <!-- dataTables -->
+         <link href="css/icheck/flat/green.css" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="css/progressbar/bootstrap-progressbar-3.3.0.css">
 </head>
 <body class="nav-md">
 
@@ -216,21 +220,22 @@
                 "language": {
                     "url": "css/datatables/Spanish.json"
                 },
-                "columns": [{ "title": "Cod" },
+                "columns": [{ "title": "Item" },
                             { "title": "Titulo" },
                             { "title": "Area Investigacion" },
                             { "title": "Linea Investigacion" },
                             { "title": "Fecha Publicacion" },   
                             { "title": "Fecha de Carga" }, 
-                            { "title": "<a id='btnNuevo' href='#' ><i class='fa fa-plus'></i></a>" }],
+                            { "title": "<a id='btnNuevo' href='#' ><i class='fa fa-plus ' data-toggle='tooltip' data-placement='top' title='Nuevo'></i></a>" }],
                 "columnDefs": [                         
                    {"targets": [ 6 ],
                     "orderable": false,
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnEditar"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnVerPublicacion"><a href=""><i class="fa fa-search"></i></a></button>'}
+                    "defaultContent": '<button name="btnEditar" type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Tooltip left"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnVer"><a><i class="fa fa-search"></i></a></button>'}
                 ],
+                 
                 "ajax": "PublicacionController?accion=ObtenerTodos",
                 "initComplete": function() {
                    /* $('#enlace').click(function() {
@@ -240,16 +245,18 @@
                     });*/
                 }
             });  
-            
+            table.on( 'order.dt search.dt', function () {
+        table.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
+            cell.innerHTML = i+1;
+        } );
+    } ).draw();
             $('#datatable-responsive tbody').on( 'click', 'button', function () {
                 var nombre = $(this).attr('name');
                 var data = table.row( $(this).parents('tr') ).data();                              
                 if(nombre=='btnEditar'){
                     mostrarModal('ModificarPublicacion.jsp?codigo='+data[0]);
                 }
-                if(nombre=='btnVerAutores'){
-                    mostrarModal('verAutores.jsp?codigo='+data[0]);
-                }                  
+                               
                 if(nombre=='btnRechazar'){
                      if(confirm("seguro que desea eliminar la Publicacion")==true)
                         {
@@ -267,9 +274,12 @@
                         }
                 }
                                    
-                if(nombre=='btnVerArchivos'){
-                     mostrarModal('verycargarArchivos.jsp?codigo='+data[0]);  
-                }                
+                if(nombre=='btnVer'){
+                     
+                     //window.location.href='VerPublicacion.jsp?idPublicacion='+data[0];
+                      window.location.href='VerPublicacion.jsp?idPublicacion='+data[0];
+                }    
+                
             });
               
             $('#datatable-responsive thead').on( 'click', 'a', function () {
@@ -326,7 +336,7 @@
             $(function () {
                 new PNotify({
                     title: "IMPORTANTE",
-                    type: "dark",
+                    
                     text: "Revisa nuestra ultima Publicacion ",
                     nonblock: {
                         nonblock: true

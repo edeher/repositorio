@@ -10,11 +10,11 @@ package com.repositoriounia.modelo;
  * @author Mi Laptop
  */
 public enum DescripcionArchivo {
-    TE("Tesis"),
-    PTE("Proyecto de Tesis"),
-    PIN("Proyecto de Investigacion"),
-    INPIN("Informe Final de Proyecto"),
-    ARCI("Articulo Cientifico");
+    TE("TESIS"),
+    PTE("PROYECTO DE TESIS"),
+    PIN("PROYECTO DE INVESTIGACION"),
+    INPIN("INFORME FINAL DEL PROYECTO"),
+    ARCI("ARTICULO CIENTIFICO");
     
     private String nom;
 
