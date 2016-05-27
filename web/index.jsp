@@ -69,9 +69,10 @@
                             </li>
                         </ul>
                         <div class="text-center">
-                            <h1 class="error-number">UNIVERSIDAD NACIONAL INTERCULTURAL DE LA AMAZONIA</h1>
-                            <h2>REPOSITORIO VIP</h2>
-                            <p>ESPACIO VIRTUAL DE CONCENTRACION Y PRODUCCION EN CIENCIA DE LA UNIA </p>
+                            <h1 ><img src="images/logo.png" alt="" height="45%" width="90%"/></h1>
+                            
+                            <h2 class="error-number">REPOSITORIO VIP</h2>
+                            <p >ESPACIO VIRTUAL DE CONCENTRACION Y PRODUCCION EN CIENCIA DE LA UNIA </p>
                             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                                 <div class="menu_section">
 
@@ -107,6 +108,9 @@
         <!-- icheck -->
         <script src="js/icheck/icheck.min.js"></script>
         <script src="js/custom.js"></script>
+        <script type="text/javascript" src="js/notify/pnotify.core.js"></script>
+        <script type="text/javascript" src="js/notify/pnotify.buttons.js"></script>
+        <script type="text/javascript" src="js/notify/pnotify.nonblock.js"></script>
        
         
         <script type="text/javascript">
@@ -125,6 +129,54 @@
             }
         </script>
         <!-- /footer content -->
+        <script type="text/javascript">
+            var permanotice, tooltip, _alert;
+            $(function () {
+                new PNotify({
+                    title: "BIENVENIDOS",
+                    text: "Revisa nuestras ultimas Publicaciones ",
+                    nonblock: {
+                        nonblock: true
+                    },
+                    before_close: function (PNotify) {
+                        // You can access the notice's options with this. It is read only.
+                        //PNotify.options.text;
+
+                        // You can change the notice's options after the timer like this:
+                        PNotify.update({
+                            title: PNotify.options.title + " - Enjoy your Stay",
+                            before_close: null
+                        });
+                        PNotify.queueRemove();
+                        return false;
+                    }
+                });
+
+            });   
+             $(function () {
+                new PNotify({
+                    title: "CONOCE!!!!!",
+                    text: "Conoce a nuestros Investigadores ",
+                    type:'info',
+                    nonblock: {
+                        nonblock: true
+                    },
+                    before_close: function (PNotify) {
+                        // You can access the notice's options with this. It is read only.
+                        //PNotify.options.text;
+
+                        // You can change the notice's options after the timer like this:
+                        PNotify.update({
+                            title: PNotify.options.title + " - Enjoy your Stay",
+                            before_close: null
+                        });
+                        PNotify.queueRemove();
+                        return false;
+                    }
+                });
+
+            });
+        </script>
     </body>
 
 </html>

@@ -19,6 +19,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Mi Laptop
  */
 @WebServlet(name = "AutorPublicacionController", urlPatterns = {"/AutorPublicacionController"})
+@MultipartConfig
 public class AutorPublicacionController extends HttpServlet {
     private AutorPublicacion objAuPu;
     private AutorPublicacionDAOFactory fabricate;

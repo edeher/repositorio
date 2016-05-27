@@ -77,21 +77,13 @@
                     <div class="left_col scroll-view">
 
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="" class="site_title"><i class="fa fa-laptop"></i> <span>REPOSITORIO VIP</span></a>
+                            <a href="" class="site_title"> <img src="images/LOGO UNIA.png" alt="" height="50px" width="40px"/> <span>REPOSITORIO VIP</span></a>
                         </div>
                         <div class="clearfix"></div>
 
 
                         <!-- menu prile quick info -->
-                        <div class="profile">
-                            <div class="profile_pic">
-                                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
-                            </div>
-                            <div class="profile_info">
-                                <span>Welcome,</span>
-                                <h2>Edeher Ponce</h2>
-                            </div>
-                        </div>
+
                         <!-- /menu prile quick info -->
 
                         <br />
@@ -103,18 +95,32 @@
                                 <h3>Administrador</h3>
                                 <ul class="nav side-menu">
 
-                                    <li><a href="Publicaciones.jsp"><i class="fa fa-table"></i> Publicaciones </a></li>
-                                    <li><a href="AreasInvestigacion.jsp"><i class="fa fa-table"></i> Areas de Investigacion </a></li>
-                                    <li><a href="LineaInvestigacion.jsp"><i class="fa fa-table"></i> Lineas de Investigacion </a></li>
+                                    <li><a href="Publicaciones.jsp"><i class="fa fa-file-powerpoint-o"></i> Publicaciones </a></li>
 
-                                    <li><a href="Denuncia.jsp"><i class="fa fa-table"></i> Denuncias </a></li>
-                                    <li><a href="TemasSugeridos.jsp"><i class="fa fa-table"></i>Temas Sugeridos </a></li>
-                                    <li><a href="ArchivosSolicitados.jsp"><i class="fa fa-table"></i> Archivos Solicitados </a></li>
-                                    <li><a href="Facultades.jsp"><i class="fa fa-table"></i>Facultades </a></li>
-                                    <li><a href="Escuelas.jsp"><i class="fa fa-table"></i>Escuelas </a></li>
-                                    <li><a href="Investigadores.jsp"><i class="fa fa-group"></i> Investigadores </a></li>
-                                    <li><a href="Solicitantes.jsp"><i class="fa fa-group"></i> Solicitantes </a></li>
-                                    <li><a href="Denunciantes.jsp"><i class="fa fa-group"></i> Denunciantes </a></li>
+                                    <li><a><i class="fa fa-edit"></i> Tablas<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu" style="display: none">
+                                            <li><a href="AreasInvestigacion.jsp"><i class="fa fa-table"></i> Areas de Investigacion </a></li>
+                                            <li><a href="LineaInvestigacion.jsp"><i class="fa fa-table"></i> Lineas de Investigacion </a></li>
+                                            <li><a href="Denuncia.jsp"><i class="fa fa-table"></i> Denuncias </a></li>
+                                            <li><a href="TemasSugeridos.jsp"><i class="fa fa-table"></i>Temas Sugeridos </a></li>
+                                            <li><a href="ArchivosSolicitados.jsp"><i class="fa fa-table"></i> Archivos Solicitados </a></li>
+                                            <li><a href="Facultades.jsp"><i class="fa fa-table"></i>Facultades </a></li>
+                                            <li><a href="Escuelas.jsp"><i class="fa fa-table"></i>Escuelas </a></li>
+                                        </ul>
+                                    </li>
+
+
+                                    <li><a><i class="fa fa-child"></i> Personas<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu" style="display: none">
+                                            <li><a href="Investigadores.jsp"><i class="fa fa-group"></i> Investigadores </a></li>
+                                            <li><a href="Solicitantes.jsp"><i class="fa fa-group"></i> Solicitantes </a></li>
+                                            <li><a href="Denunciantes.jsp"><i class="fa fa-group"></i> Denunciantes </a></li>
+                                            <li><a href="Autores.jsp"><i class="fa fa-user"></i> Autores </a></li>
+                                        </ul>
+                                    </li>
+
+
+
                                     <li><a href="Visitas.jsp"><i class="fa fa-suitcase"></i> Visitas </a></li>
                                     <li><a href="Estadistica.jsp"><i class="fa fa-bar-chart-o"></i> Estadisticas </a></li>
 
@@ -175,6 +181,33 @@
                                                 </div>
                                             </div>
 
+                                            <!-- -->
+                                            <div class="x_panel">
+                                                <ul class="list-unstyled timeline">
+                                                    <li>
+                                                        <div class="block">
+                                                            <div class="tags">
+                                                                <a href="" class="tag">
+                                                                    <span>importante</span>
+                                                                </a>
+                                                            </div>
+                                                            <div class="block_content">
+                                                                <h2 class="title">
+                                                                    <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+                                                                </h2>
+                                                                <div class="byline">
+                                                                    <span>13 hours ago</span> by <a>Jane Smith</a>
+                                                                </div>
+                                                                <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                         <!-- -->   
+                                            
 
                                         </div>
                                         <!-- end of accordion -->
@@ -290,6 +323,9 @@
                 </div>
                 <!-- fin de modal para archivos-->
             </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+
+            </div>
 
         </div>
 
@@ -330,7 +366,7 @@
         <!-------------------->
         <script src="js/fileinput.min.js" type="text/javascript"></script>
         <!-------------------->
-         <script type="text/javascript" src="js/notify/pnotify.core.js"></script>
+        <script type="text/javascript" src="js/notify/pnotify.core.js"></script>
         <script type="text/javascript" src="js/notify/pnotify.buttons.js"></script>
         <script type="text/javascript" src="js/notify/pnotify.nonblock.js"></script>
 
@@ -386,13 +422,13 @@
                     if (nombre == 'btnVerArchivo') {
                         $('#iframepdf').attr('src', 'ArchivoPublicacionController?accion=verArchivo&idArchivo=' + data[0]);
                         $('.modal-lg').css('width', '1420px');
-                        
+
                         $('#miModal1').modal('show');
                         $('#iframepdf').contentWindow.location.reload(true);
                     }
                     if (nombre == 'btnVerArchivo1') {
                         $('#iframepdf').attr('src', 'pdf.jsp?codigo=' + data[0]);
-                         $('.modal-lg').css('width', '1420px');
+                        $('.modal-lg').css('width', '1420px');
                         $('#miModal1').modal('show');
                         $('#iframepdf').contentWindow.location.reload(true);
                     }
@@ -508,12 +544,12 @@
 
             }
         </script>
- <script type="text/javascript">
+        <script type="text/javascript">
             var permanotice, tooltip, _alert;
             $(function () {
                 new PNotify({
                     title: "APROVECHA",
-                    type:"info",
+                    type: "info",
                     text: "Solicita El Archivo que mas te interese ",
                     nonblock: {
                         nonblock: true

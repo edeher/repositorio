@@ -12,7 +12,24 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
+        
+        
+         <style>
+            .daterangepicker{z-index:1151 !important;}
+        </style>
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Nueva Area de Investigación  </h4>
+
+        </div>
+        <div class="modal-body">     
+
+            <form class="form-horizontal form-label-left " id="crearform" enctype="multipart/form-data">
+ <div class="x_panel">
+                                    <div class="x_content">
+              
+               <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
                       <div class="well profile_view">
                         <div class="col-sm-12">
                           <h4 class="brief"><i>Digital Strategist</i></h4>
@@ -49,5 +66,14 @@
                         </div>
                       </div>
                     </div>
+                                    </div></div>
+
+               
+            </form>                          
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" id="btnguardar" >Guardar</button>
+        </div>
     </body>
 </html>

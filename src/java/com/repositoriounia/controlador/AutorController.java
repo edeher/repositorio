@@ -9,10 +9,14 @@ import com.repositoriounia.dao.AutorDAO;
 import com.repositoriounia.dao.AutorDAOFactory;
 import com.repositoriounia.dao.DAOException;
 import com.repositoriounia.modelo.Autor;
+import com.repositoriounia.modelo.DescripcionArchivo;
+import com.repositoriounia.modelo.Facultad;
 import com.repositoriounia.modelo.Publicacion;
+import com.repositoriounia.modelo.Sexo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.json.Json;
@@ -21,6 +25,7 @@ import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +36,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Mi Laptop
  */
 @WebServlet(name = "AutorController", urlPatterns = {"/AutorController"})
+@MultipartConfig
 public class AutorController extends HttpServlet {
     private Autor objAu;
     private AutorDAOFactory fabricate;
@@ -59,7 +65,7 @@ public class AutorController extends HttpServlet {
             case "ObtenerTodos":
                 ObtenerTodos(request,response);
                 break;
-            case "3":
+            case "crearInvestigador":crearInvestigador(request,response);
                 break;
             case "4":
                 break;
@@ -164,5 +170,31 @@ public class AutorController extends HttpServlet {
         try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
             pw.println(obj.toString()); 
         }
+    }
+
+    private void crearInvestigador(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+        objAu = new Autor();
+        Enumeration enumeration=request.getParameterNames();
+        while (enumeration.hasMoreElements())
+        {
+        System.out.println(enumeration.nextElement());
+        }
+       
+               
+       objAu.setNombres(request.getParameter("nombres").toString().toUpperCase());
+       objAu.setApellidos(request.getParameter("apellidos").toString().toUpperCase());
+       objAu.setCorrero(request.getParameter("correo"));
+       objAu.setDireccion(request.getParameter("direccion").toString().toUpperCase());
+       objAu.setDni(request.getParameter("dni").toString().toUpperCase());
+       objAu.setSexo(Sexo.valueOf(request.getParameter("sexo")));
+       objAu.getEscuela().setIdEscuela(Integer.parseInt(request.getParameter("escuela")));
+       objAu.setEspecialidad(request.getParameter("especialidad").toString().toUpperCase());
+       objAu.setProfesion(request.getParameter("profesion").toString().toUpperCase());
+       objAu.setGrado(request.getParameter("grado").toString().toUpperCase());
+       objAu.setDni(request.getParameter("dni").toString().toUpperCase());
+       objAu.setTelefono(request.getParameter("telefono"));
+       
+       
+       daote.crear(objAu);
     }
 }
