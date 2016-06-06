@@ -237,7 +237,8 @@
 
         <script type="text/javascript">
             var table, band, msj;
-            $(document).ready(function () {
+            $(document).ready(function () {                
+                
                 table = $('#datatable-responsive').DataTable({
                     "language": {
                         "url": "css/datatables/Spanish.json"

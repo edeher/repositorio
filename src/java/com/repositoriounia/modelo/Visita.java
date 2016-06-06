@@ -15,7 +15,9 @@ public class Visita {
     private int idVisita;
     private ArchivoPublicacion archivoPublicacion;
     private Date fecha;
+    private int cantidad;
     private Estados estado;
+    
 
     /**
      * @return the idVisita
@@ -90,9 +92,37 @@ public class Visita {
         this.fecha = fecha;
     }
 
-    @Override
+    public Visita(ArchivoPublicacion archivoPublicacion, int cantidad) {
+        this.archivoPublicacion = archivoPublicacion;
+        this.cantidad = cantidad;
+    }
+
+   
     public String toString() {
         return "Visita{" + "idVisita=" + idVisita + ", archivoPublicacion=" + archivoPublicacion + ", fecha=" + fecha + '}';
+    }
+    
+    
+  
+    public String toString2() {
+        return "Visita{" + "archivoPublicacion=" + archivoPublicacion + ", cantidad=" + cantidad + '}';
+    }
+    
+
+    
+
+    /**
+     * @return the cantidad
+     */
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    /**
+     * @param cantidad the cantidad to set
+     */
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
     
     

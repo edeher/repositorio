@@ -43,6 +43,10 @@ public class ArchivoPublicacion extends Archivo{
         this.descripcion = descripcion;
     }
 
+    public ArchivoPublicacion(Publicacion publicacion) {
+        this.publicacion = publicacion;
+    }
+
     
    
 
@@ -59,11 +63,17 @@ public class ArchivoPublicacion extends Archivo{
     }
 
     
-
     public String toString() {
+        return "ArchivoPublicacion{" + "publicacion=" + publicacion + '}';
+    }
+     public String toString2() {
         return "ArchivoPublicacion{" + "idArchivoPublicacion=" + idArchivoPublicacion + ", publicacion=" + publicacion + ", descripcion=" + descripcion.getNom() + ", urlLocal=" + urlLocal + ", urlWeb=" + urlWeb + '}';
     }
     
+    
+ 
+
+   
     
     
     

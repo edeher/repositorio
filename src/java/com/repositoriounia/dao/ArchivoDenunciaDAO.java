@@ -7,6 +7,8 @@ package com.repositoriounia.dao;
 
 import com.repositoriounia.modelo.ArchivoDenuncia;
 
+import java.io.InputStream;
+
 /**
  *
  * @author Mi Laptop
@@ -18,4 +20,6 @@ public interface ArchivoDenunciaDAO {
     public ArchivoDenuncia leerxid(int idArchivoDenuncia)throws DAOException;
     public ArchivoDenuncia []leertodo(int idDenuncia)throws DAOException;
     public ArchivoDenuncia[] leertodo()throws DAOException;
+    public InputStream ArchivoDenuncia(int idArchivoDenuncia)throws DAOException;
+    public ArchivoDenuncia crearleer(ArchivoDenuncia objArchiD)throws DAOException;
 }

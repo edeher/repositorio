@@ -175,5 +175,38 @@ public class VisitaDAOJDBC implements VisitaDAO{
         }     
     }
 
+    @Override
+    public Visita[] top5() throws DAOException {
+         try  {
+             CallableStatement stm=con.prepareCall("{call sp_visitas_top_5_titulo()}");
+            ResultSet rs=stm.executeQuery();
+                      
+            ArrayList<Visita> tribs = new ArrayList<>(); 
+            
+            while (rs.next()) {
+                tribs.add(
+                        
+                new Visita(
+                            
+                          new ArchivoPublicacion(
+                           
+                           new Publicacion(
+                                  
+                            rs.getString("titulo")                      
+                           )
+                          ),
+                            rs.getInt("cantidad")
+                )
+                         
+                   );
+            }
+            return tribs.toArray(new Visita[0]);
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error obteniedo top 5 visitas en DAO: " 
+                    + se.getMessage(), se);
+        }     
+    }
+
    
 }

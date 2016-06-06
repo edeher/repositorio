@@ -29,7 +29,8 @@ public class DenunciaTest {
 //        modificardenuncia();
 //        eliminardenuncia();
 //        leer();
-        leertodo();
+//        leertodo();
+        leertodo2();
     }
      public static void creardenuncia() throws DAOException
     {
@@ -112,6 +113,20 @@ public class DenunciaTest {
 		 DenunciaDAOFactory fabricate= new DenunciaDAOFactory();
                 DenunciaDAO daote= fabricate.metodoDAO();
 	 Denuncia[] usuv=daote.leertodo();
+	  
+	  for(Denuncia usuv1:usuv)
+	  {
+	      
+	      System.out.println(" "+usuv1.toString());
+	  
+	  }
+	 
+        } 
+         public static void leertodo2()throws DAOException
+	{
+		 DenunciaDAOFactory fabricate= new DenunciaDAOFactory();
+                DenunciaDAO daote= fabricate.metodoDAO();
+	 Denuncia[] usuv=daote.leertodoxarchivo(9);
 	  
 	  for(Denuncia usuv1:usuv)
 	  {

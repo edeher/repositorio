@@ -17,4 +17,5 @@ public interface VisitaDAO {
     public boolean eliminar(int idVisita)throws DAOException;
     public Visita leerxid (int idVisita)throws DAOException;
     public Visita[] leertodo()throws DAOException;
+    public Visita[]top5()throws DAOException;
 }

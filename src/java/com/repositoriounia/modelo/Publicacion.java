@@ -112,6 +112,11 @@ public class Publicacion {
        
     }
 
+    public Publicacion(String titulo) {
+        this.titulo = titulo;
+    }
+
+    
     public Publicacion() {
         this.lineaInvestigacion=new LineaInvestigacion();
     }
@@ -122,6 +127,11 @@ public class Publicacion {
 
     @Override
     public String toString() {
+        return "Publicacion{" + "titulo=" + titulo + '}';
+    }
+
+   
+    public String toString2() {
         return "Publicacion{" + "idPublicacion=" + idPublicacion + ", lineaInvestigacion=" + lineaInvestigacion + ", titulo=" + titulo + ", fechaCarga=" + fechaCarga + ", fechaPublicacion=" + fechaPublicacion +  '}';
     }
     

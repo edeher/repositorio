@@ -40,9 +40,7 @@
                 <tbody>
                     <% for(AutorPublicacion objAuP1:objAuP )
                     {
-                       
-                          
-                    
+                      
                     %>
                     <tr>
                         <td><%=1%></td>

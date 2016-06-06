@@ -53,7 +53,7 @@ public class VisitaController extends HttpServlet {
         {
             case "ObtenerTodos":ObtenerTodos(request,response);
                 break;
-            case "13":
+            case "top5":top5(request,response);
                 break;
             case "14":
                 break;
@@ -128,6 +128,24 @@ public class VisitaController extends HttpServlet {
            arrayVisita.add(arrayDatosVisita);
         }
         objbuilder.add("data",arrayVisita);
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        }
+    }
+
+    private void top5(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+        Visita[] visi = daote.top5();
+        JsonArrayBuilder  arraybuilder = Json.createArrayBuilder();  
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();                 
+        for (Visita visi1 : visi) {
+              objbuilder.add("category",visi1.getArchivoPublicacion().getPublicacion().getTitulo().trim());
+              objbuilder.add("value",visi1.getCantidad());           
+              arraybuilder.add(objbuilder);           
+        }
+        objbuilder.add("top5",arraybuilder);
         JsonObject obj = objbuilder.build();
         response.setContentType("application/json");
        

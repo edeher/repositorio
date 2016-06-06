@@ -58,11 +58,11 @@
 
     </head>
     <%
-        PublicacionDAOFactory fabricate = new PublicacionDAOFactory();
-        PublicacionDAO daote = fabricate.metodoDAO();
-        //int idPublicacion = 2;
-        int idPublicacion = Integer.parseInt(request.getParameter("idPublicacion"));
-        Publicacion publi = daote.leerxid(idPublicacion);
+        ArchivoPublicacionDAOFactory fabricate = new ArchivoPublicacionDAOFactory();
+        ArchivoPublicacionDAO daote = fabricate.metodoDAO();
+
+        int idArchivoPublicacion = Integer.parseInt(request.getParameter("idArchivoPublicacion"));
+        ArchivoPublicacion archipu = daote.leerxid(idArchivoPublicacion);
 
     %>
 
@@ -147,14 +147,14 @@
                     <div class="">
                         <div class="page-title">
                             <div class="title_left">
-                                <h3>DATOS DE PUBLICACION</h3>
+                                <h3>DATOS DE DENUNCIA</h3>
                             </div>
 
 
                         </div>
                         &nbsp;          
                         <div class="clearfix">
-                            <%=publi.getTitulo()%>
+                            <%=archipu.getDescripcion().getNom()%>
                         </div>
                         &nbsp;
                         <div class="">
@@ -170,44 +170,100 @@
                                         <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
                                             <div class="panel">
                                                 <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                    <h4 class="panel-title">AUTORES</h4>
+                                                    <h4 class="panel-title">DENUNCIANTE</h4>
                                                 </a>
-                                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                                    <div class="panel-body">
-                                                        <table class="table table-bordered" id="tableAutores">
+                                                <form class="form-horizontal form-label-left " id="crearform" enctype="multipart/form-data">
 
-                                                        </table>
+
+                                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">CODIGO</label>
+                                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                                            <input type="text" class="form-control has-feedback-left" readonly="readonly" value="AUTOGENARADO">
+
+                                                            <span class="fa fa-cc form-control-feedback left" aria-hidden="true"></span>
+                                                        </div>
+                                                    </div>         
+
+                                                    <div class="form-group">
+
+                                                    </div>  
+                                                   
+                                                    
+                                                    <div class="form-group">      
+                                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">NOMBRES</label>
+                                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                <input name="nombres" type="text" class="form-control" value="">
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                    <div class="form-group">      
+                                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">apellido</label>
+                                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                <input name="apellidos" type="text" class="form-control" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">      
+                                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">DNI</label>
+                                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                <input name="dni" type="text" class="form-control" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>         
+                                                    <div class="form-group">      
+                                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">telefono</label>
+                                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                <input name="telefono" type="text" class="form-control" value="">
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Sexo</label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            <div id="gender" class="btn-group" data-toggle="buttons">
+                                                                <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                                                    <input type="radio" name="sexo" value="M"> &nbsp; Masculino &nbsp;
+                                                                </label>
+                                                                <label class="btn btn-primary active" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                                                    <input type="radio" name="sexo" value="F" checked=""> Femenino
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">      
+                                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">direccion</label>
+                                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                <input name="direccion" type="text" class="form-control" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">      
+                                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">correo</label>
+                                                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                                                <input name="correo" type="text" class="form-control" value="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+<div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" id="btnguardar" >Guardar</button>
+        </div>
+
+                                                </form>  
                                             </div>
 
                                             <!-- -->
-                                            <div class="x_panel">
-                                                <ul class="list-unstyled timeline">
-                                                    <li>
-                                                        <div class="block">
-                                                            <div class="tags">
-                                                                <a href="" class="tag">
-                                                                    <span>importante</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="block_content">
-                                                                <h2 class="title">
-                                                                    <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                                                </h2>
-                                                                <div class="byline">
-                                                                    <span>13 hours ago</span> by <a>Jane Smith</a>
-                                                                </div>
-                                                                <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
 
-                                                </ul>
-                                            </div>
-                                         <!-- -->   
-                                            
+                                            <!-- -->   
+
 
                                         </div>
                                         <!-- end of accordion -->
@@ -231,24 +287,7 @@
                                                 </a>
                                                 <div id="collapseOne1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                                     <form enctype="multipart/form-data" id="cargaform">
-                                                        <div class="form-group">
-
-                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">TIPO</label>
-                                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                                <select name="descripcion"id="" class="form-control">
-                                                                    <option value="--">--</option>
-                                                                    <%for (DescripcionArchivo es : DescripcionArchivo.values()) {
-
-                                                                    %>
-                                                                    <option value="<%=es.name()%>"  >
-                                                                        <%=es.getNom()%></option>
-                                                                        <%}%>
-                                                                </select>
-                                                            </div>
-                                                            <input type="hidden" name="idpublicacion" id="idpublicacion" value="<%=idPublicacion%>" />
-                                                            &nbsp;
-
-                                                        </div>
+                                                        
                                                         <div class="form-group">      
 
                                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">ARCHIVO</label>
@@ -394,7 +433,7 @@
                             "data": null,
                             "defaultContent": '<button name="btnVerArchivo"><a><i class="fa fa-search"></i></a></button>&nbsp&nbsp<button name="btnVerArchivo1"><a><i class="fa fa-search-plus"></i></a></button>&nbsp&nbsp <button name="btnEliminar"><a><i class="fa fa-trash"></i></a></button>&nbsp&nbsp<button name="btnSolicitar"><a><i class="fa fa-download"></i></a></button>&nbsp&nbsp<button name="btnDenunciar"><a><i class="fa fa-ban"></i></a></button>'}
                     ],
-                    "ajax": "ArchivoPublicacionController?accion=ObtenerArchivos&codigo=" +<%=idPublicacion%>,
+                    "ajax": "DenunciaController?accion=ObtenerArchivos&codigo=" +<%=9%>,
                     "initComplete": function () {
 
                     }
@@ -432,61 +471,16 @@
                         $('#miModal1').modal('show');
                         $('#iframepdf').contentWindow.location.reload(true);
                     }
-                     if (nombre == 'btnDenunciar') {
+                    if (nombre == 'btnDenunciar') {
 
                         //window.location.href='VerPublicacion.jsp?idPublicacion='+data[0];
-                        window.location.href = 'VerDenuncia.jsp?idArchivoPublicacion='+ data[0];
+                        window.location.href = 'VerPublicacion.jsp?idPublicacion=' + data[0];
                     }
                 });
                 /*-------------------------TABLA DE AUTORES--------------------------*/
-                table2 = $('#tableAutores').DataTable({
-                    "paging": false,
-                    "filter": false,
-                    "bInfo": false,
-                    "language": {
-                        "url": "css/datatables/Spanish.json"
-                    },
-                    "columns": [{"title": "Item"},
-                        {"title": "Nombre"},
-                        {"title": "especialidad"},
-                        {"title": "Cargo"},
-                        {"title": "<a href='#'id='btnNuevo'><i class='fa fa-plus'></i></a>"}],
-                    "columnDefs": [
-                        {"targets": [4],
-                            "orderable": false,
-                            "className": 'text-center'},
-                        {"targets": -1,
-                            "data": null,
-                            "defaultContent": '<button name="btnVerAutor"><a><i class="fa fa-search"></i></a></button>&nbsp&nbsp <button name="btnEliminar"><a><i class="fa fa-trash"></i></a></button>'}
-                    ],
-                    "ajax": "AutorPublicacionController?accion=ObtenerTodosPorPublicacion&codigo=" +<%=idPublicacion%>,
-                    "initComplete": function () {
 
-                    }
-                });
                 /*click en los botones del cuerpo de la tabla de AUTORES*/
-                $('#tableAutores tbody').on('click', 'button', function () {
-                    var data = table2.row($(this).parents('tr')).data();
-                    //alert("cargar pdf codigo "+ data[0]); 
-                    var nombre = $(this).attr('name');
-                    if (nombre == 'btnVerAutor') {
-                        mostrarModal('Autor.jsp');
-                    }
 
-                    if (nombre == 'btnEliminar') {
-                        if (confirm("seguro que desea eliminar el Autor") == true)
-                        {
-                            $.ajax({
-                                url: "AutorPublicacionController?accion=eliminarAutor&codigo=" + data[0],
-                            })
-                                    .always(function ()
-                                    {
-                                        actualizar2();
-
-                                    });
-                        }
-                    }
-                });
                 /*enumerar las tablas*/
                 /*tabla 1*/
                 table1.on('order.dt search.dt', function () {

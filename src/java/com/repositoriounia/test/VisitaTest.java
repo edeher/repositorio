@@ -26,6 +26,7 @@ public class VisitaTest {
 //        eliminarlinea();
 //        leer();
 //        leertodo();
+        top5();
         
     }
     public static void crearVisita() throws DAOException
@@ -84,6 +85,20 @@ public class VisitaTest {
 	  {
 	      
 	      System.out.println(" "+usuv1.toString());
+	  
+	  }
+	 
+        } 
+       public static void top5()throws DAOException
+	{
+		   VisitaDAOFactory fabricate= new  VisitaDAOFactory();
+         VisitaDAO daote= fabricate.metodoDAO();
+	 Visita[] usuv=daote.top5();
+	  
+	  for(Visita usuv1:usuv)
+	  {
+	      
+	      System.out.println(" "+usuv1.toString2());
 	  
 	  }
 	 

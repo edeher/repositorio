@@ -239,4 +239,59 @@ public class DenunciaDAOJDBC implements DenunciaDAO{
     
     }
 
+    @Override
+    public Denuncia[] leertodoxarchivo(int idArchivoPublicacion) throws DAOException {
+          try  {
+              
+             
+              
+             CallableStatement stm=con.prepareCall("{call sp_denuncia_bco1(?)}");
+             stm.setInt(1,idArchivoPublicacion);
+            ResultSet rs=stm.executeQuery();
+                      
+            ArrayList<Denuncia> tribs = new ArrayList<>(); 
+            
+            while (rs.next()) {
+                tribs.add(
+                        
+                    new Denuncia(
+                            rs.getInt("idDenuncia"),
+                            new Denunciante(
+                                rs.getInt("idDenunciante"),
+
+                                rs.getString("nombres"),
+                                rs.getString("apellidos"),
+                                rs.getString("dni"),
+                                Sexo.valueOf(rs.getString("sexo")),
+                                rs.getString("direccion"),
+                                rs.getString("telefono"),
+                                rs.getString("correo")),
+                            new ArchivoPublicacion(
+                                rs.getInt("idArchivoPublicacion"),
+                                new Publicacion(
+                                    rs.getInt("idPublicacion"),
+                                    new LineaInvestigacion(
+                                        rs.getInt("idLineaInvestigacion"),
+                                        new AreaInvestigacion(
+                                            rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")),
+                                        rs.getString("linea")),
+                                    rs.getString("titulo"),
+                                    rs.getDate("fechaCarga"),
+                                    rs.getDate("fechaPublicacion")),
+                                DescripcionArchivo.valueOf(rs.getString("descripcion1")),
+                                rs.getString("urlLocal"),
+                                rs.getString("urlWeb")),
+                            rs.getDate("fecha"),
+                            rs.getString("descripcion2"))
+                     );
+            }
+            return tribs.toArray(new Denuncia[0]);
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error obteniedo todos las denuncias en DAO: " 
+                    + se.getMessage(), se);
+        }   
+    }
+
 }
