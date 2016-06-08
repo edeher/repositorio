@@ -145,13 +145,7 @@
                 <div class="right_col" role="main">
 
                     <div class="">
-                        <div class="page-title">
-                            <div class="title_left">
-                                <h3>DATOS DE PUBLICACION</h3>
-                            </div>
-
-
-                        </div>
+                       
                         &nbsp;          
                         <div class="clearfix">
                             <%=publi.getTitulo()%>
@@ -182,42 +176,37 @@
                                             </div>
 
                                             <!-- -->
-                                            <div class="x_panel">
-                                                <ul class="list-unstyled timeline">
-                                                    <li>
-                                                        <div class="block">
-                                                            <div class="tags">
-                                                                <a href="" class="tag">
-                                                                    <span>importante</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="block_content">
-                                                                <h2 class="title">
-                                                                    <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                                                </h2>
-                                                                <div class="byline">
-                                                                    <span>13 hours ago</span> by <a>Jane Smith</a>
-                                                                </div>
-                                                                <p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
+                                            <div class="">
+                                <div class="x_panel">
+                                    <div class="x_title">
+                                        <h2>NOMBRE : #Visitas (Porcentaje)</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a href="#"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
 
-                                                </ul>
-                                            </div>
-                                         <!-- -->   
-                                            
+                                        <div id="echart_pie" style="height:178px;"></div>
+
+                                    </div>
+                                </div>
+                            </div>
+                                            <!-- -->   
+
 
                                         </div>
                                         <!-- end of accordion -->
 
 
                                     </div>
+                                    
                                 </div>
+                                
                             </div>
 
-
+                           
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="x_panel">
 
@@ -283,6 +272,16 @@
                                     </div>
                                 </div>
                             </div>
+                                                            
+                             
+                                        
+                                        
+                                        
+                                    </div></div></div>                      
+                                                            
+                                                            
+                                                            
+                                                            
 
                         </div>
 
@@ -370,6 +369,9 @@
         <script type="text/javascript" src="js/notify/pnotify.buttons.js"></script>
         <script type="text/javascript" src="js/notify/pnotify.nonblock.js"></script>
 
+        <!-- echart -->
+        <script src="js/echart/echarts-all.js"></script>
+        <script src="js/echart/green.js"></script>
         <script>
 
             var table1, band, msj, table2;
@@ -384,7 +386,7 @@
                     },
                     "columns": [{"title": "Item"},
                         {"title": "Tipo de Documento"},
-                        {"title": "<a id='btnNuevo' href='#' ><i class='fa fa-plus'></i></a>"}],
+                        {"title": "Opciones"}],
                     "columnDefs": [
                         {"targets": [2],
                             "orderable": false,
@@ -432,10 +434,10 @@
                         $('#miModal1').modal('show');
                         $('#iframepdf').contentWindow.location.reload(true);
                     }
-                     if (nombre == 'btnDenunciar') {
+                    if (nombre == 'btnDenunciar') {
 
                         //window.location.href='VerPublicacion.jsp?idPublicacion='+data[0];
-                        window.location.href = 'VerDenuncia.jsp?idArchivoPublicacion='+ data[0];
+                        window.location.href = 'VerDenuncia.jsp?idArchivoPublicacion=' + data[0];
                     }
                 });
                 /*-------------------------TABLA DE AUTORES--------------------------*/
@@ -502,6 +504,63 @@
                 }).draw();
 
                 /*fin de enumerar las tablas*/
+
+
+                /*grafico*/
+                
+                $.getJSON('VisitaController?accion=topxid&idPublicacion='+<%=idPublicacion%>, function (json) {
+                    var valores = [];
+                   var titulos=[];
+                    $.each(json.top, function (item, obj) {
+                        
+                        valores.push(obj.value);
+                       titulos.push(obj.name);
+                       
+                    });
+                
+                
+
+                var myChart = echarts.init(document.getElementById('echart_pie'), theme);
+                myChart.setOption({
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    legend: {
+                        //orient: 'vertical',
+                        //x: 'left',
+                        x: 'center',
+                        y: 'bottom',
+                        show:false,
+                        data: titulos
+                    },
+                    /* barras de herramientas*/
+                    toolbox: {
+                        show: true,
+                        feature: {
+                           
+                            restore: {
+                                show: true
+                            },
+                            saveAsImage: {
+                                show: true
+                            }
+                        }
+                    },
+                    calculable: true,
+                    series: [{
+                            name: 'Porcentaje de visita',
+                            type: 'pie',
+                            radius: '55%',
+                            center: ['50%', '48%'], //left,top
+                            data: valores
+                        }]
+                });
+
+
+                });
+
+
             });
             /*--------------------------------fin del ready-----------------------------*/
 

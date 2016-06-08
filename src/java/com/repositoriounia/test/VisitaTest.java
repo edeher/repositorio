@@ -26,7 +26,8 @@ public class VisitaTest {
 //        eliminarlinea();
 //        leer();
 //        leertodo();
-        top5();
+//        top5();
+        topxid();
         
     }
     public static void crearVisita() throws DAOException
@@ -94,6 +95,20 @@ public class VisitaTest {
 		   VisitaDAOFactory fabricate= new  VisitaDAOFactory();
          VisitaDAO daote= fabricate.metodoDAO();
 	 Visita[] usuv=daote.top5();
+	  
+	  for(Visita usuv1:usuv)
+	  {
+	      
+	      System.out.println(" "+usuv1.toString2());
+	  
+	  }
+	 
+        } 
+        public static void topxid()throws DAOException
+	{
+		   VisitaDAOFactory fabricate= new  VisitaDAOFactory();
+         VisitaDAO daote= fabricate.metodoDAO();
+	 Visita[] usuv=daote.topxid(3);
 	  
 	  for(Visita usuv1:usuv)
 	  {

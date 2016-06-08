@@ -55,7 +55,7 @@ public class VisitaController extends HttpServlet {
                 break;
             case "top5":top5(request,response);
                 break;
-            case "14":
+            case "topxid":topxid(request,response);
                 break;
             case "15":
                 break;
@@ -146,6 +146,27 @@ public class VisitaController extends HttpServlet {
               arraybuilder.add(objbuilder);           
         }
         objbuilder.add("top5",arraybuilder);
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        }
+    }
+
+    private void topxid(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+        int idPublicacion=Integer.parseInt(request.getParameter("idPublicacion") );
+        System.out.println("idPublicacion"+idPublicacion);
+         Visita[] visi = daote.topxid(idPublicacion);
+        JsonArrayBuilder  arraybuilder = Json.createArrayBuilder();  
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();                 
+        for (Visita visi1 : visi) {
+              objbuilder.add("value",visi1.getCantidad());   
+              objbuilder.add("name",visi1.getArchivoPublicacion().getDescripcion().name());
+                      
+              arraybuilder.add(objbuilder);           
+        }
+        objbuilder.add("top",arraybuilder);
         JsonObject obj = objbuilder.build();
         response.setContentType("application/json");
        
