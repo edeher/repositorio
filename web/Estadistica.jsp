@@ -47,6 +47,9 @@
         objvi3 = daote.top5xitem(3);
         objvi4 = daote.top5xitem(4);
         objvi5 = daote.top5xitem(5);
+        
+       
+       
 
 
     %>
@@ -165,7 +168,10 @@
                             <div class="left"></div>
                             <div class="right">
                                 <span class="count_top"><i class="fa fa-user"></i> Total Investigadores</span>
-                                <div class="count">2500</div>
+                                <%
+                                         Visita objcantidad=daote.cantidad("PRINCIPAL");
+                                %>
+                                <div class="count"><%=objcantidad.getCantidad() %></div>
                                 <span class="count_bottom"><i class="green">4% </i> From last Week</span>
                             </div>
                         </div>
@@ -174,7 +180,10 @@
                             <div class="left"></div>
                             <div class="right">
                                 <span class="count_top"><i class="fa fa-user"></i> Total Publicaciones</span>
-                                <div class="count green">2,500</div>
+                                <%
+                                         Visita objcantidad1=daote.cantidadPubli();
+                                %>
+                                <div class="count green"><%=objcantidad1.getCantidad() %></div>
                                 <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
                             </div>
                         </div>
@@ -182,7 +191,10 @@
                             <div class="left"></div>
                             <div class="right">
                                 <span class="count_top"><i class="fa fa-user"></i> Total Visitas</span>
-                                <div class="count">4,567</div>
+                                 <%
+                                         Visita objcantidad2=daote.cantidadVisitas();
+                                %>
+                                <div class="count"><%=objcantidad2.getCantidad() %></div>
                                 <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
                             </div>
                         </div>
@@ -190,6 +202,7 @@
                             <div class="left"></div>
                             <div class="right">
                                 <span class="count_top"><i class="fa fa-user"></i> Total Solicitudes</span>
+                                
                                 <div class="count">2,315</div>
                                 <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
                             </div>
@@ -257,7 +270,7 @@
                                     </div>
                                     <div class="x_content">
 
-                                        <div id="echart_pie" style="height:350px;"></div>
+                                        <div id="echart_pie" style="height:400px;"></div>
 
                                     </div>
                                 </div>
@@ -275,7 +288,7 @@
                                     </div>
                                     <div class="x_content">
 
-                                        <div id="echart_pie2" style="height:350px;"></div>
+                                        <div id="echart_pie2" style="height:500px;"></div>
 
                                     </div>
                                 </div>
@@ -293,7 +306,7 @@
                                     </div>
                                     <div class="x_content">
 
-                                        <div id="echart_donut" style="height:350px;"></div>
+                                        <div id="echart_donut" style="height:500px;"></div>
 
                                     </div>
                                 </div>
@@ -312,7 +325,7 @@
                                     </div>
                                     <div class="x_content">
 
-                                        <div id="echart_pyramid" style="height:370px;"></div>
+                                        <div id="echart_pyramid" style="height:500px;"></div>
 
                                     </div>
                                 </div>
@@ -333,7 +346,7 @@
                                     </div>
                                     <div class="x_content">
 
-                                        <div id="echart_bar_horizontal" style="height:370px;"></div>
+                                        <div id="echart_bar_horizontal" style="height:500px;"></div>
 
                                     </div>
                                 </div>
@@ -462,65 +475,68 @@
 /// fin de segundo grafico
 //segundo grafico
                 $.getJSON('VisitaController?accion=topxid&idPublicacion=' +<%=objvi1.getArchivoPublicacion().getPublicacion().getIdPublicacion()%>, function (json) {
-                    var valores = [];
-                  
-                    var titulos = [];
+
                     var data = [];
+                    var titulos=[];
                     $.each(json.top, function (item, obj) {
 
                         data.push(obj);
                         titulos.push(obj.name);
-                        valores.push(obj.value);
-                        
+
 
                     });
                    
 
-                    var myChart = echarts.init(document.getElementById('echart_pie'), theme);
-                    myChart.setOption({
-                        tooltip: {
-                            trigger: 'item',
-                            formatter: "{a} <br/>{b} : {c} ({d}%)"
-                        },
-                        legend: {
-                            //orient: 'vertical',
-                            //x: 'left',
-                            x: 'center',
-                            y: 'bottom',
-                            data: titulos
-                        },
-                        /* barras de herramientas*/
-                        toolbox: {
-                            show: true,
-                            feature: {
-                                magicType: {
-                                    show: true,
-                                    type: ['pie', 'funnel'],
-                                    option: {
-                                        funnel: {
-                                            x: '25%',
-                                            width: '50%',
-                                            funnelAlign: 'left',
-                                            max: 1548
+
+                        var myChart = echarts.init(document.getElementById('echart_pie'), theme);
+                        myChart.setOption({
+                            tooltip: {
+                                trigger: 'item',
+                                formatter: "{a} <br/>{b} : {c} ({d}%)"
+                            },
+                            legend: 
+                                    {
+                                        
+                                        
+                                orient: 'vertical',
+                                x: 'left',
+                                //x: 'center',
+                                y: 'bottom',
+                                data: titulos
+                            },
+                            /* barras de herramientas*/
+                            toolbox: {
+                                show: true,
+                                feature: {
+                                    magicType: {
+                                        show: true,
+                                        type: ['pie', 'funnel'],
+                                        option: {
+                                            funnel: {
+                                                x: '25%',
+                                                width: '50%',
+                                                funnelAlign: 'left',
+                                                max: 1548
+                                            }
                                         }
+                                    },
+                                    restore: {
+                                        show: true
+                                    },
+                                    saveAsImage: {
+                                        show: true
                                     }
-                                },
-                                restore: {
-                                    show: true
-                                },
-                                saveAsImage: {
-                                    show: true
                                 }
-                            }
-                        },
-                        calculable: true,
-                        series: [{
-                                name: 'Visitas',
-                                type: 'pie',
-                                radius: '55%',
-                                center: ['50%', '48%'], //left,top
-                                data: data
-                            }]
+                            },
+                            calculable: true,
+                            series: [{
+                                    name: 'Visitas',
+                                    type: 'pie',
+                                    radius: '55%',
+                                    center: ['50%', '48%'], //left,top
+                                    data: data
+                                }]
+                        
                     });
 
                 });
@@ -550,8 +566,10 @@
                             formatter: "{a} <br/>{b} : {c} ({d}%)"
                         },
                         legend: {
-                            x: 'center',
-                            y: 'bottom',
+                            orient: 'vertical',
+                                x: 'left',
+                                //x: 'center',
+                                y: 'bottom',
                             data: titulos
                         },
                         /* barras de herramientas*/
@@ -606,10 +624,10 @@
                         },
                         calculable: true,
                         legend: {
-                            //orient: 'vertical',
-                            //x: 'left',
-                            x: 'center',
-                            y: 'bottom',
+                           orient: 'vertical',
+                                x: 'left',
+                                //x: 'center',
+                                y: 'bottom',
                             data: titulos
                         },
                         /* barras de herramientas*/

@@ -170,6 +170,10 @@
                     ],
                     "ajax": "ArchivoPublicacionController?accion=ObtenerArchivos&codigo=" +<%=idPublicacion%>,
                     "initComplete": function () {
+                        $('[data-toggle="tooltip"]').tooltip({
+                            trigger: 'hover',
+                            html: true
+                        });
 
                     }
                 });

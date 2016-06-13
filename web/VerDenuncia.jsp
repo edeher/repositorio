@@ -435,6 +435,10 @@
                     ],
                     "ajax": "DenunciaController?accion=ObtenerArchivos&codigo=" +<%=9%>,
                     "initComplete": function () {
+                        $('[data-toggle="tooltip"]').tooltip({
+                            trigger: 'hover',
+                            html: true
+                        });
 
                     }
                 });

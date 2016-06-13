@@ -231,10 +231,14 @@
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnEditar" ><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnEliminar"><a><i class="fa fa-remove"></i></a></button>'}
+                    "defaultContent": '<button name="btnEditar" data-toggle="tooltip" data-placement="left" title="EDITAR"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnEliminar" data-toggle="tooltip" data-placement="right" title="ELIMINAR"><a><i class="fa fa-remove"></i></a></button>'}
                 ],
                 "ajax": "AreaInvestigacionController?accion=ObtenerTodos",
                 "initComplete": function() {
+                    $('[data-toggle="tooltip"]').tooltip({
+                            trigger: 'hover',
+                            html: true
+                        });
                     
                 }
             });  

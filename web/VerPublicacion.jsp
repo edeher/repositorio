@@ -398,6 +398,10 @@
                     ],
                     "ajax": "ArchivoPublicacionController?accion=ObtenerArchivos&codigo=" +<%=idPublicacion%>,
                     "initComplete": function () {
+                        $('[data-toggle="tooltip"]').tooltip({
+                            trigger: 'hover',
+                            html: true
+                        });
 
                     }
                 });
@@ -463,6 +467,10 @@
                     ],
                     "ajax": "AutorPublicacionController?accion=ObtenerTodosPorPublicacion&codigo=" +<%=idPublicacion%>,
                     "initComplete": function () {
+                        $('[data-toggle="tooltip"]').tooltip({
+                            trigger: 'hover',
+                            html: true
+                        });
 
                     }
                 });
@@ -508,19 +516,18 @@
 
                 /*grafico*/
                 
+               
                 $.getJSON('VisitaController?accion=topxid&idPublicacion='+<%=idPublicacion%>, function (json) {
                     var valores = [];
                    var titulos=[];
                     $.each(json.top, function (item, obj) {
                         
-                        valores.push(obj.value);
+                        valores.push(obj);
                        titulos.push(obj.name);
                        
                     });
                 
-                
-
-                var myChart = echarts.init(document.getElementById('echart_pie'), theme);
+               var myChart = echarts.init(document.getElementById('echart_pie'), theme);
                 myChart.setOption({
                     tooltip: {
                         trigger: 'item',
@@ -557,7 +564,7 @@
                         }]
                 });
 
-
+            
                 });
 
 

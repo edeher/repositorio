@@ -21,4 +21,8 @@ public interface VisitaDAO {
     public Visita[]top5()throws DAOException;
      public Visita[]top5_2()throws DAOException;
     public Visita[] topxid(int idPublicacion)throws DAOException;
+    public Visita cantidad(String nombre)throws DAOException;
+     public Visita cantidadPubli()throws DAOException;
+     public Visita cantidadVisitas()throws DAOException;
+     
 }

@@ -27,7 +27,9 @@ public class VisitaTest {
 //        leer();
 //        leertodo();
 //        top5();
-        topxid();
+//        topxid();
+//        leernombre();
+        nropublicacion();
         
     }
     public static void crearVisita() throws DAOException
@@ -72,6 +74,28 @@ public class VisitaTest {
        
                
 	  Visita objEs=daote.leerxid(9);
+	 System.out.println(" "+objEs.toString());
+        
+	    
+	}
+       public static void leernombre()throws DAOException
+	{
+		    VisitaDAOFactory fabricate= new  VisitaDAOFactory();
+         VisitaDAO daote= fabricate.metodoDAO();
+       
+               
+	  Visita objEs=daote.cantidad("COLABORADOR");
+	 System.out.println(" "+objEs.toString());
+        
+	    
+	}
+       public static void nropublicacion()throws DAOException
+	{
+		    VisitaDAOFactory fabricate= new  VisitaDAOFactory();
+         VisitaDAO daote= fabricate.metodoDAO();
+       
+               
+	  Visita objEs=daote.cantidadPubli();
 	 System.out.println(" "+objEs.toString());
         
 	    

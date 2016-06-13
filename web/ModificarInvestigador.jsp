@@ -5,6 +5,9 @@
 --%>
 
 
+<%@page import="com.repositoriounia.modelo.Autor"%>
+<%@page import="com.repositoriounia.dao.AutorDAO"%>
+<%@page import="com.repositoriounia.dao.AutorDAOFactory"%>
 <%@page import="com.repositoriounia.dao.FacultadDAO"%>
 <%@page import="com.repositoriounia.modelo.Facultad"%>
 <%@page import="com.repositoriounia.dao.FacultadDAOFactory"%>
@@ -17,7 +20,11 @@
 
     </head>
     <%
-
+        AutorDAOFactory fabricate=new AutorDAOFactory();
+        AutorDAO daote=fabricate.metodoDAO();
+        int codigo = Integer.parseInt(request.getParameter("codigo"));
+        Autor objau=daote.leerxid(codigo);
+        
         FacultadDAOFactory fabricate1 = new FacultadDAOFactory();
         FacultadDAO daote1 = fabricate1.metodoDAO();
         Facultad[] facul = daote1.leertodo();
@@ -40,7 +47,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">CODIGO</label>
                     <div class="col-md-9 col-sm-9 col-xs-12">
-                        <input type="text" class="form-control has-feedback-left" readonly="readonly" value="AUTOGENARADO">
+                        <input type="text" class="form-control has-feedback-left" readonly="readonly" value="<%=objau.getIdAutor() %>">
 
                         <span class="fa fa-cc form-control-feedback left" aria-hidden="true"></span>
                     </div>

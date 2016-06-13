@@ -14,7 +14,8 @@ public enum Estados {
     
     A("Activo"),
     N("No_activo"),
-    E("En_espera");
+    E("En_espera"),
+    D("Registrado en DINA");
     private String nom;
 
     /**

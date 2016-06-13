@@ -306,5 +306,81 @@ public class VisitaDAOJDBC implements VisitaDAO{
         } 
     }
 
+    @Override
+    public Visita cantidad(String nombre) throws DAOException {
+        try{
+        CallableStatement st=con.prepareCall("{call sp_cantidad(?)}");
+            st.setString(1,nombre);
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                     new Visita(
+                            
+                         
+                            rs.getInt("cantidad")
+                )
+                         
+                   );
+            
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error contando en DAO", se);
+        } 
+    }
+
+    @Override
+    public Visita cantidadPubli() throws DAOException {
+        try{
+        CallableStatement st=con.prepareCall("{call sp_publicaciones_nropublicaciones()}");
+            
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                     new Visita(
+                            
+                         
+                            rs.getInt("cantidad")
+                )
+                         
+                   );
+            
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error buscando publicaciones en DAO", se);
+        } 
+    }
+
+    @Override
+    public Visita cantidadVisitas() throws DAOException {
+        try{
+        CallableStatement st=con.prepareCall("{call sp_visitas_nrovisitas()}");
+            
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                     new Visita(
+                            
+                         
+                            rs.getInt("cantidad")
+                )
+                         
+                   );
+            
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error buscando publicaciones en DAO", se);
+        } 
+    
+    }
+
    
 }

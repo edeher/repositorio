@@ -40,34 +40,12 @@
     </head>
 
 
-    <body class="nav-md">
-
+    <body class="nav-md"  >
         <div class="container body">
-
-            <div class="main_container">
-
-                <!-- page content -->
+            <!-- page content -->
                 <div class="col-md-12">
                     <div class="col-middle">
-                        <ul class="nav navbar-nav navbar-right" id="loginmio">
-                            <li class="">
-
-                                <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                    <li><a href="javascript:;">  Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">
-                                            <span class="badge bg-red pull-right">50%</span>
-                                            <span>Settings</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:;">Help</a>
-                                    </li>
-
-                                </ul>
-                            </li>
-                        </ul>
+                        
                         <div class="text-center">
                             <h1 ><img src="images/logo.png" alt="" height="45%" width="90%"/></h1>
                             
@@ -75,8 +53,6 @@
                             <p >ESPACIO VIRTUAL DE CONCENTRACION Y PRODUCCION EN CIENCIA DE LA UNIA </p>
                             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                                 <div class="menu_section">
-
-                                    <ul class="nav side-menu">
 
                                         <li><a href="Publicaciones.jsp"><h2>INGRESAR</h2> </a></li>
 
@@ -96,7 +72,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            
             <!-- footer content -->
         </div>
 

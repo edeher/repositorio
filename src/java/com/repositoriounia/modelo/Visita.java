@@ -97,8 +97,11 @@ public class Visita {
         this.cantidad = cantidad;
     }
 
-   
+    
     public String toString() {
+        return "Visita{" + "cantidad=" + cantidad + '}';
+    }
+ public String toString3() {
         return "Visita{" + "idVisita=" + idVisita + ", archivoPublicacion=" + archivoPublicacion + ", fecha=" + fecha + '}';
     }
     
@@ -107,6 +110,8 @@ public class Visita {
     public String toString2() {
         return "Visita{" + "archivoPublicacion=" + archivoPublicacion + ", cantidad=" + cantidad + '}';
     }
+   
+   
     
 
     
@@ -122,6 +127,10 @@ public class Visita {
      * @param cantidad the cantidad to set
      */
     public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public Visita(int cantidad) {
         this.cantidad = cantidad;
     }
     

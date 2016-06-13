@@ -232,15 +232,14 @@
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnEditar"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button>'}
+                    "defaultContent": '<button name="btnEditar" data-toggle="tooltip" data-placement="left" title="EDITAR"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar" data-toggle="tooltip" data-placement="right" title="ELIMINAR"><a><i class="fa fa-remove"></i></a></button>'}
                 ],
                 "ajax": "FacultadController?accion=ObtenerTodos",
                 "initComplete": function() {
-                   /* $('#enlace').click(function() {
-                        var data = table.row( $(this).parents('tr') ).data();
-                        mostrarModal('nuevaPublicacion.jsp?codigo='+data[0])
-                        alert("en prueba");
-                    });*/
+                    $('[data-toggle="tooltip"]').tooltip({
+                            trigger: 'hover',
+                            html: true
+                        });
                 }
             });  
             

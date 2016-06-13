@@ -162,19 +162,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="x_content">
-
-                            <p>Hover over the links below to see tooltips:</p>
-
-                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Tooltip left">Tooltip left</button>
-
-                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Tooltip top">Tooltip top</button>
-
-                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Tooltip bottom">Tooltip bottom</button>
-
-                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="Tooltip right">Tooltip right</button>
-
-                        </div>
+                        
                     </div>
                     <br />
 
@@ -229,7 +217,7 @@
         <script src="js/datatables/dataTables.responsive.min.js"></script>
         <script src="js/datatables/responsive.bootstrap.min.js"></script>
         <script src="js/datatables/dataTables.scroller.min.js"></script>
-
+        <!--- librerias paramensaje emergentes--->
         <script type="text/javascript" src="js/notify/pnotify.core.js"></script>
         <script type="text/javascript" src="js/notify/pnotify.buttons.js"></script>
         <script type="text/javascript" src="js/notify/pnotify.nonblock.js"></script>
@@ -237,8 +225,8 @@
 
         <script type="text/javascript">
             var table, band, msj;
-            $(document).ready(function () {                
-                
+            $(document).ready(function () {
+
                 table = $('#datatable-responsive').DataTable({
                     "language": {
                         "url": "css/datatables/Spanish.json"
@@ -249,22 +237,22 @@
                         {"title": "Linea Investigacion"},
                         {"title": "Fecha Publicacion"},
                         {"title": "Fecha de Carga"},
-                        {"title": "<a id='btnNuevo' href='#' ><i class='fa fa-plus ' data-toggle='tooltip' data-placement='top' title='Nuevo'></i></a>"}],
+                        {"title": "<a id='btnNuevo' href='#' ><i class='fa fa-plus ' data-toggle='tooltip' data-placement='top' title='NUEVO'></i></a>"}],
                     "columnDefs": [
                         {"targets": [6],
                             "orderable": false,
                             "className": 'text-center'},
                         {"targets": -1,
                             "data": null,
-                            "defaultContent": '<button name="btnEditar" type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Tooltip left"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnVer"><a><i class="fa fa-search"></i></a></button>'}
+                            "defaultContent": '<button name="btnEditar"  data-toggle="tooltip" data-placement="left" title="EDITAR" ><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar"  data-toggle="tooltip" data-placement="top" title="ELIMINAR"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnVer"  data-toggle="tooltip" data-placement="right" title="VER"><a><i class="fa fa-search"></i></a></button>'}
                     ],
                     "ajax": "PublicacionController?accion=ObtenerTodos",
                     "initComplete": function () {
-                        /* $('#enlace').click(function() {
-                         var data = table.row( $(this).parents('tr') ).data();
-                         mostrarModal('nuevaPublicacion.jsp?codigo='+data[0])
-                         alert("en prueba");
-                         });*/
+                        //activate the bootstrap toggle js
+                        $('[data-toggle="tooltip"]').tooltip({
+                            trigger: 'hover',
+                            html: true
+                        });
                     }
                 });
                 table.on('order.dt search.dt', function () {
