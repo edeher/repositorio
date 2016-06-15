@@ -145,7 +145,7 @@
                 <div class="right_col" role="main">
 
                     <div class="">
-                       
+
                         &nbsp;          
                         <div class="clearfix">
                             <%=publi.getTitulo()%>
@@ -177,22 +177,22 @@
 
                                             <!-- -->
                                             <div class="">
-                                <div class="x_panel">
-                                    <div class="x_title">
-                                        <h2>NOMBRE : #Visitas (Porcentaje)</h2>
-                                        <ul class="nav navbar-right panel_toolbox">
-                                            <li><a href="#"><i class="fa fa-chevron-up"></i></a>
-                                            </li>
-                                        </ul>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="x_content">
+                                                <div class="x_panel">
+                                                    <div class="x_title">
+                                                        <h2>NOMBRE : #Visitas (Porcentaje)</h2>
+                                                        <ul class="nav navbar-right panel_toolbox">
+                                                            <li><a href="#"><i class="fa fa-chevron-up"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="x_content">
 
-                                        <div id="echart_pie" style="height:178px;"></div>
+                                                        <div id="echart_pie" style="height:178px;"></div>
 
-                                    </div>
-                                </div>
-                            </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <!-- -->   
 
 
@@ -201,12 +201,12 @@
 
 
                                     </div>
-                                    
+
                                 </div>
-                                
+
                             </div>
 
-                           
+
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="x_panel">
 
@@ -272,376 +272,395 @@
                                     </div>
                                 </div>
                             </div>
-                                                            
-                             
-                                        
-                                        
-                                        
-                                    </div></div></div>                      
-                                                            
-                                                            
-                                                            
-                                                            
-
-                        </div>
 
 
 
-                    </div>
 
 
-                </div>
-                <!-- /page content -->
-                <div id="miModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
+                        </div></div></div>                      
 
-                        </div>
-                    </div>
-                </div>
-                <!--moda para archivos-->  
-                <div id="miModal1" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header" height="">
-                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-                                </button>
-                                <h4 class="modal-title" id="myModalLabel">Archivo</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="iframe-container">
-                                    <iframe id="iframepdf" src="" width="100%" height="550" frameborder="0">
-                                    </iframe>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- fin de modal para archivos-->
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-12">
+
+
+
 
             </div>
+
+
 
         </div>
 
 
+    </div>
+    <!-- /page content -->
+    <div id="miModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
 
-        <script src="js/jquery.min.js"></script>
+            </div>
+        </div>
+    </div>
+    <!--moda para archivos-->  
+    <div id="miModal1" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" height="">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Archivo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="iframe-container">
+                        <iframe id="iframepdf" src="" width="100%" height="550" frameborder="0">
+                        </iframe>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- fin de modal para archivos-->
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12">
 
-        <script src="js/bootstrap.min.js"></script>
+</div>
 
-        <!-- bootstrap progress js -->
-        <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
-        <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
-        <!-- icheck -->
-        <script src="js/icheck/icheck.min.js"></script>
+</div>
 
-        <script src="js/custom.js"></script>
-        <!-- pace -->
-        <script src="js/pace/pace.min.js"></script>
-        <!-- PNotify -->
-        <script type="text/javascript" src="js/notify/pnotify.core.js"></script>
-        <script type="text/javascript" src="js/notify/pnotify.buttons.js"></script>
-        <script type="text/javascript" src="js/notify/pnotify.nonblock.js"></script>
-        <!-- Datatables-->
-        <script src="js/datatables/jquery.dataTables.min.js"></script>
-        <script src="js/datatables/dataTables.bootstrap.js"></script>
-        <script src="js/datatables/dataTables.buttons.min.js"></script>
-        <script src="js/datatables/buttons.bootstrap.min.js"></script>
-        <script src="js/datatables/jszip.min.js"></script>
-        <script src="js/datatables/pdfmake.min.js"></script>
-        <script src="js/datatables/vfs_fonts.js"></script>
-        <script src="js/datatables/buttons.html5.min.js"></script>
-        <script src="js/datatables/buttons.print.min.js"></script>
-        <script src="js/datatables/dataTables.fixedHeader.min.js"></script>
-        <script src="js/datatables/dataTables.keyTable.min.js"></script>
-        <script src="js/datatables/dataTables.responsive.min.js"></script>
-        <script src="js/datatables/responsive.bootstrap.min.js"></script>
-        <script src="js/datatables/dataTables.scroller.min.js"></script>
-        <!-------------------->
-        <script src="js/fileinput.min.js" type="text/javascript"></script>
-        <!-------------------->
-        <script type="text/javascript" src="js/notify/pnotify.core.js"></script>
-        <script type="text/javascript" src="js/notify/pnotify.buttons.js"></script>
-        <script type="text/javascript" src="js/notify/pnotify.nonblock.js"></script>
 
-        <!-- echart -->
-        <script src="js/echart/echarts-all.js"></script>
-        <script src="js/echart/green.js"></script>
-        <script>
 
-            var table1, band, msj, table2;
-            $(document).ready(function () {
-                /*-------------------------TABLA DE ARCHIVOS--------------------------*/
-                table1 = $('#tableArchivos').DataTable({
-                    "paging": false,
-                    "filter": false,
-                    "bInfo": false,
-                    "language": {
-                        "url": "css/datatables/Spanish.json"
-                    },
-                    "columns": [{"title": "Item"},
-                        {"title": "Tipo de Documento"},
-                        {"title": "Opciones"}],
-                    "columnDefs": [
-                        {"targets": [2],
-                            "orderable": false,
-                            "className": 'text-center'},
-                        // {"targets":0,"visible":false},
-                        {"targets": -1,
-                            "data": null,
-                            "defaultContent": '<button name="btnVerArchivo"><a><i class="fa fa-search"></i></a></button>&nbsp&nbsp<button name="btnVerArchivo1"><a><i class="fa fa-search-plus"></i></a></button>&nbsp&nbsp <button name="btnEliminar"><a><i class="fa fa-trash"></i></a></button>&nbsp&nbsp<button name="btnSolicitar"><a><i class="fa fa-download"></i></a></button>&nbsp&nbsp<button name="btnDenunciar"><a><i class="fa fa-ban"></i></a></button>'}
-                    ],
-                    "ajax": "ArchivoPublicacionController?accion=ObtenerArchivos&codigo=" +<%=idPublicacion%>,
-                    "initComplete": function () {
-                        $('[data-toggle="tooltip"]').tooltip({
-                            trigger: 'hover',
-                            html: true
-                        });
+<script src="js/jquery.min.js"></script>
 
-                    }
+<script src="js/bootstrap.min.js"></script>
+
+<!-- bootstrap progress js -->
+<script src="js/progressbar/bootstrap-progressbar.min.js"></script>
+<script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+<!-- icheck -->
+<script src="js/icheck/icheck.min.js"></script>
+
+<script src="js/custom.js"></script>
+<!-- pace -->
+<script src="js/pace/pace.min.js"></script>
+<!-- PNotify -->
+<script type="text/javascript" src="js/notify/pnotify.core.js"></script>
+<script type="text/javascript" src="js/notify/pnotify.buttons.js"></script>
+<script type="text/javascript" src="js/notify/pnotify.nonblock.js"></script>
+<!-- Datatables-->
+<script src="js/datatables/jquery.dataTables.min.js"></script>
+<script src="js/datatables/dataTables.bootstrap.js"></script>
+<script src="js/datatables/dataTables.buttons.min.js"></script>
+<script src="js/datatables/buttons.bootstrap.min.js"></script>
+<script src="js/datatables/jszip.min.js"></script>
+<script src="js/datatables/pdfmake.min.js"></script>
+<script src="js/datatables/vfs_fonts.js"></script>
+<script src="js/datatables/buttons.html5.min.js"></script>
+<script src="js/datatables/buttons.print.min.js"></script>
+<script src="js/datatables/dataTables.fixedHeader.min.js"></script>
+<script src="js/datatables/dataTables.keyTable.min.js"></script>
+<script src="js/datatables/dataTables.responsive.min.js"></script>
+<script src="js/datatables/responsive.bootstrap.min.js"></script>
+<script src="js/datatables/dataTables.scroller.min.js"></script>
+<!-------------------->
+<script src="js/fileinput.min.js" type="text/javascript"></script>
+<!-------------------->
+<script type="text/javascript" src="js/notify/pnotify.core.js"></script>
+<script type="text/javascript" src="js/notify/pnotify.buttons.js"></script>
+<script type="text/javascript" src="js/notify/pnotify.nonblock.js"></script>
+
+<!-- echart -->
+<script src="js/echart/echarts-all.js"></script>
+<script src="js/echart/green.js"></script>
+<script>
+
+    var table1, band, msj, table2;
+    $(document).ready(function () {
+        /*-------------------------TABLA DE ARCHIVOS--------------------------*/
+        table1 = $('#tableArchivos').DataTable({
+            "paging": false,
+            "filter": false,
+            "bInfo": false,
+            "language": {
+                "url": "css/datatables/Spanish.json"
+            },
+            "columns": [{"title": "Item"},
+                {"title": "Tipo de Documento"},
+                {"title": "Opciones"}],
+            "columnDefs": [
+                {"targets": [2],
+                    "orderable": false,
+                    "className": 'text-center'},
+                // {"targets":0,"visible":false},
+                {"targets": -1,
+                    "data": null,
+                    "defaultContent": '<button name="btnVerArchivo" data-toggle="tooltip" data-placement="left" title="VER" ><a><i class="fa fa-search"></i></a></button>&nbsp&nbsp<button name="btnVerArchivo1" data-toggle="tooltip" data-placement="top" title="VER" ><a><i class="fa fa-search-plus"></i></a></button>&nbsp&nbsp <button name="btnEliminar" data-toggle="tooltip" data-placement="top" title="ELIMINAR" ><a><i class="fa fa-trash"></i></a></button>&nbsp&nbsp<button name="btnSolicitar" data-toggle="tooltip" data-placement="top" title="SOLICITAR" ><a><i class="fa fa-download"></i></a></button>&nbsp&nbsp<button name="btnDenunciar" data-toggle="tooltip" data-placement="right" title="DENUNCIAR" ><a><i class="fa fa-ban"></i></a></button>'}
+            ],
+            "ajax": "ArchivoPublicacionController?accion=ObtenerArchivos&codigo=" +<%=idPublicacion%>,
+            "initComplete": function () {
+                $('[data-toggle="tooltip"]').tooltip({
+                    trigger: 'hover',
+                    html: true
                 });
 
-                /*click en los botones del cuerpo de la tabla de archivos*/
-                $('#tableArchivos tbody').on('click', 'button', function () {
-                    var data = table1.row($(this).parents('tr')).data();
-                    //alert("cargar pdf codigo "+ data[0]); 
-                    var nombre = $(this).attr('name');
+            }
+        });
 
-                    if (nombre == 'btnEliminar') {
-                        if (confirm("seguro que desea eliminar el Archivo") == true)
-                        {
-                            $.ajax({
-                                url: "ArchivoPublicacionController?accion=eliminarArchivo&idArchivo=" + data[0],
-                            })
-                                    .always(function ()
-                                    {
-                                        actualizar2();
+        /*click en los botones del cuerpo de la tabla de archivos*/
+        $('#tableArchivos tbody').on('click', 'button', function () {
+            var data = table1.row($(this).parents('tr')).data();
+            //alert("cargar pdf codigo "+ data[0]); 
+            var nombre = $(this).attr('name');
 
-                                    });
+            if (nombre == 'btnEliminar') {
+                if (confirm("seguro que desea eliminar el Archivo") == true)
+                {
+                    $.ajax({
+                        url: "ArchivoPublicacionController?accion=eliminarArchivo&idArchivo=" + data[0],
+                    })
+                            .always(function ()
+                            {
+                                actualizar2();
+
+                            });
+                }
+            }
+            if (nombre == 'btnVerArchivo') {
+                $('#iframepdf').attr('src', 'ArchivoPublicacionController?accion=verArchivo&idArchivo=' + data[0]);
+                $('.modal-lg').css('width', '1420px');
+
+                $('#miModal1').modal('show');
+                $('#iframepdf').contentWindow.location.reload(true);
+            }
+            if (nombre == 'btnVerArchivo1') {
+                $('#iframepdf').attr('src', 'pdf.jsp?codigo=' + data[0]);
+                $('.modal-lg').css('width', '1420px');
+                $('#miModal1').modal('show');
+                $('#iframepdf').contentWindow.location.reload(true);
+            }
+            if (nombre == 'btnDenunciar') {
+
+                //window.location.href='VerPublicacion.jsp?idPublicacion='+data[0];
+                window.location.href = 'VerDenuncia.jsp?idArchivoPublicacion=' + data[0];
+            }
+        });
+        /*-------------------------TABLA DE AUTORES--------------------------*/
+        table2 = $('#tableAutores').DataTable({
+            "paging": false,
+            "filter": false,
+            "bInfo": false,
+            "language": {
+                "url": "css/datatables/Spanish.json"
+            },
+            "columns": [{"title": "Item"},
+                {"title": "Nombre"},
+                {"title": "especialidad"},
+                {"title": "Cargo"},
+                {"title": "<a href='#'id='btnNuevo'><i class='fa fa-plus' data-toggle='tooltip' data-placement='top' title='NUEVO'></i></a>"}],
+            "columnDefs": [
+                {"targets": [4],
+                    "orderable": false,
+                    "className": 'text-center'},
+                {"targets": -1,
+                    "data": null,
+                    "defaultContent": '<button name="btnVerAutor" data-toggle="tooltip" data-placement="left" title="VER" ><a><i class="fa fa-search"></i></a></button>&nbsp&nbsp <button name="btnEliminar" data-toggle="tooltip" data-placement="right" title="ELIINAR" ><a><i class="fa fa-trash"></i></a></button>'}
+            ],
+            "ajax": "AutorPublicacionController?accion=ObtenerTodosPorPublicacion&codigo=" +<%=idPublicacion%>,
+            "initComplete": function () {
+                $('[data-toggle="tooltip"]').tooltip({
+                    trigger: 'hover',
+                    html: true
+                });
+
+            }
+        });
+        /*click en los botones del cuerpo de la tabla de AUTORES*/
+        $('#tableAutores tbody').on('click', 'button', function () {
+            var data = table2.row($(this).parents('tr')).data();
+            //alert("cargar pdf codigo "+ data[0]); 
+            var nombre = $(this).attr('name');
+            if (nombre == 'btnVerAutor') {
+                mostrarModal('Autor.jsp');
+            }
+
+            if (nombre == 'btnEliminar') {
+                if (confirm("seguro que desea eliminar el Autor") == true)
+                {
+                    $.ajax({
+                        url: "AutorPublicacionController?accion=eliminarAutor&codigo=" + data[0],
+                    })
+                            .always(function ()
+                            {
+                                actualizar2();
+
+                            });
+                }
+            }
+        });
+        /*enumerar las tablas*/
+        /*tabla 1*/
+        table1.on('order.dt search.dt', function () {
+            table1.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+            /*tabla 2*/
+        }).draw();
+        table2.on('order.dt search.dt', function () {
+            table2.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+
+        /*fin de enumerar las tablas*/
+
+
+        /*grafico*/
+
+
+        $.getJSON('VisitaController?accion=topxid&idPublicacion=' +<%=idPublicacion%>, function (json) {
+            var valores = [];
+            var titulos = [];
+            $.each(json.top, function (item, obj) {
+
+                valores.push(obj);
+                titulos.push(obj.name);
+
+            });
+
+            var myChart = echarts.init(document.getElementById('echart_pie'), theme);
+            myChart.setOption({
+                tooltip: {
+                    trigger: 'params',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                   orient: 'vertical',
+                  x: 'left',
+                   
+                    y: 'bottom',
+                    show: true,
+                    data: titulos
+                },
+                /* barras de herramientas*/
+                toolbox: {
+                    show: true,
+                    feature: {
+                        restore: {
+                            show: true
+                        },
+                        saveAsImage: {
+                            show: true
                         }
                     }
-                    if (nombre == 'btnVerArchivo') {
-                        $('#iframepdf').attr('src', 'ArchivoPublicacionController?accion=verArchivo&idArchivo=' + data[0]);
-                        $('.modal-lg').css('width', '1420px');
-
-                        $('#miModal1').modal('show');
-                        $('#iframepdf').contentWindow.location.reload(true);
-                    }
-                    if (nombre == 'btnVerArchivo1') {
-                        $('#iframepdf').attr('src', 'pdf.jsp?codigo=' + data[0]);
-                        $('.modal-lg').css('width', '1420px');
-                        $('#miModal1').modal('show');
-                        $('#iframepdf').contentWindow.location.reload(true);
-                    }
-                    if (nombre == 'btnDenunciar') {
-
-                        //window.location.href='VerPublicacion.jsp?idPublicacion='+data[0];
-                        window.location.href = 'VerDenuncia.jsp?idArchivoPublicacion=' + data[0];
-                    }
-                });
-                /*-------------------------TABLA DE AUTORES--------------------------*/
-                table2 = $('#tableAutores').DataTable({
-                    "paging": false,
-                    "filter": false,
-                    "bInfo": false,
-                    "language": {
-                        "url": "css/datatables/Spanish.json"
-                    },
-                    "columns": [{"title": "Item"},
-                        {"title": "Nombre"},
-                        {"title": "especialidad"},
-                        {"title": "Cargo"},
-                        {"title": "<a href='#'id='btnNuevo'><i class='fa fa-plus'></i></a>"}],
-                    "columnDefs": [
-                        {"targets": [4],
-                            "orderable": false,
-                            "className": 'text-center'},
-                        {"targets": -1,
-                            "data": null,
-                            "defaultContent": '<button name="btnVerAutor"><a><i class="fa fa-search"></i></a></button>&nbsp&nbsp <button name="btnEliminar"><a><i class="fa fa-trash"></i></a></button>'}
-                    ],
-                    "ajax": "AutorPublicacionController?accion=ObtenerTodosPorPublicacion&codigo=" +<%=idPublicacion%>,
-                    "initComplete": function () {
-                        $('[data-toggle="tooltip"]').tooltip({
-                            trigger: 'hover',
-                            html: true
-                        });
-
-                    }
-                });
-                /*click en los botones del cuerpo de la tabla de AUTORES*/
-                $('#tableAutores tbody').on('click', 'button', function () {
-                    var data = table2.row($(this).parents('tr')).data();
-                    //alert("cargar pdf codigo "+ data[0]); 
-                    var nombre = $(this).attr('name');
-                    if (nombre == 'btnVerAutor') {
-                        mostrarModal('Autor.jsp');
-                    }
-
-                    if (nombre == 'btnEliminar') {
-                        if (confirm("seguro que desea eliminar el Autor") == true)
-                        {
-                            $.ajax({
-                                url: "AutorPublicacionController?accion=eliminarAutor&codigo=" + data[0],
-                            })
-                                    .always(function ()
-                                    {
-                                        actualizar2();
-
-                                    });
-                        }
-                    }
-                });
-                /*enumerar las tablas*/
-                /*tabla 1*/
-                table1.on('order.dt search.dt', function () {
-                    table1.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
-                        cell.innerHTML = i + 1;
-                    });
-                    /*tabla 2*/
-                }).draw();
-                table2.on('order.dt search.dt', function () {
-                    table2.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
-                        cell.innerHTML = i + 1;
-                    });
-                }).draw();
-
-                /*fin de enumerar las tablas*/
-
-
-                /*grafico*/
-                
-               
-                $.getJSON('VisitaController?accion=topxid&idPublicacion='+<%=idPublicacion%>, function (json) {
-                    var valores = [];
-                   var titulos=[];
-                    $.each(json.top, function (item, obj) {
-                        
-                        valores.push(obj);
-                       titulos.push(obj.name);
-                       
-                    });
-                
-               var myChart = echarts.init(document.getElementById('echart_pie'), theme);
-                myChart.setOption({
-                    tooltip: {
-                        trigger: 'item',
-                        formatter: "{a} <br/>{b} : {c} ({d}%)"
-                    },
-                    legend: {
-                        //orient: 'vertical',
-                        //x: 'left',
-                        x: 'center',
-                        y: 'bottom',
-                        show:false,
-                        data: titulos
-                    },
-                    /* barras de herramientas*/
-                    toolbox: {
-                        show: true,
-                        feature: {
-                           
-                            restore: {
-                                show: true
+                },
+                calculable: true,
+                series: [{
+                        name: 'Porcentaje de visita',
+                        type: 'pie',
+                        radius: '85%',
+                        center: ['60%', '50%'], //left,top
+                        itemStyle: {
+                            normal: {
+                                label: {
+                                    position: 'inner',
+                                    formatter: function (params) {
+                                        return (params.percent - 0).toFixed(0) + '%'
+                                    }
+                                },
+                                labelLine: {
+                                    show: false
+                                }
                             },
-                            saveAsImage: {
-                                show: true
+                            emphasis: {
+                                label: {
+                                    show: true,
+                                    formatter: "{b}\n{d}%"
+                                }
                             }
-                        }
-                    },
-                    calculable: true,
-                    series: [{
-                            name: 'Porcentaje de visita',
-                            type: 'pie',
-                            radius: '55%',
-                            center: ['50%', '48%'], //left,top
-                            data: valores
-                        }]
-                });
 
-            
-                });
-
-
+                        },
+                        data: valores
+                    }]
             });
-            /*--------------------------------fin del ready-----------------------------*/
 
 
-            function mostrarModal(url) {
-                $('#miModal .modal-content').load(url, function () {
-                    $('#miModal').modal('show');
+        });
+
+
+    });
+    /*--------------------------------fin del ready-----------------------------*/
+
+
+    function mostrarModal(url) {
+        $('#miModal .modal-content').load(url, function () {
+            $('#miModal').modal('show');
+        });
+    }
+
+    /*----------------atributos del file imput------------------*/
+    $('#file-1').fileinput({
+        browseLabel: 'Buscar',
+        showUpload: false,
+        showRemove: false
+    });
+
+    /*----------------carga de archivo------------------*/
+    $('#btnCargar').click(function () {
+        var formdata = new FormData($("#cargaform")[0]);
+        $.ajax({
+            url: "ArchivoPublicacionController?accion=cargarArchivo",
+            type: "post",
+            contentType: false,
+            data: formdata,
+            processData: false,
+            cache: false})
+
+                .always(function ()
+                {
+                    actualizar2();
+
                 });
+    });
+    /*----------------actulizacion de tablas-----------------*/
+    function actualizar2() {
+        table1.ajax.reload(function () {
+            table1.columns.adjust().draw();
+        },
+                false);
+        table2.ajax.reload(function () {
+            table2.columns.adjust().draw();
+        },
+                false);
+
+    }
+</script>
+<script type="text/javascript">
+    var permanotice, tooltip, _alert;
+    $(function () {
+        new PNotify({
+            title: "APROVECHA",
+            type: "info",
+            text: "Solicita El Archivo que mas te interese ",
+            nonblock: {
+                nonblock: true
+            },
+            before_close: function (PNotify) {
+                // You can access the notice's options with this. It is read only.
+                //PNotify.options.text;
+
+                // You can change the notice's options after the timer like this:
+                PNotify.update({
+                    title: PNotify.options.title + " - Enjoy your Stay",
+                    before_close: null
+                });
+                PNotify.queueRemove();
+                return false;
             }
+        });
 
-            /*----------------atributos del file imput------------------*/
-            $('#file-1').fileinput({
-                browseLabel: 'Buscar',
-                showUpload: false,
-                showRemove: false
-            });
+    });
+</script>
 
-            /*----------------carga de archivo------------------*/
-            $('#btnCargar').click(function () {
-                var formdata = new FormData($("#cargaform")[0]);
-                $.ajax({
-                    url: "ArchivoPublicacionController?accion=cargarArchivo",
-                    type: "post",
-                    contentType: false,
-                    data: formdata,
-                    processData: false,
-                    cache: false})
-
-                        .always(function ()
-                        {
-                            actualizar2();
-
-                        });
-            });
-            /*----------------actulizacion de tablas-----------------*/
-            function actualizar2() {
-                table1.ajax.reload(function () {
-                    table1.columns.adjust().draw();
-                },
-                        false);
-                table2.ajax.reload(function () {
-                    table2.columns.adjust().draw();
-                },
-                        false);
-
-            }
-        </script>
-        <script type="text/javascript">
-            var permanotice, tooltip, _alert;
-            $(function () {
-                new PNotify({
-                    title: "APROVECHA",
-                    type: "info",
-                    text: "Solicita El Archivo que mas te interese ",
-                    nonblock: {
-                        nonblock: true
-                    },
-                    before_close: function (PNotify) {
-                        // You can access the notice's options with this. It is read only.
-                        //PNotify.options.text;
-
-                        // You can change the notice's options after the timer like this:
-                        PNotify.update({
-                            title: PNotify.options.title + " - Enjoy your Stay",
-                            before_close: null
-                        });
-                        PNotify.queueRemove();
-                        return false;
-                    }
-                });
-
-            });
-        </script>
-
-    </body>
+</body>
 
 </html>

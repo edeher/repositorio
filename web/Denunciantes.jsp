@@ -225,7 +225,7 @@
                              { "title": "Telefono" },
                              { "title": "Correo Electronico" },
                              
-                            { "title": "<a href='#'id='btnNuevo'><i class='fa fa-plus'></i></a>" }],
+                            { "title": "<a href='#'id='btnNuevo'><i class='fa fa-plus' data-toggle='tooltip' data-placement='top' title='NUEVO'></i></a>" }],
                 "columnDefs": [                         
                    {"targets": [ 4],
                     "orderable": false,

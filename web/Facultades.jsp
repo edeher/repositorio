@@ -225,7 +225,7 @@
                 "columns": [{ "title": "Cod" },
                             { "title": "Descripcion" },
                           
-                            { "title": "<a id='btnNuevo' href='#' ><i class='fa fa-plus'></i></a>" }],
+                            { "title": "<a id='btnNuevo' href='#' ><i class='fa fa-plus' data-toggle='tooltip' data-placement='top' title='NUEVO'></i></a>" }],
                 "columnDefs": [                         
                    {"targets": [ 2 ],
                     "orderable": false,

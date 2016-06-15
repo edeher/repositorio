@@ -225,7 +225,7 @@
                              { "title": "Fecha de Solicitud" },
                              { "title": "Tema" },
                              { "title": "Area Tematica" },
-                            { "title": "<a href='#'id='btnNuevo'><i class='fa fa-plus'></i></a>" }],
+                            { "title": "<a href='#'id='btnNuevo'><i class='fa fa-plus' data-toggle='tooltip' data-placement='top' title='NUEVO'></i></a>" }],
                 "columnDefs": [                         
                    {"targets": [ 5 ],
                     "orderable": false,

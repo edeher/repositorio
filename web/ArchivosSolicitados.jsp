@@ -227,7 +227,7 @@
                                { "title": "Fecha de Solicitud" },
                                 { "title": "Respuesta" },
                                  { "title": "Fecha de Respuesta" },
-                            { "title": "<a href='#' id='btnNuevo'><i class='fa fa-plus'></i></a>" }],
+                            { "title": "<a href='#' id='btnNuevo'><i class='fa fa-plus' data-toggle='tooltip' data-placement='top' title='NUEVO'></i></a>" }],
                 "columnDefs": [                         
                    {"targets": [ 7 ],
                     "orderable": false,

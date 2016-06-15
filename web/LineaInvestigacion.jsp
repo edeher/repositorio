@@ -224,7 +224,7 @@
                 "columns": [{ "title": "Codigo" },
                             { "title": "Area de Investigacion" },
                              { "title": "Linea de Investigacion" },
-                            { "title": "<a href='#'id='btnNuevo'><i class='fa fa-plus'></i></a>" }],
+                            { "title": "<a href='#'id='btnNuevo'><i class='fa fa-plus' data-toggle='tooltip' data-placement='top' title='NUEVO'></i></a>" }],
                 "columnDefs": [                         
                    {"targets": [ 3 ],
                     "orderable": false,

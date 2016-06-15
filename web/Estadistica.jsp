@@ -47,9 +47,6 @@
         objvi3 = daote.top5xitem(3);
         objvi4 = daote.top5xitem(4);
         objvi5 = daote.top5xitem(5);
-        
-       
-       
 
 
     %>
@@ -168,10 +165,9 @@
                             <div class="left"></div>
                             <div class="right">
                                 <span class="count_top"><i class="fa fa-user"></i> Total Investigadores</span>
-                                <%
-                                         Visita objcantidad=daote.cantidad("PRINCIPAL");
+                                <%                                    Visita objcantidad = daote.cantidad("PRINCIPAL");
                                 %>
-                                <div class="count"><%=objcantidad.getCantidad() %></div>
+                                <div class="count"><%=objcantidad.getCantidad()%></div>
                                 <span class="count_bottom"><i class="green">4% </i> From last Week</span>
                             </div>
                         </div>
@@ -181,9 +177,9 @@
                             <div class="right">
                                 <span class="count_top"><i class="fa fa-user"></i> Total Publicaciones</span>
                                 <%
-                                         Visita objcantidad1=daote.cantidadPubli();
+                                    Visita objcantidad1 = daote.cantidadPubli();
                                 %>
-                                <div class="count green"><%=objcantidad1.getCantidad() %></div>
+                                <div class="count green"><%=objcantidad1.getCantidad()%></div>
                                 <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
                             </div>
                         </div>
@@ -191,10 +187,10 @@
                             <div class="left"></div>
                             <div class="right">
                                 <span class="count_top"><i class="fa fa-user"></i> Total Visitas</span>
-                                 <%
-                                         Visita objcantidad2=daote.cantidadVisitas();
+                                <%
+                                    Visita objcantidad2 = daote.cantidadVisitas();
                                 %>
-                                <div class="count"><%=objcantidad2.getCantidad() %></div>
+                                <div class="count"><%=objcantidad2.getCantidad()%></div>
                                 <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
                             </div>
                         </div>
@@ -202,7 +198,7 @@
                             <div class="left"></div>
                             <div class="right">
                                 <span class="count_top"><i class="fa fa-user"></i> Total Solicitudes</span>
-                                
+
                                 <div class="count">2,315</div>
                                 <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
                             </div>
@@ -249,7 +245,7 @@
                                     </div>
                                     <div class="x_content">
 
-                                        <div id="mainb" style="height:350px;"></div>
+                                        <div id="mainb" style="height:400px;"></div>
 
                                     </div>
                                 </div>
@@ -288,7 +284,7 @@
                                     </div>
                                     <div class="x_content">
 
-                                        <div id="echart_pie2" style="height:500px;"></div>
+                                        <div id="echart_pie2" style="height:400px;"></div>
 
                                     </div>
                                 </div>
@@ -306,7 +302,7 @@
                                     </div>
                                     <div class="x_content">
 
-                                        <div id="echart_donut" style="height:500px;"></div>
+                                        <div id="echart_donut" style="height:400px;"></div>
 
                                     </div>
                                 </div>
@@ -325,7 +321,7 @@
                                     </div>
                                     <div class="x_content">
 
-                                        <div id="echart_pyramid" style="height:500px;"></div>
+                                        <div id="echart_pyramid" style="height:400px;"></div>
 
                                     </div>
                                 </div>
@@ -346,7 +342,7 @@
                                     </div>
                                     <div class="x_content">
 
-                                        <div id="echart_bar_horizontal" style="height:500px;"></div>
+                                        <div id="echart_bar_horizontal" style="height:400px;"></div>
 
                                     </div>
                                 </div>
@@ -398,7 +394,9 @@
                     var categorias = [];
                     var valores = [];
                     var items = [];
+                    var obje = [];
                     $.each(json.top5, function (item, obj) {
+                        obje.push(obj);
                         categorias.push(obj.category);
                         valores.push(obj.value);
                         items.push(item + 1);
@@ -432,6 +430,12 @@
                                 data: categorias,
                             }
                         ],
+                        grid: {
+                            x: 80,
+                            y: 130,
+                            x2: 20,
+                            y2: 25
+                        },
                         yAxis: [{
                                 type: 'value'
                             }],
@@ -446,22 +450,64 @@
                                                 '#da70d6', '#6495ed', '#333366', '#33CC99', '#CCCCFF', '#3cb371', '#30e0e0', '#40e0d0'
                                             ];
                                             return colorList[params.dataIndex]
+                                            
                                         },
-                                        label: {
-                                            position: 'insideTop',
-                                            formatter: '{b}\n{c}'
-                                        }
+                                        label : {show: true, position: 'inside'}
                                     }
                                 },
                                 xAxisIndex: 1,
                                 data: valores,
                                 markPoint: {
-                                    data: [{type: 'max', name: 'Mas visitado con'}, {type: 'min', name: 'Menos visitado con'}]
+                                    data: [
+                                        {type: 'max', name: 'Mas visitado con'}, 
+                                        {type: 'min', name: 'Menos visitado con'}]
                                 },
                                 markLine: {
                                     data: [{type: 'average', name: 'Promedio de Visitas'}]
                                 }
-                            }]
+
+                            },
+                            {
+                                name: 'visitas',
+                                type: 'pie',
+                                tooltip: {
+                                    trigger: 'axis',
+                                    formatter: '{a} <br/>{b} : {c} ({d}%)'
+
+                                },
+                                center: [600, 60],
+                                radius: [0, 60],
+                                itemStyle: {
+                                    normal: {
+                                        color: function (params) {
+                                            // build a color map as your need.
+                                            var colorList = [
+                                                '#da70d6', '#6495ed', '#333366', '#33CC99', '#CCCCFF', '#3cb371', '#30e0e0', '#40e0d0'
+                                            ];
+                                            return colorList[params.dataIndex]
+                                        },
+                                        label: {
+                                            position: 'inner',
+                                            formatter: function (params) {
+                                                return (params.percent - 0).toFixed(0) + '%'
+                                            }
+                                        },
+                                        labelLine: {
+                                            show: false
+                                        }
+                                    },
+                                    emphasis: {
+                                        label: {
+                                            show: true,
+                                            formatter: "{b}\n{d}%"
+                                        }
+                                    }
+
+                                },
+                                data: obje
+                            }
+
+                        ]
 
                     });
 
@@ -477,7 +523,7 @@
                 $.getJSON('VisitaController?accion=topxid&idPublicacion=' +<%=objvi1.getArchivoPublicacion().getPublicacion().getIdPublicacion()%>, function (json) {
 
                     var data = [];
-                    var titulos=[];
+                    var titulos = [];
                     $.each(json.top, function (item, obj) {
 
                         data.push(obj);
@@ -485,58 +531,64 @@
 
 
                     });
-                   
 
 
-                        var myChart = echarts.init(document.getElementById('echart_pie'), theme);
-                        myChart.setOption({
-                            tooltip: {
-                                trigger: 'item',
-                                formatter: "{a} <br/>{b} : {c} ({d}%)"
-                            },
-                            legend: 
-                                    {
-                                        
-                                        
-                                orient: 'vertical',
-                                x: 'left',
-                                //x: 'center',
-                                y: 'bottom',
-                                data: titulos
-                            },
-                            /* barras de herramientas*/
-                            toolbox: {
-                                show: true,
-                                feature: {
-                                    magicType: {
-                                        show: true,
-                                        type: ['pie', 'funnel'],
-                                        option: {
-                                            funnel: {
-                                                x: '25%',
-                                                width: '50%',
-                                                funnelAlign: 'left',
-                                                max: 1548
+
+                    var myChart = echarts.init(document.getElementById('echart_pie'), theme);
+                    myChart.setOption({
+                        tooltip: {
+                            trigger: 'params',
+                            formatter: "{a} <br/>{b} : {c} ({d}%)"
+                        },
+                        legend:
+                                {
+                                    orient: 'vertical',
+                                    x: 'left',
+                                    //x: 'center',
+                                    y: 'bottom',
+                                    data: titulos
+                                },
+                        /* barras de herramientas*/
+                        toolbox: {
+                            show: true,
+                            feature: {
+                                restore: {
+                                    show: true
+                                },
+                                saveAsImage: {
+                                    show: true
+                                }
+                            }
+                        },
+                        calculable: true,
+                        series: [{
+                                name: 'Visitas',
+                                type: 'pie',
+                                radius: '55%',
+                                center: ['50%', '48%'], //left,top
+                                itemStyle: {
+                                    normal: {
+                                        label: {
+                                            position: 'inner',
+                                            formatter: function (params) {
+                                                return (params.percent - 0).toFixed(0) + '%'
                                             }
+                                        },
+                                        labelLine: {
+                                            show: false
                                         }
                                     },
-                                    restore: {
-                                        show: true
-                                    },
-                                    saveAsImage: {
-                                        show: true
+                                    emphasis: {
+                                        label: {
+                                            show: true,
+                                            formatter: "{b}\n{d}%"
+                                        }
                                     }
-                                }
-                            },
-                            calculable: true,
-                            series: [{
-                                    name: 'Visitas',
-                                    type: 'pie',
-                                    radius: '55%',
-                                    center: ['50%', '48%'], //left,top
-                                    data: data
-                                }]
-                        
+
+                                },
+                                data: data
+                            }]
+
                     });
 
                 });
@@ -562,24 +614,20 @@
                     var myChart = echarts.init(document.getElementById('echart_pie2'), theme);
                     myChart.setOption({
                         tooltip: {
-                            trigger: 'item',
+                            trigger: 'params',
                             formatter: "{a} <br/>{b} : {c} ({d}%)"
                         },
                         legend: {
                             orient: 'vertical',
-                                x: 'left',
-                                //x: 'center',
-                                y: 'bottom',
+                            x: 'left',
+                            //x: 'center',
+                            y: 'bottom',
                             data: titulos
                         },
                         /* barras de herramientas*/
                         toolbox: {
                             show: true,
                             feature: {
-                                magicType: {
-                                    show: true,
-                                    type: ['pie', 'funnel']
-                                },
                                 restore: {
                                     show: true
                                 },
@@ -592,12 +640,32 @@
                         series: [{
                                 name: 'Visitas',
                                 type: 'pie',
-                                radius: [25, 90],
+                                radius: [45, 100],
                                 center: ['50%', 170],
                                 roseType: 'area',
                                 x: '50%',
                                 max: 40,
                                 sort: 'ascending',
+                                itemStyle: {
+                                    normal: {
+                                        label: {
+                                            position: 'inner',
+                                            formatter: function (params) {
+                                                return (params.percent - 0).toFixed(0) + '%'
+                                            }
+                                        },
+                                        labelLine: {
+                                            show: false
+                                        }
+                                    },
+                                    emphasis: {
+                                        label: {
+                                            show: true,
+                                            formatter: "{b}\n{d}%"
+                                        }
+                                    }
+
+                                },
                                 data: data
                             }]
                     });
@@ -619,33 +687,21 @@
                     var myChart = echarts.init(document.getElementById('echart_donut'), theme);
                     myChart.setOption({
                         tooltip: {
-                            trigger: 'item',
+                            trigger: 'params',
                             formatter: "{a} <br/>{b} : {c} ({d}%)"
                         },
                         calculable: true,
                         legend: {
-                           orient: 'vertical',
-                                x: 'left',
-                                //x: 'center',
-                                y: 'bottom',
+                            orient: 'vertical',
+                            x: 'left',
+                            //x: 'center',
+                            y: 'bottom',
                             data: titulos
                         },
                         /* barras de herramientas*/
                         toolbox: {
                             show: true,
                             feature: {
-                                magicType: {
-                                    show: true,
-                                    type: ['pie', 'funnel'],
-                                    option: {
-                                        funnel: {
-                                            x: '25%',
-                                            width: '50%',
-                                            funnelAlign: 'center',
-                                            max: 1548
-                                        }
-                                    }
-                                },
                                 restore: {
                                     show: true
                                 },
@@ -658,13 +714,17 @@
                                 name: 'Visitas',
                                 type: 'pie',
                                 radius: ['35%', '55%'],
+                                center: ['60%', '40%'],
                                 itemStyle: {
                                     normal: {
                                         label: {
-                                            show: true
+                                            position: 'inner',
+                                            formatter: function (params) {
+                                                return (params.percent - 0).toFixed(0) + '%'
+                                            }
                                         },
                                         labelLine: {
-                                            show: true
+                                            show: false
                                         }
                                     },
                                     emphasis: {
@@ -702,7 +762,7 @@
                             subtext: 'Subtitle'
                         },
                         tooltip: {
-                            trigger: 'item',
+                            trigger: 'params',
                             formatter: "{a} <br/>{b} : {c}%"
                         },
                         /* barras de herramientas*/
@@ -784,6 +844,7 @@
                             {
                                 name: 'visitas',
                                 type: 'bar',
+                                
                                 data: valores
                             }]
                     });

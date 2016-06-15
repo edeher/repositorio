@@ -47,10 +47,10 @@
                     <div class="col-middle">
                         
                         <div class="text-center">
-                            <h1 ><img src="images/logo.png" alt="" height="45%" width="90%"/></h1>
+                            <h1 ><img src="images/logo.png" alt="" height="35%" width="80%"/></h1>
                             
                             <h2 class="error-number">REPOSITORIO VIP</h2>
-                            <p >ESPACIO VIRTUAL DE CONCENTRACION Y PRODUCCION EN CIENCIA DE LA UNIA </p>
+                            <p  >ESPACIO VIRTUAL DE CONCENTRACION Y PRODUCCION EN CIENCIA DE LA UNIA </p>
                             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                                 <div class="menu_section">
 
