@@ -275,12 +275,13 @@
                                         url: "PublicacionController?accion=eliminarPublicacion&idpublicacion=" + data[0],
                                     }
                             )
-
+                            
                                     .always(function ()
                                     {
                                         actualizar();
                                         alerta("publicacion Eliminada", true);
                                     });
+                                            
                         }
                     }
 

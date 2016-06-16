@@ -169,11 +169,21 @@
                 data: formdata,
                 processData: false,
                 cache: false})
-                    .always(function () {
+                    .done(function(msj){
+                       
+                        if(msj==0){
+                                alert('ya existe');
+                        ocultarmodal();
+                        alerta("Publicacion no creada", false);
+                    }
+                    else
+                    {
                         actualizar();
                         ocultarmodal();
                         alerta("Publicacion creada", true);
-                    });
+                    }
+                            })
+                    
         });
     </script>
 

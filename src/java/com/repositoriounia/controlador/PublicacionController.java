@@ -137,9 +137,21 @@ public class PublicacionController extends HttpServlet {
           Date fec = new Date(fe.parse(request.getParameter("fecha")).getTime());
         objPu= new Publicacion();
         objPu.getLineaInvestigacion().setIdLineaInvestigacion(Integer.parseInt(request.getParameter("linea")));
-        objPu.setTitulo(request.getParameter("titulo").toString().toUpperCase());
+        objPu.setTitulo(request.getParameter("titulo").toString().toUpperCase().trim());
         objPu.setFechaPublicacion(fec);
         Publicacion publi=daote.crearleer(objPu);
+        
+             try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+                 if(publi==null){
+                      pw.println(0); 
+                 }else
+                 {
+                      pw.println(1); 
+                 }
+                 
+           
+        }
+       
         
     }
 

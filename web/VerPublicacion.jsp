@@ -248,14 +248,15 @@
 
                                                         </div>  
                                                         <!-------------------------botones de carga         ------------------------>
-                                                        <div class="form-group">
+                                                        
+
+                                                    </form>
+                                                            <div class="form-group">
                                                             <div class="col-md-9 col-sm-9 col-xs-12">
                                                                 <button class="btn btn-primary" id="btnCargar" >Cargar</button>
                                                                 <button class="btn btn-default" type="reset">Cancelar</button>
                                                             </div>
                                                         </div>
-
-                                                    </form>
                                                     <div class="panel-body">
                                                         <table class="table table-bordered" id="tableArchivos">
 
@@ -601,7 +602,7 @@
     $('#file-1').fileinput({
         browseLabel: 'Buscar',
         showUpload: false,
-        showRemove: false
+        showRemove: true
     });
 
     /*----------------carga de archivo------------------*/
@@ -617,6 +618,7 @@
 
                 .always(function ()
                 {
+                    $('#cargaform').trigger('reset');
                     actualizar2();
 
                 });

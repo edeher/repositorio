@@ -74,12 +74,9 @@ public class ArchivoPublicacionController extends HttpServlet {
         }
         ArchivoPublicacion archipu = new ArchivoPublicacion();
         switch (accion) {
-            case "cargarArchivo":
-                System.out.println("cargarArchivo.....");
-                cargarArchivo(request, response);
-                response.setContentType("text/html;charset=UTF-8");
+            case "cargarArchivo":                
+                cargarArchivo(request, response);  
                 out = response.getWriter();
-                out.print("archivo cargado!!!");
                 break;
             case "verArchivo":
                 System.out.println("verArchivo.....");
@@ -92,7 +89,8 @@ public class ArchivoPublicacionController extends HttpServlet {
                 out = response.getWriter();
                 out.println(json);
                 break;
-            case "eliminarArchivo":eliminarArchivo(request,response);
+            case "eliminarArchivo":
+                eliminarArchivo(request,response);
                 break;
             case "5":
                 break;
@@ -166,16 +164,13 @@ public class ArchivoPublicacionController extends HttpServlet {
         byte[] buffer = new byte[4999999];
         for (int length = 0; (length = imput.read(buffer)) > 0;) {
             output.write(buffer, 0, length);
-        }
+        }        
         archipu.setArchivo(output.toByteArray());
         archipu.getPublicacion().setIdPublicacion(Integer.parseInt(request.getParameter("idpublicacion")));
         archipu.setUrlLocal(request.getParameter("urllocal"));
         archipu.setUrlWeb(request.getParameter("urlweb"));
-        archipu.setDescripcion(DescripcionArchivo.valueOf(request.getParameter("descripcion")));
-        System.out.println("codigo en emtodo " + archipu.getPublicacion().getIdPublicacion());
-        System.out.println(" en metodo" + archipu.getUrlLocal());
-        System.out.println("en metodo " + archipu.getUrlWeb());
-        archipu = daote.crearleer(archipu);
+        archipu.setDescripcion(DescripcionArchivo.valueOf(request.getParameter("descripcion")));        
+        daote.crearleer(archipu);
     }
 
     private void verArchivo(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
