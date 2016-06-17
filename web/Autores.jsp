@@ -128,7 +128,7 @@
 
 
                         </div>
-                        <div class="clearfix"></div>
+                       z
 
                         <div class="row">
                             <div class="col-md-12">

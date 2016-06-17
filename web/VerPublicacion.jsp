@@ -150,6 +150,9 @@
                         <div class="clearfix">
                             <%=publi.getTitulo()%>
                         </div>
+                        <div id="div-alerta" style="padding: 1px;display:none " class=" alert alert-success pull-right"  >
+
+                        </div>
                         &nbsp;
                         <div class="">
 
@@ -234,16 +237,15 @@
                                                                         <%}%>
                                                                 </select>
                                                             </div>
-                                                            <input type="hidden" name="idpublicacion" id="idpublicacion" value="<%=idPublicacion%>" />
+                                                           
                                                             &nbsp;
 
                                                         </div>
                                                         <div class="form-group">      
 
                                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">ARCHIVO</label>
-                                                            <input type="hidden" name="urllocal" value="xxx" />
-                                                            <input type="hidden" name="urlweb" value="xxx" />
-                                                            <input id="file-1" accept=".pdf" name="archivo" type="file" class="file"  data-preview-file-type="any" value="" data-show-preview="false">
+                                                            
+                                                            <input name="archivo" id="file-1" accept=".pdf"  type="file" class="file"  data-preview-file-type="any" value="" data-show-preview="false">
 
 
                                                         </div>  
@@ -422,7 +424,7 @@
                             .always(function ()
                             {
                                 actualizar2();
-
+                                alerta("Archivo Eliminado", false);
                             });
                 }
             }
@@ -608,6 +610,13 @@
     /*----------------carga de archivo------------------*/
     $('#btnCargar').click(function () {
         var formdata = new FormData($("#cargaform")[0]);
+        formdata.append('idpublicacion',<%=idPublicacion %>);
+        formdata.append('urllocacl','xxx');
+        formdata.append('urlweb','xx');
+        var inputfile=document.getElementById('file-1');
+        var file=inputfile.files[0];
+        formdata.append('archivo',file);
+        
         $.ajax({
             url: "ArchivoPublicacionController?accion=cargarArchivo",
             type: "post",
@@ -616,12 +625,19 @@
             processData: false,
             cache: false})
 
-                .always(function ()
-                {
-                    $('#cargaform').trigger('reset');
-                    actualizar2();
-
-                });
+               .done(function(msj){
+                       
+                    if(msj==0){
+                        alert('ya existe');                        
+                        alerta("archivo no cargado", false);
+                    }
+                    else
+                    {
+                        actualizar2();
+                        $('#cargaform').trigger('reset');                        
+                        alerta("archivo cargado", true);
+                    }
+                            })
     });
     /*----------------actulizacion de tablas-----------------*/
     function actualizar2() {
@@ -635,6 +651,17 @@
                 false);
 
     }
+    function alerta(msj, band) {
+                $("#div-alerta").fadeOut(0, function () {
+                    band === true ?
+                            $("#div-alerta").removeClass("alert-danger").addClass("alert-success") :
+                            $("#div-alerta").removeClass("alert-success").addClass("alert-danger");
+                    $("#div-alerta").html("<h5 style='margin: 6px;'>" +
+                            "<strong>" + msj + "</strong>" +
+                            "</h5>");
+                    $("#div-alerta").fadeIn();
+                });
+            }
 </script>
 <script type="text/javascript">
     var permanotice, tooltip, _alert;

@@ -169,8 +169,18 @@ public class ArchivoPublicacionController extends HttpServlet {
         archipu.getPublicacion().setIdPublicacion(Integer.parseInt(request.getParameter("idpublicacion")));
         archipu.setUrlLocal(request.getParameter("urllocal"));
         archipu.setUrlWeb(request.getParameter("urlweb"));
-        archipu.setDescripcion(DescripcionArchivo.valueOf(request.getParameter("descripcion")));        
-        daote.crearleer(archipu);
+        archipu.setDescripcion(DescripcionArchivo.valueOf(request.getParameter("descripcion"))); 
+        ArchivoPublicacion archi =daote.crearleer(archipu);
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+                 if(archi==null){
+                      pw.println(0); 
+                 }else
+                 {
+                      pw.println(1); 
+                 }
+                 
+           
+        }
     }
 
     private void verArchivo(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {

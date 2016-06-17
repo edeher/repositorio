@@ -34,8 +34,10 @@
           <![endif]-->
 
     </head>
-    <%  VisitaDAOFactory fabricate = new VisitaDAOFactory();
+    <%  
+        VisitaDAOFactory fabricate = new VisitaDAOFactory();
         VisitaDAO daote = fabricate.metodoDAO();
+        
         Visita objvi1 = new Visita();
         Visita objvi2 = new Visita();
         Visita objvi3 = new Visita();
@@ -43,10 +45,39 @@
         Visita objvi5 = new Visita();
 
         objvi1 = daote.top5xitem(1);
+        if(objvi1==null){
+        objvi1.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
+        }
         objvi2 = daote.top5xitem(2);
         objvi3 = daote.top5xitem(3);
         objvi4 = daote.top5xitem(4);
         objvi5 = daote.top5xitem(5);
+         if(objvi1==null){
+             objvi1 = new Visita();
+        objvi1.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
+        objvi1.getArchivoPublicacion().getPublicacion().setTitulo("") ; 
+        }
+          if(objvi2==null){
+              objvi2 = new Visita();
+        objvi2.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
+        objvi2.getArchivoPublicacion().getPublicacion().setTitulo("") ; 
+        }
+           if(objvi3==null){
+               objvi3 = new Visita();
+        objvi3.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
+        objvi3.getArchivoPublicacion().getPublicacion().setTitulo("") ; 
+        }
+            if(objvi4==null){
+                objvi4 = new Visita();
+        objvi4.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
+        objvi4.getArchivoPublicacion().getPublicacion().setTitulo("") ; 
+        }
+             if(objvi5==null){
+              objvi5 = new Visita();
+        objvi5.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
+         objvi5.getArchivoPublicacion().getPublicacion().setTitulo("") ;     
+        }
+            
 
 
     %>
@@ -333,7 +364,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="x_panel">
                                     <div class="x_title">
-                                        <h2><%=objvi1.getArchivoPublicacion().getPublicacion().getTitulo()%></h2>
+                                        <h2><%=objvi5.getArchivoPublicacion().getPublicacion().getTitulo()%></h2>
                                         <ul class="nav navbar-right panel_toolbox">
                                             <li><a href="#"><i class="fa fa-chevron-up"></i></a>
                                             </li>
@@ -793,7 +824,7 @@
                     });
 
                 });
-                $.getJSON('VisitaController?accion=topxid&idPublicacion=' +<%=objvi2.getArchivoPublicacion().getPublicacion().getIdPublicacion()%>, function (json) {
+                $.getJSON('VisitaController?accion=topxid&idPublicacion=' +<%=objvi5.getArchivoPublicacion().getPublicacion().getIdPublicacion()%>, function (json) {
                     var valores = [];
                     var titulos = [];
                     var data = [];
