@@ -18,6 +18,7 @@ public interface AutorDAO {
     public boolean eliminar(int idAutor)throws DAOException;
     public Autor leerxid (int idAutor)throws DAOException;
     public Autor leerxdni (String dni)throws DAOException;
+     public Autor[] leerxdni1(String dni)throws DAOException;
     public Autor crearverileer(Autor objAu)throws DAOException;
     public Autor modificarleer(Autor objAu)throws DAOException;
     public Autor[] leertodo()throws DAOException;

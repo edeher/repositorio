@@ -23,14 +23,14 @@ public class AutorPublicacionTest {
      */
     public static void main(String[] args) throws DAOException {
         // TODO code application logic here
-//        crearporids();
+        crearporids();
 //        crearconautor();
 //        leerXID();
 //        leerXIDpubliPrin();
 //        leertodoPORPUBLICACION();
 //        leertodoPORAUTOR();
 //        leertodo();
-        leerXidAutoryIdPublicacion();
+//        leerXidAutoryIdPublicacion();
     }
     public static void crearporids()throws DAOException
     {
@@ -42,7 +42,7 @@ public class AutorPublicacionTest {
                objAuP.getPublicacion().setIdPublicacion(6);
                objAuP.setTipoautor(TipoAutor.COLABORADOR);
                
-                              AutorPublicacion per=daote.crearverileer2(objAuP);
+                AutorPublicacion per=daote.crearverileer2(objAuP);
 	         System.out.println(" "+per.toString());
     
     

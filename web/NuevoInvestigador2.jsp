@@ -19,7 +19,7 @@
 
     </head>
     <%
-
+        int idPublicacion = Integer.parseInt(request.getParameter("idPublicacion"));
         FacultadDAOFactory fabricate1 = new FacultadDAOFactory();
         FacultadDAO daote1 = fabricate1.metodoDAO();
         Facultad[] facul = daote1.leertodo();
@@ -39,12 +39,12 @@
             <ul id="myTabs" class="nav nav-tabs bar_tabs" role="tablist">
                 <li role="presentation" class="active">
                     <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">
-                        buscar Autor
+                        Autor existente
                     </a>
                 </li>               
                 <li role="presentation" class="">
                     <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">
-                        Crear Autor
+                        Crear Nuevo Autor
                     </a>
                 </li>                
             </ul>
@@ -55,104 +55,109 @@
 
                     <!---cuerpo de pestaña 1 --->
                     <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                        
-                        <div class="col-sm-6">
+                        <form class="form-horizontal form-label-left " id="crearform1" enctype="multipart/form-data">
+                            <div class="col-sm-6">
 
-                            <div class="input-group">
-                                <input type="text" class="form-control">
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-primary">Cargar!</button>
-                                </span>
-                            </div>
-                            <div class="right col-xs-5 text-center">
-                                <img src="images/LOGO UNIA.png" alt="" class="img-circle img-responsive">
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="x_panel">
-
-                                <div class="x_content">
-
-                                    <div class="form-group">      
-                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">NOMBRES</label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input name="nombres" class="form-control has-feedback-left" readonly="readonly" type="text" class="form-control" value="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">      
-                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">apellido</label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input name="apellidos" class="form-control has-feedback-left" readonly="readonly" type="text" class="form-control" value="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">      
-                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">DNI</label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input name="dni" class="form-control has-feedback-left" readonly="readonly" type="text" class="form-control" value="">
-                                            </div>
-                                        </div>
-                                    </div>         
-                                    <div class="form-group">      
-                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">telefono</label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input name="telefono" class="form-control has-feedback-left" readonly="readonly" type="text" class="form-control" value="">
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group">      
-                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">direccion</label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input name="direccion" class="form-control has-feedback-left" readonly="readonly" type="text" class="form-control" value="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">      
-                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">correo</label>
-                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input name="correo" class="form-control has-feedback-left" readonly="readonly" type="text" class="form-control" value="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo de Autor</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <select name="descripcion"id="" class="form-control">
-                                            <option value="--">--</option>
-                                            <%for (TipoAutor es : TipoAutor.values()) {
-
-                                            %>
-                                            <option value="<%=es.name()%>"  >
-                                                <%=es.getNom()%></option>
-                                                <%}%>
-                                        </select>
-                                    </div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="dnix" id="dnix">
+                                    <span class="input-group-btn">
+                                        <button type="button" id="btncargar" name="cargar" class="btn btn-primary">Cargar!</button>
+                                    </span>
                                 </div>
-                            </div>  
-
+                                <div class="right col-xs-5 text-center">
+                                    <img src="images/LOGO UNIA.png" alt="" class="img-circle img-responsive">
                                 </div>
                             </div>
-                        </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="x_panel">
 
-                        
+                                    <div class="x_content">
+
+                                        <div class="form-group">      
+                                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">NOMBRES</label>
+                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                    <input type="hidden" name="idAutor1"id="idAutor1" value="" />
+                                                    <input type="hidden" name="idPublicacion1"id="idAutor1" value="<%=idPublicacion%>" />
+                                                    <input name="nombres1" id="nombres1"class="form-control has-feedback-left" readonly="readonly" type="text" class="form-control" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">      
+                                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">apellido</label>
+                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                    <input name="apellidos1" id="apellidos1"class="form-control has-feedback-left" readonly="readonly" type="text" class="form-control" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">      
+                                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">DNI</label>
+                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                    <input name="dni1" id="dni1"class="form-control has-feedback-left" readonly="readonly" type="text" class="form-control" value="">
+                                                </div>
+                                            </div>
+                                        </div>         
+                                        <div class="form-group">      
+                                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">telefono</label>
+                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                    <input name="telefono1" id="telefono1"class="form-control has-feedback-left" readonly="readonly" type="text" class="form-control" value="">
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group">      
+                                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">direccion</label>
+                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                    <input name="direccion1" id="direccion1"class="form-control has-feedback-left" readonly="readonly" type="text" class="form-control" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">      
+                                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">correo</label>
+                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                    <input name="correo1" id="correo1"class="form-control has-feedback-left" readonly="readonly" type="text" class="form-control" value="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo de Autor</label>
+                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                    <select name="tipoautor"id="" class="form-control">
+                                                        <option value="--">--</option>
+                                                        <%for (TipoAutor es : TipoAutor.values()) {
+
+                                                        %>
+                                                        <option value="<%=es.name()%>"  >
+                                                            <%=es.getNom()%></option>
+                                                            <%}%>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>  
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary" id="btnguardar1" >Guardar</button>
+                        </div>
 
                     </div>  
                     <!--fin de cuerpo pestaña 1--->
 
                     <!---cuerpo de pestaña 2 --->
                     <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="home-tab">
-                        <form class="form-horizontal form-label-left " id="crearform" enctype="multipart/form-data">
+                        <form class="form-horizontal form-label-left " id="crearform2" enctype="multipart/form-data">
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="x_panel">
 
@@ -161,7 +166,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">CODIGO</label>
                                             <div class="col-md-9 col-sm-9 col-xs-12">
                                                 <input type="text" class="form-control has-feedback-left" readonly="readonly" value="AUTOGENARADO">
-
+                                                <input type="hidden" name="idPublicacion2"id="idAutor1" value="<%=idPublicacion%>" />
                                                 <span class="fa fa-cc form-control-feedback left" aria-hidden="true"></span>
                                             </div>
                                         </div>         
@@ -198,7 +203,7 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">PROFESION</label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <input name="profesion" type="text" class="form-control" value="">
+                                                    <input name="profesion2" type="text" class="form-control" value="">
                                                 </div>
                                             </div>
                                         </div>
@@ -206,7 +211,7 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">GRADO </label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <input name="grado" type="text" class="form-control" value="">
+                                                    <input name="grado2" type="text" class="form-control" value="">
                                                 </div>
                                             </div>
                                         </div>
@@ -214,7 +219,7 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">ESPECIALIDAD</label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <input name="especialidad" type="text" class="form-control" value="">
+                                                    <input name="especialidad2" type="text" class="form-control" value="">
                                                 </div>
                                             </div>
                                         </div>
@@ -222,7 +227,7 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo de Autor</label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <select name="descripcion"id="" class="form-control">
+                                                    <select name="tipoautor2"id="" class="form-control">
                                                         <option value="--">--</option>
                                                         <%for (TipoAutor es : TipoAutor.values()) {
 
@@ -252,7 +257,7 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">NOMBRES</label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <input name="nombres" type="text" class="form-control" value="">
+                                                    <input name="nombres2" type="text" class="form-control" value="">
                                                 </div>
                                             </div>
                                         </div>
@@ -260,7 +265,7 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">apellido</label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <input name="apellidos" type="text" class="form-control" value="">
+                                                    <input name="apellidos2" type="text" class="form-control" value="">
                                                 </div>
                                             </div>
                                         </div>
@@ -268,7 +273,7 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">DNI</label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <input name="dni" type="text" class="form-control" value="">
+                                                    <input name="dni2" type="text" class="form-control" value="">
                                                 </div>
                                             </div>
                                         </div>         
@@ -276,7 +281,7 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">telefono</label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <input name="telefono" type="text" class="form-control" value="">
+                                                    <input name="telefono2" type="text" class="form-control" value="">
                                                 </div>
 
                                             </div>
@@ -287,12 +292,12 @@
                                             <div class="col-md-9 col-sm-9 col-xs-12">
                                                 <div id="gender" class="btn-group" data-toggle="buttons">
                                                     <label class="btn btn-default  active" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                                        <input type="radio" name="sexo" value="M" checked=""> &nbsp; Masculino &nbsp;
+                                                        <input type="radio" name="sexo2" value="M" checked=""> &nbsp; Masculino &nbsp;
                                                     </label>
 
 
                                                     <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                                        <input type="radio" name="sexo" value="F" checked=""> Femenino
+                                                        <input type="radio" name="sexo2" value="F" checked=""> Femenino
                                                     </label>
                                                 </div>
                                             </div>
@@ -301,7 +306,7 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">direccion</label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <input name="direccion" type="text" class="form-control" value="">
+                                                    <input name="direccion2" type="text" class="form-control" value="">
                                                 </div>
                                             </div>
                                         </div>
@@ -309,11 +314,11 @@
                                             <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">correo</label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <input name="correo" type="text" class="form-control" value="">
+                                                    <input name="correo2" type="text" class="form-control" value="">
                                                 </div>
                                             </div>
                                         </div>
-                                            
+
 
                                     </div>
                                 </div>
@@ -322,16 +327,17 @@
 
 
                         </form>  
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary" id="btnguardar2" >Guardar</button>
+                        </div>
                     </div>
                     <!--fin de cuerpo pestaña 2--->
                 </div>
             </div>
             <!-- fin de cuerpo de pestañas-->
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary" id="btnguardar" >Guardar</button>
-        </div>
+
     </body>
     <!--LIBRERIAS NECESARIAS PARA EL SCRIPT*-->
 
@@ -348,6 +354,7 @@
     <script src="js/select/select2.full.js" type="text/javascript"></script>
     <!-------------------------------------------------------------------->
     <script type="text/javascript">
+         var  msj;
         $(document).ready(function () {
 
             $('#SelectFacultad').on('change', function () {
@@ -385,6 +392,99 @@
                         alerta("Investigador Creado", true);
                     });
         });
+        $('#btncargar').click(function () {
+
+            var dnix = $("#dnix").val();
+
+            $.getJSON('AutorController?accion=BuscarxDni&dni=' + dnix, function (json) {
+                var codigo = [];
+                var nombre = [];
+                var apellidos = [];
+                var dni = [];
+                var telefono = [];
+                var direccion = [];
+                var correo = [];
+
+                $.each(json.autor, function (item, obj) {
+                    codigo.push(obj.codigo);
+                    $('#idAutor1').val(codigo);
+
+                    nombre.push(obj.nombres);
+                    $('#nombres1').val(nombre);
+
+                    apellidos.push(obj.apellido);
+                    $('#apellidos1').val(apellidos);
+
+                    dni.push(obj.dni);
+                    $('#dni1').val(dni);
+
+                    nombre.push(obj.nombres);
+                    $('#nombres1').val(nombre);
+
+                    telefono.push(obj.telefono);
+                    $('#telefono1').val(telefono);
+
+                    direccion.push(obj.direccion);
+                    $('#direccion1').val(direccion);
+
+                    correo.push(obj.correo);
+                    $('#correo1').val(correo);
+                });
+
+            });
+
+        });
+        $('#btnguardar1').click(function () {
+            var formdata = new FormData($("#crearform1")[0]);
+            $.ajax({
+                url: "AutorPublicacionController?accion=crearveryleer1",
+                type: "post",
+                contentType: false,
+                data: formdata,
+                processData: false,
+                cache: false})
+                    .done(function (msj) {
+
+                        if (msj == 0) {
+                            alert('El tipo de Autor o el Autor mismo ya Existen');
+                    
+                            alerta("Autor no creado", false);
+                        }
+                        else
+                        {
+                            actualizar2();
+                            ocultarmodal();
+                            alerta("Autor creado", true);
+                        }
+                    })
+
+        });
+        $('#btnguardar2').click(function () {
+            var formdata = new FormData($("#crearform2")[0]);
+            $.ajax({
+                url: "AutorPublicacionController?accion=crearveryleer2",
+                type: "post",
+                contentType: false,
+                data: formdata,
+                processData: false,
+                cache: false})
+                    .done(function (msj) {
+
+                        if (msj == 0) {
+                            alert('El tipo de Autor o el Autor mismo ya Existen');
+                            ocultarmodal();
+                            alerta("Autor no creado", false);
+                        }
+                        else
+                        {
+                            actualizar2();
+                            ocultarmodal();
+                            alerta("Autor creado", true);
+                        }
+                    })
+
+        });
+
     </script>
 
 </html>

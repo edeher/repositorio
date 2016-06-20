@@ -71,7 +71,7 @@ public class AutorController extends HttpServlet {
                 break;
             case "eliminarAutor":eliminarAutor(request,response);
                 break;
-            case "6":
+            case "BuscarxDni":BuscarxDni(request,response);
                 break;
             }
     }
@@ -232,5 +232,33 @@ public class AutorController extends HttpServlet {
     private void eliminarAutor(HttpServletRequest request, HttpServletResponse response) throws DAOException {
         int codigo=Integer.parseInt(request.getParameter("idAutor") );
        daote.eliminar(codigo);
+    }
+
+    private void BuscarxDni(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+        String dni=request.getParameter("dni").trim();
+        Autor autor=daote.leerxdni(dni);
+       
+        JsonArrayBuilder  arraybuilder = Json.createArrayBuilder();  
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();                 
+         
+              System.out.println(" "+autor.toString());
+              objbuilder.add("codigo",autor.getIdAutor());    
+               objbuilder.add("nombres",autor.getNombres());    
+              objbuilder.add("apellido",autor.getApellidos()); 
+               objbuilder.add("dni",autor.getDni());     
+              objbuilder.add("telefono",autor.getTelefono());    
+               objbuilder.add("direccion",autor.getDireccion());     
+              objbuilder.add("correo",autor.getCorrero());   
+              
+              arraybuilder.add(objbuilder);     
+             
+       
+        objbuilder.add("autor",arraybuilder);
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        }
     }
 }

@@ -5,6 +5,7 @@
 --%>
 
 
+<%@page import="com.repositoriounia.modelo.TipoEntidad"%>
 <%@page import="com.repositoriounia.modelo.TipoAutor"%>
 <%@page import="com.repositoriounia.modelo.DescripcionArchivo"%>
 <%@page import="com.repositoriounia.dao.FacultadDAO"%>
@@ -130,17 +131,15 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo de Entidad</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <select name="facultad" id="SelectFacultad" class="form-control">
-                                            <option value="--">--</option>
-                                            <%for (Facultad area1 : facul) {
+                                       <select name="tipoentidad"id="" class="form-control">
+                                                        <option value="--">--</option>
+                                                        <%for (TipoEntidad es : TipoEntidad.values()) {
 
-                                            %>
-                                            <option value="<%=area1.getIdFacultad()%>"
-
-                                                    >
-                                                <%=area1.getDescripcion()%></option>
-                                                <%}%>
-                                        </select>
+                                                        %>
+                                                        <option value="<%=es.name()%>"  >
+                                                            <%=es.getNom()%></option>
+                                                            <%}%>
+                                                    </select>
                                     </div>
                                 </div>
                             </div>  
@@ -148,7 +147,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Entidad</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input name="profesion" type="text" class="form-control" value="">
+                                        <input name="entidad" type="text" class="form-control" value="">
                                     </div>
                                 </div>
                             </div>    
@@ -156,7 +155,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Area de Trabajo</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input name="profesion" type="text" class="form-control" value="">
+                                        <input name="areatrabajo" type="text" class="form-control" value="">
                                     </div>
                                 </div>
                             </div>
@@ -176,7 +175,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary" id="btnguardar" >Guardar</button>
+            <button type="button" class="btn btn-primary" id="btnsolicitar" >Solicitar</button>
         </div>
     </body>
     <!--LIBRERIAS NECESARIAS PARA EL SCRIPT*-->
@@ -196,30 +195,14 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            $('#SelectFacultad').on('change', function () {
-                var codigo = this.value;
-                $.ajax({
-                    type: 'POST',
-                    url: 'EscuelaController?accion=buscarporFacultad&codigo=' + codigo,
-                    data: $(this).serialize(),
-                    success: function (data) {
-                        $('#SelectEscuela').html(data);
-                    }
-                });
-            });
-
-            /*----------------------------------*/
-
-
-
-
+          
             /*----------------------------------*/
         });
 
-        $('#btnguardar').click(function () {
+        $('#btnSolicitar').click(function () {
             var formdata = new FormData($("#crearform")[0]);
             $.ajax({
-                url: "AutorController?accion=crearInvestigador",
+                url: "ArchivosSolicitadosController?accion=CrearSolicitud",
                 type: "post",
                 contentType: false,
                 data: formdata,

@@ -403,4 +403,51 @@ public class AutorDAOJDBC implements AutorDAO{
             throw new DAOException("Error modificando Autor en DAO", se);
         }
     }
+
+    @Override
+    public Autor[] leerxdni1(String dni) throws DAOException {
+       try  {
+             CallableStatement st=con.prepareCall("{call sp_autor_bcodni(?)}");
+            st.setString(1,dni);
+              ResultSet rs = st.executeQuery();
+                      
+            ArrayList<Autor> tribs = new ArrayList<>(); 
+            
+            while (rs.next()) {
+                tribs.add(
+                        
+                    new Autor(
+                            rs.getInt("idAutor"),
+                            new Escuela(
+                                    rs.getInt("idEscuela"),
+                                    new Facultad(
+                                            rs.getInt("idFacultad"),
+                                            rs.getString("descripcion1")
+                                    ),
+                                    rs.getString("descripcion2")
+                                                        ),
+                            
+                            
+                            rs.getString("profesion"),
+                            rs.getString("especialidad"),
+                            rs.getString("grado"),
+                            
+                            rs.getString("nombres"),
+                            rs.getString("apellidos"),
+                            rs.getString("dni"),
+                            Sexo.valueOf(rs.getString("sexo")),
+                            rs.getString("direccion"),
+                            rs.getString("telefono"),
+                            rs.getString("correo"))
+                            
+                            
+                   );
+            }
+            return tribs.toArray(new Autor[0]);
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error obteniedo todos los autores en DAO: " 
+                    + se.getMessage(), se);
+        }   
+    }
 }

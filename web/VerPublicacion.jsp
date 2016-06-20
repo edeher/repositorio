@@ -158,7 +158,7 @@
 
 
 
-                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-6 col-sm-7 col-xs-13">
                                 <div class="x_panel">
 
                                     <div class="x_content">
@@ -237,28 +237,28 @@
                                                                         <%}%>
                                                                 </select>
                                                             </div>
-                                                           
+
                                                             &nbsp;
 
                                                         </div>
                                                         <div class="form-group">      
 
                                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">ARCHIVO</label>
-                                                            
+
                                                             <input name="archivo" id="file-1" accept=".pdf"  type="file" class="file"  data-preview-file-type="any" value="" data-show-preview="false">
 
 
                                                         </div>  
                                                         <!-------------------------botones de carga         ------------------------>
-                                                        
+
 
                                                     </form>
-                                                            <div class="form-group">
-                                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                                <button class="btn btn-primary" id="btnCargar" >Cargar</button>
-                                                                <button class="btn btn-default" type="reset">Cancelar</button>
-                                                            </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                                            <button class="btn btn-primary" id="btnCargar" >Cargar</button>
+                                                            <button class="btn btn-default" type="reset">Cancelar</button>
                                                         </div>
+                                                    </div>
                                                     <div class="panel-body">
                                                         <table class="table table-bordered" id="tableArchivos">
 
@@ -441,11 +441,11 @@
                 $('#miModal1').modal('show');
                 $('#iframepdf').contentWindow.location.reload(true);
             }
-            if(nombre=='btnSolicitar'){
-                 $('.modal-lg').css('width', '1000px');  
+            if (nombre == 'btnSolicitar') {
+                $('.modal-lg').css('width', '1000px');
                 mostrarModal('SolicitanteArchivo.jsp');
             }
-            
+
             if (nombre == 'btnDenunciar') {
 
                 //window.location.href='VerPublicacion.jsp?idPublicacion='+data[0];
@@ -484,16 +484,16 @@
         });
         /*click en los botones del cuerpo de la tabla de AUTORES*/
         $('#tableAutores tbody').on('click', 'button', function () {
-            var data= table2.row($(this).parents('tr')).data();
+            var data = table2.row($(this).parents('tr')).data();
             //alert("cargar pdf codigo "+ data[0]); 
             var nombre1 = $(this).attr('name');
             if (nombre1 == 'btnVerAutor') {
-                
-                mostrarModal('Autor.jsp?codigo='+data[0]+'&idPublicacion='+<%=idPublicacion%>);
+
+                mostrarModal('Autor.jsp?codigo=' + data[0] + '&idPublicacion=' +<%=idPublicacion%>);
             }
 
             if (nombre1 == 'btnEliminar') {
-                if (confirm("seguro que desea eliminar el Autor :"+data[0]) == true)
+                if (confirm("seguro que desea eliminar el Autor :" + data[0]) == true)
                 {
                     $.ajax({
                         url: "AutorPublicacionController?accion=eliminarAutor&codigo=" + data[0],
@@ -506,26 +506,31 @@
                 }
             }
         });
-         $('#tableAutores thead').on( 'click', 'a', function () {
-                var nombre = $(this).attr('id');              
-                if(nombre=='btnNuevo'){
-                  $('.modal-lg').css('width', '1000px');  
-                mostrarModal('NuevoInvestigador2.jsp');
+        $('#tableAutores thead').on('click', 'a', function () {
+            var nombre = $(this).attr('id');
+            if (nombre == 'btnNuevo') {
+                $('.modal-lg').css('width', '1000px');
+                mostrarModal('NuevoInvestigador2.jsp?idPublicacion=' +<%=idPublicacion%>);
             }
-            } );
-        
-        
-        
+        });
+
+
+
         /*enumerar las tablas*/
         /*tabla 1*/
         table1.on('order.dt search.dt', function () {
             table1.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
                 cell.innerHTML = i + 1;
             });
-            /*tabla 2*/
-        }).draw();
-       
 
+        }).draw();
+        /*tabla 2*/
+        table2.on('order.dt search.dt', function () {
+            table2.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+
+        }).draw();
         /*fin de enumerar las tablas*/
 
 
@@ -549,9 +554,8 @@
                     formatter: "{a} <br/>{b} : {c} ({d}%)"
                 },
                 legend: {
-                   orient: 'vertical',
-                  x: 'left',
-                   
+                    orient: 'vertical',
+                    x: 'left',
                     y: 'bottom',
                     show: true,
                     data: titulos
@@ -611,7 +615,9 @@
             $('#miModal').modal('show');
         });
     }
-
+    function ocultarmodal() {
+        $('#miModal').modal('hide');
+    }
     /*----------------atributos del file imput------------------*/
     $('#file-1').fileinput({
         browseLabel: 'Buscar',
@@ -622,13 +628,13 @@
     /*----------------carga de archivo------------------*/
     $('#btnCargar').click(function () {
         var formdata = new FormData($("#cargaform")[0]);
-        formdata.append('idpublicacion',<%=idPublicacion %>);
-        formdata.append('urllocacl','xxx');
-        formdata.append('urlweb','xx');
-        var inputfile=document.getElementById('file-1');
-        var file=inputfile.files[0];
-        formdata.append('archivo',file);
-        
+        formdata.append('idpublicacion',<%=idPublicacion%>);
+        formdata.append('urllocacl', 'xxx');
+        formdata.append('urlweb', 'xx');
+        var inputfile = document.getElementById('file-1');
+        var file = inputfile.files[0];
+        formdata.append('archivo', file);
+
         $.ajax({
             url: "ArchivoPublicacionController?accion=cargarArchivo",
             type: "post",
@@ -637,19 +643,19 @@
             processData: false,
             cache: false})
 
-               .done(function(msj){
-                       
-                    if(msj==0){
-                        alert('ya existe');                        
+                .done(function (msj) {
+
+                    if (msj == 0) {
+                        alert('ya existe');
                         alerta("archivo no cargado", false);
                     }
                     else
                     {
                         actualizar2();
-                        $('#cargaform').trigger('reset');                        
+                        $('#cargaform').trigger('reset');
                         alerta("archivo cargado", true);
                     }
-                            })
+                })
     });
     /*----------------actulizacion de tablas-----------------*/
     function actualizar2() {
@@ -664,16 +670,16 @@
 
     }
     function alerta(msj, band) {
-                $("#div-alerta").fadeOut(0, function () {
-                    band === true ?
-                            $("#div-alerta").removeClass("alert-danger").addClass("alert-success") :
-                            $("#div-alerta").removeClass("alert-success").addClass("alert-danger");
-                    $("#div-alerta").html("<h5 style='margin: 6px;'>" +
-                            "<strong>" + msj + "</strong>" +
-                            "</h5>");
-                    $("#div-alerta").fadeIn();
-                });
-            }
+        $("#div-alerta").fadeOut(0, function () {
+            band === true ?
+                    $("#div-alerta").removeClass("alert-danger").addClass("alert-success") :
+                    $("#div-alerta").removeClass("alert-success").addClass("alert-danger");
+            $("#div-alerta").html("<h5 style='margin: 6px;'>" +
+                    "<strong>" + msj + "</strong>" +
+                    "</h5>");
+            $("#div-alerta").fadeIn();
+        });
+    }
 </script>
 <script type="text/javascript">
     var permanotice, tooltip, _alert;

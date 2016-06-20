@@ -19,6 +19,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Mi Laptop
  */
 @WebServlet(name = "ArchivosSolicitadosController", urlPatterns = {"/ArchivosSolicitadosController"})
+@MultipartConfig
 public class ArchivosSolicitadosController extends HttpServlet {
     private ArchivosSolicitados objArSo;
     private ArchivosSolicitadosDAOFactory fabricate;
@@ -54,7 +56,7 @@ public class ArchivosSolicitadosController extends HttpServlet {
        {
            case "ObtenerTodos":ObtenerTodos(request,response);
                break;
-           case "2":
+           case "CrearSolicitud":CrearSolicitud(request,response);
                break;
            case "3":
                break;
@@ -139,6 +141,12 @@ public class ArchivosSolicitadosController extends HttpServlet {
         try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
             pw.println(obj.toString()); 
         }   
+    }
+
+    private void CrearSolicitud(HttpServletRequest request, HttpServletResponse response) {
+        objArSo=new ArchivosSolicitados();
+        
+        
     }
 
 }

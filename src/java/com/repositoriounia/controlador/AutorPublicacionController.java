@@ -9,6 +9,8 @@ import com.repositoriounia.dao.AutorPublicacionDAO;
 import com.repositoriounia.dao.AutorPublicacionDAOFactory;
 import com.repositoriounia.dao.DAOException;
 import com.repositoriounia.modelo.AutorPublicacion;
+import com.repositoriounia.modelo.Sexo;
+import com.repositoriounia.modelo.TipoAutor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
@@ -58,9 +60,9 @@ public class AutorPublicacionController extends HttpServlet {
                 break;
             case "eliminarAutor":eliminarAutor(request,response);
                 break;
-            case "3":
+            case "crearveryleer1":crearveryleer1(request,response);
                 break;
-            case "4":
+            case "crearveryleer2":crearveryleer2(request,response);
                 break;
             case "5":
                 break;
@@ -154,6 +156,51 @@ public class AutorPublicacionController extends HttpServlet {
         int codigo=Integer.parseInt(request.getParameter("codigo"));
        
        daote.eliminar(codigo); 
+    }
+
+    private void crearveryleer1(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+       objAuPu=new AutorPublicacion();
+       objAuPu.getAutor().setIdAutor(Integer.parseInt(request.getParameter("idAutor1")));
+       objAuPu.getPublicacion().setIdPublicacion(Integer.parseInt(request.getParameter("idPublicacion1")));
+       objAuPu.setTipoautor(TipoAutor.valueOf(request.getParameter("tipoautor")));
+       AutorPublicacion autorpu=daote.crearverileer2(objAuPu);
+       try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+                 if(autorpu==null){
+                      pw.println(0); 
+                 }else
+                 {
+                      pw.println(1); 
+                 }
+           
+        }
+    }
+
+    private void crearveryleer2(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+       objAuPu=new AutorPublicacion();
+       objAuPu.getAutor().setNombres(request.getParameter("nombres2"));
+       objAuPu.getAutor().setApellidos(request.getParameter("apellidos2"));
+       objAuPu.getAutor().setDni(request.getParameter("dni2"));
+       objAuPu.getAutor().setSexo(Sexo.valueOf(request.getParameter("sexo2")));
+       objAuPu.getAutor().setDireccion(request.getParameter("direccion2"));
+       objAuPu.getAutor().setTelefono(request.getParameter("telefono2"));
+       objAuPu.getAutor().setCorrero(request.getParameter("correo2"));
+       objAuPu.getAutor().getEscuela().setIdEscuela(Integer.parseInt(request.getParameter("escuela")));
+       objAuPu.getAutor().setProfesion(request.getParameter("profesion2"));
+       objAuPu.getAutor().setEspecialidad(request.getParameter("especialidad2"));
+       objAuPu.getAutor().setGrado(request.getParameter("grado2"));
+       objAuPu.getPublicacion().setIdPublicacion(Integer.parseInt(request.getParameter("idPublicacion2")));
+       objAuPu.setTipoautor(TipoAutor.valueOf(request.getParameter("tipoautor2")));
+       
+       AutorPublicacion autorpu=daote.crearverileer(objAuPu);
+       try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+                 if(autorpu==null){
+                      pw.println(0); 
+                 }else
+                 {
+                      pw.println(1); 
+                 }
+           
+        }
     }
 
 }

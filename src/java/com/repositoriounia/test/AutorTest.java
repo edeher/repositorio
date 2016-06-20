@@ -27,10 +27,10 @@ public class AutorTest {
 //        modificarrAutor();
 //        eliminararautor();
 //        leerautor();
-        leertodo();
+//        leertodo();
 //        crearAutor1();
 //        crearverileer();
-//        leerxdni();
+        leerxdni();
     }
      public static void crearAutor() throws DAOException
     {
@@ -123,7 +123,7 @@ public class AutorTest {
 	{
 		AutorDAOFactory fabricate= new AutorDAOFactory();
                 AutorDAO daote= fabricate.metodoDAO();
-       String dni="11111111";
+       String dni="43056714";
                
 	   Autor autorr=daote.leerxdni(dni);
 	 System.out.println(" "+autorr.toString());
