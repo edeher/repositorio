@@ -6,11 +6,14 @@
 
 
 <%@page import="com.repositoriounia.modelo.Escuela"%>
+<%@page import="com.repositoriounia.modelo.Escuela"%>
 <%@page import="com.repositoriounia.dao.EscuelaDAO"%>
 <%@page import="com.repositoriounia.dao.EscuelaDAOFactory"%>
 <%@page import="com.repositoriounia.modelo.Autor"%>
 <%@page import="com.repositoriounia.dao.AutorDAO"%>
 <%@page import="com.repositoriounia.dao.AutorDAOFactory"%>
+<%@page import="com.repositoriounia.modelo.TipoAutor"%>
+<%@page import="com.repositoriounia.modelo.DescripcionArchivo"%>
 <%@page import="com.repositoriounia.dao.FacultadDAO"%>
 <%@page import="com.repositoriounia.modelo.Facultad"%>
 <%@page import="com.repositoriounia.dao.FacultadDAOFactory"%>
@@ -46,25 +49,28 @@
             <h4 class="modal-title" id="myModalLabel">Nuevo Investigador </h4>
 
         </div>
-        <div class="modal-body">     
+        <div class="modal-body">  
 
             <form class="form-horizontal form-label-left " id="crearform" enctype="multipart/form-data">
+                 <input type="hidden" name="idAutor" value="<%=objau.getIdAutor()%>" />
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="x_panel">
 
+                        <div class="x_content">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">CODIGO</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control has-feedback-left" readonly="readonly" value="<%=objau.getIdAutor() %>">
 
-                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">CODIGO</label>
-                    <div class="col-md-9 col-sm-9 col-xs-12">
-                        <input type="text" class="form-control has-feedback-left" readonly="readonly" value="<%=objau.getIdAutor() %>">
+                                    <span class="fa fa-cc form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>         
 
-                        <span class="fa fa-cc form-control-feedback left" aria-hidden="true"></span>
-                    </div>
-                </div>         
-
-                <div class="form-group">
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Facultad</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <select name="facultad" id="SelectFacultad" class="form-control">
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Facultad</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <select name="facultad" id="SelectFacultad" class="form-control">
                                 <option value="--">--</option>
                                 <%for (Facultad area1 : facul) {
 
@@ -78,14 +84,14 @@
                                     <%=area1.getDescripcion()%></option>
                                     <%}%>
                             </select>
-                        </div>
-                    </div>
-                </div>  
-                <div class="form-group">
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Escuela</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <select name="escuela"  id="SelectEscuela" class="form-control">
+                                    </div>
+                                </div>
+                            </div>  
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Escuela</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <select name="escuela"  id="SelectEscuela" class="form-control">
                                 <option value="--">--</option>
                                 <%for (Escuela escue1 : escue) {
 
@@ -99,100 +105,131 @@
                                     <%=escue1.getDescripcion()%></option>
                                     <%}%>
                             </select>
-                        </div>
-                    </div>
-                </div>    
-                <div class="form-group">   
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">PROFESION</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input name="profesion" type="text" class="form-control" value="<%=objau.getProfesion() %>">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">      
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">GRADO </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input name="grado" type="text" class="form-control" value="<%=objau.getGrado() %>">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">      
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">ESPECIALIDAD</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input name="especialidad" type="text" class="form-control" value="<%=objau.getEspecialidad()  %>">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">      
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">NOMBRES</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input name="nombres" type="text" class="form-control" value="<%=objau.getNombres() %>">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">      
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">apellido</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input name="apellidos" type="text" class="form-control" value="<%=objau.getApellidos() %>">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">      
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">DNI</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input name="dni" type="text" class="form-control" value="<%=objau.getDni() %>">
-                        </div>
-                    </div>
-                </div>         
-                <div class="form-group">      
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">telefono</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input name="telefono" type="text" class="form-control" value="<%=objau.getTelefono() %>">
+                                    </div>
+                                </div>
+                            </div>    
+                            <div class="form-group">   
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">PROFESION</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input name="profesion" type="text" class="form-control" value="<%=objau.getProfesion() %>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">      
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">GRADO </label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input name="grado" type="text" class="form-control" value="<%=objau.getGrado() %>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">      
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">ESPECIALIDAD</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input name="especialidad" type="text" class="form-control" value="<%=objau.getEspecialidad()  %>">
+                                    </div>
+                                </div>
+                            </div>
+                           
+
+
                         </div>
 
                     </div>
 
                 </div>
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Sexo</label>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                         <div class="radio">
-                          <label>
-                            <input type="radio" class="flat" checked name="iCheck"> Checked
-                          </label>
-                        
-                          <label>
-                            <input type="radio" class="flat" name="iCheck"> Unchecked
-                          </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">      
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">direccion</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input name="direccion" type="text" class="form-control" value="<%=objau.getDireccion() %>">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">      
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">correo</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input name="correo" type="text" class="form-control" value="<%=objau.getCorrero() %>">
+
+
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="x_panel">
+
+                        <div class="x_content">
+
+                            <div class="form-group">      
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">NOMBRES</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input name="nombres" type="text" class="form-control" value="<%=objau.getNombres() %>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">      
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">apellido</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input name="apellidos" type="text" class="form-control" value="<%=objau.getApellidos() %>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">      
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">DNI</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input name="dni" type="text" class="form-control" value="<%=objau.getDni() %>">
+                                    </div>
+                                </div>
+                            </div>         
+                            <div class="form-group">      
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">telefono</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input name="telefono" type="text" class="form-control" value="<%=objau.getTelefono() %>">
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Sexo</label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <div id="gender" class="btn-group" data-toggle="buttons">
+                                         <%if(objau.getSexo().name().equals("M")) {%>
+                                        <label class="btn btn-default  active" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                            <input type="radio" name="sexo" value="M" checked=""> &nbsp; Masculino &nbsp;
+                                        </label>
+                                        <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                            <input type="radio" name="sexo" value="F" checked=""> Femenino
+                                        </label>
+                                         <%}else if(objau.getSexo().name().equals("F")){%>
+                                        <label class="btn btn-default  " data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                            <input type="radio" name="sexo" value="M" checked=""> &nbsp; Masculino &nbsp;
+                                        </label>
+                                        <label class="btn btn-default active" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                            <input type="radio" name="sexo" value="F" checked=""> Femenino
+                                        </label>
+                                         <%} %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">      
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">direccion</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input name="direccion" type="text" class="form-control" value="<%=objau.getDireccion() %>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">      
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">correo</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input name="correo" type="text" class="form-control" value="<%=objau.getCorrero() %>">
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
 
 
-            </form>                          
+
+            </form>  
+
+
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -208,8 +245,6 @@
 
     <script src="js/moment/moment.min.js"></script>
     <script src="js/datepicker/daterangepicker.js"></script>  
-    <!-- icheck -->
-  <script src="js/icheck/icheck.min.js"></script>
 
     <!--LIBRERIAS NECESARIAS PARA EL SCRIPT*-->
     <script src="js/parsley/parsley.min.js" type="text/javascript"></script>
@@ -241,16 +276,16 @@
         $('#btnguardar').click(function () {
             var formdata = new FormData($("#crearform")[0]);
             $.ajax({
-                url: "AutorController?accion=crearInvestigador",
+                url: "AutorController?accion=ModificarInvestigador",
                 type: "post",
                 contentType: false,
                 data: formdata,
                 processData: false,
                 cache: false})
-                    .always(function () {
+                   .always(function () {
                         actualizar();
                         ocultarmodal();
-                        alerta("Investigador Creado", true);
+                        alerta("Autor modificado", true);
                     });
         });
     </script>

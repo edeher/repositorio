@@ -67,9 +67,9 @@ public class AutorController extends HttpServlet {
                 break;
             case "crearInvestigador":crearInvestigador(request,response);
                 break;
-            case "4":
+            case "ModificarInvestigador":ModificarInvestigador(request,response);
                 break;
-            case "5":
+            case "eliminarAutor":eliminarAutor(request,response);
                 break;
             case "6":
                 break;
@@ -157,7 +157,7 @@ public class AutorController extends HttpServlet {
             arrayDatosAutores.add(Autor .getIdAutor());
              arrayDatosAutores.add(Autor .getProfesion());
             arrayDatosAutores.add( Autor .getGrado()); 
-            arrayDatosAutores.add(Autor .getNombres()+" "+Autor.getApellidos());
+            arrayDatosAutores.add(Autor .getNombres());
             arrayDatosAutores.add(Autor .getEscuela().getFacultad().getDescripcion());
             arrayDatosAutores.add(Autor .getEscuela().getDescripcion());
             arrayDatosAutores.add( Autor .getEspecialidad()); 
@@ -172,7 +172,7 @@ public class AutorController extends HttpServlet {
         }
     }
 
-    private void crearInvestigador(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+    private void crearInvestigador(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
         objAu = new Autor();
         Enumeration enumeration=request.getParameterNames();
         while (enumeration.hasMoreElements())
@@ -193,8 +193,44 @@ public class AutorController extends HttpServlet {
        objAu.setGrado(request.getParameter("grado").toString().toUpperCase());
        objAu.setDni(request.getParameter("dni").toString().toUpperCase());
        objAu.setTelefono(request.getParameter("telefono"));
+       Autor autor=daote.crearverileer(objAu);
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+                 if(autor==null){
+                      pw.println(0); 
+                 }else
+                 {
+                      pw.println(1); 
+                 }
+                 
+           
+        }
+    }
+
+    private void ModificarInvestigador(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+       objAu = new Autor();
+        Enumeration enumeration=request.getParameterNames();
+        while (enumeration.hasMoreElements())
+        {
+        System.out.println(enumeration.nextElement());
+        }
        
-       
-       daote.crear(objAu);
+       objAu.setIdAutor(Integer.parseInt(request.getParameter("idAutor")));
+       objAu.setNombres(request.getParameter("nombres").toString().toUpperCase());
+       objAu.setApellidos(request.getParameter("apellidos").toString().toUpperCase());
+       objAu.setCorrero(request.getParameter("correo"));
+       objAu.setDireccion(request.getParameter("direccion").toString().toUpperCase());
+       objAu.setDni(request.getParameter("dni").toString().toUpperCase());
+       objAu.setSexo(Sexo.valueOf(request.getParameter("sexo")));
+       objAu.getEscuela().setIdEscuela(Integer.parseInt(request.getParameter("escuela")));
+       objAu.setEspecialidad(request.getParameter("especialidad").toString().toUpperCase());
+       objAu.setProfesion(request.getParameter("profesion").toString().toUpperCase());
+       objAu.setGrado(request.getParameter("grado").toString().toUpperCase());
+       objAu.setDni(request.getParameter("dni").toString().toUpperCase());
+       Autor autor=daote.modificarleer(objAu);
+    }
+
+    private void eliminarAutor(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+        int codigo=Integer.parseInt(request.getParameter("idAutor") );
+       daote.eliminar(codigo);
     }
 }

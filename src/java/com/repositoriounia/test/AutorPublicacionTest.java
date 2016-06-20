@@ -26,10 +26,11 @@ public class AutorPublicacionTest {
 //        crearporids();
 //        crearconautor();
 //        leerXID();
-        leerXIDpubliPrin();
+//        leerXIDpubliPrin();
 //        leertodoPORPUBLICACION();
 //        leertodoPORAUTOR();
 //        leertodo();
+        leerXidAutoryIdPublicacion();
     }
     public static void crearporids()throws DAOException
     {
@@ -140,6 +141,15 @@ public class AutorPublicacionTest {
 	  }
 	 
 	 
+	    
+	}
+     public static void leerXidAutoryIdPublicacion()throws DAOException
+	{
+		AutorPublicacionDAOFactory fabricate= new AutorPublicacionDAOFactory();
+		AutorPublicacionDAO daote= fabricate.metodoDAO();
+	 
+	   AutorPublicacion per=daote.leerxidAuPuyidPu(16, 2);
+	 System.out.println(" "+per.toString());
 	    
 	}
 }

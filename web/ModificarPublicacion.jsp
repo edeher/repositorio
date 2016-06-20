@@ -31,6 +31,7 @@
         PublicacionDAOFactory fabricate = new PublicacionDAOFactory();
         PublicacionDAO daote = fabricate.metodoDAO();
         int codigo = Integer.parseInt(request.getParameter("codigo"));
+        System.out.println("codigo "+codigo);
         Publicacion publi = daote.leerxid(codigo);
 
         AutorPublicacionDAOFactory fabricate2 = new AutorPublicacionDAOFactory();
@@ -62,14 +63,7 @@
 
                     <input type="hidden" name="idPublicacion" value="<%=publi.getIdPublicacion()%>" />
 
-                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">ENCARGADO</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                            <input type="text" class="form-control has-feedback-left" readonly="readonly" value="<%=autopu.getAutor().getGrado() + " " + autopu.getAutor().getNombres()%> ">
-
-                            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
-                        </div>
-                    </div>         
+                           
 
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">AREA INV.</label>

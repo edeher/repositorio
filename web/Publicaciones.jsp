@@ -264,11 +264,12 @@
                     var nombre = $(this).attr('name');
                     var data = table.row($(this).parents('tr')).data();
                     if (nombre == 'btnEditar') {
-                        mostrarModal('ModificarPublicacion.jsp?codigo=' + data[0]);
+                        
+                        mostrarModal('ModificarPublicacion.jsp?codigo='+data[0]);
                     }
 
                     if (nombre == 'btnRechazar') {
-                        if (confirm("seguro que desea eliminar la Publicacion") == true)
+                        if (confirm("seguro que desea eliminar la Publicacion"+data[0]) == true)
                         {
                             $.ajax(
                                     {

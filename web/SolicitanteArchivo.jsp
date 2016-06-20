@@ -31,92 +31,25 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">Nuevo Investigador </h4>
+            <h4 class="modal-title" id="myModalLabel">Datos de Solicitud </h4>
 
         </div>
         <div class="modal-body">  
 
             <form class="form-horizontal form-label-left " id="crearform" enctype="multipart/form-data">
+                
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="x_panel">
 
                         <div class="x_content">
-                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+<div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">CODIGO</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
                                     <input type="text" class="form-control has-feedback-left" readonly="readonly" value="AUTOGENARADO">
 
                                     <span class="fa fa-cc form-control-feedback left" aria-hidden="true"></span>
                                 </div>
-                            </div>         
-
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Facultad</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <select name="facultad" id="SelectFacultad" class="form-control">
-                                            <option value="--">--</option>
-                                            <%for (Facultad area1 : facul) {
-
-                                            %>
-                                            <option value="<%=area1.getIdFacultad()%>"
-
-                                                    >
-                                                <%=area1.getDescripcion()%></option>
-                                                <%}%>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>  
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Escuela</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <select name="escuela"  id="SelectEscuela" class="form-control">
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>    
-                            <div class="form-group">   
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">PROFESION</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input name="profesion" type="text" class="form-control" value="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">      
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">GRADO </label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input name="grado" type="text" class="form-control" value="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">      
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">ESPECIALIDAD</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input name="especialidad" type="text" class="form-control" value="">
-                                    </div>
-                                </div>
-                            </div>
-                           
-
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="x_panel">
-
-                        <div class="x_content">
-
+                            </div>   
                             <div class="form-group">      
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">NOMBRES</label>
@@ -187,7 +120,54 @@
                         </div>
                     </div>
                 </div>
+<div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="x_panel">
 
+                        <div class="x_content">
+                                  
+
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo de Entidad</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <select name="facultad" id="SelectFacultad" class="form-control">
+                                            <option value="--">--</option>
+                                            <%for (Facultad area1 : facul) {
+
+                                            %>
+                                            <option value="<%=area1.getIdFacultad()%>"
+
+                                                    >
+                                                <%=area1.getDescripcion()%></option>
+                                                <%}%>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>  
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Entidad</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input name="profesion" type="text" class="form-control" value="">
+                                    </div>
+                                </div>
+                            </div>    
+                            <div class="form-group">   
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Area de Trabajo</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input name="profesion" type="text" class="form-control" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+
+                        </div>
+
+                    </div>
+
+                </div>
 
 
             </form>  

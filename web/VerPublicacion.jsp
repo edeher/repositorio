@@ -144,7 +144,7 @@
                 <!-- page content -->
                 <div class="right_col" role="main">
 
-                    <div class="">
+                    <div class="row">
 
                         &nbsp;          
                         <div class="clearfix">
@@ -302,7 +302,7 @@
             </div>
         </div>
     </div>
-    <!--moda para archivos-->  
+    <!--modal para archivos-->  
     <div id="miModal1" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -441,6 +441,11 @@
                 $('#miModal1').modal('show');
                 $('#iframepdf').contentWindow.location.reload(true);
             }
+            if(nombre=='btnSolicitar'){
+                 $('.modal-lg').css('width', '1000px');  
+                mostrarModal('SolicitanteArchivo.jsp');
+            }
+            
             if (nombre == 'btnDenunciar') {
 
                 //window.location.href='VerPublicacion.jsp?idPublicacion='+data[0];
@@ -479,15 +484,16 @@
         });
         /*click en los botones del cuerpo de la tabla de AUTORES*/
         $('#tableAutores tbody').on('click', 'button', function () {
-            var data = table2.row($(this).parents('tr')).data();
+            var data= table2.row($(this).parents('tr')).data();
             //alert("cargar pdf codigo "+ data[0]); 
-            var nombre = $(this).attr('name');
-            if (nombre == 'btnVerAutor') {
-                mostrarModal('Autor.jsp');
+            var nombre1 = $(this).attr('name');
+            if (nombre1 == 'btnVerAutor') {
+                
+                mostrarModal('Autor.jsp?codigo='+data[0]+'&idPublicacion='+<%=idPublicacion%>);
             }
 
-            if (nombre == 'btnEliminar') {
-                if (confirm("seguro que desea eliminar el Autor") == true)
+            if (nombre1 == 'btnEliminar') {
+                if (confirm("seguro que desea eliminar el Autor :"+data[0]) == true)
                 {
                     $.ajax({
                         url: "AutorPublicacionController?accion=eliminarAutor&codigo=" + data[0],
@@ -500,6 +506,16 @@
                 }
             }
         });
+         $('#tableAutores thead').on( 'click', 'a', function () {
+                var nombre = $(this).attr('id');              
+                if(nombre=='btnNuevo'){
+                  $('.modal-lg').css('width', '1000px');  
+                mostrarModal('NuevoInvestigador2.jsp');
+            }
+            } );
+        
+        
+        
         /*enumerar las tablas*/
         /*tabla 1*/
         table1.on('order.dt search.dt', function () {
@@ -508,11 +524,7 @@
             });
             /*tabla 2*/
         }).draw();
-        table2.on('order.dt search.dt', function () {
-            table2.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
-                cell.innerHTML = i + 1;
-            });
-        }).draw();
+       
 
         /*fin de enumerar las tablas*/
 

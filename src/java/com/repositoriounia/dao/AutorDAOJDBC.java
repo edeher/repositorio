@@ -344,4 +344,63 @@ public class AutorDAOJDBC implements AutorDAO{
             throw new DAOException("Error buscando autor en DAO", se);
         }
     }
+
+    @Override
+    public Autor modificarleer(Autor objAu) throws DAOException {
+        try{
+        CallableStatement st=con.prepareCall("{call sp_autor_m1(?,?,?,?,?,?,?,?,?,?,?,?)}");
+        
+                           st.setInt(1, objAu.getIdAutor());
+                            st.setString(2,objAu.getNombres());
+                            st.setString(3,objAu.getApellidos());
+                            st.setString(4,objAu.getDni());
+                            st.setString(5,objAu.getSexo().name());
+                            st.setString(6,objAu.getDireccion());
+                            st.setString(7,objAu.getTelefono());
+                            st.setString(8,objAu.getCorrero());
+                            
+                            st.setInt(9, objAu.getEscuela().getIdEscuela());
+                            
+                            st.setString(10,objAu.getProfesion());
+                            st.setString(11, objAu.getEspecialidad());
+                            st.setString(12,objAu.getGrado());
+                            
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                    new Autor(
+                            rs.getInt("idAutor"),
+                            new Escuela(
+                                    rs.getInt("idEscuela"),
+                                    new Facultad(
+                                            rs.getInt("idFacultad"),
+                                            rs.getString("descripcion1")
+                                    ),
+                                    rs.getString("descripcion2")
+                                                        ),
+                            
+                            
+                            rs.getString("profesion"),
+                            rs.getString("especialidad"),
+                            rs.getString("grado"),
+                            
+                            rs.getString("nombres"),
+                            rs.getString("apellidos"),
+                            rs.getString("dni"),
+                            Sexo.valueOf(rs.getString("sexo")),
+                            rs.getString("direccion"),
+                            rs.getString("telefono"),
+                            rs.getString("correo"))
+                            
+                            
+                   );
+            
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error modificando Autor en DAO", se);
+        }
+    }
 }

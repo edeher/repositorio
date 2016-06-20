@@ -29,6 +29,8 @@
         <link href="js/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="js/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="js/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- select2 -->
+  <link href="css/select/select2.min.css" rel="stylesheet">
 </head>
 <body class="nav-md">
 
@@ -246,24 +248,46 @@
                     
                 }
             });  
-            
+             table.on('order.dt search.dt', function () {
+                    table.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                }).draw();
             $('#datatable-responsive tbody').on( 'click', 'button', function () {
                 var nombre = $(this).attr('name');
                 var data = table.row( $(this).parents('tr') ).data();
                 if(nombre=='btnEditar'){
+                     $('.modal-lg').css('width', '1000px'); 
                   mostrarModal('ModificarInvestigador.jsp?codigo=' + data[0]);
                 }
                                     
-                if(nombre=='btnRechazar')
-                    alert( "modal RECHAZAR con codigo: "+ data[ 0 ] );                
+                if(nombre=='btnRechazar'){
+                    if (confirm("seguro que desea eliminar el Autor : "+data[3]) == true)
+                        {
+                            $.ajax(
+                                    {
+                                        url: "AutorController?accion=eliminarAutor&idAutor=" + data[0],
+                                    }
+                            )
+                            
+                                    .always(function ()
+                                    {
+                                        actualizar();
+                                        alerta("Autor  Eliminada", true);
+                                    });
+                                            
+                        }
+                }
+                                  
                 if(nombre=='btnAsignar')
                     alert( "modal ASIGNAR con codigo: "+ data[ 0 ] );                
             } );
             $('#datatable-responsive thead').on( 'click', 'a', function () {
                 var nombre = $(this).attr('id');              
-                if(nombre=='btnNuevo')
-                    
+                if(nombre=='btnNuevo'){
+                  $('.modal-lg').css('width', '1000px');  
                 mostrarModal('NuevoInvestigador.jsp');
+            }
             } );
         });        
             /*-------------------------------------------------------------*/
