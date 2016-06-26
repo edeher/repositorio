@@ -10,6 +10,7 @@ import com.repositoriounia.modelo.ArchivoPublicacion;
 import com.repositoriounia.modelo.AreaInvestigacion;
 import com.repositoriounia.modelo.Denuncia;
 import com.repositoriounia.modelo.Denunciante;
+import com.repositoriounia.modelo.DescripDenun;
 import com.repositoriounia.modelo.DescripcionArchivo;
 import com.repositoriounia.modelo.LineaInvestigacion;
 import com.repositoriounia.modelo.Publicacion;
@@ -142,7 +143,7 @@ public class ArchivoDenunciaDAOJDBC implements ArchivoDenunciaDAO{
                                 rs.getString("urlWeb") ,
                      rs.getBytes("archivo")),
                             rs.getDate("fecha"),
-                            rs.getString("descripcion2")                       
+                            DescripDenun.valueOf( rs.getString("descripcion2"))                     
                            ),
                             rs.getString("urlLocalD"),
                             rs.getString("urlWebD"),
@@ -199,7 +200,7 @@ public class ArchivoDenunciaDAOJDBC implements ArchivoDenunciaDAO{
                                 rs.getString("urlWeb") ,
                      rs.getBytes("archivo")),
                             rs.getDate("fecha"),
-                            rs.getString("descripcion2")                        
+                            DescripDenun.valueOf( rs.getString("descripcion2"))                      
                            ),
                             rs.getString("urlLocalD"),
                             rs.getString("urlWebD"),
@@ -262,7 +263,7 @@ public class ArchivoDenunciaDAOJDBC implements ArchivoDenunciaDAO{
                                 rs.getString("urlWeb") ,
                      rs.getBytes("archivo")),
                             rs.getDate("fecha"),
-                            rs.getString("descripcion2")                      
+                           DescripDenun.valueOf( rs.getString("descripcion2"))                    
                            ),
                             rs.getString("urlLocalD"),
                             rs.getString("urlWebD"),
@@ -352,7 +353,7 @@ public class ArchivoDenunciaDAOJDBC implements ArchivoDenunciaDAO{
                                 rs.getString("urlWeb") ,
                      rs.getBytes("archivo")),
                             rs.getDate("fecha"),
-                            rs.getString("descripcion2")                      
+                            DescripDenun.valueOf( rs.getString("descripcion2"))                     
                            ),
                             rs.getString("urlLocalD"),
                             rs.getString("urlWebD"),

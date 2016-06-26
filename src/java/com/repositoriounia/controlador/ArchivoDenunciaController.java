@@ -186,7 +186,7 @@ public class ArchivoDenunciaController extends HttpServlet {
             //System.out.println(solicitud.toString());            
             arrayDatosArchivoPublicacion = Json.createArrayBuilder();
             arrayDatosArchivoPublicacion.add(publi.getIdArchivoDenuncia());
-            arrayDatosArchivoPublicacion.add(publi.getDenuncia().getDescripcion());
+            arrayDatosArchivoPublicacion.add(publi.getDenuncia().getDescripdenun().getNom());
             
           
             arrayArchivoPublicacion.add(arrayDatosArchivoPublicacion);

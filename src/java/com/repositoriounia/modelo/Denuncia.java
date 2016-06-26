@@ -16,18 +16,18 @@ public class Denuncia {
     private Denunciante denunciante;
     private ArchivoPublicacion archivoPublicacion;
     private Date fecha;
-    private String descripcion;
+    private DescripDenun descripdenun;
     private Estados estado;
 
-    public Denuncia(int idDenuncia, Denunciante denunciante, ArchivoPublicacion archivoPublicacion, Date fecha, String descripcion, Estados estado) {
+    public Denuncia(int idDenuncia, Denunciante denunciante, ArchivoPublicacion archivoPublicacion, Date fecha, DescripDenun descripdenun, Estados estado) {
         this.idDenuncia = idDenuncia;
-        this.denunciante =denunciante;
+        this.denunciante = denunciante;
         this.archivoPublicacion = archivoPublicacion;
         this.fecha = fecha;
-        this.descripcion = descripcion;
+        this.descripdenun = descripdenun;
         this.estado = estado;
     }
-    
+
 
     public Denuncia() {
         this.denunciante=new Denunciante();
@@ -36,8 +36,10 @@ public class Denuncia {
 
     @Override
     public String toString() {
-        return "Denuncia{" + "idDenuncia=" + idDenuncia + ", denunciante=" + denunciante + ", archivoPublicacion=" + archivoPublicacion + ", fecha=" + fecha + ", descripcion=" + descripcion + ", estado=" + estado + '}';
+        return "Denuncia{" + "idDenuncia=" + idDenuncia + ", denunciante=" + denunciante + ", archivoPublicacion=" + archivoPublicacion + ", fecha=" + fecha + ", descripdenun=" + getDescripdenun() + ", estado=" + estado + '}';
     }
+
+   
 
     
 
@@ -45,13 +47,15 @@ public class Denuncia {
         this.idDenuncia = idDenuncia;
     }
 
-    public Denuncia(int idDenuncia, Denunciante denunciante, ArchivoPublicacion archivoPublicacion, Date fecha, String descripcion) {
+    public Denuncia(int idDenuncia, Denunciante denunciante, ArchivoPublicacion archivoPublicacion, Date fecha, DescripDenun descripdenun) {
         this.idDenuncia = idDenuncia;
         this.denunciante = denunciante;
         this.archivoPublicacion = archivoPublicacion;
         this.fecha = fecha;
-        this.descripcion = descripcion;
+        this.descripdenun = descripdenun;
     }
+
+    
 
     
      
@@ -88,13 +92,7 @@ public class Denuncia {
         this.fecha = fecha;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+    
 
     public Estados getEstado() {
         return estado;
@@ -102,6 +100,20 @@ public class Denuncia {
 
     public void setEstado(Estados estado) {
         this.estado = estado;
+    }
+
+    /**
+     * @return the descripdenun
+     */
+    public DescripDenun getDescripdenun() {
+        return descripdenun;
+    }
+
+    /**
+     * @param descripdenun the descripdenun to set
+     */
+    public void setDescripdenun(DescripDenun descripdenun) {
+        this.descripdenun = descripdenun;
     }
 
     

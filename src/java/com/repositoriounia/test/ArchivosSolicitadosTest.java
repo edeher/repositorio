@@ -36,7 +36,8 @@ public class ArchivosSolicitadosTest {
 //leerarchivosolicitado();
 //leertodo();
 //leertodoxarchivopublicacion();
-leertodoxsolicitante();
+//leertodoxsolicitante();
+crearleerarchivosolicitado();
        
     }
     public static void creararchivossolicitados() throws DAOException
@@ -181,4 +182,24 @@ leertodoxsolicitante();
 	  }
 	 
         } 
+        public static void crearleerarchivosolicitado()throws DAOException
+	{
+		 ArchivosSolicitadosDAOFactory fabricate= new ArchivosSolicitadosDAOFactory();
+                   ArchivosSolicitadosDAO daote= fabricate.metodoDAO();
+       ArchivosSolicitados objArSo=new ArchivosSolicitados();
+        objArSo.getSolicitante().setNombres("edeher");
+        objArSo.getSolicitante().setApellidos("ponce");
+        objArSo.getSolicitante().setDni("43056714");
+        objArSo.getSolicitante().setSexo(Sexo.M);
+        objArSo.getSolicitante().setDireccion("jr castilla");
+        objArSo.getSolicitante().setTelefono("43056714");
+        objArSo.getSolicitante().setCorrero("ssddd@jkjk");
+        objArSo.getSolicitante().setTipoEntidad(TipoEntidad.COMERCIALIZADORA);
+        objArSo.getSolicitante().setEntidad("credicomp");
+        objArSo.getSolicitante().setAreaTrabajo("ventas");
+        objArSo.getArchivoPublicacion().setIdArchivoPublicacion(118);
+        ArchivosSolicitados archivo=daote.crearleer1(objArSo);
+        System.out.println(" "+archivo.toString());
+	    
+	}
 }

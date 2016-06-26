@@ -131,18 +131,27 @@
                     </div>
 
                 </div>
+                
                 <!-- /top navigation -->
 
                 <!-- page content -->
                 <div class="right_col" role="main">
-
+                                    
                     <div class="row">
+                        
                         <div class="col-md-12 col-sm-12 col-xs-12">
+                            
                             <div class="dashboard_graph">
-
+ <hr>   
                                 <div class="row x_title">
                                     <div class="col-md-6">
                                         <h3>PUBLICACIONES <small></small></h3>
+                                    </div>
+                                        <div class="col-md-6" align="right"> 
+                                        <P aling="rigth" ><div class="icon"><a id='btnSugerir' href='#' ><i class='fa fa-plus' data-toggle='tooltip' data-placement='top' title='PROPONER TEMA DE INVESTIGACION'></i></a>
+                                        </div>  <strong>    SUGERIR TEMA DE INVESTIGACION </strong> </p>
+                                        
+                                        
                                     </div>
                                     <div id="div-alerta" style="padding: 1px;display:none " class=" alert alert-success pull-right"  >
 

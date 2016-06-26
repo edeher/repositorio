@@ -9,6 +9,7 @@ import com.repositoriounia.modelo.ArchivoPublicacion;
 import com.repositoriounia.modelo.AreaInvestigacion;
 import com.repositoriounia.modelo.Denuncia;
 import com.repositoriounia.modelo.Denunciante;
+import com.repositoriounia.modelo.DescripDenun;
 import com.repositoriounia.modelo.DescripcionArchivo;
 import com.repositoriounia.modelo.LineaInvestigacion;
 import com.repositoriounia.modelo.Publicacion;
@@ -47,7 +48,7 @@ public class DenunciaDAOJDBC implements DenunciaDAO{
                             
                             st.setInt(8, objD.getArchivoPublicacion().getIdArchivoPublicacion());
                             
-                            st.setString(9, objD.getDescripcion());
+                            st.setString(9, objD.getDescripdenun().name());
                            
                        
 	           if (st.execute()) //devuelve verdadero si fallo
@@ -74,7 +75,7 @@ public class DenunciaDAOJDBC implements DenunciaDAO{
                             
                             st.setInt(2, objD.getArchivoPublicacion().getIdArchivoPublicacion());
                             
-                            st.setString(3, objD.getDescripcion());
+                            st.setString(3, objD.getDescripdenun().name());
                            
                        
 	           if (st.execute()) //devuelve verdadero si fallo
@@ -98,7 +99,7 @@ public class DenunciaDAOJDBC implements DenunciaDAO{
 	                   
 	                    st.setInt(1, objD.getIdDenuncia());
                             
-                            st.setString(2, objD.getDescripcion());
+                            st.setString(2, objD.getDescripdenun().name());
                            
                        
 	           if (st.execute()) //devuelve verdadero si fallo
@@ -176,7 +177,7 @@ public class DenunciaDAOJDBC implements DenunciaDAO{
                                 rs.getString("urlLocal"),
                                 rs.getString("urlWeb")),
                             rs.getDate("fecha"),
-                            rs.getString("descripcion2"))
+                            DescripDenun.valueOf( rs.getString("descripcion2")))
                      );
             
         } catch (SQLException se) {
@@ -226,7 +227,7 @@ public class DenunciaDAOJDBC implements DenunciaDAO{
                                 rs.getString("urlLocal"),
                                 rs.getString("urlWeb")),
                             rs.getDate("fecha"),
-                            rs.getString("descripcion2"))
+                           DescripDenun.valueOf( rs.getString("descripcion2")))
                      );
             }
             return tribs.toArray(new Denuncia[0]);
@@ -283,7 +284,7 @@ public class DenunciaDAOJDBC implements DenunciaDAO{
                                 rs.getString("urlLocal"),
                                 rs.getString("urlWeb")),
                             rs.getDate("fecha"),
-                            rs.getString("descripcion2"))
+                           DescripDenun.valueOf( rs.getString("descripcion2")))
                      );
             }
             return tribs.toArray(new Denuncia[0]);
@@ -292,6 +293,66 @@ public class DenunciaDAOJDBC implements DenunciaDAO{
             throw new DAOException("Error obteniedo todos las denuncias en DAO: " 
                     + se.getMessage(), se);
         }   
+    }
+
+    @Override
+    public Denuncia crearleer(Denuncia objD) throws DAOException {
+        try{
+        CallableStatement st=con.prepareCall("{call sp_denuncia_n2(?,?,?,?,?,?,?,?,?)}");
+                            st.setString(1,objD.getDenunciante().getNombres());
+                            st.setString(2,objD.getDenunciante().getApellidos());
+                            st.setString(3,objD.getDenunciante().getDni());
+                            st.setString(4,objD.getDenunciante().getSexo().name());
+                            st.setString(5,objD.getDenunciante().getDireccion());
+                            st.setString(6,objD.getDenunciante().getTelefono());
+                            st.setString(7,objD.getDenunciante().getCorrero());
+                            
+                            st.setInt(8, objD.getArchivoPublicacion().getIdArchivoPublicacion());
+                            
+                            st.setString(9, objD.getDescripdenun().name());
+            
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                      new Denuncia(
+                            rs.getInt("idDenuncia"),
+                            new Denunciante(
+                                rs.getInt("idDenunciante"),
+
+                                rs.getString("nombres"),
+                                rs.getString("apellidos"),
+                                rs.getString("dni"),
+                                Sexo.valueOf(rs.getString("sexo")),
+                                rs.getString("direccion"),
+                                rs.getString("telefono"),
+                                rs.getString("correo")),
+                            new ArchivoPublicacion(
+                                rs.getInt("idArchivoPublicacion"),
+                                new Publicacion(
+                                    rs.getInt("idPublicacion"),
+                                    new LineaInvestigacion(
+                                        rs.getInt("idLineaInvestigacion"),
+                                        new AreaInvestigacion(
+                                            rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")),
+                                        rs.getString("linea")),
+                                    rs.getString("titulo"),
+                                    rs.getDate("fechaCarga"),
+                                    rs.getDate("fechaPublicacion")),
+                                DescripcionArchivo.valueOf(rs.getString("descripcion1")),
+                                rs.getString("urlLocal"),
+                                rs.getString("urlWeb")),
+                            rs.getDate("fecha"),
+                           DescripDenun.valueOf( rs.getString("descripcion2")))
+                     );
+            
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error buscando denuncia en DAO", se);
+        }
     }
 
 }

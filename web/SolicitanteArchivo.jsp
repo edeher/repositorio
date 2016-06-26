@@ -20,7 +20,7 @@
 
     </head>
     <%
-
+        int idArchivoPublicacion = Integer.parseInt(request.getParameter("idArchivoPublicacion"));
         FacultadDAOFactory fabricate1 = new FacultadDAOFactory();
         FacultadDAO daote1 = fabricate1.metodoDAO();
         Facultad[] facul = daote1.leertodo();
@@ -38,16 +38,16 @@
         <div class="modal-body">  
 
             <form class="form-horizontal form-label-left " id="crearform" enctype="multipart/form-data">
-                
+
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="x_panel">
 
                         <div class="x_content">
-<div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">CODIGO</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
                                     <input type="text" class="form-control has-feedback-left" readonly="readonly" value="AUTOGENARADO">
-
+                                    <input type="hidden" name="idArchivoPublicacion"id="idAutor1" value="<%=idArchivoPublicacion%>" />       
                                     <span class="fa fa-cc form-control-feedback left" aria-hidden="true"></span>
                                 </div>
                             </div>   
@@ -121,25 +121,25 @@
                         </div>
                     </div>
                 </div>
-<div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="x_panel">
 
                         <div class="x_content">
-                                  
+
 
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo de Entidad</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                       <select name="tipoentidad"id="" class="form-control">
-                                                        <option value="--">--</option>
-                                                        <%for (TipoEntidad es : TipoEntidad.values()) {
+                                        <select name="tipoentidad"id="" class="form-control">
+                                            <option value="--">--</option>
+                                            <%for (TipoEntidad es : TipoEntidad.values()) {
 
-                                                        %>
-                                                        <option value="<%=es.name()%>"  >
-                                                            <%=es.getNom()%></option>
-                                                            <%}%>
-                                                    </select>
+                                            %>
+                                            <option value="<%=es.name()%>"  >
+                                                <%=es.getNom()%></option>
+                                                <%}%>
+                                        </select>
                                     </div>
                                 </div>
                             </div>  
@@ -159,7 +159,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
 
 
                         </div>
@@ -175,7 +175,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary" id="btnsolicitar" >Solicitar</button>
+            <button type="button" class="btn btn-primary" id="btnSolicitar" >Solicitar</button>
         </div>
     </body>
     <!--LIBRERIAS NECESARIAS PARA EL SCRIPT*-->
@@ -195,7 +195,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-          
+
             /*----------------------------------*/
         });
 
@@ -208,20 +208,20 @@
                 data: formdata,
                 processData: false,
                 cache: false})
-                    .done(function(msj){
-                       
-                        if(msj==0){
-                                alert('ya existe');
-                        ocultarmodal();
-                        alerta("Autor no creado", false);
-                    }
-                    else
-                    {
-                        actualizar();
-                        ocultarmodal();
-                        alerta("Autor creado", true);
-                    }
-                            })
+                    .done(function (msj) {
+
+                        if (msj == 0) {
+                            alert('nose puede crear');
+                            ocultarmodal();
+                            alerta("solicitud no enviada", false);
+                        }
+                        else
+                        {
+                            actualizar2();
+                            ocultarmodal();
+                            alerta("Socitud enviada", true);
+                        }
+                    })
         });
     </script>
 

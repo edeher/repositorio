@@ -245,7 +245,11 @@
                     
                 }
             });  
-            
+            table.on('order.dt search.dt', function () {
+                    table.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                }).draw();
             $('#datatable-responsive tbody').on( 'click', 'button', function (){
                 var nombre = $(this).attr('name');
                 var data = table.row( $(this).parents('tr') ).data();

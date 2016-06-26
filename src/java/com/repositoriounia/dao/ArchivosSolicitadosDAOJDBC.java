@@ -476,5 +476,77 @@ private final Connection con;
         }
     }
 
+    @Override
+    public ArchivosSolicitados crearleer1(ArchivosSolicitados objarchS) throws DAOException {
+      try  {
+            CallableStatement st = con.prepareCall("{call sp_archivossolicitados_n2(?,?,?,?,?,?,?,?,?,?,?)}");
+                            st.setString(1,objarchS.getSolicitante().getNombres());
+                            st.setString(2,objarchS.getSolicitante().getApellidos());
+                            st.setString(3,objarchS.getSolicitante().getDni());
+                            st.setString(4,objarchS.getSolicitante().getSexo().name());
+                            st.setString(5,objarchS.getSolicitante().getDireccion());
+                            st.setString(6,objarchS.getSolicitante().getTelefono());
+                            st.setString(7,objarchS.getSolicitante().getCorrero());
+                                                        
+                            st.setString(8,objarchS.getSolicitante().getTipoEntidad().name());
+                            st.setString(9,objarchS.getSolicitante().getEntidad());
+                            st.setString(10,objarchS.getSolicitante().getAreaTrabajo());
+                                                        
+                            st.setInt(11,objarchS.getArchivoPublicacion().getIdArchivoPublicacion());
+                            
+           
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                     new ArchivosSolicitados(
+                            rs.getInt("idArchivoSolicitado"),
+                            new Solicitante(
+                                    rs.getInt("idSolicitante"),
+                            TipoEntidad.valueOf(rs.getString("tipoEntidad")),
+                            rs.getString("entidad"),
+                            rs.getString("areaTrabajo"),
+                            
+                            rs.getString("nombres"),
+                            rs.getString("apellidos"),
+                            rs.getString("dni"),
+                            Sexo.valueOf(rs.getString("sexo")),
+                            rs.getString("direccion"),
+                            rs.getString("telefono"),
+                            rs.getString("correo")
+                            ),
+                            new ArchivoPublicacion(
+                                   rs.getInt("idArchivoPublicacion"),
+                           
+                           new Publicacion(
+                                   rs.getInt("idPublicacion"),
+                            new LineaInvestigacion(
+                                    rs.getInt("idLineaInvestigacion"),
+                                    new AreaInvestigacion(
+                                    rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")
+                                    ),
+                                    rs.getString("linea")),
+                            rs.getString("titulo"),
+                            rs.getDate("fechaCarga"),
+                            rs.getDate("fechaPublicacion")                      
+                           ),
+                             DescripcionArchivo.valueOf(rs.getString("descripcion")),
+                            rs.getString("urlLocal"),
+                            rs.getString("urlWeb"),
+                    null
+                            ),
+                            rs.getDate("fechaSolicitud"),
+                            Respuesta.valueOf(rs.getString("respuesta")),
+                            rs.getDate("fechaRespuesta"))
+                   );
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error buscando los archivos publicacion en DAO", se);
+        }
+    }
+
    
 }

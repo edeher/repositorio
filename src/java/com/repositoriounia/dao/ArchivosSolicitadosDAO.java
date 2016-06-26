@@ -18,6 +18,7 @@ public interface ArchivosSolicitadosDAO {
      public boolean modificar(ArchivosSolicitados objarchS,int idSolicitante, int idArchivoPublicacion)throws DAOException;
     public boolean eliminar(int idArchivoSolicitado)throws DAOException;
     public ArchivosSolicitados crearleer(ArchivosSolicitados objarchS)throws DAOException;
+    public ArchivosSolicitados crearleer1(ArchivosSolicitados objarchS)throws DAOException;
     public ArchivosSolicitados leerxid(int idArchivoSolicitado)throws DAOException;
     public ArchivosSolicitados[] leertodoxidsolicitante(int idSolicitante)throws DAOException;
     public ArchivosSolicitados[] leertodoxidarchivopublicacion( int idArchivoPublicacion)throws DAOException;

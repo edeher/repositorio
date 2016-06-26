@@ -90,6 +90,8 @@ public class ArchivosSolicitados {
     }
 
     public ArchivosSolicitados() {
+        this.solicitante=new Solicitante();
+        this.archivoPublicacion=new ArchivoPublicacion();
     }
 
     @Override

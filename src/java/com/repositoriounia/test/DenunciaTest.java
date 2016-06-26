@@ -10,6 +10,7 @@ import com.repositoriounia.dao.DenunciaDAO;
 import com.repositoriounia.dao.DenunciaDAOFactory;
 import com.repositoriounia.modelo.Denuncia;
 import com.repositoriounia.modelo.Denunciante;
+import com.repositoriounia.modelo.DescripDenun;
 import com.repositoriounia.modelo.Sexo;
 
 /**
@@ -30,7 +31,8 @@ public class DenunciaTest {
 //        eliminardenuncia();
 //        leer();
 //        leertodo();
-        leertodo2();
+//        leertodo2();
+        CREARleer();
     }
      public static void creardenuncia() throws DAOException
     {
@@ -47,7 +49,7 @@ public class DenunciaTest {
               objDe.getDenunciante().setCorrero("edercin@qqqqq prueba");
               
              objDe.getArchivoPublicacion().setIdArchivoPublicacion(1);
-              objDe.setDescripcion("es copia de prueba33333");
+              objDe.setDescripdenun(DescripDenun.PLAGIO);
               
               
               daote.crear(objDe);
@@ -65,7 +67,7 @@ public class DenunciaTest {
            
              
               objDe.getArchivoPublicacion().setIdArchivoPublicacion(1);
-              objDe.setDescripcion("es copia de el");
+              objDe.setDescripdenun(DescripDenun.PLAGIO);
               
               daote.crear(objDe,idDenunciante);
                
@@ -78,7 +80,7 @@ public class DenunciaTest {
           Denuncia objDe = new Denuncia();
           
               objDe.setIdDenuncia(2);
-              objDe.setDescripcion("es copia de el creoxxxx");
+              objDe.setDescripdenun(DescripDenun.PLAGIO);
               
               daote.modificar(objDe);
                
@@ -136,4 +138,28 @@ public class DenunciaTest {
 	  }
 	 
         } 
+         public static void CREARleer()throws DAOException
+	{
+		 DenunciaDAOFactory fabricate= new DenunciaDAOFactory();
+        DenunciaDAO daote= fabricate.metodoDAO();
+        
+        Denuncia objDe = new Denuncia();
+         
+             objDe.getDenunciante().setNombres("edeher 333");
+              objDe.getDenunciante().setApellidos("ponce");
+              objDe.getDenunciante().setDni("43056714");
+              objDe.getDenunciante().setSexo(Sexo.M);
+             objDe.getDenunciante().setDireccion("aca toy");
+             objDe.getDenunciante().setTelefono("942154007");
+              objDe.getDenunciante().setCorrero("edercin@qqqqq prueba");
+              
+             objDe.getArchivoPublicacion().setIdArchivoPublicacion(15);
+              objDe.setDescripdenun(DescripDenun.PLAGIO);
+       
+               
+	   Denuncia objDe1=daote.crearleer(objDe);
+	 System.out.println(" "+objDe1.toString());
+        
+	    
+	}
 }

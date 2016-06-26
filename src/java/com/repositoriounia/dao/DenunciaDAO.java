@@ -19,6 +19,7 @@ public interface DenunciaDAO {
      public boolean modificar(Denuncia objD)throws DAOException;
     public boolean eliminar(Denuncia objD)throws DAOException;
     public Denuncia leerxid (int idDenuncia)throws DAOException;
+    public Denuncia crearleer (Denuncia objD)throws DAOException;
     public Denuncia[] leertodo()throws DAOException;
     public Denuncia[] leertodoxarchivo(int idArchivoPublicacion)throws DAOException;
 }

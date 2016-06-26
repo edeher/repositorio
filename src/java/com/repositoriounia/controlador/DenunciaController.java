@@ -10,6 +10,8 @@ import com.repositoriounia.dao.DenunciaDAO;
 import com.repositoriounia.dao.DenunciaDAOFactory;
 import com.repositoriounia.modelo.Autor;
 import com.repositoriounia.modelo.Denuncia;
+import com.repositoriounia.modelo.DescripDenun;
+import com.repositoriounia.modelo.Sexo;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -19,6 +21,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +32,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Mi Laptop
  */
 @WebServlet(name = "DenunciaController", urlPatterns = {"/DenunciaController"})
+@MultipartConfig
 public class DenunciaController extends HttpServlet {
     private Denuncia objDe;
     private DenunciaDAOFactory fabricate;
@@ -55,7 +59,7 @@ public class DenunciaController extends HttpServlet {
        {
            case "ObtenerTodos":ObtenerTodos(request,response);
                break;
-           case "2":
+           case "CrearDenuncia":CrearDenuncia(request,response);
                break;
            case "3":
                break;
@@ -130,7 +134,7 @@ public class DenunciaController extends HttpServlet {
              arrayDatosDenuncia.add(denuncia .getIdDenuncia());
               arrayDatosDenuncia.add(denuncia .getDenunciante().getNombres()+" "+denuncia .getDenunciante().getApellidos());
              arrayDatosDenuncia.add( denuncia .getFecha().toString()); 
-            arrayDatosDenuncia.add(denuncia.getDescripcion());
+            arrayDatosDenuncia.add(denuncia.getDescripdenun().getNom());
              arrayDatosDenuncia.add(denuncia .getArchivoPublicacion().getPublicacion().getTitulo() );
              arrayDatosDenuncia.add(denuncia.getArchivoPublicacion().getDescripcion().getNom() );
              
@@ -144,6 +148,34 @@ public class DenunciaController extends HttpServlet {
             pw.println(obj.toString()); 
         } 
     
+    }
+
+    private void CrearDenuncia(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+       objDe=new Denuncia();
+        objDe.getDenunciante().setNombres(request.getParameter("nombres"));
+        objDe.getDenunciante().setApellidos(request.getParameter("apellidos"));
+        objDe.getDenunciante().setDni(request.getParameter("dni"));
+        objDe.getDenunciante().setSexo(Sexo.valueOf(request.getParameter("sexo")));
+        objDe.getDenunciante().setDireccion(request.getParameter("direccion"));
+        objDe.getDenunciante().setTelefono(request.getParameter("telefono"));
+        objDe.getDenunciante().setCorrero(request.getParameter("correo"));
+        objDe.getArchivoPublicacion().setIdArchivoPublicacion(Integer.parseInt(request.getParameter("idArchivoPublicacion")));
+        objDe.setDescripdenun(DescripDenun.valueOf(request.getParameter("descripcion")));
+        Denuncia denun=daote.crearleer(objDe);
+         try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+                 if(denun==null){
+                      pw.println(0); 
+                 }else
+                 {
+                     int id=denun.getIdDenuncia();
+                      pw.println(id); 
+                 }
+                 
+           
+        }       
+        
+        
+        
     }
 
 }

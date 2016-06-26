@@ -11,8 +11,8 @@ package com.repositoriounia.modelo;
  */
 public enum DescripDenun {
     PLAGIO("Es copia de otro Trabajo"),
-    AUTORIA("No es el unico Autor");
-    
+    AUTORIA("No es el unico Autor"),
+    PLAGIOPART("Contiene Partes de otro Proyecto");
     
     private String nom;
 

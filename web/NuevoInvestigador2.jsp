@@ -78,7 +78,7 @@
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">NOMBRES</label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
                                                     <input type="hidden" name="idAutor1"id="idAutor1" value="" />
-                                                    <input type="hidden" name="idPublicacion1"id="idAutor1" value="<%=idPublicacion%>" />
+                                                    <input type="hidden" name="idPublicacion1"id="" value="<%=idPublicacion%>" />
                                                     <input name="nombres1" id="nombres1"class="form-control has-feedback-left" readonly="readonly" type="text" class="form-control" value="">
                                                 </div>
                                             </div>

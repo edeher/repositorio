@@ -234,7 +234,7 @@
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnEditar" data-toggle="tooltip" data-placement="left" title="EDITAR"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar" data-toggle="tooltip" data-placement="top" title="ELIMINAR"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnAsignar" data-toggle="tooltip" data-placement="right" title="ASIGNAR"><a><i class="fa fa-mail-forward"></i></a></button>'}
+                    "defaultContent": '<button name="btnEditar" data-toggle="tooltip" data-placement="left" title="EDITAR"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnVer" data-toggle="tooltip" data-placement="top" title="VER"><a><i class="fa fa-search"></i></a></button>&nbsp&nbsp <button name="btnREchazar" data-toggle="tooltip" data-placement="top" title="ELIMINAR"><a><i class="fa fa-remove"></i></a></button>'}
                 ],
                 "ajax": "SolicitanteController?accion=ObtenerTodos",
                 "initComplete": function() {
@@ -245,7 +245,11 @@
                     
                 }
             });  
-            
+            table.on('order.dt search.dt', function () {
+                    table.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                }).draw();
             $('#datatable-responsive tbody').on( 'click', 'button', function () {
                 var nombre = $(this).attr('name');
                 var data = table.row( $(this).parents('tr') ).data();

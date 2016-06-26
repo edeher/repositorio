@@ -213,7 +213,10 @@
         <script src="js/datatables/dataTables.responsive.min.js"></script>
         <script src="js/datatables/responsive.bootstrap.min.js"></script>
         <script src="js/datatables/dataTables.scroller.min.js"></script>    
-        
+        <!--- librerias paramensaje emergentes--->
+        <script type="text/javascript" src="js/notify/pnotify.core.js"></script>
+        <script type="text/javascript" src="js/notify/pnotify.buttons.js"></script>
+        <script type="text/javascript" src="js/notify/pnotify.nonblock.js"></script>
         <script type="text/javascript">
         $(document).ready(function() {            
              var table =$('#datatable-responsive').DataTable({
@@ -227,14 +230,14 @@
                                { "title": "Fecha de Solicitud" },
                                 { "title": "Respuesta" },
                                  { "title": "Fecha de Respuesta" },
-                            { "title": "<a href='#' id='btnNuevo'><i class='fa fa-plus' data-toggle='tooltip' data-placement='top' title='NUEVO'></i></a>" }],
+                            { "title": "Opciones" }],
                 "columnDefs": [                         
                    {"targets": [ 7 ],
                     "orderable": false,
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnEditar" data-toggle="tooltip" data-placement="left" title="EDITAR"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar" data-toggle="tooltip" data-placement="top" title="RECHAZAR"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnAsignar" data-toggle="tooltip" data-placement="right" title="ASIGNAR"><a><i class="fa fa-mail-forward"></i></a></button>'}
+                    "defaultContent": ' <button name="btnResponder" data-toggle="tooltip" data-placement="left" title="RESPONDER"><a><i class="fa fa-mail-forward"></i></a></button>&nbsp&nbsp <button name="btnVer" data-toggle="tooltip" data-placement="top" title="VER"><a><i class="fa fa-search"></i></a></button>&nbsp&nbsp<button name="btnEditar" data-toggle="tooltip" data-placement="top" title="RECHAZAR"><a><i class="fa fa-remove"></i></a></button>'}
                 ],
                 "ajax": "ArchivosSolicitadosController?accion=ObtenerTodos",
                 "initComplete": function() {
@@ -244,8 +247,13 @@
                         });
                     
                 }
+                
             });  
-            
+            table.on('order.dt search.dt', function () {
+                    table.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+                        cell.innerHTML = i + 1;
+                    });
+                }).draw();
             $('#datatable-responsive tbody').on( 'click', 'button', function () {
                 var nombre = $(this).attr('name');
                 var data = table.row( $(this).parents('tr') ).data();
@@ -309,6 +317,31 @@
                 }); 
           }
           /*-------------------------------------------------------------*/
+        </script>
+         <script type="text/javascript">
+            var permanotice, tooltip, _alert;
+            $(function () {
+                new PNotify({
+                    title: "IMPORTANTE",
+                    text: "RESPONDER SOLICITUDES ",
+                    nonblock: {
+                        nonblock: true
+                    },
+                    before_close: function (PNotify) {
+                        // You can access the notice's options with this. It is read only.
+                        //PNotify.options.text;
+
+                        // You can change the notice's options after the timer like this:
+                        PNotify.update({
+                            title: PNotify.options.title + " - Enjoy your Stay",
+                            before_close: null
+                        });
+                        PNotify.queueRemove();
+                        return false;
+                    }
+                });
+
+            });
         </script>
 </body>
 

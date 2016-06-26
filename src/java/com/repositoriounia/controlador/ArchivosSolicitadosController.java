@@ -10,6 +10,8 @@ import com.repositoriounia.dao.ArchivosSolicitadosDAOFactory;
 import com.repositoriounia.dao.DAOException;
 import com.repositoriounia.modelo.ArchivosSolicitados;
 import com.repositoriounia.modelo.Autor;
+import com.repositoriounia.modelo.Sexo;
+import com.repositoriounia.modelo.TipoEntidad;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -143,9 +145,33 @@ public class ArchivosSolicitadosController extends HttpServlet {
         }   
     }
 
-    private void CrearSolicitud(HttpServletRequest request, HttpServletResponse response) {
+    private void CrearSolicitud(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
         objArSo=new ArchivosSolicitados();
+        objArSo.getSolicitante().setNombres(request.getParameter("nombres").toUpperCase().trim());
+        objArSo.getSolicitante().setApellidos(request.getParameter("apellidos").toUpperCase().trim());
+        objArSo.getSolicitante().setDni(request.getParameter("dni"));
+        objArSo.getSolicitante().setSexo(Sexo.valueOf(request.getParameter("sexo").toUpperCase().trim()));
+        objArSo.getSolicitante().setDireccion(request.getParameter("direccion").toUpperCase().trim());
+        objArSo.getSolicitante().setTelefono(request.getParameter("telefono").toUpperCase().trim());
+        objArSo.getSolicitante().setCorrero(request.getParameter("correo").toUpperCase().trim());
+        objArSo.getSolicitante().setTipoEntidad(TipoEntidad.valueOf(request.getParameter("tipoentidad")));
+        objArSo.getSolicitante().setEntidad(request.getParameter("entidad").toUpperCase().trim());
+        objArSo.getSolicitante().setAreaTrabajo(request.getParameter("areatrabajo").toUpperCase().trim());
         
+        objArSo.getArchivoPublicacion().setIdArchivoPublicacion(Integer.parseInt(request.getParameter("idArchivoPublicacion")));
+         
+        ArchivosSolicitados archivo=daote.crearleer1(objArSo);
+            try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+                 if(archivo==null){
+                      pw.println(0); 
+                 }else
+                 {
+                      pw.println(1); 
+                 }
+                 
+           
+        }                                                                                      
+                          
         
     }
 
