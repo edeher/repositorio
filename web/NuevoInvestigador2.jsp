@@ -288,6 +288,7 @@
 
                                         </div>
                                         <div class="form-group">
+                                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Sexo</label>
                                             <div class="col-md-9 col-sm-9 col-xs-12">
                                                 <div id="gender" class="btn-group" data-toggle="buttons">
@@ -300,6 +301,7 @@
                                                         <input type="radio" name="sexo2" value="F" checked=""> Femenino
                                                     </label>
                                                 </div>
+                                            </div>
                                             </div>
                                         </div>
                                         <div class="form-group">      

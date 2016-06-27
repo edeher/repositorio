@@ -16,7 +16,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">	
         <link href="css/fileinput.css" rel="stylesheet" type="text/css"/>   
@@ -160,8 +160,8 @@
 
                             <div class="x_content">
                                 <div id="collapseOne1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                    <form enctype="multipart/form-data" id="cargaform1">
-                                        <input type="hidden" name="idDenuncia"id="idDenuncia" value="" />
+                                    <form id="cargaform1" enctype="multipart/form-data" >
+                                        <input type="text" name="idDenuncia"id="idDenuncia" value="" />
                                         <div class="form-group">
 
                                             Adjuntar Archivo que compuebe su Denuncia
@@ -172,7 +172,7 @@
 
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">ARCHIVO</label>
 
-                                            <input name="archivo2" id="file-2" accept=".pdf"  type="file" class="file"  data-preview-file-type="any" value="" data-show-preview="false">
+                                            <input name="archivos" id="file-2" accept=".pdf"  type="file" class="file"  data-preview-file-type="any" value="" data-show-preview="false">
 
 
                                         </div>  
@@ -183,8 +183,8 @@
                                     
                                     <div class="form-group">
                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                            <button class="btn btn-primary" id="btnCargar" >Cargar</button>
-                                            <button class="btn btn-default" type="reset">Cancelar</button>
+                                            <button class="btn btn-primary" id="btnCargar1" >Cargar</button>
+                                            <button class="btn btn-default" id="cancelar" type="reset">Cancelar</button>
                                         </div>
                                     </div>
                                     
@@ -240,6 +240,8 @@
     $(document).ready(function () {
 
 $( "#file-2" ).prop( "disabled", true );
+$( "#btnCargar1" ).prop( "disabled", true );
+$( "#cancelar" ).prop( "disabled", true );
         /*----------------------------------*/
     });
  $('#file-2').fileinput({
@@ -271,40 +273,46 @@ $( "#file-2" ).prop( "disabled", true );
                        $('#btnDenunciar').attr("disabled", true);
                        $('#idDenuncia').val(id);
                        $( "#file-2" ).prop( "disabled", false );
+                       $( "#btnCargar1" ).prop( "disabled", false );
+                        $( "#cancelar" ).prop( "disabled", false);
                         alerta1("Denuncia Recibida, pude cargar sus archivos ", true);
                     }
                 })
                
     });
     
-     $('#btnCargar').click(function () {
+     $('#btnCargar1').click(function () {
+      
+       
         var formdata = new FormData($("#cargaform1")[0]);
-        formdata.append('idDenuncia', $('#idDenuncia').val());
-        formdata.append('urllocacl', 'xxx');
+        //formdata.append('idDenuncia',$('#idDenuncia').val());
+        // alert('codigo :'+$('#idDenuncia').val());
+        formdata.append('urllocal', 'xxx');
         formdata.append('urlweb', 'xx');
         var inputfile = document.getElementById('file-2');
         var file = inputfile.files[0];
         formdata.append('archivo', file);
-
+        
         $.ajax({
-            url: "ArchivoPublicacionController?accion=cargarArchivo",
+            url: "ArchivoDenunciaController?accion=cargarArchivo",
             type: "post",
             contentType: false,
             data: formdata,
             processData: false,
             cache: false})
-
+ 
                 .done(function (msj) {
 
                     if (msj == 0) {
-                        alert('ya existe');
-                        alerta("archivo no cargado", false);
+                        alert('no se pudo crear');
+                        alerta1("archivo no cargado", false);
                     }
                     else
                     {
                         actualizar2();
-                        $('#cargaform').trigger('reset');
-                        alerta("archivo cargado", true);
+                        $( "#btnCargar1" ).prop( "disabled", true );
+                        $( "#cancelar" ).prop( "disabled", true );
+                        alerta1("archivo cargado", true);
                     }
                 })
     });

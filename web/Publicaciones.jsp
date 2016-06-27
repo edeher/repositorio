@@ -311,7 +311,10 @@
             });
             /*-------------------------------------------------------------*/
 
-
+$('#btnSugerir').click(function () {
+     $('.modal-lg').css('width', '900px');
+         mostrarModal('NuevoSolicitanteTema.jsp');
+    });
             /*funcion independiete que MUESTRA EL MODAL*/
             function mostrarModal(url) {
                 $('#miModal .modal-content').load(url, function () {
@@ -350,6 +353,7 @@
                 });
             }
             /*-------------------------------------------------------------*/
+            
         </script>
         <script type="text/javascript">
             var permanotice, tooltip, _alert;

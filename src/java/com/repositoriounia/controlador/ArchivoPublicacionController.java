@@ -156,6 +156,7 @@ public class ArchivoPublicacionController extends HttpServlet {
     
 
     private void cargarArchivo(HttpServletRequest request, HttpServletResponse response) throws IOException, DAOException, ServletException {
+        
         archipu = new ArchivoPublicacion();
         System.out.println("cargando archivo..en metodo..");
         Part filePart = request.getPart("archivo");
@@ -171,6 +172,7 @@ public class ArchivoPublicacionController extends HttpServlet {
         archipu.setUrlWeb(request.getParameter("urlweb"));
         archipu.setDescripcion(DescripcionArchivo.valueOf(request.getParameter("descripcion"))); 
         ArchivoPublicacion archi =daote.crearleer(archipu);
+        
         try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
                  if(archi==null){
                       pw.println(0); 

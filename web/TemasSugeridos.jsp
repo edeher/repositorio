@@ -225,14 +225,14 @@
                              { "title": "Fecha de Solicitud" },
                              { "title": "Tema" },
                              { "title": "Area Tematica" },
-                            { "title": "<a href='#'id='btnNuevo'><i class='fa fa-plus' data-toggle='tooltip' data-placement='top' title='NUEVO'></i></a>" }],
+                            { "title": "Opciones" }],
                 "columnDefs": [                         
                    {"targets": [ 5 ],
                     "orderable": false,
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnEditar" data-toggle="tooltip" data-placement="left" title="EDITAR"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar" data-toggle="tooltip" data-placement="top" title="ELIMINAR"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnAsignar" data-toggle="tooltip" data-placement="right" title="RESPONDER"><a><i class="fa fa-mail-forward"></i></a></button>'}
+                    "defaultContent": '<button name="btnVerSolicitante" data-toggle="tooltip" data-placement="left" title="Ver Solicitante"><a><i class="fa fa-male"></i></a></button>&nbsp&nbsp <button name="btnEliminar" data-toggle="tooltip" data-placement="top" title="ELIMINAR"><a><i class="fa fa-remove"></i></a></button>'}
                 ],
                 "ajax": "TemasSugeridosController?accion=ObtenerTodos",
                 "initComplete": function() {
@@ -251,17 +251,25 @@
             $('#datatable-responsive tbody').on( 'click', 'button', function () {
                 var nombre = $(this).attr('name');
                 var data = table.row( $(this).parents('tr') ).data();
-                if(nombre=='btnEditar'){
-                    $('#miModal .modal-content').load('crearSolicitud.jsp?codigo='+data[0], function(){
-                        
-                        $('#miModal').modal('show');s
-                    });
-                }
+                if (nombre == 'btnVerSolicitante') {
+               $('.modal-lg').css('width', '500px');
+                 mostrarModal('SolicitanteTema.jsp?idTemasSugeridos='+ data[0]);
+                 }            
                                     
-                if(nombre=='btnRechazar')
-                    alert( "modal RECHAZAR con codigo: "+ data[ 0 ] );                
-                if(nombre=='btnAsignar')
-                    alert( "modal ASIGNAR con codigo: "+ data[ 0 ] );                
+                if (nombre == 'btnEliminar') {
+                        if (confirm("seguro que desea eliminar el Tema Sugerido") == true)
+                        {
+                            $.ajax({url: "TemasSugeridosController?accion=EliminarTema&idTemasSugeridos=" + data[0],
+                                    })
+                            
+                                    .always(function ()
+                                    {
+                                        actualizar();
+                                        alerta("Tema Eliminado", true);
+                                    });
+                                            
+                        }
+                    }              
             } );
             $('#datatable-responsive thead').on( 'click', 'a', function () {
                 var nombre = $(this).attr('id');              

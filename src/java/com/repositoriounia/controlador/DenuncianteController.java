@@ -55,7 +55,7 @@ public class DenuncianteController extends HttpServlet {
             case "ObtenerTodos":
                 ObtenerTodos(request,response);
                 break;
-            case "2":
+            case "BuscarxidArchivo":BuscarxidArchivo(request,response);
                 break;
             case "3":
                 break;
@@ -139,6 +139,10 @@ public class DenuncianteController extends HttpServlet {
             pw.println(obj.toString()); 
         }
     
+    }
+
+    private void BuscarxidArchivo(HttpServletRequest request, HttpServletResponse response) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

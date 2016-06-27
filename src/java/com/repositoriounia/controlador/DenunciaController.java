@@ -61,7 +61,7 @@ public class DenunciaController extends HttpServlet {
                break;
            case "CrearDenuncia":CrearDenuncia(request,response);
                break;
-           case "3":
+           case "BuscarxidArchivo":BuscarxidArchivo(request,response);
                break;
            case "4":
                break;
@@ -176,6 +176,33 @@ public class DenunciaController extends HttpServlet {
         
         
         
+    }
+
+    private void BuscarxidArchivo(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+        int idArchivoPublicacion=Integer.parseInt(request.getParameter("idArchivoPublicacion"));
+       Denuncia[] Denun = daote.leertodoxarchivo(idArchivoPublicacion);
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();  
+        JsonArrayBuilder  arrayDenuncia = Json.createArrayBuilder();        
+        JsonArrayBuilder  arrayDatosDenuncia; 
+       for (Denuncia denuncia : Denun) {
+            //System.out.println(solicitud.toString());            
+             arrayDatosDenuncia = Json.createArrayBuilder();
+             arrayDatosDenuncia.add(denuncia .getIdDenuncia());
+              arrayDatosDenuncia.add(denuncia .getDenunciante().getNombres()+" "+denuncia .getDenunciante().getApellidos());
+             arrayDatosDenuncia.add( denuncia .getFecha().toString()); 
+            arrayDatosDenuncia.add(denuncia.getDescripdenun().getNom());
+             arrayDatosDenuncia.add(denuncia .getArchivoPublicacion().getPublicacion().getTitulo() );
+             arrayDatosDenuncia.add(denuncia.getArchivoPublicacion().getDescripcion().getNom() );
+             
+            arrayDenuncia.add( arrayDatosDenuncia);
+        }
+        objbuilder.add("data", arrayDenuncia);
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        } 
     }
 
 }

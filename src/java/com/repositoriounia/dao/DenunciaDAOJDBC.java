@@ -355,4 +355,6 @@ public class DenunciaDAOJDBC implements DenunciaDAO{
         }
     }
 
+   
+
 }

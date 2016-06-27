@@ -184,7 +184,26 @@
                             </div>
                           </div>
                         </div>
-
+<div id="miModal1" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" height="">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Archivo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="iframe-container">
+                        <iframe id="iframepdf" src="" width="100%" height="550" frameborder="0">
+                        </iframe>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 		</div>
 	</div>	        
 	<!-- /footer content -->
@@ -227,14 +246,14 @@
                              { "title": "Motivo" },
                              { "title": "Publicacion" },
                              { "title": "Archivo Denunciado" },
-                             { "title": "<a href='#' id='btnNuevo' ><i class='fa fa-plus' data-toggle='tooltip' data-placement='top' title='NUEVO'></i></a>" }],
+                             { "title": "Opciones" }],
                 "columnDefs": [                         
                    {"targets": [ 6 ],
                     "orderable": false,
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnEditar" data-toggle="tooltip" data-placement="left" title="EDITAR"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar" data-toggle="tooltip" data-placement="right" title="ELIMINAR"><a><i class="fa fa-remove"></i></a></button>'}
+                    "defaultContent": '<button name="btnVerDenunciante" data-toggle="tooltip" data-placement="left" title="Ver Denunciante"><a><i class="fa fa-male"></i></a></button>&nbsp&nbsp <button name="btnVerArchivo" data-toggle="tooltip" data-placement="top" title="Ver Archivo"><a><i class="fa fa-file-pdf-o"></i></a></button>'}
                 ],
                 "ajax": "DenunciaController?accion=ObtenerTodos",
                 "initComplete": function() {
@@ -253,17 +272,20 @@
             $('#datatable-responsive tbody').on( 'click', 'button', function (){
                 var nombre = $(this).attr('name');
                 var data = table.row( $(this).parents('tr') ).data();
-                if(nombre=='btnEditar'){
-                    $('#miModal .modal-content').load('ModificarPublicacion.jsp?codigo='+data[0], function(){
-                        
-                        $('#miModal').modal('show');s
-                    });
-                }
-                                    
-                if(nombre=='btnRechazar')
-                    alert( "modal RECHAZAR con codigo: "+ data[ 0 ] );                
-                if(nombre=='btnAsignar')
-                    alert( "modal ASIGNAR con codigo: "+ data[ 0 ] );                
+                
+                if (nombre == 'btnVerArchivo') {
+                $('#iframepdf').attr('src', 'ArchivoDenunciaController?accion=verArchivo&idDenuncia=' + data[0]);
+                $('.modal-lg').css('width', '1420px');
+
+                $('#miModal1').modal('show');
+                $('#iframepdf').contentWindow.location.reload(true);
+            }
+                  if (nombre == 'btnVerDenunciante') {
+               $('.modal-lg').css('width', '500px');
+                 mostrarModal('Denunciante.jsp?idDenuncia='+ data[0]);
+                
+            }                   
+                              
             } );
             $('#datatable-responsive thead').on( 'click', 'a', function (){
                 var nombre = $(this).attr('id');              

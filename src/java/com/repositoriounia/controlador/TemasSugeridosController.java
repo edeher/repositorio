@@ -53,7 +53,7 @@ public class TemasSugeridosController extends HttpServlet {
         {
             case "ObtenerTodos":ObtenerTodos(request,response);
                 break;
-            case "21":
+            case "EliminarTema":EliminarTema(request,response);
                 break;
             case "13":
                 break;
@@ -135,6 +135,11 @@ public class TemasSugeridosController extends HttpServlet {
         try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
             pw.println(obj.toString()); 
         }
+    }
+
+    private void EliminarTema(HttpServletRequest request, HttpServletResponse response) throws DAOException {
+       int codigo=Integer.parseInt(request.getParameter("idTemasSugeridos") );
+       daote.eliminar(codigo);
     }
 
 }

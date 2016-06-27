@@ -283,32 +283,12 @@ public class ArchivoDenunciaDAOJDBC implements ArchivoDenunciaDAO{
     
     }
 
-    @Override
-    public InputStream ArchivoDenuncia(int idArchivoDenuncia) throws DAOException {
-        InputStream pdf = null;
-        try {
-            CallableStatement st = con.prepareCall("{call sp_archivodenuncia_bcoArchi(?)}");
-            st.setInt(1, idArchivoDenuncia);
-            ResultSet rs = st.executeQuery();            
-            rs.next();
-            
-            pdf = rs.getBinaryStream("archivo");
-            
-            rs.close();
-            st.close();
-            con.close();
-
-        } catch (SQLException se) {
-
-            throw new DAOException("Error extrayendo archivo en DAO", se);
-        }
-        return pdf;
-    }
+    
 
     @Override
     public ArchivoDenuncia crearleer(ArchivoDenuncia objArchiD) throws DAOException {
          try{
-        CallableStatement st=con.prepareCall("{call sp_archivodenuncia_n(?,?,?,?)}");
+        CallableStatement st=con.prepareCall("{call sp_archivodenuncia_n1(?,?,?,?)}");
 	                   
 	                    st.setInt(1,objArchiD.getDenuncia().getIdDenuncia());
 	                    st.setString(2,objArchiD.getUrlLocal());
@@ -367,7 +347,49 @@ public class ArchivoDenunciaDAOJDBC implements ArchivoDenunciaDAO{
         }
          
     }
+@Override
+    public InputStream ArchivoDenuncia(int idArchivoDenuncia) throws DAOException {
+        InputStream pdf = null;
+        try {
+            CallableStatement st = con.prepareCall("{call sp_archivodenuncia_bcoArchi(?)}");
+            st.setInt(1, idArchivoDenuncia);
+            ResultSet rs = st.executeQuery();            
+            rs.next();
+            
+            pdf = rs.getBinaryStream("archivo");
+            
+            rs.close();
+            st.close();
+            con.close();
 
+        } catch (SQLException se) {
+
+            throw new DAOException("Error extrayendo archivo en DAO", se);
+        }
+        return pdf;
+    }
+
+    @Override
+    public InputStream ArchivoDenuncia2(int idDenuncia) throws DAOException {
+        InputStream pdf = null;
+        try {
+            CallableStatement st = con.prepareCall("{call sp_archivodenuncia_bcoArchi2(?)}");
+            st.setInt(1, idDenuncia);
+            ResultSet rs = st.executeQuery();            
+            rs.next();
+            
+            pdf = rs.getBinaryStream("archivo");
+            
+            rs.close();
+            st.close();
+            con.close();
+
+        } catch (SQLException se) {
+
+            throw new DAOException("Error extrayendo archivo en DAO", se);
+        }
+        return pdf;
+    }
     
     
 }

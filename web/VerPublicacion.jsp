@@ -456,6 +456,13 @@
                  $('.modal-lg').css('width', '1000px');
                  mostrarModal('DenuncianteArchivo.jsp?idArchivoPublicacion='+data[0]);
             }
+             if (nombre == 'btnVerDenuncias') {
+
+                //window.location.href='VerPublicacion.jsp?idPublicacion='+data[0];
+                //window.location.href = 'VerDenuncia.jsp?idArchivoPublicacion=' + data[0];
+                $('.modal-lg').css('width', '1000px');
+                 mostrarModal('VerDenuncia.jsp?idArchivoPublicacion='+data[0]);
+            }
         });
         /*-------------------------TABLA DE AUTORES--------------------------*/
         table2 = $('#tableAutores').DataTable({
@@ -634,7 +641,7 @@
     $('#btnCargar').click(function () {
         var formdata = new FormData($("#cargaform")[0]);
         formdata.append('idpublicacion',<%=idPublicacion%>);
-        formdata.append('urllocacl', 'xxx');
+        formdata.append('urllocal', 'xxx');
         formdata.append('urlweb', 'xx');
         var inputfile = document.getElementById('file-1');
         var file = inputfile.files[0];

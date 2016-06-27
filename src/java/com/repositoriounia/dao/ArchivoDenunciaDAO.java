@@ -18,8 +18,10 @@ public interface ArchivoDenunciaDAO {
     public boolean modificar(ArchivoDenuncia objarchD, int idDenuncia)throws DAOException;
     public boolean eliminar(int idArchivoDenuncia)throws DAOException;
     public ArchivoDenuncia leerxid(int idArchivoDenuncia)throws DAOException;
+    public ArchivoDenuncia crearleer(ArchivoDenuncia objArchiD)throws DAOException;
     public ArchivoDenuncia []leertodo(int idDenuncia)throws DAOException;
     public ArchivoDenuncia[] leertodo()throws DAOException;
     public InputStream ArchivoDenuncia(int idArchivoDenuncia)throws DAOException;
-    public ArchivoDenuncia crearleer(ArchivoDenuncia objArchiD)throws DAOException;
+    public InputStream ArchivoDenuncia2(int idDenuncia)throws DAOException;
+   
 }

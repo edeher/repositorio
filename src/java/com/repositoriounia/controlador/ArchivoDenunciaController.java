@@ -9,13 +9,11 @@ import com.repositoriounia.dao.ArchivoDenunciaDAO;
 import com.repositoriounia.dao.ArchivoDenunciaDAOFactory;
 import com.repositoriounia.dao.DAOException;
 import com.repositoriounia.modelo.ArchivoDenuncia;
-import com.repositoriounia.modelo.ArchivoPublicacion;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import static java.lang.System.out;
 import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +33,7 @@ import javax.servlet.http.Part;
  *
  * @author Mi Laptop
  */
-@WebServlet(name = "ArchivoController", urlPatterns = {"/ArchivoController"})
+@WebServlet(name = "ArchivoDenunciaController", urlPatterns = {"/ArchivoDenunciaController"})
 @MultipartConfig
 public class ArchivoDenunciaController extends HttpServlet {
     private ArchivoDenuncia objArDE;
@@ -54,26 +52,24 @@ public class ArchivoDenunciaController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, DAOException {
-        response.setContentType("text/html;charset=UTF-8");
+       
        String accion=request.getParameter("accion");
        fabricate=new ArchivoDenunciaDAOFactory();
        daote=fabricate.metodoDAO();
-       System.out.println("Archivodenuncia controller");
+       
+        System.out.println("Archivodenuncia controller");
         System.out.println("==============================");
         Enumeration enumeration = request.getParameterNames();
         while (enumeration.hasMoreElements()) {
             System.out.println(" enum" + enumeration.nextElement());
         }
         
-        ArchivoDenuncia objArDE=new ArchivoDenuncia();
+       ArchivoDenuncia objArDE=new ArchivoDenuncia();
        switch (accion)
        {
-            case "cargarArchivo":
-                System.out.println("cargarArchivo.....");
-                cargarArchivo(request, response);
-                response.setContentType("text/html;charset=UTF-8");
+            case "cargarArchivo":                
+                cargarArchivo(request, response);  
                 out = response.getWriter();
-                out.print("archivo cargado!!!");
                 break;
             case "ObtenerArchivos":
                 System.out.println("ObtenerArchivos.....");
@@ -153,17 +149,28 @@ public class ArchivoDenunciaController extends HttpServlet {
         byte[] buffer = new byte[4999999];
         for (int length = 0; (length = imput.read(buffer)) > 0;) {
             output.write(buffer, 0, length);
-        }
+        }     
+       
         objArDE.setArchivo(output.toByteArray());
-        objArDE.getDenuncia().setIdDenuncia(Integer.parseInt(request.getParameter("idDenuncia")));
+        
         objArDE.setUrlLocal(request.getParameter("urllocal"));
         objArDE.setUrlWeb(request.getParameter("urlweb"));
-       
         
-        System.out.println("codigo en emtodo " + objArDE.getDenuncia().getIdDenuncia());
-        System.out.println(" en metodo" + objArDE.getUrlLocal());
-        System.out.println("en metodo " + objArDE.getUrlWeb());
-       objArDE = daote.crearleer(objArDE);
+         int codigo=Integer.parseInt(request.getParameter("idDenuncia"));
+        System.out.println("codigo :"+codigo);
+        objArDE.getDenuncia().setIdDenuncia(Integer.parseInt(request.getParameter("idDenuncia")));
+        
+        ArchivoDenuncia objArDE1 = daote.crearleer(objArDE);
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+                 if(objArDE1==null){
+                      pw.println(0); 
+                 }else
+                 {
+                      pw.println(1); 
+                 }
+                 
+           
+        }
     }
 
     private String ObtenerArchivos(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
@@ -198,10 +205,10 @@ public class ArchivoDenunciaController extends HttpServlet {
     }
 
     private void verArchivo(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
-        int codigo = Integer.parseInt(request.getParameter("idArchivo"));
+        int codigo = Integer.parseInt(request.getParameter("idDenuncia"));
         
         OutputStream pdfsa;
-        try (InputStream pdf = daote.ArchivoDenuncia(codigo)) {
+        try (InputStream pdf = daote.ArchivoDenuncia2(codigo)) {
             pdfsa = response.getOutputStream();
             byte[] buffer2 = new byte[4999999];
             for (;;) {
