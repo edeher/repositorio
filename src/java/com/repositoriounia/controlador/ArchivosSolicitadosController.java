@@ -10,6 +10,7 @@ import com.repositoriounia.dao.ArchivosSolicitadosDAOFactory;
 import com.repositoriounia.dao.DAOException;
 import com.repositoriounia.modelo.ArchivosSolicitados;
 import com.repositoriounia.modelo.Autor;
+import com.repositoriounia.modelo.Respuesta;
 import com.repositoriounia.modelo.Sexo;
 import com.repositoriounia.modelo.TipoEntidad;
 import java.io.IOException;
@@ -60,9 +61,9 @@ public class ArchivosSolicitadosController extends HttpServlet {
                break;
            case "CrearSolicitud":CrearSolicitud(request,response);
                break;
-           case "3":
+           case "respuesta":respuesta(request,response);
                break;
-           case "4":
+           case "rechazar":rechazar(request,response);
                break;
            case "5":
                break;
@@ -173,6 +174,40 @@ public class ArchivosSolicitadosController extends HttpServlet {
         }                                                                                      
                           
         
+    }
+
+    private void respuesta(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+       objArSo =new ArchivosSolicitados();
+       objArSo.setIdArchivoSolicitado(Integer.parseInt(request.getParameter("idArchivoSolicitado")));
+       objArSo.setRespuesta(Respuesta.valueOf(request.getParameter("respuesta")));
+       ArchivosSolicitados archivosoli=daote.responder(objArSo);
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+                 if(archivosoli==null){
+                      pw.println(0); 
+                 }else
+                 {
+                      pw.println(1); 
+                 }
+                 
+           
+        }                   
+    }
+
+    private void rechazar(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+        objArSo =new ArchivosSolicitados();
+       objArSo.setIdArchivoSolicitado(Integer.parseInt(request.getParameter("idArchivoSolicitado")));
+       objArSo.setRespuesta(Respuesta.valueOf(request.getParameter("respuesta")));
+       ArchivosSolicitados archivosoli=daote.responder(objArSo);
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+                 if(archivosoli==null){
+                      pw.println(0); 
+                 }else
+                 {
+                      pw.println(1); 
+                 }
+                 
+           
+        }     
     }
 
 }

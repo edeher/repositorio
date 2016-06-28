@@ -25,5 +25,6 @@ public AutorPublicacion leerxidAuPuyidPu (int idAutorPublicacion,int idPublicaci
 public boolean eliminar(int idAutorPublicacion)throws DAOException;
    public AutorPublicacion[] leertodoporpublicacion(int idPublicacion)throws DAOException;
    public AutorPublicacion[] leertodoporautor(int idAutor)throws DAOException;
+   public AutorPublicacion[] leertodoportipo(AutorPublicacion objAuP)throws DAOException;
    public AutorPublicacion[] leertodo()throws DAOException;
 }

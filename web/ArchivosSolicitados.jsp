@@ -218,8 +218,9 @@
         <script type="text/javascript" src="js/notify/pnotify.buttons.js"></script>
         <script type="text/javascript" src="js/notify/pnotify.nonblock.js"></script>
         <script type="text/javascript">
+             var table, band, msj;
         $(document).ready(function() {            
-             var table =$('#datatable-responsive').DataTable({
+             table =$('#datatable-responsive').DataTable({
                 "language": {
                     "url": "css/datatables/Spanish.json"
                 },
@@ -237,7 +238,7 @@
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": ' <button name="btnResponder" data-toggle="tooltip" data-placement="left" title="RESPONDER"><a><i class="fa fa-mail-forward"></i></a></button>&nbsp&nbsp <button name="btnVer" data-toggle="tooltip" data-placement="top" title="VER"><a><i class="fa fa-search"></i></a></button>&nbsp&nbsp<button name="btnEditar" data-toggle="tooltip" data-placement="top" title="RECHAZAR"><a><i class="fa fa-remove"></i></a></button>'}
+                    "defaultContent": ' <button name="btnResponder" data-toggle="tooltip" data-placement="left" title="RESPONDER"><a><i class="fa fa-mail-forward"></i></a></button>&nbsp&nbsp <button name="btnVerSolicitante" data-toggle="tooltip" data-placement="top" title="VER SOLICITANTE"><a><i class="fa fa-search"></i></a></button>&nbsp&nbsp<button name="btnRechazar" data-toggle="tooltip" data-placement="top" title="RECHAZAR"><a><i class="fa fa-remove"></i></a></button>'}
                 ],
                 "ajax": "ArchivosSolicitadosController?accion=ObtenerTodos",
                 "initComplete": function() {
@@ -257,17 +258,36 @@
             $('#datatable-responsive tbody').on( 'click', 'button', function () {
                 var nombre = $(this).attr('name');
                 var data = table.row( $(this).parents('tr') ).data();
-                if(nombre=='btnEditar'){
-                    $('#miModal .modal-content').load('crearSolicitud.jsp?codigo='+data[0], function(){
-                        
-                        $('#miModal').modal('show');s
-                    });
+                if(nombre=='btnResponder'){
+                     $('.modal-lg').css('width', '900px');
+                   mostrarModal('RespuestaSolicitudArchivo.jsp?idArchivoSolicitado='+ data[0]);
                 }
                                     
-                if(nombre=='btnRechazar')
-                    alert( "modal RECHAZAR con codigo: "+ data[ 0 ] );                
-                if(nombre=='btnAsignar')
-                    alert( "modal ASIGNAR con codigo: "+ data[ 0 ] );                
+                if(nombre=='btnRechazar'){
+                    if (confirm("seguro que desea rechazar la Solicitud" + data[0]) == true)
+                        {
+                            $.ajax(
+                                    {
+                                        url: "ArchivosSolicitadosController?accion=rechazar&idArchivoSolicitado=" + data[0]+"&respuesta=RECHAZADO",
+                                    }
+                            )
+
+                                    .always(function ()
+                                    {
+                                        actualizar();
+                                        alerta("publicacion Rechazada", true);
+                                    });
+
+                        }
+                }
+                   
+                
+                if(nombre=='btnVerSolicitante'){
+                     $('.modal-lg').css('width', '500px');
+                   mostrarModal('VerSolicitanteArchivo.jsp?idArchivoSolicitado='+ data[0]);
+                }
+                    
+                
             } );
             $('#datatable-responsive thead').on( 'click', 'a', function () {
                 var nombre = $(this).attr('id');              

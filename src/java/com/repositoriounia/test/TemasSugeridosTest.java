@@ -28,7 +28,8 @@ public class TemasSugeridosTest {
 //        crearartemas2();
 //        modificartema();
 //        eliminartemas();
-        leer();
+//        leer();
+        crearleer();
 //        leertodo();
 //        leertodo2();
       
@@ -141,4 +142,30 @@ public class TemasSugeridosTest {
 	  }
 	 
         } 
+        public static void crearleer()throws DAOException
+	{
+		 TemasSugeridosDAOFactory fabricate= new TemasSugeridosDAOFactory();
+                TemasSugeridosDAO daote= fabricate.metodoDAO();
+                TemasSugeridos objTe=new TemasSugeridos();
+           
+                             
+              objTe.getSolicitante().setNombres("edeher tema ");
+             objTe.getSolicitante().setApellidos("ponce tema");
+             objTe.getSolicitante().setDni("43056714");
+              objTe.getSolicitante().setSexo(Sexo.M);
+              objTe.getSolicitante().setDireccion("aca toy");
+              objTe.getSolicitante().setTelefono("942154007");
+              objTe.getSolicitante().setCorrero("edercin@qqqqq");
+              objTe.getSolicitante().setTipoEntidad(TipoEntidad.SERVICIOS);
+              objTe.getSolicitante().setEntidad("mci");
+              objTe.getSolicitante().setAreaTrabajo("informatica");
+              
+              objTe.setTema("buscando a forest");
+              objTe.setAreaTematica("pelicula");
+               
+	   TemasSugeridos archiso=daote.crearleer(objTe);
+	 System.out.println(" "+archiso.toString());
+        
+	    
+	}
 }

@@ -540,5 +540,66 @@ public class AutorPublicacionDAOJDBC implements AutorPublicacionDAO{
         }
     }
 
+    @Override
+    public AutorPublicacion[] leertodoportipo(AutorPublicacion objAuP) throws DAOException {
+         try  {
+            CallableStatement stm=con.prepareCall("{call sp_autorpublicacion_bco5(?)}");
+            stm.setString(1,objAuP.getTipoautor().name());
+            ResultSet rs=stm.executeQuery();
+                      
+            ArrayList<AutorPublicacion> tribs = new ArrayList<>(); 
+            
+            while (rs.next()) {
+                tribs.add(
+                        
+                        
+                        new AutorPublicacion(
+                            rs.getInt("idAutorPublicacion"),
+                             new Autor(
+                                    rs.getInt("idAutor"),
+                                    new Escuela(
+                                    rs.getInt("idEscuela"),
+                                    new Facultad(
+                                            rs.getInt("idFacultad"),
+                                            rs.getString("descripcion1")
+                                    ),
+                                    rs.getString("descripcion2")
+                                                        ),
+                            rs.getString("profesion"),
+                            rs.getString("especialidad"),
+                            rs.getString("grado"),
+                            
+                            rs.getString("nombres"),
+                            rs.getString("apellidos"),
+                            rs.getString("dni"),
+                            Sexo.valueOf(rs.getString("sexo")),
+                            rs.getString("direccion"),
+                            rs.getString("telefono"),
+                            rs.getString("correo")),
+                             new Publicacion(
+                            
+                              rs.getInt("idPublicacion"),
+                            new LineaInvestigacion(
+                                    rs.getInt("idLineaInvestigacion"),
+                                    new AreaInvestigacion(
+                                    rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")
+                                    ),
+                                    rs.getString("linea")),
+                            rs.getString("titulo"),
+                            rs.getDate("fechaCarga"),
+                            rs.getDate("fechaPublicacion")),
+                            TipoAutor.valueOf(rs.getString("tipoAutor"))
+                           
+                     ));
+            }
+            return tribs.toArray(new AutorPublicacion[0]);
+        } catch (SQLException se) {
+            //se.printStackTrace();
+            throw new DAOException("Error obteniedo todos los autorpublicacion en DAO: " 
+                    + se.getMessage(), se);
+        }   
+    }
+
     
 }

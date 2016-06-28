@@ -15,6 +15,7 @@ import com.repositoriounia.modelo.TemasSugeridos;
 public interface TemasSugeridosDAO {
     public boolean crear( TemasSugeridos objTe) throws DAOException;//asocia la excepcion para usar las ecepciones
      public boolean crear( TemasSugeridos objTe, int idSolicitante) throws DAOException;
+     public TemasSugeridos crearleer (TemasSugeridos objTe)throws DAOException;
     public boolean modificar(TemasSugeridos objTe)throws DAOException;
     public boolean eliminar(int idTemasSugeridos)throws DAOException;
     public TemasSugeridos leerxid (int idTemasSugeridos)throws DAOException;

@@ -24,5 +24,7 @@ public interface VisitaDAO {
     public Visita cantidad(String nombre)throws DAOException;
      public Visita cantidadPubli()throws DAOException;
      public Visita cantidadVisitas()throws DAOException;
+     public Visita cantidadtemasSolicitados()throws DAOException;
+     public Visita cantidadarchivosSolictados()throws DAOException;
      
 }

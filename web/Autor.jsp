@@ -52,7 +52,8 @@
                                     <h4 class="brief"><i><strong><%=autorpu.getTipoautor().getNom() %></strong></i></h4>
                                     <div class="left col-xs-7">
                                         <h2><%=autorpu.getAutor().getNombres() %> <%=autorpu.getAutor().getApellidos() %></h2>
-                                        <p><strong><%=autorpu.getAutor().getProfesion() %></strong>  </p>
+                                        <p><strong><i class="fa fa-graduation-cap"></i>: <%=autorpu.getAutor().getProfesion() %></strong>  </p>
+                                        <p><strong><i class="fa fa-wrench"></i>: <%=autorpu.getAutor().getEspecialidad() %></strong>  </p>
                                         <ul class="list-unstyled">
                                             <li><i class="fa fa-phone"></i>: <%=autorpu.getAutor().getTelefono() %> </li>
                                             <li><i class="fa fa-envelope"></i>: <%=autorpu.getAutor().getCorrero() %> </li>
@@ -63,24 +64,7 @@
                                         <img src="images/img.jpg" alt="" class="img-circle img-responsive">
                                     </div>
                                 </div>
-                                <div class="col-xs-12 bottom text-center">
-                                    <div class="col-xs-12 col-sm-6 emphasis">
-                                        <p class="ratings">
-                                            <a>4.0</a>
-                                            <a href="#"><span class="fa fa-star"></span></a>
-                                            <a href="#"><span class="fa fa-star"></span></a>
-                                            <a href="#"><span class="fa fa-star"></span></a>
-                                            <a href="#"><span class="fa fa-star"></span></a>
-                                            <a href="#"><span class="fa fa-star-o"></span></a>
-                                        </p>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6 emphasis">
-                                        <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">
-                                            </i> <i class="fa fa-comments-o"></i> </button>
-                                        <button type="button" class="btn btn-primary btn-xs"> <i class="fa fa-user">
-                                            </i> View Profile </button>
-                                    </div>
-                                </div>
+                                
                           
                     </div>
                 

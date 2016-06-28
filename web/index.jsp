@@ -3,7 +3,7 @@
     Created on : 04/05/2016, 03:41:00 PM
     Author     : Mi Laptop
 --%>
-
+<LINK REL="SHORTCUT ICON" HREF="images/favicon_1.ico" />
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">

@@ -3,7 +3,11 @@
     Created on : 25/05/2016, 03:03:51 PM
     Author     : Mi Laptop
 --%>
-
+<LINK REL="SHORTCUT ICON" HREF="images/favicon_1.ico" />
+<%@page import="com.repositoriounia.modelo.TipoAutor"%>
+<%@page import="com.repositoriounia.dao.AutorPublicacionDAO"%>
+<%@page import="com.repositoriounia.modelo.AutorPublicacion"%>
+<%@page import="com.repositoriounia.dao.AutorPublicacionDAOFactory"%>
 <%@page import="com.repositoriounia.modelo.Autor"%>
 <%@page import="com.repositoriounia.dao.AutorDAO"%>
 <%@page import="com.repositoriounia.dao.AutorDAOFactory"%>
@@ -35,9 +39,11 @@
 
     </head>
     <%
-        AutorDAOFactory fabricate = new AutorDAOFactory();
-        AutorDAO daote = fabricate.metodoDAO();
-        Autor[] autor = daote.leertodo();
+        AutorPublicacionDAOFactory fabricate = new AutorPublicacionDAOFactory();
+        AutorPublicacionDAO daote = fabricate.metodoDAO();
+        AutorPublicacion objAuP=new AutorPublicacion();
+        objAuP.setTipoautor(TipoAutor.TESISTA );
+       AutorPublicacion[] autor = daote.leertodoportipo(objAuP);
 
 
     %>
@@ -139,7 +145,7 @@
 
                                             <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
                                                 <ul class="pagination pagination-split">
-                                                    <li><a href="Jefes.jsp">JEFES DE PROYECTO</a>
+                                                     <li><a href="Jefes.jsp">JEFES DE PROYECTO</a>
                                                     </li>
                                                     <li><a href="Especialistas.jsp">ESPECIALISTAS</a>
                                                     </li>
@@ -150,7 +156,7 @@
                                             </div>
                                             <div class="clearfix"></div>
 
-                                            <% for (Autor autor1 : autor) {
+                                            <% for (AutorPublicacion autor1 : autor) {
 
                                             %>
 
@@ -160,13 +166,14 @@
                                                     <div class="col-sm-12">
                                                         <h4 class="brief"><i>Investigador UNIA</i></h4>
                                                         <div class="left col-xs-7">
-                                                            <h2><%=autor1.getNombres() %> </h2>
-                                                            <p> <%=autor1.getApellidos() %></p>
-                                                            <p> <i class="fa fa-graduation-cap"></i>:<%=autor1.getProfesion() %> </p>
-                                                            <p><i class="fa fa-wrench"></i>: <%=autor1.getEspecialidad() %> </p>
+                                                            <h2><%=autor1.getAutor().getNombres() %> </h2>
+                                                            <p> <%=autor1.getAutor().getApellidos() %></p>
+                                                            <p> <i class="fa fa-graduation-cap"></i>:<%=autor1.getAutor().getProfesion() %> </p>
+                                                             <p><i class="fa fa-wrench"></i>: <%=autor1.getAutor().getEspecialidad() %> </p>
                                                             <ul class="list-unstyled">
-                                                                <li><i class="fa fa-phone"></i>: <%=autor1.getTelefono() %> </li>
-                                                                <li><i class="fa fa-envelope"></i>: <%=autor1.getCorrero() %> </li>
+                                                                <li><i class="fa fa-phone"></i>: <%=autor1.getAutor().getTelefono() %> </li>
+                                                                <li><i class="fa fa-envelope"></i>: <%=autor1.getAutor().getCorrero() %> </li>
+                                                                <li><i class="fa fa-drupal "></i>: <%=autor1.getTipoautor().getNom() %> </li>
                                                             </ul>
                                                         </div>
                                                         <div class="right col-xs-5 text-center">

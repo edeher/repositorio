@@ -548,5 +548,65 @@ private final Connection con;
         }
     }
 
+    @Override
+    public ArchivosSolicitados responder(ArchivosSolicitados objarchS) throws DAOException {
+       try{
+        CallableStatement st=con.prepareCall("{call sp_archivossolicitados_RESPUESTA(?,?)}");
+            st.setInt(1,objarchS.getIdArchivoSolicitado());
+            st.setString(2,objarchS.getRespuesta().name());
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                    new ArchivosSolicitados(
+                            rs.getInt("idArchivoSolicitado"),
+                            new Solicitante(
+                                    rs.getInt("idSolicitante"),
+                            TipoEntidad.valueOf(rs.getString("tipoEntidad")),
+                            rs.getString("entidad"),
+                            rs.getString("areaTrabajo"),
+                            
+                            rs.getString("nombres"),
+                            rs.getString("apellidos"),
+                            rs.getString("dni"),
+                            Sexo.valueOf(rs.getString("sexo")),
+                            rs.getString("direccion"),
+                            rs.getString("telefono"),
+                            rs.getString("correo")
+                            ),
+                            new ArchivoPublicacion(
+                                   rs.getInt("idArchivoPublicacion"),
+                           
+                           new Publicacion(
+                                   rs.getInt("idPublicacion"),
+                            new LineaInvestigacion(
+                                    rs.getInt("idLineaInvestigacion"),
+                                    new AreaInvestigacion(
+                                    rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")
+                                    ),
+                                    rs.getString("linea")),
+                            rs.getString("titulo"),
+                            rs.getDate("fechaCarga"),
+                            rs.getDate("fechaPublicacion")                      
+                           ),
+                             DescripcionArchivo.valueOf(rs.getString("descripcion")),
+                            rs.getString("urlLocal"),
+                            rs.getString("urlWeb"),
+                    null
+                            ),
+                            rs.getDate("fechaSolicitud"),
+                            Respuesta.valueOf(rs.getString("respuesta")),
+                            rs.getDate("fechaRespuesta"))
+                   );
+            
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error buscando archivopublicacion en DAO", se);
+        }
+    }
+
    
 }

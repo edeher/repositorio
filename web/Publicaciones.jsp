@@ -131,27 +131,27 @@
                     </div>
 
                 </div>
-                
+
                 <!-- /top navigation -->
 
                 <!-- page content -->
                 <div class="right_col" role="main">
-                                    
+
                     <div class="row">
-                        
+
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            
+
                             <div class="dashboard_graph">
- <hr>   
+                                <hr>   
                                 <div class="row x_title">
                                     <div class="col-md-6">
                                         <h3>PUBLICACIONES <small></small></h3>
                                     </div>
-                                        <div class="col-md-6" align="right"> 
+                                    <div class="col-md-6" align="right"> 
                                         <P aling="rigth" ><div class="icon"><a id='btnSugerir' href='#' ><i class='fa fa-plus' data-toggle='tooltip' data-placement='top' title='PROPONER TEMA DE INVESTIGACION'></i></a>
                                         </div>  <strong>    SUGERIR TEMA DE INVESTIGACION </strong> </p>
-                                        
-                                        
+
+
                                     </div>
                                     <div id="div-alerta" style="padding: 1px;display:none " class=" alert alert-success pull-right"  >
 
@@ -171,7 +171,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                     <br />
 
@@ -273,25 +273,25 @@
                     var nombre = $(this).attr('name');
                     var data = table.row($(this).parents('tr')).data();
                     if (nombre == 'btnEditar') {
-                        
-                        mostrarModal('ModificarPublicacion.jsp?codigo='+data[0]);
+
+                        mostrarModal('ModificarPublicacion.jsp?codigo=' + data[0]);
                     }
 
                     if (nombre == 'btnRechazar') {
-                        if (confirm("seguro que desea eliminar la Publicacion"+data[0]) == true)
+                        if (confirm("seguro que desea eliminar la Publicacion" + data[0]) == true)
                         {
                             $.ajax(
                                     {
                                         url: "PublicacionController?accion=eliminarPublicacion&idpublicacion=" + data[0],
                                     }
                             )
-                            
+
                                     .always(function ()
                                     {
                                         actualizar();
                                         alerta("publicacion Eliminada", true);
                                     });
-                                            
+
                         }
                     }
 
@@ -311,10 +311,10 @@
             });
             /*-------------------------------------------------------------*/
 
-$('#btnSugerir').click(function () {
-     $('.modal-lg').css('width', '900px');
-         mostrarModal('NuevoSolicitanteTema.jsp');
-    });
+            $('#btnSugerir').click(function () {
+                $('.modal-lg').css('width', '900px');
+                mostrarModal('NuevoSolicitanteTema.jsp');
+            });
             /*funcion independiete que MUESTRA EL MODAL*/
             function mostrarModal(url) {
                 $('#miModal .modal-content').load(url, function () {
@@ -353,7 +353,7 @@ $('#btnSugerir').click(function () {
                 });
             }
             /*-------------------------------------------------------------*/
-            
+
         </script>
         <script type="text/javascript">
             var permanotice, tooltip, _alert;

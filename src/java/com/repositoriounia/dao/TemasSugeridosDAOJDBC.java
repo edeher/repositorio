@@ -258,6 +258,58 @@ public class TemasSugeridosDAOJDBC implements TemasSugeridosDAO{
         }     
     }
 
+    @Override
+    public TemasSugeridos crearleer(TemasSugeridos objTe) throws DAOException {
+       try{
+        CallableStatement st=con.prepareCall("{call sp_temasugerido_n2(?,?,?,?,?,?,?,?,?,?,?,?)}");
+                            st.setString(1,objTe.getSolicitante().getNombres());
+                            st.setString(2,objTe.getSolicitante().getApellidos());
+                            st.setString(3,objTe.getSolicitante().getDni());
+                            st.setString(4,objTe.getSolicitante().getSexo().name());
+                            st.setString(5,objTe.getSolicitante().getDireccion());
+                            st.setString(6,objTe.getSolicitante().getTelefono());
+                            st.setString(7,objTe.getSolicitante().getCorrero());
+                            st.setString(8,objTe.getSolicitante().getTipoEntidad().name());
+                            st.setString(9,objTe.getSolicitante().getEntidad());
+                            st.setString(10,objTe.getSolicitante().getAreaTrabajo());
+                            
+                            st.setString(11,objTe.getTema());
+                            st.setString(12,objTe.getAreaTematica());
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                    new TemasSugeridos(
+                            rs.getInt("idTemasSugeridos"),
+                            new Solicitante(
+                            rs.getInt("idSolicitante"),
+                            TipoEntidad.valueOf(rs.getString("tipoEntidad")),
+                            rs.getString("entidad"),
+                            rs.getString("areaTrabajo"),
+                            
+                            rs.getString("nombres"),
+                            rs.getString("apellidos"),
+                            rs.getString("dni"),
+                            Sexo.valueOf(rs.getString("sexo")),
+                            rs.getString("direccion"),
+                            rs.getString("telefono"),
+                            rs.getString("correo")
+                            ),
+                           rs.getDate("fecha"),
+                            rs.getString("tema"),
+                            rs.getString("areaTematica"))
+                            
+                            
+                   );
+            
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error buscando TemasSugeridos en DAO", se);
+        }
+    }
+
    
     
 }

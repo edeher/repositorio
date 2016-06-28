@@ -382,5 +382,55 @@ public class VisitaDAOJDBC implements VisitaDAO{
     
     }
 
+    @Override
+    public Visita cantidadtemasSolicitados() throws DAOException {
+       try{
+        CallableStatement st=con.prepareCall("{call sp_visitas_nrotemassugeridos()}");
+            
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                     new Visita(
+                            
+                         
+                            rs.getInt("cantidad")
+                )
+                         
+                   );
+            
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error buscando publicaciones en DAO", se);
+        } 
+    }
+
+    @Override
+    public Visita cantidadarchivosSolictados() throws DAOException {
+        try{
+        CallableStatement st=con.prepareCall("{call sp_visitas_nrosolicitudes()}");
+            
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                     new Visita(
+                            
+                         
+                            rs.getInt("cantidad")
+                )
+                         
+                   );
+            
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error buscando publicaciones en DAO", se);
+        } 
+    }
+
    
 }

@@ -199,48 +199,48 @@
                                 <%                                    Visita objcantidad = daote.cantidad("PRINCIPAL");
                                 %>
                                 <div class="count"><%=objcantidad.getCantidad()%></div>
-                                <span class="count_bottom"><i class="green">4% </i> From last Week</span>
-                            </div>
+                                  </div>
                         </div>
 
                         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
                             <div class="left"></div>
                             <div class="right">
-                                <span class="count_top"><i class="fa fa-user"></i> Total Publicaciones</span>
+                                <span class="count_top"><i class="fa fa-paypal"></i> Total Publicaciones</span>
                                 <%
                                     Visita objcantidad1 = daote.cantidadPubli();
                                 %>
                                 <div class="count green"><%=objcantidad1.getCantidad()%></div>
-                                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-                            </div>
+                                  </div>
                         </div>
                         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
                             <div class="left"></div>
                             <div class="right">
-                                <span class="count_top"><i class="fa fa-user"></i> Total Visitas</span>
+                                <span class="count_top"><i class="fa fa-send"></i> Total Visitas</span>
                                 <%
                                     Visita objcantidad2 = daote.cantidadVisitas();
                                 %>
                                 <div class="count"><%=objcantidad2.getCantidad()%></div>
-                                <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
-                            </div>
+                                  </div>
                         </div>
                         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
                             <div class="left"></div>
                             <div class="right">
-                                <span class="count_top"><i class="fa fa-user"></i> Total Solicitudes</span>
-
-                                <div class="count">2,315</div>
-                                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-                            </div>
+                                <span class="count_top"><i class="fa fa-book"></i> Temas Sugeridos</span>
+                                <%
+                                    Visita objcantidad3 = daote.cantidadtemasSolicitados();
+                                %>
+                                <div class="count green"><%=objcantidad3.getCantidad()%></div>
+                                  </div>
                         </div>
                         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
                             <div class="left"></div>
                             <div class="right">
-                                <span class="count_top"><i class="fa fa-user"></i> Total Sugerencias</span>
-                                <div class="count">7,325</div>
-                                <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-                            </div>
+                                <span class="count_top"><i class="fa fa-cloud-download"></i> Archivos Solicitados</span>
+                                <%
+                                    Visita objcantidad4= daote.cantidadarchivosSolictados();
+                                %>
+                                <div class="count"><%=objcantidad4.getCantidad()%></div>
+                                 </div>
                         </div>
 
                     </div>
@@ -252,9 +252,9 @@
                         <div class="page-title">
                             <div class="title_left">
                                 <h3>
-                                    REPOSITORIO VIP
+                                    REPOSITORIO VIP : Concentración  de datos Estadísticos 
                                     <small>
-                                        Concentración  de datos Estadísticos 
+                                        
                                     </small>
                                 </h3>
                             </div>

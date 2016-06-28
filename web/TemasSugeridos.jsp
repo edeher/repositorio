@@ -215,8 +215,9 @@
         <script src="js/datatables/dataTables.scroller.min.js"></script>    
         
         <script type="text/javascript">
+            var table, band, msj;
         $(document).ready(function() {            
-             var table =$('#datatable-responsive').DataTable({
+           table =$('#datatable-responsive').DataTable({
                 "language": {
                     "url": "css/datatables/Spanish.json"
                 },
@@ -253,7 +254,7 @@
                 var data = table.row( $(this).parents('tr') ).data();
                 if (nombre == 'btnVerSolicitante') {
                $('.modal-lg').css('width', '500px');
-                 mostrarModal('SolicitanteTema.jsp?idTemasSugeridos='+ data[0]);
+                 mostrarModal('VerSolicitanteTema.jsp?idTemasSugeridos='+ data[0]);
                  }            
                                     
                 if (nombre == 'btnEliminar') {

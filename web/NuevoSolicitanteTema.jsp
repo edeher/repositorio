@@ -128,7 +128,38 @@
 
                         <div class="x_content">
 
+<div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Tipo de Entidad</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <select name="tipoentidad"id="" class="form-control">
+                                            <option value="--">--</option>
+                                            <%for (TipoEntidad es : TipoEntidad.values()) {
 
+                                            %>
+                                            <option value="<%=es.name()%>"  >
+                                                <%=es.getNom()%></option>
+                                                <%}%>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>  
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Entidad</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input name="entidad" type="text" class="form-control" value="">
+                                    </div>
+                                </div>
+                            </div>    
+                            <div class="form-group">   
+                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Area de Trabajo</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input name="areatrabajo" type="text" class="form-control" value="">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Area Temática</label>
@@ -138,13 +169,20 @@
                                 </div>
                             </div>  
                             <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">tema</label>
-                                    <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input name="tema" type="text" class="form-control" value="">
-                                    </div>
-                                </div>
-                            </div>    
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Tema Sugerido</label>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                         <label for="message">Mensaje (20 palabras  maximo) :</label>
+                        <textarea id="" required="required" name="tema"
+                                  class="form-control" 
+                                  data-parsley-trigger="keyup" 
+                                  data-parsley-minlength="20" 
+                                  data-parsley-maxlength="100" 
+                                  data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
+                                  data-parsley-validation-threshold="10" >
+                                      
+                        </textarea>
+                    </div>
+                </div>
                             
 
 
@@ -189,7 +227,7 @@
         $('#btnSolicitar').click(function () {
             var formdata = new FormData($("#crearform")[0]);
             $.ajax({
-                url: "ArchivosSolicitadosController?accion=CrearSolicitud",
+                url: "TemasSugeridosController?accion=CrearSolicitud",
                 type: "post",
                 contentType: false,
                 data: formdata,
@@ -204,9 +242,9 @@
                         }
                         else
                         {
-                            actualizar2();
+                            
                             ocultarmodal();
-                            alerta("Socitud enviada", true);
+                            alerta("Socitud Recibida", true);
                         }
                     })
         });

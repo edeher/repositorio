@@ -282,7 +282,7 @@
             }
                   if (nombre == 'btnVerDenunciante') {
                $('.modal-lg').css('width', '500px');
-                 mostrarModal('Denunciante.jsp?idDenuncia='+ data[0]);
+                 mostrarModal('VerDenunciante.jsp?idDenuncia='+ data[0]);
                 
             }                   
                               

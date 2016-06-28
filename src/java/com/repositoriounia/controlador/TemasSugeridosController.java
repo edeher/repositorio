@@ -8,8 +8,10 @@ package com.repositoriounia.controlador;
 import com.repositoriounia.dao.DAOException;
 import com.repositoriounia.dao.TemasSugeridosDAO;
 import com.repositoriounia.dao.TemasSugeridosDAOFactory;
+import com.repositoriounia.modelo.Sexo;
 import com.repositoriounia.modelo.Solicitante;
 import com.repositoriounia.modelo.TemasSugeridos;
+import com.repositoriounia.modelo.TipoEntidad;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -19,6 +21,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +32,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Mi Laptop
  */
 @WebServlet(name = "TemasSugeridosController", urlPatterns = {"/TemasSugeridosController"})
+@MultipartConfig
 public class TemasSugeridosController extends HttpServlet {
     private TemasSugeridos objTeSu;
     private TemasSugeridosDAOFactory fabricate;
@@ -55,7 +59,7 @@ public class TemasSugeridosController extends HttpServlet {
                 break;
             case "EliminarTema":EliminarTema(request,response);
                 break;
-            case "13":
+            case "CrearSolicitud":CrearSolicitud(request,response);
                 break;
             case "14":
                 break;
@@ -140,6 +144,33 @@ public class TemasSugeridosController extends HttpServlet {
     private void EliminarTema(HttpServletRequest request, HttpServletResponse response) throws DAOException {
        int codigo=Integer.parseInt(request.getParameter("idTemasSugeridos") );
        daote.eliminar(codigo);
+    }
+
+    private void CrearSolicitud(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+        objTeSu =new TemasSugeridos();
+        objTeSu.getSolicitante().setNombres(request.getParameter("nombres").toUpperCase());
+        objTeSu.getSolicitante().setApellidos(request.getParameter("apellidos").toUpperCase());
+        objTeSu.getSolicitante().setDni(request.getParameter("dni"));
+        objTeSu.getSolicitante().setTelefono(request.getParameter("telefono"));
+        objTeSu.getSolicitante().setSexo(Sexo.valueOf(request.getParameter("sexo").toUpperCase()));
+        objTeSu.getSolicitante().setDireccion(request.getParameter("direccion").toUpperCase());
+        objTeSu.getSolicitante().setCorrero(request.getParameter("correo").toUpperCase());
+        objTeSu.getSolicitante().setTipoEntidad(TipoEntidad.valueOf(request.getParameter("tipoentidad").toUpperCase()));
+        objTeSu.getSolicitante().setEntidad(request.getParameter("entidad").toUpperCase());
+        objTeSu.getSolicitante().setAreaTrabajo(request.getParameter("areatrabajo").toUpperCase());
+        objTeSu.setAreaTematica(request.getParameter("areatematica").toUpperCase());
+        objTeSu.setTema(request.getParameter("tema").toUpperCase().trim());
+        TemasSugeridos temas=daote.crearleer(objTeSu);
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+                 if(temas==null){
+                      pw.println(0); 
+                 }else
+                 {
+                      pw.println(1); 
+                 }
+                 
+           
+        }
     }
 
 }
