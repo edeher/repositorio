@@ -38,77 +38,7 @@
 		<div class="main_container">
                     
                         <!-- menu lateral -->
-			<div class="col-md-3 left_col">
-				<div class="left_col scroll-view">
-                                    
-                                        <!-- nombre y logo -->
-					 <div class="navbar nav_title" style="border: 0;">
-                            <a href="" class="site_title"> <img src="images/LOGO UNIA.png" alt="" height="50px" width="40px"/> <span>REPOSITORIO VIP</span></a>
-                        </div>
-					<div class="clearfix"></div>
-                                        <!-- /nombre y logo -->
-                                        
-					<!-- foto y msj de bienvenida -->
-					
-					<!-- /foto y msj de bienvenida -->
-                                        
-					<br />
-                                        
-					<!-- sidebar menu -->
-					<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-						<div class="menu_section">
-							<h3>ADMIN</h3>
-							<ul class="nav side-menu">
-                                                                
-								 <li><a href="Publicaciones.jsp"><i class="fa fa-file-powerpoint-o"></i> Publicaciones </a></li>
-
-                                    <li><a><i class="fa fa-edit"></i> Tablas<span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu" style="display: none">
-                                            <li><a href="AreasInvestigacion.jsp"><i class="fa fa-table"></i> Areas de Investigacion </a></li>
-                                            <li><a href="LineaInvestigacion.jsp"><i class="fa fa-table"></i> Lineas de Investigacion </a></li>
-                                            <li><a href="Denuncia.jsp"><i class="fa fa-table"></i> Denuncias </a></li>
-                                            <li><a href="TemasSugeridos.jsp"><i class="fa fa-table"></i>Temas Sugeridos </a></li>
-                                            <li><a href="ArchivosSolicitados.jsp"><i class="fa fa-table"></i> Archivos Solicitados </a></li>
-                                            <li><a href="Facultades.jsp"><i class="fa fa-table"></i>Facultades </a></li>
-                                            <li><a href="Escuelas.jsp"><i class="fa fa-table"></i>Escuelas </a></li>
-                                        </ul>
-                                    </li>
-
-
-                                    <li><a><i class="fa fa-child"></i> Personas<span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu" style="display: none">
-                                            <li><a href="Investigadores.jsp"><i class="fa fa-group"></i> Investigadores </a></li>
-                                            <li><a href="Solicitantes.jsp"><i class="fa fa-group"></i> Solicitantes </a></li>
-                                            <li><a href="Denunciantes.jsp"><i class="fa fa-group"></i> Denunciantes </a></li>
-                                            <li><a href="Autores.jsp"><i class="fa fa-user"></i> Autores </a></li>
-                                        </ul>
-                                    </li>
-
-
-
-                                    <li><a href="Visitas.jsp"><i class="fa fa-suitcase"></i> Visitas </a></li>
-                                    <li><a href="Estadistica.jsp"><i class="fa fa-bar-chart-o"></i> Estadisticas </a></li>
-
-                                                                <!--
-								<li><a><i class="fa fa-edit"></i>Mantenimientos <span class="fa fa-chevron-down"></span></a>
-									<ul class="nav child_menu" style="display: none">
-										<li><a href="">Tecnicos</a>
-										</li>
-										<li><a href="">Clientes</a>
-										</li>
-										<li><a href="">Tipo de Servicios</a>
-										</li>
-									</ul>
-								</li>
-                                                                -->
-							</ul>
-						</div>
-					</div>
-					<!-- /sidebar menu -->
-
-					
-				</div>
-			</div>
+			<%@include file="menu.jspf" %>
                         <!-- /menu lateral -->
                         
 			<!-- top navigation -->

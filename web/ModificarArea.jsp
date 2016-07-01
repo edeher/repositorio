@@ -32,28 +32,30 @@
         </div>
         <div class="modal-body">     
 
-            <form class="form-horizontal form-label-left input_mask" id="modificaform" enctype="multipart/form-data">
+             
+                    <form class="form-horizontal form-label-left " id="modificaform" enctype="multipart/form-data">
 
-                <input type="hidden" name="idArea" value="<%=area.getIdAreaInvestigacion() %>" />
-
-
-
+              
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                    <input type="text" class="form-control has-feedback-left" readonly="readonly" value="Area de Investigacion">
-                    <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
-                </div>                               
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">CODIGO</label>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                         <input type="hidden" name="idArea" value="<%=area.getIdAreaInvestigacion() %>" />
+                        <input type="text" class="form-control has-feedback-left" readonly="readonly" value="<%=area.getIdAreaInvestigacion() %>">
 
-                <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Descripcion</label>
+                        <span class="fa fa-cc form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                </div>         
+
+                 
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">DESCRIPCION</label>
                     <div class="col-md-9 col-sm-9 col-xs-12">
                         <input name="descripcion" type="text" class="form-control" value="<%=area.getDescripcion() %>">
                     </div>
                 </div>
 
                
-
-                <div class="ln_solid"></div>
-            </form>                          
+            </form>   
         </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

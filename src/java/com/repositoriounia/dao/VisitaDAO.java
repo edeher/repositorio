@@ -16,11 +16,21 @@ public interface VisitaDAO {
     public boolean modificar(Visita objVi)throws DAOException;
     public boolean eliminar(int idVisita)throws DAOException;
     public Visita leerxid (int idVisita)throws DAOException;
-    public Visita top5xitem (int item)throws DAOException;
+    
     public Visita[] leertodo()throws DAOException;
+    
     public Visita[]top5()throws DAOException;
      public Visita[]top5_2()throws DAOException;
+     public Visita top5xitem (int item)throws DAOException;
     public Visita[] topxid(int idPublicacion)throws DAOException;
+    
+    public Visita[]top5_ultimoxmes(int mes)throws DAOException;
+    public Visita[]top5_ultimoxmes2(int mes)throws DAOException;
+    public Visita top5xitemxmes (int item,int mes)throws DAOException;
+     public Visita[] topxidxmes(int idPublicacion,int mes)throws DAOException;
+     
+     public Visita[]visitastotalesxAnio()throws DAOException;
+     
     public Visita cantidad(String nombre)throws DAOException;
      public Visita cantidadPubli()throws DAOException;
      public Visita cantidadVisitas()throws DAOException;

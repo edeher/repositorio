@@ -51,17 +51,31 @@ public class VisitaController extends HttpServlet {
         daote=fabricate.metodoDAO();
         switch(accion)
         {
-            case "ObtenerTodos":ObtenerTodos(request,response);
+            case "ObtenerTodos":
+                ObtenerTodos(request, response);
                 break;
-            case "top5":top5(request,response);
+            case "top5":
+                top5(request, response);
                 break;
-            case "topxid":topxid(request,response);
+            case "topxid":
+                topxid(request, response);
                 break;
-            case "topxid2":topxid2(request,response);
+            case "topxid2":
+                topxid2(request, response);
                 break;
-            case "16":
+
+            case "top5_ultimoxmes":
+                top5_ultimoxmes(request, response);
                 break;
-                
+            case "topxidxmes":
+                topxidxmes(request, response);
+                break;
+            case "topxidxmes2":
+                topxidxmes2(request, response);
+                break;
+            case "visitastotaxpoanio":
+                visitastotaxpoanio(request, response);
+                break;
         }
     }
 
@@ -188,6 +202,90 @@ public class VisitaController extends HttpServlet {
               arraybuilder.add(objbuilder);           
         }
         objbuilder.add("top",arraybuilder);
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        }
+    }
+
+    
+
+    private void top5_ultimoxmes(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+         int mes=Integer.parseInt(request.getParameter("mes"));
+         System.out.println("mes en servlet "+mes);
+        Visita[] visi = daote.top5_ultimoxmes(mes);
+        JsonArrayBuilder  arraybuilder = Json.createArrayBuilder();  
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();                 
+        for (Visita visi1 : visi) {
+              objbuilder.add("category",visi1.getArchivoPublicacion().getPublicacion().getTitulo().trim());
+              objbuilder.add("value",visi1.getCantidad());           
+              arraybuilder.add(objbuilder);           
+        }
+        objbuilder.add("top5",arraybuilder);
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        }
+    }
+
+    private void topxidxmes(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+       int idPublicacion=Integer.parseInt(request.getParameter("idPublicacion") );
+       int mes=Integer.parseInt(request.getParameter("mes") );
+        System.out.println("idPublicacion"+idPublicacion);
+         Visita[] visi = daote.topxidxmes(idPublicacion, mes);
+        JsonArrayBuilder  arraybuilder = Json.createArrayBuilder();  
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();                 
+        for (Visita visi1 : visi) {
+              objbuilder.add("value",visi1.getCantidad());   
+              objbuilder.add("name",visi1.getArchivoPublicacion().getDescripcion().getNom());
+                      
+              arraybuilder.add(objbuilder);           
+        }
+        objbuilder.add("top",arraybuilder);
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        }
+    }
+
+    private void topxidxmes2(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+       int idPublicacion=Integer.parseInt(request.getParameter("idPublicacion") );
+       int mes=Integer.parseInt(request.getParameter("mes") );
+        System.out.println("idPublicacion"+idPublicacion);
+         Visita[] visi = daote.topxidxmes(idPublicacion, mes);
+        JsonArrayBuilder  arraybuilder = Json.createArrayBuilder();  
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();                 
+        for (Visita visi1 : visi) {
+              objbuilder.add("value",visi1.getCantidad());   
+              objbuilder.add("name",visi1.getArchivoPublicacion().getDescripcion().name());
+                      
+              arraybuilder.add(objbuilder);           
+        }
+        objbuilder.add("top",arraybuilder);
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        } 
+    }
+
+    private void visitastotaxpoanio(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+        Visita[] visi = daote.visitastotalesxAnio();
+        JsonArrayBuilder  arraybuilder = Json.createArrayBuilder();  
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();                 
+        for (Visita visi1 : visi) {
+              objbuilder.add("mes",visi1.getArchivoPublicacion().getPublicacion().getTitulo().trim());
+              objbuilder.add("value",visi1.getCantidad());           
+              arraybuilder.add(objbuilder);           
+        }
+        objbuilder.add("totalxanio",arraybuilder);
         JsonObject obj = objbuilder.build();
         response.setContentType("application/json");
        

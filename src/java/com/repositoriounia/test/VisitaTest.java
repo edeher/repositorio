@@ -29,7 +29,8 @@ public class VisitaTest {
 //        top5();
 //        topxid();
 //        leernombre();
-        nropublicacion();
+//        nropublicacion();
+        totalporanio();
         
     }
     public static void crearVisita() throws DAOException
@@ -133,6 +134,20 @@ public class VisitaTest {
 		   VisitaDAOFactory fabricate= new  VisitaDAOFactory();
          VisitaDAO daote= fabricate.metodoDAO();
 	 Visita[] usuv=daote.topxid(3);
+	  
+	  for(Visita usuv1:usuv)
+	  {
+	      
+	      System.out.println(" "+usuv1.toString2());
+	  
+	  }
+	 
+        } 
+        public static void totalporanio()throws DAOException
+	{
+		   VisitaDAOFactory fabricate= new  VisitaDAOFactory();
+         VisitaDAO daote= fabricate.metodoDAO();
+	 Visita[] usuv=daote.visitastotalesxAnio();
 	  
 	  for(Visita usuv1:usuv)
 	  {

@@ -432,5 +432,173 @@ public class VisitaDAOJDBC implements VisitaDAO{
         } 
     }
 
+   @Override
+    public Visita[] top5_ultimoxmes(int mes) throws DAOException {
+        try  {
+             CallableStatement stm=con.prepareCall("{call sp_visitas_top_5_XMES(?)}");
+             stm.setInt(1,mes);
+            ResultSet rs=stm.executeQuery();
+                      
+            ArrayList<Visita> tribs = new ArrayList<>(); 
+            
+            while (rs.next()) {
+                tribs.add(
+                        
+                new Visita(
+                            
+                          new ArchivoPublicacion(
+                           
+                           new Publicacion(
+                                  
+                            rs.getString("titulo")                      
+                           )
+                          ),
+                            rs.getInt("cantidad")
+                )
+                         
+                   );
+            }
+            return tribs.toArray(new Visita[0]);
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error obteniedo top 5 visitas en DAO: " 
+                    + se.getMessage(), se);
+        }     
+    }
+
+    @Override
+    public Visita[] top5_ultimoxmes2(int mes) throws DAOException {
+        try  {
+             CallableStatement stm=con.prepareCall("{call sp_visitas_top_5_XMES2(?)}");
+             stm.setInt(1,mes);
+            ResultSet rs=stm.executeQuery();
+                      
+            ArrayList<Visita> tribs = new ArrayList<>(); 
+            
+            while (rs.next()) {
+                tribs.add(
+                        
+                new Visita(
+                            
+                          new ArchivoPublicacion(
+                           
+                           new Publicacion(
+                            rs.getInt("idPublicacion"),
+                            rs.getString("titulo")                      
+                           )
+                          ),
+                            rs.getInt("cantidad")
+                )
+                         
+                   );
+            }
+            return tribs.toArray(new Visita[0]);
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error obteniedo top 5 visitas en DAO: " 
+                    + se.getMessage(), se);
+        }     
+    }
+
+    @Override
+    public Visita top5xitemxmes(int item,int mes) throws DAOException {
+       try{
+        CallableStatement st=con.prepareCall("{call sp_visitas_top_5_tituloxitemXMES(?,?)}");
+            st.setInt(1,item);
+             st.setInt(2,mes);
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                     new Visita(
+                            
+                          new ArchivoPublicacion(
+                           
+                           new Publicacion(
+                            rs.getInt("idPublicacion"),
+                            rs.getString("titulo")                      
+                           )
+                          ),
+                            rs.getInt("cantidad")
+                )
+                         
+                   );
+            
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error buscando visita en DAO", se);
+        } 
+    }
+
+    @Override
+    public Visita[] topxidxmes(int idPublicacion, int mes) throws DAOException {
+       try  {
+             CallableStatement st=con.prepareCall("{call sp_visita_top5_xtipodearchivoxmes(?,?)}");
+            st.setInt(1,idPublicacion);
+             st.setInt(2,mes);
+              ResultSet rs = st.executeQuery();
+                      
+            ArrayList<Visita> tribs = new ArrayList<>(); 
+            
+            while (rs.next()) {
+                tribs.add(
+                        
+                    new Visita(
+                            
+                          new ArchivoPublicacion(
+                           
+                           
+                                  
+                           DescripcionArchivo.valueOf(rs.getString("descripcion"))                 
+                           
+                          ),
+                            rs.getInt("cantidad")
+                )
+                
+                  );
+            }
+            return tribs.toArray(new Visita[0]);
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error obteniedo todos los datos en DAO: " 
+                    + se.getMessage(), se);
+        }   
+    }
+
+    @Override
+    public Visita[] visitastotalesxAnio() throws DAOException {
+       try  {
+             CallableStatement stm=con.prepareCall("{call sp_visitas_total_anio_actual()}");
+            ResultSet rs=stm.executeQuery();
+                      
+            ArrayList<Visita> tribs = new ArrayList<>(); 
+            
+            while (rs.next()) {
+                tribs.add(
+                        
+                new Visita(
+                            
+                          new ArchivoPublicacion(
+                           
+                           new Publicacion(
+                                  
+                            rs.getString("titulo")                      
+                           )
+                          ),
+                            rs.getInt("cantidad")
+                )
+                         
+                   );
+            }
+            return tribs.toArray(new Visita[0]);
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error obteniedo top 5 visitas en DAO: " 
+                    + se.getMessage(), se);
+        }     
+    }
+
    
 }

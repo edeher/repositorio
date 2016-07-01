@@ -4,6 +4,8 @@
     Author     : Mi Laptop
 --%>
 
+<%@page import="com.repositoriounia.modelo.NombreMes"%>
+<%@page import="java.util.Date"%>
 <%@page import="com.repositoriounia.modelo.Visita"%>
 <%@page import="com.repositoriounia.dao.VisitaDAO"%>
 <%@page import="com.repositoriounia.dao.VisitaDAOFactory"%>
@@ -37,6 +39,9 @@
     <%  
         VisitaDAOFactory fabricate = new VisitaDAOFactory();
         VisitaDAO daote = fabricate.metodoDAO();
+         Date fecha=new Date();
+            int mes=(fecha.getMonth()+1);
+            NombreMes nombre=new NombreMes();
         
         Visita objvi1 = new Visita();
         Visita objvi2 = new Visita();
@@ -44,12 +49,12 @@
         Visita objvi4 = new Visita();
         Visita objvi5 = new Visita();
 
-        objvi1 = daote.top5xitem(1);
-         objvi2 = daote.top5xitem(2);
-        objvi3 = daote.top5xitem(3);
-        objvi4 = daote.top5xitem(4);
-        objvi5 = daote.top5xitem(5);
-       
+       objvi1 = daote.top5xitemxmes(1, mes);
+        objvi2 = daote.top5xitemxmes(2, mes);
+        objvi3 = daote.top5xitemxmes(3, mes);
+        objvi4 = daote.top5xitemxmes(4, mes);
+        objvi5 = daote.top5xitemxmes(5, mes);
+        
          if(objvi1==null){
              objvi1 = new Visita();
         objvi1.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
@@ -76,7 +81,7 @@
          objvi5.getArchivoPublicacion().getPublicacion().setTitulo("") ;     
         }
             
-
+           
 
     %>
 
@@ -109,7 +114,6 @@
                 </div>
 
                 <!-- /top navigation -->
-
 
 
 
@@ -174,7 +178,19 @@
                     </div>
                     <!-- /top tiles -->
 
-
+<div class="col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+                                                <ul class="pagination pagination-split">
+                                                    <li><a href="Estadistica2.jsp"><%=nombre.nombremes(fecha.getMonth()) %></a>
+                                                    </li>
+                                                    
+                                                    <li><a href="Estadistica3.jsp"><%=nombre.nombremes(fecha.getMonth()-1) %></a>
+                                                    </li>
+                                                    
+                                                    <li><a href="Estadistica4.jsp"><%=nombre.nombremes(fecha.getMonth()-2) %></a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                            </div>
 
                     <div class="">
                         <div class="page-title">
@@ -195,7 +211,7 @@
                             <div class="col-md-8 col-sm-8 col-xs-12">
                                 <div class="x_panel">
                                     <div class="x_title">
-                                        <h2>las 5 Publicaciones más VIsitadas</h2>
+                                        <h2>las 5 Publicaciones más VIsitadas en el mes de <%=nombre.nombremes(fecha.getMonth()) %></h2>
                                         <ul class="nav navbar-right panel_toolbox">
                                             <li><a href="#"><i class="fa fa-chevron-up"></i></a>
                                             </li>
@@ -349,7 +365,7 @@
         <script>
             $(document).ready(function () {
                 //primer grafico
-                $.getJSON('VisitaController?accion=top5', function (json) {
+                $.getJSON('VisitaController?accion=top5_ultimoxmes&mes='+<%=mes%>, function (json) {
                     var categorias = [];
                     var valores = [];
                     var items = [];
@@ -360,9 +376,6 @@
                         valores.push(obj.value);
                         items.push(item + 1);
                     });
-
-
-
 
                     var myChart9 = echarts.init(document.getElementById('mainb'), theme);
                     myChart9.setOption({
@@ -479,7 +492,7 @@
 
 /// fin de segundo grafico
 //segundo grafico
-                $.getJSON('VisitaController?accion=topxid&idPublicacion=' +<%=objvi1.getArchivoPublicacion().getPublicacion().getIdPublicacion()%>, function (json) {
+                $.getJSON('VisitaController?accion=topxidxmes&idPublicacion='+<%=objvi1.getArchivoPublicacion().getPublicacion().getIdPublicacion()%>+'&mes='+<%=mes%>, function (json) {
 
                     var data = [];
                     var titulos = [];
@@ -557,7 +570,7 @@
 
 /// fin de segundo grafico
 
-                $.getJSON('VisitaController?accion=topxid&idPublicacion=' +<%=objvi2.getArchivoPublicacion().getPublicacion().getIdPublicacion()%>, function (json) {
+                $.getJSON('VisitaController?accion=topxidxmes&idPublicacion='+<%=objvi2.getArchivoPublicacion().getPublicacion().getIdPublicacion()%>+'&mes='+<%=mes%>, function (json) {
                     var valores = [];
                     var titulos = [];
                     var data = [];
@@ -631,7 +644,7 @@
                 });
 
 
-                $.getJSON('VisitaController?accion=topxid&idPublicacion=' +<%=objvi3.getArchivoPublicacion().getPublicacion().getIdPublicacion()%>, function (json) {
+                $.getJSON('VisitaController?accion=topxidxmes&idPublicacion=' +<%=objvi3.getArchivoPublicacion().getPublicacion().getIdPublicacion()%>+'&mes='+<%=mes%>, function (json) {
                     var valores = [];
                     var titulos = [];
                     var data = [];
@@ -702,7 +715,7 @@
                     });
                 });
 
-                $.getJSON('VisitaController?accion=topxid&idPublicacion=' +<%=objvi4.getArchivoPublicacion().getPublicacion().getIdPublicacion()%>, function (json) {
+                $.getJSON('VisitaController?accion=topxidxmes&idPublicacion=' +<%=objvi4.getArchivoPublicacion().getPublicacion().getIdPublicacion()%>+'&mes='+<%=mes%>, function (json) {
                     var data = [];
                     var titulos = [];
                     $.each(json.top, function (item, obj) {
@@ -752,7 +765,7 @@
                     });
 
                 });
-                $.getJSON('VisitaController?accion=topxid&idPublicacion=' +<%=objvi5.getArchivoPublicacion().getPublicacion().getIdPublicacion()%>, function (json) {
+                $.getJSON('VisitaController?accion=topxidxmes&idPublicacion=' +<%=objvi5.getArchivoPublicacion().getPublicacion().getIdPublicacion()%>+'&mes='+<%=mes%>, function (json) {
                     var valores = [];
                     var titulos = [];
                     var data = [];
