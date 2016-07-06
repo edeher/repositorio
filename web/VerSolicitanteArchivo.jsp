@@ -111,6 +111,22 @@
                                                 </div>
                                             </div>
                                         </div>
+                                                <div class="form-group">      
+                                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Entidad</label>
+                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                    <input name="correo1" id="correo1"class="form-control has-feedback-left" readonly="readonly" type="text" class="form-control" value="<%=denun.getSolicitante().getEntidad() %>">
+                                                </div>
+                                            </div>
+                                        </div>
+                                                <div class="form-group">      
+                                            <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Area de Trabajo</label>
+                                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                                    <input name="correo1" id="correo1"class="form-control has-feedback-left" readonly="readonly" type="text" class="form-control" value="<%=denun.getSolicitante().getAreaTrabajo() %>">
+                                                </div>
+                                            </div>
+                                        </div>
                                         
 
                                    

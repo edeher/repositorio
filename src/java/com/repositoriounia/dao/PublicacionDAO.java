@@ -19,4 +19,6 @@ public interface PublicacionDAO {
     public Publicacion crearleer(Publicacion objPu)throws DAOException;
     public Publicacion modificarleer(Publicacion objPu)throws DAOException;
     public Publicacion[] leertodo()throws DAOException;
+    public Publicacion[] leertodoxLinea(int idLineaInvestigacion)throws DAOException;
+    public Publicacion[] leertodoxArea(int idAreaInvestigacion)throws DAOException;
 }

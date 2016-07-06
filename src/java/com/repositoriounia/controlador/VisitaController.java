@@ -76,6 +76,9 @@ public class VisitaController extends HttpServlet {
             case "visitastotaxpoanio":
                 visitastotaxpoanio(request, response);
                 break;
+            case "publicacionestotaxpoanio":
+                publicacionestotaxpoanio(request, response);
+                break;
         }
     }
 
@@ -278,6 +281,24 @@ public class VisitaController extends HttpServlet {
 
     private void visitastotaxpoanio(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
         Visita[] visi = daote.visitastotalesxAnio();
+        JsonArrayBuilder  arraybuilder = Json.createArrayBuilder();  
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();                 
+        for (Visita visi1 : visi) {
+              objbuilder.add("mes",visi1.getArchivoPublicacion().getPublicacion().getTitulo().trim());
+              objbuilder.add("value",visi1.getCantidad());           
+              arraybuilder.add(objbuilder);           
+        }
+        objbuilder.add("totalxanio",arraybuilder);
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        }
+    }
+
+    private void publicacionestotaxpoanio(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+       Visita[] visi = daote.publicacionestotalesxAnio();
         JsonArrayBuilder  arraybuilder = Json.createArrayBuilder();  
         JsonObjectBuilder objbuilder = Json.createObjectBuilder();                 
         for (Visita visi1 : visi) {

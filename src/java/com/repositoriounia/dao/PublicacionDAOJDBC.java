@@ -248,6 +248,76 @@ public class PublicacionDAOJDBC implements PublicacionDAO{
 	   
     }
 
+    @Override
+    public Publicacion[] leertodoxLinea(int idLineaInvestigacion) throws DAOException {
+      try{
+        CallableStatement st=con.prepareCall("{call sp_publicacion_bcoxLinea(?)}");
+            st.setInt(1,idLineaInvestigacion);
+             ResultSet rs = st.executeQuery();
+                      
+            ArrayList<Publicacion> tribs = new ArrayList<>(); 
+            
+            while (rs.next()) {
+                tribs.add(
+                        
+                      new Publicacion(
+                            
+                            rs.getInt("idPublicacion"),
+                            new LineaInvestigacion(
+                                    rs.getInt("idLineaInvestigacion"),
+                                    new AreaInvestigacion(
+                                    rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")
+                                    ),
+                                    rs.getString("linea")),
+                            rs.getString("titulo"),
+                            rs.getDate("fechaCarga"),
+                            rs.getDate("fechaPublicacion"))
+                   );
+            }
+            return tribs.toArray(new Publicacion[0]);
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error obteniedo todos los TemasSugeridos en DAO: " 
+                    + se.getMessage(), se);
+        }    
+    }
+
+    @Override
+    public Publicacion[] leertodoxArea(int AreaInvestigacion) throws DAOException {
+       try{
+        CallableStatement st=con.prepareCall("{call sp_publicacion_bcoxArea(?)}");
+            st.setInt(1,AreaInvestigacion);
+             ResultSet rs = st.executeQuery();
+                      
+            ArrayList<Publicacion> tribs = new ArrayList<>(); 
+            
+            while (rs.next()) {
+                tribs.add(
+                        
+                      new Publicacion(
+                            
+                            rs.getInt("idPublicacion"),
+                            new LineaInvestigacion(
+                                    rs.getInt("idLineaInvestigacion"),
+                                    new AreaInvestigacion(
+                                    rs.getInt("idAreaInvestigacion"),
+                                            rs.getString("area")
+                                    ),
+                                    rs.getString("linea")),
+                            rs.getString("titulo"),
+                            rs.getDate("fechaCarga"),
+                            rs.getDate("fechaPublicacion"))
+                   );
+            }
+            return tribs.toArray(new Publicacion[0]);
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error obteniedo todos los TemasSugeridos en DAO: " 
+                    + se.getMessage(), se);
+        }    
+    }
+
    
     
 }

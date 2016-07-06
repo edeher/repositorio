@@ -155,14 +155,14 @@
                              { "title": "Telefono" },
                              { "title": "Correo Electronico" },
                              
-                            { "title": "<a href='#'id='btnNuevo'><i class='fa fa-plus' data-toggle='tooltip' data-placement='top' title='NUEVO'></i></a>" }],
+                            { "title": "Denunciante" }],
                 "columnDefs": [                         
                    {"targets": [ 4],
                     "orderable": false,
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnEditar" data-toggle="tooltip" data-placement="left" title="EDITAR"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar" data-toggle="tooltip" data-placement="top" title="RECHAZAR"><a><i class="fa fa-remove"></i></a></button>&nbsp&nbsp <button name="btnAsignar" data-toggle="tooltip" data-placement="right" title="ASIGNAR"><a><i class="fa fa-mail-forward"></i></a></button>'}
+                    "defaultContent": '<button name="btnVer" data-toggle="tooltip" data-placement="left" title="VER DENUNCIANTE"><a><i class="fa fa fa-search"></i></a></button>'}
                 ],
                 "ajax": "DenuncianteController?accion=ObtenerTodos",
                 "initComplete": function() {
@@ -181,17 +181,11 @@
             $('#datatable-responsive tbody').on( 'click', 'button', function () {
                 var nombre = $(this).attr('name');
                 var data = table.row( $(this).parents('tr') ).data();
-                if(nombre=='btnEditar'){
-                    $('#miModal .modal-content').load('crearSolicitud.jsp?codigo='+data[0], function(){
-                        
-                        $('#miModal').modal('show');s
-                    });
+                if(nombre=='btnVer'){
+                    $('.modal-lg').css('width', '500px');
+                 mostrarModal('VerDenuncianteAlone.jsp?idDenunciante='+ data[0]);
                 }
-                                    
-                if(nombre=='btnRechazar')
-                    alert( "modal RECHAZAR con codigo: "+ data[ 0 ] );                
-                if(nombre=='btnAsignar')
-                    alert( "modal ASIGNAR con codigo: "+ data[ 0 ] );                
+                             
             } );
             $('#datatable-responsive thead').on( 'click', 'a', function () {
                 var nombre = $(this).attr('id');              

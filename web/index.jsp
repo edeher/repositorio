@@ -3,10 +3,9 @@
     Created on : 04/05/2016, 03:41:00 PM
     Author     : Mi Laptop
 --%>
-<LINK REL="SHORTCUT ICON" HREF="images/favicon_1.ico" />
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -42,6 +41,9 @@
 
     <body class="nav-md"  >
         <div class="container body">
+            <div class="nav navbar-nav navbar-right">  
+                                <button id="btnLogin" class="" name="">Login</button>
+                            </div>
             <!-- page content -->
                 <div class="col-md-12">
                     <div class="col-middle">
@@ -53,14 +55,10 @@
                             <p  >ESPACIO VIRTUAL DE CONCENTRACION Y PRODUCCION EN CIENCIA DE LA UNIA </p>
                             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                                 <div class="menu_section">
-
-                                        <li><a href="Publicaciones.jsp"><h2>INGRESAR</h2> </a></li>
-
+                                <a href="Publicaciones.jsp"><span class="badge bg-green">INGRESAR</span></a>
                                 </div>
                             </div>
-                            <div class="mid_center">  
-                                <button id="btnLogin" name="">Login</button>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -155,5 +153,5 @@
         </script>
     </body>
 
-</html>
+
 

@@ -42,19 +42,7 @@
 			<!-- top navigation -->
 			 <div class="top_nav">
 
-                    <div class="nav_menu">
-                        <nav class="" role="navigation">
-                            <!--<img src="images/LOGO UNIA.png" alt="" height="70px" width="60px"/>-->
-
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="">
-                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="images/img.jpg" alt="">John Doe
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                     <%@include file="cabecera.jspf" %>
 
                 </div>
 			<!-- /top navigation -->
@@ -93,14 +81,7 @@
 				<br />
 
 				<!-- footer content -->
-				<footer>
-					<div class="copyright-info">
-						<p class="pull-right">REPOSITORIOVIP - Sistema desarrollado por  <a href="https://twitter.com/Dekinha_deka">Edeher Ponce</a>	
-                                                   
-						</p>
-					</div>
-					<div class="clearfix "></div>
-				</footer>
+				 <%@include file="cabecera.jspf" %>
 				<!-- /footer content -->
 			</div>
 			<!-- /page content -->
@@ -163,7 +144,7 @@
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnVerSolicitante" data-toggle="tooltip" data-placement="left" title="Ver Solicitante"><a><i class="fa fa-male"></i></a></button>&nbsp&nbsp <button name="btnEliminar" data-toggle="tooltip" data-placement="top" title="ELIMINAR"><a><i class="fa fa-remove"></i></a></button>'}
+                    "defaultContent": '<button name="btnVerSolicitante" data-toggle="tooltip" data-placement="left" title="Ver Solicitante"><a><i class="fa fa-male"></i></a></button>'}
                 ],
                 "ajax": "TemasSugeridosController?accion=ObtenerTodos",
                 "initComplete": function() {
@@ -187,20 +168,7 @@
                  mostrarModal('VerSolicitanteTema.jsp?idTemasSugeridos='+ data[0]);
                  }            
                                     
-                if (nombre == 'btnEliminar') {
-                        if (confirm("seguro que desea eliminar el Tema Sugerido") == true)
-                        {
-                            $.ajax({url: "TemasSugeridosController?accion=EliminarTema&idTemasSugeridos=" + data[0],
-                                    })
-                            
-                                    .always(function ()
-                                    {
-                                        actualizar();
-                                        alerta("Tema Eliminado", true);
-                                    });
-                                            
-                        }
-                    }              
+                             
             } );
             $('#datatable-responsive thead').on( 'click', 'a', function () {
                 var nombre = $(this).attr('id');              

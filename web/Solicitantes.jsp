@@ -42,19 +42,7 @@
 			<!-- top navigation -->
 			 <div class="top_nav">
 
-                    <div class="nav_menu">
-                        <nav class="" role="navigation">
-                            <!--<img src="images/LOGO UNIA.png" alt="" height="70px" width="60px"/>-->
-
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="">
-                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="images/img.jpg" alt="">John Doe
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                     <%@include file="cabecera.jspf" %>
 
                 </div>
 			<!-- /top navigation -->
@@ -93,14 +81,7 @@
 				<br />
 
 				<!-- footer content -->
-				<footer>
-					<div class="copyright-info">
-						<p class="pull-right">REPOSITORIOVIP - Sistema desarrollado por  <a href="https://twitter.com/Dekinha_deka">Edeher Ponce</a>	
-                                                   
-						</p>
-					</div>
-					<div class="clearfix "></div>
-				</footer>
+				 <%@include file="footer.jspf" %>
 				<!-- /footer content -->
 			</div>
 			<!-- /page content -->
@@ -157,14 +138,14 @@
                              { "title": "Tipo de Institucion" },
                              { "title": "Nombre de Institucion" },
                                                         
-                            { "title": "<a href='#' id='btnNuevo'><i class='fa fa-plus' data-toggle='tooltip' data-placement='top' title='NUEVO'></i></a>" }],
+                            { "title": "Solicitante" }],
                 "columnDefs": [                         
                    {"targets": [ 5 ],
                     "orderable": false,
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnEditar" data-toggle="tooltip" data-placement="left" title="EDITAR"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnVer" data-toggle="tooltip" data-placement="top" title="VER"><a><i class="fa fa-search"></i></a></button>&nbsp&nbsp <button name="btnREchazar" data-toggle="tooltip" data-placement="top" title="ELIMINAR"><a><i class="fa fa-remove"></i></a></button>'}
+                    "defaultContent": '<button name="btnVer" data-toggle="tooltip" data-placement="top" title="VER"><a><i class="fa fa-search"></i></a></button>'}
                 ],
                 "ajax": "SolicitanteController?accion=ObtenerTodos",
                 "initComplete": function() {
@@ -183,17 +164,12 @@
             $('#datatable-responsive tbody').on( 'click', 'button', function () {
                 var nombre = $(this).attr('name');
                 var data = table.row( $(this).parents('tr') ).data();
-                if(nombre=='btnEditar'){
-                    $('#miModal .modal-content').load('crearSolicitud.jsp?codigo='+data[0], function(){
-                        
-                        $('#miModal').modal('show');s
-                    });
+                if(nombre=='btnVer'){
+                     $('.modal-lg').css('width', '500px');
+                   mostrarModal('VerSolicitanteAlone.jsp?idSolicitante='+ data[0]);
                 }
                                     
-                if(nombre=='btnRechazar')
-                    alert( "modal RECHAZAR con codigo: "+ data[ 0 ] );                
-                if(nombre=='btnAsignar')
-                    alert( "modal ASIGNAR con codigo: "+ data[ 0 ] );                
+                              
             } );
             $('#datatable-responsive thead').on( 'click', 'a', function () {
                 var nombre = $(this).attr('id');              

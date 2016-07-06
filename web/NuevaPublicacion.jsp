@@ -83,7 +83,7 @@
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">TITULO</label>
                     <div class="col-md-9 col-sm-9 col-xs-12">
                          <label for="message">Mensaje (20 palabras  maximo) :</label>
-                        <textarea id="" required="required" name="titulo"
+                        <textarea id="titulo" required="required" name="titulo"
                                   class="form-control" 
                                   data-parsley-trigger="keyup" 
                                   data-parsley-minlength="20" 
@@ -98,7 +98,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">PUBLICACION</label>
                     <div class="col-md-9 col-sm-9 col-xs-12">
-                        <input name="fecha" type="text" class="form-control has-feedback-left" id="input_fpublicacion" value="">
+                        <input id="fecha" name="fecha" type="text" class="form-control has-feedback-left" id="input_fpublicacion" value="">
                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>     
                         
                         
@@ -128,8 +128,11 @@
    <!--LIBRERIAS NECESARIAS PARA EL SCRIPT*-->
    <script src="js/parsley/parsley.min.js" type="text/javascript"></script>
    <script src="js/select/select2.full.js" type="text/javascript"></script>
+   <!-- form validation -->
+  <script type="text/javascript" src="js/parsley/parsley.min.js"></script>
     <!-------------------------------------------------------------------->
     <script type="text/javascript">
+        var emailreg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;	
         $(document).ready(function () {
             $('#input_fpublicacion').daterangepicker({
                 format: 'YYYY-MM-DD',
@@ -137,6 +140,7 @@
                 calender_style: "picker_4"
 
             },
+            
             function (start, end, label) {
                 console.log(start.toISOString(), end.toISOString(), label);
             });
@@ -161,6 +165,9 @@
         });
 
         $('#btnguardar').click(function () {
+            	
+		
+       
             var formdata = new FormData($("#crearform")[0]);
             $.ajax({
                 url: "PublicacionController?accion=crearPublicacion",
@@ -185,6 +192,7 @@
                             })
                     
         });
+       
     </script>
 
 </html>

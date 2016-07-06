@@ -42,19 +42,7 @@
 			<!-- top navigation -->
 			 <div class="top_nav">
 
-                    <div class="nav_menu">
-                        <nav class="" role="navigation">
-                            <!--<img src="images/LOGO UNIA.png" alt="" height="70px" width="60px"/>-->
-
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="">
-                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="images/img.jpg" alt="">John Doe
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                    <%@include file="cabecera.jspf" %>
 
                 </div>
 			<!-- /top navigation -->
@@ -93,14 +81,7 @@
 				<br />
 
 				<!-- footer content -->
-				<footer>
-					<div class="copyright-info">
-						<p class="pull-right">REPOSITORIOVIP - Sistema desarrollado por  <a href="https://twitter.com/Dekinha_deka">Edeher Ponce</a>	
-                                                   
-						</p>
-					</div>
-					<div class="clearfix "></div>
-				</footer>
+				<%@include file="footer.jspf" %>
 				<!-- /footer content -->
 			</div>
 			<!-- /page content -->
@@ -161,14 +142,14 @@
                                { "title": "Fecha de Solicitud" },
                                 { "title": "Respuesta" },
                                  { "title": "Fecha de Respuesta" },
-                            { "title": "Opciones" }],
+                            { "title": "Solicitante" }],
                 "columnDefs": [                         
                    {"targets": [ 7 ],
                     "orderable": false,
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": ' <button name="btnResponder" data-toggle="tooltip" data-placement="left" title="RESPONDER"><a><i class="fa fa-mail-forward"></i></a></button>&nbsp&nbsp <button name="btnVerSolicitante" data-toggle="tooltip" data-placement="top" title="VER SOLICITANTE"><a><i class="fa fa-search"></i></a></button>&nbsp&nbsp<button name="btnRechazar" data-toggle="tooltip" data-placement="top" title="RECHAZAR"><a><i class="fa fa-remove"></i></a></button>'}
+                    "defaultContent": '<button name="btnVerSolicitante" data-toggle="tooltip" data-placement="top" title="VER SOLICITANTE"><a><i class="fa fa-search"></i></a></button>'}
                 ],
                 "ajax": "ArchivosSolicitadosController?accion=ObtenerTodos",
                 "initComplete": function() {
@@ -188,29 +169,7 @@
             $('#datatable-responsive tbody').on( 'click', 'button', function () {
                 var nombre = $(this).attr('name');
                 var data = table.row( $(this).parents('tr') ).data();
-                if(nombre=='btnResponder'){
-                     $('.modal-lg').css('width', '900px');
-                   mostrarModal('RespuestaSolicitudArchivo.jsp?idArchivoSolicitado='+ data[0]);
-                }
-                                    
-                if(nombre=='btnRechazar'){
-                    if (confirm("seguro que desea rechazar la Solicitud" + data[0]) == true)
-                        {
-                            $.ajax(
-                                    {
-                                        url: "ArchivosSolicitadosController?accion=rechazar&idArchivoSolicitado=" + data[0]+"&respuesta=RECHAZADO",
-                                    }
-                            )
-
-                                    .always(function ()
-                                    {
-                                        actualizar();
-                                        alerta("publicacion Rechazada", true);
-                                    });
-
-                        }
-                }
-                   
+                 
                 
                 if(nombre=='btnVerSolicitante'){
                      $('.modal-lg').css('width', '500px');
@@ -239,11 +198,7 @@
          
          
          /*funcion independiete que ACTUALIZA LA TABLA*/
-          function actualizar(){     
-            table.ajax.reload(function(){
-                table.columns.adjust().draw();                  
-            },false);              
-          }
+          
           /*-------------------------------------------------------------*/
           
           
@@ -255,17 +210,7 @@
           /*-------------------------------------------------------------*/
           
           /*funcion independiete que ENVIA EL MENSAJE DE CONFIRMACION*/
-          function alerta(msj,band){
-              $("#div-alerta").fadeOut(0,function() {
-                    band===true ? 
-                        $("#div-alerta").removeClass("alert-danger").addClass("alert-success") : 
-                        $("#div-alerta").removeClass("alert-success").addClass("alert-danger");                
-                    $("#div-alerta").html("<h5 style='margin: 6px;'>"+
-                        "<strong>"+msj+"</strong>"+
-                        "</h5>");                
-                    $("#div-alerta").fadeIn();                    
-                }); 
-          }
+         
           /*-------------------------------------------------------------*/
         </script>
          <script type="text/javascript">

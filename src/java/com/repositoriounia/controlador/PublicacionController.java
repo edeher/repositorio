@@ -69,9 +69,9 @@ public class PublicacionController extends HttpServlet {
                 break;
             case "eliminarPublicacion":eliminarPublicacion(request,response);
                 break;
-            case "17":
+            case "ObtenerTodosxLinea":ObtenerTodosxLinea(request,response);
                 break;
-            case "15":
+            case "ObtenerTodosxArea":ObtenerTodosxArea(request,response);
                 break;
             case "16":
                 break;
@@ -203,5 +203,57 @@ public class PublicacionController extends HttpServlet {
     private void eliminarPublicacion(HttpServletRequest request, HttpServletResponse response) throws DAOException {
        int codigo=Integer.parseInt(request.getParameter("idpublicacion") );
        daote.eliminar(codigo);
+    }
+
+    private void ObtenerTodosxLinea(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+        int idLineaInvestigacion=Integer.parseInt(request.getParameter("idLineaInvestigacion"));
+     Publicacion[] puv = daote.leertodoxLinea(idLineaInvestigacion);
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();  
+        JsonArrayBuilder  arrayPublicaciones = Json.createArrayBuilder();        
+        JsonArrayBuilder  arrayDatosPublicaciones; 
+       for (Publicacion publi : puv) {
+            //System.out.println(solicitud.toString());            
+            arrayDatosPublicaciones = Json.createArrayBuilder();
+            arrayDatosPublicaciones.add(publi.getIdPublicacion());
+            arrayDatosPublicaciones.add(publi.getTitulo());
+            arrayDatosPublicaciones.add(publi.getLineaInvestigacion().getAreaInvestigacion().getDescripcion());
+            arrayDatosPublicaciones.add(publi.getLineaInvestigacion().getDescripcion());
+            arrayDatosPublicaciones.add( publi.getFechaPublicacion().toString());  
+            arrayDatosPublicaciones.add( publi.getFechaCarga().toString()); 
+            arrayPublicaciones.add(arrayDatosPublicaciones);
+        }
+        objbuilder.add("data", arrayPublicaciones);
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        }
+    }
+
+    private void ObtenerTodosxArea(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+       int idAreaInvestigacion=Integer.parseInt(request.getParameter("idAreaInvestigacion"));
+     Publicacion[] puv = daote.leertodoxArea(idAreaInvestigacion);
+        JsonObjectBuilder objbuilder = Json.createObjectBuilder();  
+        JsonArrayBuilder  arrayPublicaciones = Json.createArrayBuilder();        
+        JsonArrayBuilder  arrayDatosPublicaciones; 
+       for (Publicacion publi : puv) {
+            //System.out.println(solicitud.toString());            
+            arrayDatosPublicaciones = Json.createArrayBuilder();
+            arrayDatosPublicaciones.add(publi.getIdPublicacion());
+            arrayDatosPublicaciones.add(publi.getTitulo());
+            arrayDatosPublicaciones.add(publi.getLineaInvestigacion().getAreaInvestigacion().getDescripcion());
+            arrayDatosPublicaciones.add(publi.getLineaInvestigacion().getDescripcion());
+            arrayDatosPublicaciones.add( publi.getFechaPublicacion().toString());  
+            arrayDatosPublicaciones.add( publi.getFechaCarga().toString()); 
+            arrayPublicaciones.add(arrayDatosPublicaciones);
+        }
+        objbuilder.add("data", arrayPublicaciones);
+        JsonObject obj = objbuilder.build();
+        response.setContentType("application/json");
+       
+        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
+            pw.println(obj.toString()); 
+        }
     }
 }

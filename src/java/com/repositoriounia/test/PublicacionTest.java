@@ -30,7 +30,9 @@ public class PublicacionTest {
 //        leerpublicacion();
 //        leertodo();
 //        crearpublicacionleer();
-        modificarpublicacionleer();
+//        modificarpublicacionleer();
+//        leertodoxlinea();
+        leertodoxarea();
     }
     public static void crearpublicacion() throws DAOException
     {
@@ -151,6 +153,34 @@ public class PublicacionTest {
 		PublicacionDAOFactory fabricate= new PublicacionDAOFactory();
                 PublicacionDAO daote= fabricate.metodoDAO();
 	 Publicacion[] usuv=daote.leertodo();
+	  
+	  for(Publicacion usuv1:usuv)
+	  {
+	      
+	      System.out.println(" "+usuv1.toString());
+	  
+	  }
+	 
+        } 
+       public static void leertodoxlinea()throws DAOException
+	{
+		PublicacionDAOFactory fabricate= new PublicacionDAOFactory();
+                PublicacionDAO daote= fabricate.metodoDAO();
+	 Publicacion[] usuv=daote.leertodoxLinea(1);
+	  
+	  for(Publicacion usuv1:usuv)
+	  {
+	      
+	      System.out.println(" "+usuv1.toString());
+	  
+	  }
+	 
+        } 
+       public static void leertodoxarea()throws DAOException
+	{
+		PublicacionDAOFactory fabricate= new PublicacionDAOFactory();
+                PublicacionDAO daote= fabricate.metodoDAO();
+	 Publicacion[] usuv=daote.leertodoxArea(1);
 	  
 	  for(Publicacion usuv1:usuv)
 	  {

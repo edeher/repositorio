@@ -30,6 +30,7 @@ public interface VisitaDAO {
      public Visita[] topxidxmes(int idPublicacion,int mes)throws DAOException;
      
      public Visita[]visitastotalesxAnio()throws DAOException;
+     public Visita[]publicacionestotalesxAnio()throws DAOException;
      
     public Visita cantidad(String nombre)throws DAOException;
      public Visita cantidadPubli()throws DAOException;

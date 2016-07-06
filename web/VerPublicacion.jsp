@@ -160,43 +160,8 @@
                                                     <h4 class="panel-title">ARCHIVOS</h4>
                                                 </a>
                                                 <div id="collapseOne1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                                                    <form enctype="multipart/form-data" id="cargaform">
-                                                        <div class="form-group">
-
-                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">TIPO</label>
-                                                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                                                <select name="descripcion"id="" class="form-control">
-                                                                    <option value="--">--</option>
-                                                                    <%for (DescripcionArchivo es : DescripcionArchivo.values()) {
-
-                                                                    %>
-                                                                    <option value="<%=es.name()%>"  >
-                                                                        <%=es.getNom()%></option>
-                                                                        <%}%>
-                                                                </select>
-                                                            </div>
-
-                                                            &nbsp;
-
-                                                        </div>
-                                                        <div class="form-group">      
-
-                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">ARCHIVO</label>
-
-                                                            <input name="archivo" id="file-1" accept=".pdf"  type="file" class="file"  data-preview-file-type="any" value="" data-show-preview="false">
-
-
-                                                        </div>  
-                                                        <!-------------------------botones de carga         ------------------------>
-
-
-                                                    </form>
-                                                    <div class="form-group">
-                                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                                            <button class="btn btn-primary" id="btnCargar" >Cargar</button>
-                                                            <button class="btn btn-default" type="reset">Cancelar</button>
-                                                        </div>
-                                                    </div>
+                                                    
+                                                    
                                                     <div class="panel-body">
                                                         <table class="table table-bordered" id="tableArchivos">
 
@@ -337,7 +302,7 @@
                 // {"targets":0,"visible":false},
                 {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnVerArchivo" data-toggle="tooltip" data-placement="left" title="VER" ><a><i class="fa fa-search"></i></a></button>&nbsp&nbsp<button name="btnVerArchivo1" data-toggle="tooltip" data-placement="top" title="VER" ><a><i class="fa fa-search-plus"></i></a></button>&nbsp&nbsp <button name="btnEliminar" data-toggle="tooltip" data-placement="top" title="ELIMINAR" ><a><i class="fa fa-trash"></i></a></button>&nbsp&nbsp<button name="btnSolicitar" data-toggle="tooltip" data-placement="top" title="SOLICITAR" ><a><i class="fa fa-download"></i></a></button>&nbsp&nbsp<button name="btnDenunciar" data-toggle="tooltip" data-placement="right" title="DENUNCIAR" ><a><i class="fa fa-ban"></i></a></button>&nbsp&nbsp<button name="btnVerDenuncias" data-toggle="tooltip" data-placement="top" title="DENUNCIAS" ><a><i class="fa fa-thumbs-down"></i></a></button>'}
+                    "defaultContent": '<button name="btnVerArchivo1" data-toggle="tooltip" data-placement="top" title="VER" ><a><i class="fa fa-search-plus"></i></a></button><button name="btnSolicitar" data-toggle="tooltip" data-placement="top" title="SOLICITAR" ><a><i class="fa fa-download"></i></a></button>&nbsp&nbsp<button name="btnDenunciar" data-toggle="tooltip" data-placement="right" title="DENUNCIAR" ><a><i class="fa fa-ban"></i></a></button>'}
             ],
             "ajax": "ArchivoPublicacionController?accion=ObtenerArchivos&codigo=" +<%=idPublicacion%>,
             "initComplete": function () {
@@ -368,13 +333,7 @@
                             });
                 }
             }
-            if (nombre == 'btnVerArchivo') {
-                $('#iframepdf').attr('src', 'ArchivoPublicacionController?accion=verArchivo&idArchivo=' + data[0]);
-                $('.modal-lg').css('width', '1420px');
-
-                $('#miModal1').modal('show');
-                $('#iframepdf').contentWindow.location.reload(true);
-            }
+            
             if (nombre == 'btnVerArchivo1') {
                 $('#iframepdf').attr('src', 'pdf.jsp?codigo=' + data[0]);
                 $('.modal-lg').css('width', '1420px');
@@ -394,13 +353,7 @@
                  $('.modal-lg').css('width', '1000px');
                  mostrarModal('DenuncianteArchivo.jsp?idArchivoPublicacion='+data[0]);
             }
-             if (nombre == 'btnVerDenuncias') {
-
-                //window.location.href='VerPublicacion.jsp?idPublicacion='+data[0];
-                //window.location.href = 'VerDenuncia.jsp?idArchivoPublicacion=' + data[0];
-                $('.modal-lg').css('width', '1000px');
-                 mostrarModal('VerDenuncia.jsp?idArchivoPublicacion='+data[0]);
-            }
+            
         });
         /*-------------------------TABLA DE AUTORES--------------------------*/
         table2 = $('#tableAutores').DataTable({
@@ -414,14 +367,14 @@
                 {"title": "Nombre"},
                 {"title": "especialidad"},
                 {"title": "Cargo"},
-                {"title": "<a href='#'id='btnNuevo'><i class='fa fa-plus' data-toggle='tooltip' data-placement='top' title='NUEVO'></i></a>"}],
+                {"title": "Autores"}],
             "columnDefs": [
                 {"targets": [4],
                     "orderable": false,
                     "className": 'text-center'},
                 {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnVerAutor" data-toggle="tooltip" data-placement="left" title="VER" ><a><i class="fa fa-search"></i></a></button>&nbsp&nbsp <button name="btnEliminar" data-toggle="tooltip" data-placement="right" title="ELIINAR" ><a><i class="fa fa-trash"></i></a></button>'}
+                    "defaultContent": '<button name="btnVerAutor" data-toggle="tooltip" data-placement="left" title="VER" ><a><i class="fa fa-search"></i></a></button>'}
             ],
             "ajax": "AutorPublicacionController?accion=ObtenerTodosPorPublicacion&codigo=" +<%=idPublicacion%>,
             "initComplete": function () {
@@ -442,27 +395,8 @@
                 mostrarModal('Autor.jsp?codigo=' + data[0] + '&idPublicacion=' +<%=idPublicacion%>);
             }
 
-            if (nombre1 == 'btnEliminar') {
-                if (confirm("seguro que desea eliminar el Autor :" + data[0]) == true)
-                {
-                    $.ajax({
-                        url: "AutorPublicacionController?accion=eliminarAutor&codigo=" + data[0],
-                    })
-                            .always(function ()
-                            {
-                                actualizar2();
-
-                            });
-                }
-            }
         });
-        $('#tableAutores thead').on('click', 'a', function () {
-            var nombre = $(this).attr('id');
-            if (nombre == 'btnNuevo') {
-                $('.modal-lg').css('width', '1000px');
-                mostrarModal('NuevoInvestigador2.jsp?idPublicacion=' +<%=idPublicacion%>);
-            }
-        });
+       
 
 
 
