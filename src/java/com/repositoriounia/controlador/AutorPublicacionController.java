@@ -182,17 +182,17 @@ public class AutorPublicacionController extends HttpServlet {
 
     private void crearveryleer2(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
        objAuPu=new AutorPublicacion();
-       objAuPu.getAutor().setNombres(request.getParameter("nombres2"));
-       objAuPu.getAutor().setApellidos(request.getParameter("apellidos2"));
+       objAuPu.getAutor().setNombres(request.getParameter("nombres2").toString().toUpperCase());
+       objAuPu.getAutor().setApellidos(request.getParameter("apellidos2").toString().toUpperCase());
        objAuPu.getAutor().setDni(request.getParameter("dni2"));
        objAuPu.getAutor().setSexo(Sexo.valueOf(request.getParameter("sexo2")));
-       objAuPu.getAutor().setDireccion(request.getParameter("direccion2"));
+       objAuPu.getAutor().setDireccion(request.getParameter("direccion2").toString().toUpperCase());
        objAuPu.getAutor().setTelefono(request.getParameter("telefono2"));
-       objAuPu.getAutor().setCorrero(request.getParameter("correo2"));
+       objAuPu.getAutor().setCorrero(request.getParameter("correo2").toString().toUpperCase());
        objAuPu.getAutor().getEscuela().setIdEscuela(Integer.parseInt(request.getParameter("escuela")));
-       objAuPu.getAutor().setProfesion(request.getParameter("profesion2"));
-       objAuPu.getAutor().setEspecialidad(request.getParameter("especialidad2"));
-       objAuPu.getAutor().setGrado(request.getParameter("grado2"));
+       objAuPu.getAutor().setProfesion(request.getParameter("profesion2").toString().toUpperCase());
+       objAuPu.getAutor().setEspecialidad(request.getParameter("especialidad2").toString().toUpperCase());
+       objAuPu.getAutor().setGrado(request.getParameter("grado2").toString().toUpperCase());
        objAuPu.getPublicacion().setIdPublicacion(Integer.parseInt(request.getParameter("idPublicacion2")));
        objAuPu.setTipoautor(TipoAutor.valueOf(request.getParameter("tipoautor2")));
        

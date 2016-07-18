@@ -139,7 +139,10 @@ public class PublicacionController extends HttpServlet {
         objPu.getLineaInvestigacion().setIdLineaInvestigacion(Integer.parseInt(request.getParameter("linea")));
         objPu.setTitulo(request.getParameter("titulo").toString().toUpperCase().trim());
         objPu.setFechaPublicacion(fec);
+        System.out.println("titulo recibido  :"+request.getParameter("titulo").toString().toUpperCase());
         Publicacion publi=daote.crearleer(objPu);
+        
+        System.out.println("titulo de la base de datos: "+publi.getTitulo());
         
              try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
                  if(publi==null){
@@ -160,6 +163,13 @@ public class PublicacionController extends HttpServlet {
         JsonObjectBuilder objbuilder = Json.createObjectBuilder();  
         JsonArrayBuilder  arrayPublicaciones = Json.createArrayBuilder();        
         JsonArrayBuilder  arrayDatosPublicaciones; 
+       for(Publicacion usuv1:puv)
+	  {
+	      
+	      System.out.println(" "+usuv1.toString());
+	  
+	  }
+        
        for (Publicacion publi : puv) {
             //System.out.println(solicitud.toString());            
             arrayDatosPublicaciones = Json.createArrayBuilder();
@@ -196,8 +206,10 @@ public class PublicacionController extends HttpServlet {
        objPu.setTitulo(request.getParameter("titulo").toString().toUpperCase()) ;
         objPu.getLineaInvestigacion().setIdLineaInvestigacion(Integer.parseInt(request.getParameter("linea")));
         objPu.setFechaPublicacion(fec);
+        System.out.println("titulo :"+request.getParameter("titulo").toString().toUpperCase());
         
        Publicacion objPu1 = daote.modificarleer(objPu);
+         System.out.println("publicacion: "+objPu1.getTitulo());
     }
 
     private void eliminarPublicacion(HttpServletRequest request, HttpServletResponse response) throws DAOException {

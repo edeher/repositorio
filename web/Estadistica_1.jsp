@@ -87,7 +87,7 @@
 
             <div class="main_container">
 
-                <%@include file="menu.jspf" %>
+                <%@include file="menu_1.jspf" %>
 
                 <!-- top navigation -->
                 <div class="top_nav">
@@ -203,12 +203,11 @@
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="x_panel">
-                                    <div class="x_title">
-                                        <h2><%=objvi1.getArchivoPublicacion().getPublicacion().getTitulo()%></h2>
-                                        <ul class="nav navbar-right panel_toolbox">
-                                            <li><a href="#"><i class="fa fa-chevron-up"></i></a>
-                                            </li>
-                                        </ul>
+                                    <div class="block_content">
+                                        <h2> <p class="excerpt">
+                                            <%=objvi1.getArchivoPublicacion().getPublicacion().getTitulo()%>
+                                            </p></h2>
+                                        
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
@@ -221,12 +220,11 @@
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="x_panel">
-                                    <div class="x_title">
-                                        <h2><%=objvi2.getArchivoPublicacion().getPublicacion().getTitulo()%></h2>
-                                        <ul class="nav navbar-right panel_toolbox">
-                                            <li><a href="#"><i class="fa fa-chevron-up"></i></a>
-                                            </li>
-                                        </ul>
+                                    <div class="block_content">
+                                        <h2> <p class="excerpt">
+                                            <%=objvi2.getArchivoPublicacion().getPublicacion().getTitulo()%>
+                                            </p></h2>
+                                        
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
@@ -239,12 +237,11 @@
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="x_panel">
-                                    <div class="x_title">
-                                        <h2><%=objvi3.getArchivoPublicacion().getPublicacion().getTitulo()%></h2>
-                                        <ul class="nav navbar-right panel_toolbox">
-                                            <li><a href="#"><i class="fa fa-chevron-up"></i></a>
-                                            </li>
-                                        </ul>
+                                    <div class="block_content">
+                                        <h2> <p class="excerpt">
+                                            <%=objvi3.getArchivoPublicacion().getPublicacion().getTitulo()%>
+                                            </p></h2>
+                                        
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
@@ -258,12 +255,11 @@
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="x_panel">
-                                    <div class="x_title">
-                                        <h2><%=objvi4.getArchivoPublicacion().getPublicacion().getTitulo()%></h2>
-                                        <ul class="nav navbar-right panel_toolbox">
-                                            <li><a href="#"><i class="fa fa-chevron-up"></i></a>
-                                            </li>
-                                        </ul>
+                                   <div class="block_content">
+                                        <h2> <p class="excerpt">
+                                            <%=objvi4.getArchivoPublicacion().getPublicacion().getTitulo()%>
+                                            </p></h2>
+                                        
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
@@ -279,12 +275,11 @@
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="x_panel">
-                                    <div class="x_title">
-                                        <h2><%=objvi5.getArchivoPublicacion().getPublicacion().getTitulo()%></h2>
-                                        <ul class="nav navbar-right panel_toolbox">
-                                            <li><a href="#"><i class="fa fa-chevron-up"></i></a>
-                                            </li>
-                                        </ul>
+                                    <div class="block_content">
+                                        <h2> <p class="excerpt">
+                                            <%=objvi5.getArchivoPublicacion().getPublicacion().getTitulo()%>
+                                            </p></h2>
+                                        
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">

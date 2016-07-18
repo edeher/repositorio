@@ -47,7 +47,7 @@ public class PublicacionDAOJDBC implements PublicacionDAO{
             
             
         } catch (SQLException se) {
-            throw new DAOException("Error añadiendo publicacion  en DAO", se);
+            throw new DAOException("Error a?adiendo publicacion  en DAO", se);
         }
         return true;
     }

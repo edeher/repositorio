@@ -36,13 +36,13 @@
           <![endif]-->
 
     </head>
-    <%  
+    <%
         VisitaDAOFactory fabricate = new VisitaDAOFactory();
         VisitaDAO daote = fabricate.metodoDAO();
-         Date fecha=new Date();
-              int mes=(fecha.getMonth());
-            NombreMes nombre=new NombreMes();
-        
+        Date fecha = new Date();
+        int mes = (fecha.getMonth());
+        NombreMes nombre = new NombreMes();
+
         Visita objvi1 = new Visita();
         Visita objvi2 = new Visita();
         Visita objvi3 = new Visita();
@@ -54,34 +54,33 @@
         objvi3 = daote.top5xitemxmes(3, mes);
         objvi4 = daote.top5xitemxmes(4, mes);
         objvi5 = daote.top5xitemxmes(5, mes);
-        
-         if(objvi1==null){
-             objvi1 = new Visita();
-        objvi1.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
-        objvi1.getArchivoPublicacion().getPublicacion().setTitulo("") ; 
+
+        if (objvi1 == null) {
+            objvi1 = new Visita();
+            objvi1.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
+            objvi1.getArchivoPublicacion().getPublicacion().setTitulo("");
         }
-          if(objvi2==null){
-              objvi2 = new Visita();
-        objvi2.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
-        objvi2.getArchivoPublicacion().getPublicacion().setTitulo("") ; 
+        if (objvi2 == null) {
+            objvi2 = new Visita();
+            objvi2.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
+            objvi2.getArchivoPublicacion().getPublicacion().setTitulo("");
         }
-           if(objvi3==null){
-               objvi3 = new Visita();
-        objvi3.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
-        objvi3.getArchivoPublicacion().getPublicacion().setTitulo("") ; 
+        if (objvi3 == null) {
+            objvi3 = new Visita();
+            objvi3.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
+            objvi3.getArchivoPublicacion().getPublicacion().setTitulo("");
         }
-            if(objvi4==null){
-                objvi4 = new Visita();
-        objvi4.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
-        objvi4.getArchivoPublicacion().getPublicacion().setTitulo("") ; 
+        if (objvi4 == null) {
+            objvi4 = new Visita();
+            objvi4.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
+            objvi4.getArchivoPublicacion().getPublicacion().setTitulo("");
         }
-             if(objvi5==null){
-              objvi5 = new Visita();
-        objvi5.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
-         objvi5.getArchivoPublicacion().getPublicacion().setTitulo("") ;     
+        if (objvi5 == null) {
+            objvi5 = new Visita();
+            objvi5.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
+            objvi5.getArchivoPublicacion().getPublicacion().setTitulo("");
         }
-            
-           
+
 
     %>
 
@@ -92,12 +91,12 @@
 
             <div class="main_container">
 
-                <%@include file="menu.jspf" %>
+                <%@include file="menu_1.jspf" %>
 
                 <!-- top navigation -->
                 <div class="top_nav">
 
-                     <%@include file="cabecera.jspf" %>
+                    <%@include file="cabecera.jspf" %>
 
                 </div>
 
@@ -119,7 +118,7 @@
                                 <%                                    Visita objcantidad = daote.cantidad("PRINCIPAL");
                                 %>
                                 <div class="count"><%=objcantidad.getCantidad()%></div>
-                                  </div>
+                            </div>
                         </div>
 
                         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
@@ -130,7 +129,7 @@
                                     Visita objcantidad1 = daote.cantidadPubli();
                                 %>
                                 <div class="count green"><%=objcantidad1.getCantidad()%></div>
-                                  </div>
+                            </div>
                         </div>
                         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
                             <div class="left"></div>
@@ -140,7 +139,7 @@
                                     Visita objcantidad2 = daote.cantidadVisitas();
                                 %>
                                 <div class="count"><%=objcantidad2.getCantidad()%></div>
-                                  </div>
+                            </div>
                         </div>
                         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
                             <div class="left"></div>
@@ -150,33 +149,33 @@
                                     Visita objcantidad3 = daote.cantidadtemasSolicitados();
                                 %>
                                 <div class="count green"><%=objcantidad3.getCantidad()%></div>
-                                  </div>
+                            </div>
                         </div>
                         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
                             <div class="left"></div>
                             <div class="right">
                                 <span class="count_top"><i class="fa fa-cloud-download"></i> Archivos Solicitados</span>
                                 <%
-                                    Visita objcantidad4= daote.cantidadarchivosSolictados();
+                                    Visita objcantidad4 = daote.cantidadarchivosSolictados();
                                 %>
                                 <div class="count"><%=objcantidad4.getCantidad()%></div>
-                                 </div>
+                            </div>
                         </div>
 
                     </div>
                     <!-- /top tiles -->
 
-<div class="col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
-                                                <ul class="pagination pagination-split">
-                                                    <li><a href="Estadistica2.jsp"><%=nombre.nombremes(fecha.getMonth()) %></a>
-                                                    </li>
-                                                    <li><a href="Estadistica3.jsp"><%=nombre.nombremes(fecha.getMonth()-1) %></a>
-                                                    </li>
-                                                    <li><a href="Estadistica4.jsp"><%=nombre.nombremes(fecha.getMonth()-2) %></a>
-                                                    </li>
-                                                    
-                                                </ul>
-                                            </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+                        <ul class="pagination pagination-split">
+                            <li><a href="Estadistica2_1.jsp"><%=nombre.nombremes(fecha.getMonth())%></a>
+                            </li>
+                            <li><a href="Estadistica3_1.jsp"><%=nombre.nombremes(fecha.getMonth() - 1)%></a>
+                            </li>
+                            <li><a href="Estadistica4_1.jsp"><%=nombre.nombremes(fecha.getMonth() - 2)%></a>
+                            </li>
+
+                        </ul>
+                    </div>
 
                     <div class="">
                         <div class="page-title">
@@ -184,7 +183,7 @@
                                 <h3>
                                     REPOSITORIO VIP : Concentración  de datos Estadísticos 
                                     <small>
-                                        
+
                                     </small>
                                 </h3>
                             </div>
@@ -197,7 +196,7 @@
                             <div class="col-md-8 col-sm-8 col-xs-12">
                                 <div class="x_panel">
                                     <div class="x_title">
-                                        <h2>las 5 Publicaciones más VIsitadas en el mes de <%=nombre.nombremes(fecha.getMonth()-1) %></h2>
+                                        <h2>las 5 Publicaciones más VIsitadas en el mes de <%=nombre.nombremes(fecha.getMonth() - 1)%></h2>
                                         <ul class="nav navbar-right panel_toolbox">
                                             <li><a href="#"><i class="fa fa-chevron-up"></i></a>
                                             </li>
@@ -217,12 +216,11 @@
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="x_panel">
-                                    <div class="x_title">
-                                        <h2><%=objvi1.getArchivoPublicacion().getPublicacion().getTitulo()%></h2>
-                                        <ul class="nav navbar-right panel_toolbox">
-                                            <li><a href="#"><i class="fa fa-chevron-up"></i></a>
-                                            </li>
-                                        </ul>
+                                    <div class="block_content">
+                                        <h2> <p class="excerpt">
+                                            <%=objvi1.getArchivoPublicacion().getPublicacion().getTitulo()%>
+                                            </p></h2>
+                                        
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
@@ -235,12 +233,11 @@
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="x_panel">
-                                    <div class="x_title">
-                                        <h2><%=objvi2.getArchivoPublicacion().getPublicacion().getTitulo()%></h2>
-                                        <ul class="nav navbar-right panel_toolbox">
-                                            <li><a href="#"><i class="fa fa-chevron-up"></i></a>
-                                            </li>
-                                        </ul>
+                                    <div class="block_content">
+                                        <h2> <p class="excerpt">
+                                            <%=objvi2.getArchivoPublicacion().getPublicacion().getTitulo()%>
+                                            </p></h2>
+                                        
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
@@ -253,12 +250,11 @@
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="x_panel">
-                                    <div class="x_title">
-                                        <h2><%=objvi3.getArchivoPublicacion().getPublicacion().getTitulo()%></h2>
-                                        <ul class="nav navbar-right panel_toolbox">
-                                            <li><a href="#"><i class="fa fa-chevron-up"></i></a>
-                                            </li>
-                                        </ul>
+                                    <div class="block_content">
+                                        <h2> <p class="excerpt">
+                                            <%=objvi3.getArchivoPublicacion().getPublicacion().getTitulo()%>
+                                            </p></h2>
+                                        
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
@@ -272,12 +268,11 @@
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="x_panel">
-                                    <div class="x_title">
-                                        <h2><%=objvi4.getArchivoPublicacion().getPublicacion().getTitulo()%></h2>
-                                        <ul class="nav navbar-right panel_toolbox">
-                                            <li><a href="#"><i class="fa fa-chevron-up"></i></a>
-                                            </li>
-                                        </ul>
+                                    <div class="block_content">
+                                        <h2> <p class="excerpt">
+                                            <%=objvi4.getArchivoPublicacion().getPublicacion().getTitulo()%>
+                                            </p></h2>
+                                       
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
@@ -293,12 +288,11 @@
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="x_panel">
-                                    <div class="x_title">
-                                        <h2><%=objvi5.getArchivoPublicacion().getPublicacion().getTitulo()%></h2>
-                                        <ul class="nav navbar-right panel_toolbox">
-                                            <li><a href="#"><i class="fa fa-chevron-up"></i></a>
-                                            </li>
-                                        </ul>
+                                   <div class="block_content">
+                                        <h2> <p class="excerpt">
+                                            <%=objvi5.getArchivoPublicacion().getPublicacion().getTitulo()%>
+                                            </p></h2>
+                                        
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
@@ -317,7 +311,7 @@
                     </div>
 
                     <!-- footer content -->
-                     <%@include file="footer.jspf" %>
+                    <%@include file="footer.jspf" %>
                     <!-- /footer content -->
 
                 </div>
@@ -346,7 +340,7 @@
         <script>
             $(document).ready(function () {
                 //primer grafico
-                $.getJSON('VisitaController?accion=top5_ultimoxmes&mes='+<%=mes%>, function (json) {
+                $.getJSON('VisitaController?accion=top5_ultimoxmes&mes=' +<%=mes%>, function (json) {
                     var categorias = [];
                     var valores = [];
                     var items = [];
@@ -403,16 +397,16 @@
                                                 '#da70d6', '#6495ed', '#333366', '#33CC99', '#CCCCFF', '#3cb371', '#30e0e0', '#40e0d0'
                                             ];
                                             return colorList[params.dataIndex]
-                                            
+
                                         },
-                                        label : {show: true, position: 'inside'}
+                                        label: {show: true, position: 'inside'}
                                     }
                                 },
                                 xAxisIndex: 1,
                                 data: valores,
                                 markPoint: {
                                     data: [
-                                        {type: 'max', name: 'Mas visitado con'}, 
+                                        {type: 'max', name: 'Mas visitado con'},
                                         {type: 'min', name: 'Menos visitado con'}]
                                 },
                                 markLine: {
@@ -473,7 +467,7 @@
 
 /// fin de segundo grafico
 //segundo grafico
-                $.getJSON('VisitaController?accion=topxidxmes&idPublicacion=' +<%=objvi1.getArchivoPublicacion().getPublicacion().getIdPublicacion()%>+'&mes='+<%=mes%>, function (json) {
+                $.getJSON('VisitaController?accion=topxidxmes&idPublicacion=' +<%=objvi1.getArchivoPublicacion().getPublicacion().getIdPublicacion()%> + '&mes=' +<%=mes%>, function (json) {
 
                     var data = [];
                     var titulos = [];
@@ -551,7 +545,7 @@
 
 /// fin de segundo grafico
 
-                $.getJSON('VisitaController?accion=topxidxmes&idPublicacion=' +<%=objvi2.getArchivoPublicacion().getPublicacion().getIdPublicacion()%>+'&mes='+<%=mes%>, function (json) {
+                $.getJSON('VisitaController?accion=topxidxmes&idPublicacion=' +<%=objvi2.getArchivoPublicacion().getPublicacion().getIdPublicacion()%> + '&mes=' +<%=mes%>, function (json) {
                     var valores = [];
                     var titulos = [];
                     var data = [];
@@ -625,7 +619,7 @@
                 });
 
 
-                $.getJSON('VisitaController?accion=topxidxmes&idPublicacion=' +<%=objvi3.getArchivoPublicacion().getPublicacion().getIdPublicacion()%>+'&mes='+<%=mes%>, function (json) {
+                $.getJSON('VisitaController?accion=topxidxmes&idPublicacion=' +<%=objvi3.getArchivoPublicacion().getPublicacion().getIdPublicacion()%> + '&mes=' +<%=mes%>, function (json) {
                     var valores = [];
                     var titulos = [];
                     var data = [];
@@ -696,7 +690,7 @@
                     });
                 });
 
-                $.getJSON('VisitaController?accion=topxidxmes&idPublicacion=' +<%=objvi4.getArchivoPublicacion().getPublicacion().getIdPublicacion()%>+'&mes='+<%=mes%>, function (json) {
+                $.getJSON('VisitaController?accion=topxidxmes&idPublicacion=' +<%=objvi4.getArchivoPublicacion().getPublicacion().getIdPublicacion()%> + '&mes=' +<%=mes%>, function (json) {
                     var data = [];
                     var titulos = [];
                     $.each(json.top, function (item, obj) {
@@ -746,7 +740,7 @@
                     });
 
                 });
-                $.getJSON('VisitaController?accion=topxidxmes&idPublicacion=' +<%=objvi5.getArchivoPublicacion().getPublicacion().getIdPublicacion()%>+'&mes='+<%=mes%>, function (json) {
+                $.getJSON('VisitaController?accion=topxidxmes&idPublicacion=' +<%=objvi5.getArchivoPublicacion().getPublicacion().getIdPublicacion()%> + '&mes=' +<%=mes%>, function (json) {
                     var valores = [];
                     var titulos = [];
                     var data = [];
@@ -797,7 +791,6 @@
                             {
                                 name: 'visitas',
                                 type: 'bar',
-                                
                                 data: valores
                             }]
                     });

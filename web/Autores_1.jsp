@@ -49,7 +49,7 @@
 
             <div class="main_container">
 
-                <%@include file="menu.jspf" %>
+                <%@include file="menu_1.jspf" %>
 
                 <!-- top navigation -->
 

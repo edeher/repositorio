@@ -30,8 +30,7 @@
         <link href="js/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="js/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- dataTables -->
-        <link href="css/icheck/flat/green.css" rel="stylesheet">
-
+       
         <link rel="stylesheet" type="text/css" href="css/progressbar/bootstrap-progressbar-3.3.0.css">
     </head>
     <body class="nav-md">
@@ -40,7 +39,7 @@
             <div class="main_container">
 
                 <!-- menu lateral -->
-                <%@include file="menu.jspf" %>
+                <%@include file="menu_1.jspf" %>
                 <!-- /menu lateral -->
 
                 <!-- top navigation -->
@@ -103,8 +102,6 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
 
-
-
                         </div>
                     </div>
                 </div>
@@ -149,6 +146,7 @@
                 //mostrarModal('Histograma.jsp');
 
                 table = $('#datatable-responsive').DataTable({
+                    
                     "language": {
                         "url": "css/datatables/Spanish.json"
                     },
@@ -176,11 +174,13 @@
                         });
                     }
                 });
+                
                 table.on('order.dt search.dt', function () {
                     table.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
                         cell.innerHTML = i + 1;
                     });
                 }).draw();
+                
                 $('#datatable-responsive tbody').on('click', 'button', function () {
                     var nombre = $(this).attr('name');
                     var data = table.row($(this).parents('tr')).data();
@@ -210,7 +210,7 @@
                     if (nombre == 'btnVer') {
 
                         //window.location.href='VerPublicacion.jsp?idPublicacion='+data[0];
-                        window.location.href = 'VerPublicacion.jsp?idPublicacion=' + data[0];
+                        window.location.href = 'VerPublicacion_1.jsp?idPublicacion=' + data[0];
                     }
 
                 });

@@ -48,13 +48,13 @@
 
 
 
-                                    <li><a href="Visitas.jsp"><i class="fa fa-suitcase"></i> Visitas </a></li>
+                                    <li><a href="Visitas_1.jsp"><i class="fa fa-suitcase"></i> Visitas </a></li>
                                     
                                     <li><a><i class="fa fa-bar-chart-o"></i>Estadistica<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu" style="display: none">
-                                            <li><a href="Estadistica.jsp"><i class="fa fa-line-chart"></i>Top 5 de Visitas</a></li>
-                                            <li><a href="Estadistica2.jsp"><i class="fa fa-area-chart"></i>Top 3 Meses </a></li>
-                                            <li><a href="Estadistica5.jsp"><i class="fa fa-pie-chart"></i>Publicaciones</a></li>
+                                            <li><a href="Estadistica_1.jsp"><i class="fa fa-line-chart"></i>Top 5 de Visitas</a></li>
+                                            <li><a href="Estadistica2_1.jsp"><i class="fa fa-area-chart"></i>Top 3 Meses </a></li>
+                                            <li><a href="Estadistica5_1.jsp"><i class="fa fa-pie-chart"></i>Publicaciones</a></li>
                                             
                                         </ul>
                                     </li>            

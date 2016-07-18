@@ -28,11 +28,11 @@ public class PublicacionTest {
 //        modificarpublicacion();
 //        eliminarpublicacion();
 //        leerpublicacion();
-//        leertodo();
+        leertodo();
 //        crearpublicacionleer();
 //        modificarpublicacionleer();
 //        leertodoxlinea();
-        leertodoxarea();
+//        leertodoxarea();
     }
     public static void crearpublicacion() throws DAOException
     {
@@ -67,7 +67,7 @@ public class PublicacionTest {
           Date fec = new Date(fe.parse("2016-02-20").getTime());
           
                 objPu.getLineaInvestigacion().setIdLineaInvestigacion(1);
-                objPu.setTitulo("buqueda de algas");
+                objPu.setTitulo("LOS MATERIALES RECICLADOS Y SU EFECTO EN LA NOCIÓN CONSERVACIÓN DEL MEDIO AMBIENTE EN NIÑOS DE 5 AÑOS DE LA I.E.I. “SANTA ROSA” N° 235 - PUCALLPA – 2015");
                 objPu.setFechaPublicacion(fec);
              
               
@@ -143,7 +143,7 @@ public class PublicacionTest {
 		PublicacionDAOFactory fabricate= new PublicacionDAOFactory();
                 PublicacionDAO daote= fabricate.metodoDAO();
                
-	   Publicacion publica=daote.leerxid(3);
+	   Publicacion publica=daote.leerxid(33);
 	 System.out.println(" "+publica.toString());
         
 	    

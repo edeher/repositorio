@@ -38,7 +38,7 @@
 		<div class="main_container">
                     
                         <!-- menu lateral -->
-			<%@include file="menu.jspf" %>
+			<%@include file="menu_1.jspf" %>
                         <!-- /menu lateral -->
                         
 			<!-- top navigation -->

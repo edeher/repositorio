@@ -73,7 +73,7 @@
 
             <div class="main_container">
 
-                <%@include file="menu.jspf" %>
+                <%@include file="menu_1.jspf" %>
 
                 <!-- top navigation -->
 
@@ -86,7 +86,8 @@
 
                         &nbsp;          
                         <div class="clearfix">
-                            <%=publi.getTitulo()%>
+                            <strong>
+                                <%=publi.getTitulo()%></strong>
                         </div>
                         <div id="div-alerta" style="padding: 1px;display:none " class=" alert alert-success pull-right"  >
 
@@ -337,7 +338,7 @@
                 // {"targets":0,"visible":false},
                 {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnVerArchivo" data-toggle="tooltip" data-placement="left" title="VER" ><a><i class="fa fa-search"></i></a></button>&nbsp&nbsp<button name="btnVerArchivo1" data-toggle="tooltip" data-placement="top" title="VER" ><a><i class="fa fa-search-plus"></i></a></button>&nbsp&nbsp <button name="btnEliminar" data-toggle="tooltip" data-placement="top" title="ELIMINAR" ><a><i class="fa fa-trash"></i></a></button>&nbsp&nbsp<button name="btnSolicitar" data-toggle="tooltip" data-placement="top" title="SOLICITAR" ><a><i class="fa fa-download"></i></a></button>&nbsp&nbsp<button name="btnDenunciar" data-toggle="tooltip" data-placement="right" title="DENUNCIAR" ><a><i class="fa fa-ban"></i></a></button>&nbsp&nbsp<button name="btnVerDenuncias" data-toggle="tooltip" data-placement="top" title="DENUNCIAS" ><a><i class="fa fa-thumbs-down"></i></a></button>'}
+                    "defaultContent": '<button name="btnVerArchivo" data-toggle="tooltip" data-placement="left" title="VER" ><a><i class="fa fa-search"></i></a></button>&nbsp&nbsp <button name="btnEliminar" data-toggle="tooltip" data-placement="top" title="ELIMINAR" ><a><i class="fa fa-trash"></i></a></button>&nbsp&nbsp<button name="btnVerDenuncias" data-toggle="tooltip" data-placement="top" title="DENUNCIAS" ><a><i class="fa fa-thumbs-down"></i></a></button>'}
             ],
             "ajax": "ArchivoPublicacionController?accion=ObtenerArchivos&codigo=" +<%=idPublicacion%>,
             "initComplete": function () {
@@ -375,25 +376,8 @@
                 $('#miModal1').modal('show');
                 $('#iframepdf').contentWindow.location.reload(true);
             }
-            if (nombre == 'btnVerArchivo1') {
-                $('#iframepdf').attr('src', 'pdf.jsp?codigo=' + data[0]);
-                $('.modal-lg').css('width', '1420px');
-                $('#miModal1').modal('show');
-                $('#iframepdf').contentWindow.location.reload(true);
-            }
-            if (nombre == 'btnSolicitar') {
-               
-                 $('.modal-lg').css('width', '1000px');
-                mostrarModal('SolicitanteArchivo.jsp?idArchivoPublicacion='+data[0]);
-            }
-
-            if (nombre == 'btnDenunciar') {
-
-                //window.location.href='VerPublicacion.jsp?idPublicacion='+data[0];
-                //window.location.href = 'VerDenuncia.jsp?idArchivoPublicacion=' + data[0];
-                 $('.modal-lg').css('width', '1000px');
-                 mostrarModal('DenuncianteArchivo.jsp?idArchivoPublicacion='+data[0]);
-            }
+            
+            
              if (nombre == 'btnVerDenuncias') {
 
                 //window.location.href='VerPublicacion.jsp?idPublicacion='+data[0];

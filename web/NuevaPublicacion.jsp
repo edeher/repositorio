@@ -20,7 +20,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">	
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1250">	
 
     </head>
     <%
@@ -36,12 +36,12 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">Editar Publicacion N°  </h4>
+            <h4 class="modal-title" id="myModalLabel">Editar Publicacion N°   </h4>
 
         </div>
         <div class="modal-body">     
 
-            <form class="form-horizontal form-label-left " id="crearform" enctype="multipart/form-data">
+            <form class="form-horizontal form-label-left " id="crearform" accept-charset="utf-8" enctype="multipart/form-data">
 
               
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
@@ -98,7 +98,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12">PUBLICACION</label>
                     <div class="col-md-9 col-sm-9 col-xs-12">
-                        <input id="fecha" name="fecha" type="text" class="form-control has-feedback-left" id="input_fpublicacion" value="">
+                        <input  name="fecha" type="text" class="form-control has-feedback-left" id="input_fpublicacion" value="">
                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>     
                         
                         
@@ -132,7 +132,7 @@
   <script type="text/javascript" src="js/parsley/parsley.min.js"></script>
     <!-------------------------------------------------------------------->
     <script type="text/javascript">
-        var emailreg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;	
+        
         $(document).ready(function () {
             $('#input_fpublicacion').daterangepicker({
                 format: 'YYYY-MM-DD',

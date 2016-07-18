@@ -82,6 +82,10 @@ public class ArchivoPublicacionController extends HttpServlet {
                 System.out.println("verArchivo.....");
                 verArchivo(request, response);
                 break;
+            case "visitarArchivo":
+                System.out.println("verArchivo.....");
+                visitarArchivo(request, response);
+                break;
             case "ObtenerArchivos":
                 System.out.println("ObtenerArchivos.....");
                 String json = ObtenerArchivos(request, response);
@@ -160,11 +164,25 @@ public class ArchivoPublicacionController extends HttpServlet {
         archipu = new ArchivoPublicacion();
         System.out.println("cargando archivo..en metodo..");
         Part filePart = request.getPart("archivo");
-        InputStream imput = filePart.getInputStream();
+        //recepcion de elemento, parte o plantilla
+       
+        System.out.println("recepcion");
+        InputStream imput = filePart.getInputStream();//Obtiene el contenido de esta parte como un InputStream
+          //flujo de entrada de bytes
+         // siempre debe proporcionar un método que devuelve el siguiente byte de entrada.
+        System.out.println("creacion de variable");
         ByteArrayOutputStream output = new ByteArrayOutputStream();
-        byte[] buffer = new byte[4999999];
+        //flujo de salida en el que se escriben los datos en una matriz de bytes
+        //crece automáticamente como se escriben datos en ella. 
+        //Los datos pueden ser recuperados utilizando toByteArray () y toString () . 
+        
+        System.out.println("creacion de byte array");
+        byte[] buffer = new byte[10485760];
+        
+         System.out.println("escribiendo el archivo");
         for (int length = 0; (length = imput.read(buffer)) > 0;) {
             output.write(buffer, 0, length);
+            System.out.println("escribiendo el archivo");
         }        
         archipu.setArchivo(output.toByteArray());
         archipu.getPublicacion().setIdPublicacion(Integer.parseInt(request.getParameter("idpublicacion")));
@@ -188,11 +206,11 @@ public class ArchivoPublicacionController extends HttpServlet {
     private void verArchivo(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
        
         int codigo = Integer.parseInt(request.getParameter("idArchivo"));
-        daote1.crear(codigo);
+        
         OutputStream pdfsa;
         try (InputStream pdf = daote.ArchivoPublico(codigo)) {
             pdfsa = response.getOutputStream();
-            byte[] buffer2 = new byte[4999999];
+            byte[] buffer2 = new byte[10485760];
             for (;;) {
                 int nbytes = pdf.read(buffer2);
                 if (nbytes == -1) {
@@ -246,6 +264,26 @@ public class ArchivoPublicacionController extends HttpServlet {
        daote.eliminar(codigo);
        
        
+    }
+
+    private void visitarArchivo(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+       int codigo = Integer.parseInt(request.getParameter("idArchivo"));
+        daote1.crear(codigo);
+        OutputStream pdfsa;
+        try (InputStream pdf = daote.ArchivoPublico(codigo)) {
+            pdfsa = response.getOutputStream();
+            byte[] buffer2 = new byte[16777215];
+            for (;;) {
+                int nbytes = pdf.read(buffer2);
+                if (nbytes == -1) {
+                    break;
+                }
+                pdfsa.write(buffer2, 0, nbytes);
+            }
+            response.setContentType("application/pdf");
+        }
+        pdfsa.flush();
+        pdfsa.close();
     }
 
 }

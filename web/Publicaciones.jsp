@@ -149,6 +149,7 @@
                 //mostrarModal('Histograma.jsp');
 
                 table = $('#datatable-responsive').DataTable({
+                    
                     "language": {
                         "url": "css/datatables/Spanish.json"
                     },

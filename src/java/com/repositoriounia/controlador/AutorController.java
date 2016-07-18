@@ -220,6 +220,7 @@ public class AutorController extends HttpServlet {
        objAu.setCorrero(request.getParameter("correo"));
        objAu.setDireccion(request.getParameter("direccion").toString().toUpperCase());
        objAu.setDni(request.getParameter("dni").toString().toUpperCase());
+       objAu.setTelefono(request.getParameter("telefono").toString().toUpperCase());
        objAu.setSexo(Sexo.valueOf(request.getParameter("sexo")));
        objAu.getEscuela().setIdEscuela(Integer.parseInt(request.getParameter("escuela")));
        objAu.setEspecialidad(request.getParameter("especialidad").toString().toUpperCase());

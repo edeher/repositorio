@@ -51,9 +51,13 @@
 
     <div id="wrapper">
       <div id="login" class="animate form">
+        
         <section class="login_content">
+              <div class="" style="border: 0;">
+           <a href="" class=""> <img src="images/LOGO UNIA.png" alt="" height="50px" width="40px"/> <span></span></a>
+        </div>
           <form>
-            <h1>Ingresar</h1>
+            <h1>Repositorio VPI</h1>
             <div>
               <input type="text" class="form-control" placeholder="Usuario" required="" />
             </div>
@@ -61,11 +65,23 @@
               <input type="password" class="form-control" placeholder="Contraseña" required="" />
             </div>
             <div>
-              <a class="btn btn-default submit" href="index.html">Log in</a>
-              <a class="reset_pass" href="#">Olvidaste tu Contraseña?</a>
-            </div>
+              <a class="btn btn-default submit" href="index.html">Ingresar</a>
+            <!--  <a class="reset_pass" href="#">Olvidaste tu Contraseña?</a>-->
+           </div>
             <div class="clearfix"></div>
-           
+            <div class="separator">
+
+           <!--   <p class="change_link">New to site?
+                <a href="#toregister" class="to_register"> Create Account </a>
+              </p>-->
+              <div class="clearfix"></div>
+              <br />
+              <div>
+                <h1><i class="fa fa-lock" style="font-size: 26px;"></i> Bienvenido!</h1>
+
+                <p>©2016 Todos Los derechos Reservados. Vicepresidencia de Investigacion UNIA</p>
+              </div>
+            </div>
           </form>
           <!-- form -->
         </section>

@@ -34,10 +34,10 @@
           <![endif]-->
 
     </head>
-    <%  
+    <%
         VisitaDAOFactory fabricate = new VisitaDAOFactory();
         VisitaDAO daote = fabricate.metodoDAO();
-        
+
         Visita objvi1 = new Visita();
         Visita objvi2 = new Visita();
         Visita objvi3 = new Visita();
@@ -45,37 +45,36 @@
         Visita objvi5 = new Visita();
 
         objvi1 = daote.top5xitem(1);
-         objvi2 = daote.top5xitem(2);
+        objvi2 = daote.top5xitem(2);
         objvi3 = daote.top5xitem(3);
         objvi4 = daote.top5xitem(4);
         objvi5 = daote.top5xitem(5);
-       
-         if(objvi1==null){
-             objvi1 = new Visita();
-        objvi1.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
-        objvi1.getArchivoPublicacion().getPublicacion().setTitulo("") ; 
+
+        if (objvi1 == null) {
+            objvi1 = new Visita();
+            objvi1.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
+            objvi1.getArchivoPublicacion().getPublicacion().setTitulo("");
         }
-          if(objvi2==null){
-              objvi2 = new Visita();
-        objvi2.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
-        objvi2.getArchivoPublicacion().getPublicacion().setTitulo("") ; 
+        if (objvi2 == null) {
+            objvi2 = new Visita();
+            objvi2.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
+            objvi2.getArchivoPublicacion().getPublicacion().setTitulo("");
         }
-           if(objvi3==null){
-               objvi3 = new Visita();
-        objvi3.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
-        objvi3.getArchivoPublicacion().getPublicacion().setTitulo("") ; 
+        if (objvi3 == null) {
+            objvi3 = new Visita();
+            objvi3.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
+            objvi3.getArchivoPublicacion().getPublicacion().setTitulo("");
         }
-            if(objvi4==null){
-                objvi4 = new Visita();
-        objvi4.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
-        objvi4.getArchivoPublicacion().getPublicacion().setTitulo("") ; 
+        if (objvi4 == null) {
+            objvi4 = new Visita();
+            objvi4.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
+            objvi4.getArchivoPublicacion().getPublicacion().setTitulo("");
         }
-             if(objvi5==null){
-              objvi5 = new Visita();
-        objvi5.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
-         objvi5.getArchivoPublicacion().getPublicacion().setTitulo("") ;     
+        if (objvi5 == null) {
+            objvi5 = new Visita();
+            objvi5.getArchivoPublicacion().getPublicacion().setIdPublicacion(0);
+            objvi5.getArchivoPublicacion().getPublicacion().setTitulo("");
         }
-            
 
 
     %>
@@ -92,7 +91,7 @@
                 <!-- top navigation -->
                 <div class="top_nav">
 
-                     <%@include file="cabecera.jspf" %>
+                    <%@include file="cabecera.jspf" %>
 
                 </div>
 
@@ -115,7 +114,7 @@
                                 <%                                    Visita objcantidad = daote.cantidad("PRINCIPAL");
                                 %>
                                 <div class="count"><%=objcantidad.getCantidad()%></div>
-                                  </div>
+                            </div>
                         </div>
 
                         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
@@ -126,7 +125,7 @@
                                     Visita objcantidad1 = daote.cantidadPubli();
                                 %>
                                 <div class="count green"><%=objcantidad1.getCantidad()%></div>
-                                  </div>
+                            </div>
                         </div>
                         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
                             <div class="left"></div>
@@ -136,7 +135,7 @@
                                     Visita objcantidad2 = daote.cantidadVisitas();
                                 %>
                                 <div class="count"><%=objcantidad2.getCantidad()%></div>
-                                  </div>
+                            </div>
                         </div>
                         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
                             <div class="left"></div>
@@ -146,17 +145,17 @@
                                     Visita objcantidad3 = daote.cantidadtemasSolicitados();
                                 %>
                                 <div class="count green"><%=objcantidad3.getCantidad()%></div>
-                                  </div>
+                            </div>
                         </div>
                         <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
                             <div class="left"></div>
                             <div class="right">
                                 <span class="count_top"><i class="fa fa-cloud-download"></i> Archivos Solicitados</span>
                                 <%
-                                    Visita objcantidad4= daote.cantidadarchivosSolictados();
+                                    Visita objcantidad4 = daote.cantidadarchivosSolictados();
                                 %>
                                 <div class="count"><%=objcantidad4.getCantidad()%></div>
-                                 </div>
+                            </div>
                         </div>
 
                     </div>
@@ -170,7 +169,7 @@
                                 <h3>
                                     REPOSITORIO VIP  
                                     <small>
-                                        
+
                                     </small>
                                 </h3>
                             </div>
@@ -181,32 +180,31 @@
 
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="dashboard_graph x_panel">
-                <div class="row x_title">
-                  <div class="col-md-6">
-                    <h3><small>Publicaciones por Año</small></h3>
-                  </div>
-                  
-                </div>
-                <div class="x_content">
-                  <div class="demo-container" style="height:450px">
-                    <div id="mainb" class="demo-placeholder" style="width: 100%; height:100%;"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                                <div class="dashboard_graph x_panel">
+                                    <div class="row x_title">
+                                        <div class="col-md-6">
+                                            <h3><small>Publicaciones por Año</small></h3>
+                                        </div>
+
+                                    </div>
+                                    <div class="x_content">
+                                        <div class="demo-container" style="height:450px">
+                                            <div id="mainb" class="demo-placeholder" style="width: 100%; height:100%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 
 
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="x_panel">
-                                    <div class="x_title">
-                                        <h2><%=objvi1.getArchivoPublicacion().getPublicacion().getTitulo()%></h2>
-                                        <ul class="nav navbar-right panel_toolbox">
-                                            <li><a href="#"><i class="fa fa-chevron-up"></i></a>
-                                            </li>
-                                        </ul>
+                                    <div class="block_content">
+                                        <h2> <p class="excerpt">
+                                                <%=objvi1.getArchivoPublicacion().getPublicacion().getTitulo()%>
+                                            </p></h2>
+
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
@@ -219,12 +217,11 @@
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="x_panel">
-                                    <div class="x_title">
-                                        <h2><%=objvi2.getArchivoPublicacion().getPublicacion().getTitulo()%></h2>
-                                        <ul class="nav navbar-right panel_toolbox">
-                                            <li><a href="#"><i class="fa fa-chevron-up"></i></a>
-                                            </li>
-                                        </ul>
+                                    <div class="block_content">
+                                        <h2> <p class="excerpt">
+                                                <%=objvi2.getArchivoPublicacion().getPublicacion().getTitulo()%>
+                                            </p></h2>
+
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
@@ -237,12 +234,11 @@
 
                             <div class="col-md-4 col-sm-4 col-xs-12">
                                 <div class="x_panel">
-                                    <div class="x_title">
-                                        <h2><%=objvi3.getArchivoPublicacion().getPublicacion().getTitulo()%></h2>
-                                        <ul class="nav navbar-right panel_toolbox">
-                                            <li><a href="#"><i class="fa fa-chevron-up"></i></a>
-                                            </li>
-                                        </ul>
+                                    <div class="block_content">
+                                        <h2> <p class="excerpt">
+                                                <%=objvi3.getArchivoPublicacion().getPublicacion().getTitulo()%>
+                                            </p></h2>
+
                                         <div class="clearfix"></div>
                                     </div>
                                     <div class="x_content">
@@ -254,12 +250,12 @@
                             </div>
 
 
-                            
 
 
 
 
-                            
+
+
                             <!-------aca estaba el map-------->
 
 
@@ -301,13 +297,13 @@
                 $.getJSON('VisitaController?accion=publicacionestotaxpoanio', function (json) {
                     var categorias = [];
                     var valores = [];
-                 
+
                     var obje = [];
                     $.each(json.totalxanio, function (item, obj) {
                         obje.push(obj);
                         categorias.push(obj.mes);
                         valores.push(obj.value);
-                     
+
                     });
 
                     var myChart9 = echarts.init(document.getElementById('mainb'), theme);
@@ -316,12 +312,11 @@
                             trigger: 'axis'
                         },
                         legend: {
-                            data: [ 'Publicaciones']
+                            data: ['Publicaciones']
                         },
                         toolbox: {
                             show: true,
                             feature: {
-                               
                                 dataView: {show: true, readOnly: false},
                                 magicType: {show: true, type: ['line', 'bar']},
                                 restore: {show: true},
@@ -342,7 +337,6 @@
                             }
                         ],
                         series: [
-                           
                             {
                                 name: 'Publicaciones',
                                 type: 'line',
@@ -585,7 +579,7 @@
                     });
                 });
 
-              
+
                 //fin del ready
             })
         </script>

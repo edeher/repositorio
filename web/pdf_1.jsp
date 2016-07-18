@@ -41,7 +41,7 @@ System.out.println("codigo "+codigo);
 	 $(document).ready(function () {
 	
 		$("#myPDF").pdf( {
-			source: "ArchivoPublicacionController?accion=visitarArchivo&idArchivo="+<%=codigo%>
+			source: "ArchivoPublicacionController?accion=verArchivo&idArchivo="+<%=codigo%>
                         /*,
                         tabs: [
 				{title: "Section 1", page: 1, color: "orange"},

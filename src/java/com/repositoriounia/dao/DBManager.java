@@ -26,7 +26,7 @@ import java.sql.SQLException;
     static private final String url="jdbc:mysql://localhost:3306/reposiunia";
     static private final String driver="com.mysql.jdbc.Driver";
     static private final String user="root";
-    static private final String pass="poderoso";
+    static private final String pass="root";
     
     static private String error;
     
