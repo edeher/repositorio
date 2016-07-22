@@ -15,7 +15,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Gentallela Alela! | </title>
+  <title>REPOSITORIO VPI LOGIN </title>
 
   <!-- Bootstrap core CSS -->
 
@@ -25,7 +25,7 @@
   <link href="css/animate.min.css" rel="stylesheet">
 
   <!-- Custom styling plus plugins -->
-  <link href="css/custom.css" rel="stylesheet">
+  <link href="css/custom_1.css" rel="stylesheet">
   <link href="css/icheck/flat/green.css" rel="stylesheet">
 
 
@@ -43,7 +43,7 @@
 
 </head>
 
-<body style="background:#F7F7F7;">
+<body  background="images/logos unia/fondo 2.jpg">
 
   <div class="">
     <a class="hiddenanchor" id="toregister"></a>

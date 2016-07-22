@@ -29,7 +29,7 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">Nueva Area de Investigación  </h4>
+            <h4 class="modal-title" id="myModalLabel">Nueva  Facultad  </h4>
 
         </div>
 

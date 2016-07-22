@@ -1,10 +1,18 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
 <footer>
-					<div class="copyright-info">
-						<p class="pull-right">REPOSITORIOVIP - Sistema desarrollado por  <a href="https://twitter.com/Dekinha_deka">Edeher Ponce</a>	
-                                                   
-						</p>
-					</div>
-					<div class="clearfix "></div>
+				
+    <div class=" row">
+                 <a href="https://portal.concytec.gob.pe/"><img src="images/logos unia/logo-concytec-ok.jpg" width="180" height="54" alt="logo-concytec-ok"/>
+            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+            <a href="http://reformauniversitaria.pe/"><img src="images/logos unia/logo-ley-universitaria.jpg" width="180" height="54" alt="logo-ley-universitaria"/>
+            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+            <a href="http://www.sunedu.gob.pe/"><img src="images/logos unia/logo-sunedu-ok.jpg" width="180" height="54" alt="logo-sunedu-ok"/>
+            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+           
+            <a href=""> <img src="images/logos unia/transparencia-servir.jpg" width="180" height="54" alt="transparencia-servir"/>
+            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+            <a href=""> <img src="images/logos unia/Logo-sinfondo.png" width="180" height="54" alt="transparencia-servir"/>
+            </a>
+    </div>
 				</footer>

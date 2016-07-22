@@ -21,28 +21,15 @@
     <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
     <!-- Custom styling plus plugins -->
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/custom_1.css" rel="stylesheet">
     <link href="css/icheck/flat/green.css" rel="stylesheet">
-    <!-- dataTables -->
-    <link href="js/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-    <link href="js/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="js/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="js/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="js/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <!--[if lt IE 9]>
-          <script src="../assets/js/ie8-responsive-file-warning.js"></script>
-          <![endif]-->
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-          <![endif]-->
+   
 
 </head>
 
 
-<body class="nav-md"  >
+<body class="nav-md" background="images/logos unia/fondo1.jpg"  >
+    
     <div class="container body">
         <div class="nav navbar-nav navbar-right"> 
             <p  ></p>
@@ -56,29 +43,36 @@
                 <div class="text-center">
                     <h1 ><img src="images/logo.png" alt="" height="35%" width="80%"/></h1>
 
-                    <h2 class="error-number">REPOSITORIO VPI</h2>
-                    <p  >ESPACIO VIRTUAL DE CONCENTRACION Y PRODUCCION EN CIENCIA DE LA UNIA </p>
+                    <h2 class="error-number"><font color="#00753b">REPOSITORIO VPI</font></h2>
+                    <p  ><font color="#00753b"><strong>ESPACIO VIRTUAL DE CONCENTRACION Y PRODUCCION EN CIENCIA DE LA UNIA </strong></font></p>
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
-                            <a href="Publicaciones.jsp"><span class="badge bg-green">INGRESAR</span></a>
+                            <a href="Publicaciones.jsp"><span class="badge bg-blue">INGRESAR</span></a>
                         </div>
                     </div>
                     
                 </div>
+            </div >
+            <br>
+          
+           <br>
+            <div class="text-center">
+                 <a href="https://portal.concytec.gob.pe/"><img src="images/logos unia/logo-concytec-ok.jpg" width="180" height="54" alt="logo-concytec-ok"/>
+            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="http://reformauniversitaria.pe/"><img src="images/logos unia/logo-ley-universitaria.jpg" width="180" height="54" alt="logo-ley-universitaria"/>
+            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="http://www.sunedu.gob.pe/"><img src="images/logos unia/logo-sunedu-ok.jpg" width="180" height="54" alt="logo-sunedu-ok"/>
+            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           
+            <a href=""> <img src="images/logos unia/transparencia-servir.jpg" width="180" height="54" alt="transparencia-servir"/>
+            </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href=""> <img src="images/logos unia/Logo-sinfondo.png" width="180" height="54" alt="transparencia-servir"/>
+            </a>
             </div>
         </div>
-        <!-- /page content -->
-        <div id="miModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-
-
-
-                </div>
-            </div>
+        <br>
         </div>
-
-        <!-- footer content -->
+        <br>
     </div>
 
     <script src="js/jquery.min.js"></script>	

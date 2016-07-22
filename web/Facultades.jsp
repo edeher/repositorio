@@ -136,15 +136,15 @@
                 "columns": [{ "title": "Cod" },
                             { "title": "Descripcion" },
                           
-                            { "title": "<a id='btnNuevo' href='#' ><i class='fa fa-plus' data-toggle='tooltip' data-placement='top' title='NUEVO'></i></a>" }],
+                            { "title": "PUBLICACIONES/FACULTAD" }],
                 "columnDefs": [                         
                    {"targets": [ 2 ],
                     "orderable": false,
                     "className": 'text-center'},
                    {"targets": -1,
                     "data": null,
-                    "defaultContent": '<button name="btnEditar" data-toggle="tooltip" data-placement="left" title="EDITAR"><a><i class="fa fa-pencil"></i></a></button>&nbsp&nbsp <button name="btnRechazar" data-toggle="tooltip" data-placement="right" title="ELIMINAR"><a><i class="fa fa-remove"></i></a></button>'}
-                ],
+                    "defaultContent":'<button name="btnVer" data-toggle="tooltip" data-placement="left" title="VER PUBLICACION"><a><i class="fa fa-search"></i></a></button>'}
+                  ],
                 "ajax": "FacultadController?accion=ObtenerTodos",
                 "initComplete": function() {
                     $('[data-toggle="tooltip"]').tooltip({

@@ -56,7 +56,7 @@
                                                         
 							<div class="row x_title">
 								<div class="col-md-6">
-									<h3>TEMAS SUJERIDOS <small></small></h3>
+									<h3>TEMAS SUGERIDOS <small></small></h3>
 								</div>
 								  <div id="div-alerta" style="padding: 1px;display:none " class=" alert alert-success pull-right"  >
                                                            

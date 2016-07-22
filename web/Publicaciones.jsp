@@ -35,7 +35,7 @@
         <link rel="stylesheet" type="text/css" href="css/progressbar/bootstrap-progressbar-3.3.0.css">
     </head>
     <body class="nav-md">
-
+  
         <div class="container body">
             <div class="main_container">
 
@@ -94,7 +94,9 @@
                     <br />
 
                     <!-- footer content -->
+                  
                     <%@include file="footer.jspf" %>
+                 
                     <!-- /footer content -->
                 </div>
                 <!-- /page content -->
@@ -111,7 +113,7 @@
 
             </div>
 
-        </div>	        
+        </div>	      
         <!-- /footer content -->        
         <script src="js/jquery.min.js"></script>	
         <script src="js/bootstrap.min.js"></script>
