@@ -52,7 +52,12 @@
                 <%@include file="menu_1.jspf" %>
 
                 <!-- top navigation -->
+ <div class="top_nav">
 
+                    <%@include file="cabecera_1.jspf" %>
+
+
+                </div>
                 <!-- /top navigation -->
 
                 <!-- page content -->

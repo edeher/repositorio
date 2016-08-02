@@ -1,0 +1,31 @@
+<%-- any content can be specified here e.g.: --%>
+<%@page import="com.repositoriounia.modelo.Usuario"%>
+<%@ page pageEncoding="UTF-8" %>
+<%
+         
+          Usuario   usu=(Usuario)session.getAttribute("sesion");
+            if(usu==null){%>
+        <jsp:forward page="sesioninvalida.jsp"/>
+        
+        
+    <%}%>
+
+    
+    
+    %>
+<div class="nav_menu">
+                        <nav class="" role="navigation">
+                            <!--<img src="images/LOGO UNIA.png" alt="" height="70px" width="60px"/>-->
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="">
+                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                       <%=usu.getPersona().getNombres() %>-<%=usu.getPersona().getApellidos() %> <img src="images/LOGO UNIA.png" alt="">
+                                    </a>
+                                      <form action="UsuarioController?accion=cerrarsesion" name="f" method="post">
+                                        <input  class="buttons" type="submit" value="cerrar sesion" />
+                                    </form>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>

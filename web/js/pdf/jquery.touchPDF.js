@@ -75,7 +75,7 @@
 	*/
 	var defaults = {
 		source: null,
-		title: "TouchPDF",
+		title: "",
 		tabs: [],
 		tabsColor: "beige",
 		disableZoom: false,

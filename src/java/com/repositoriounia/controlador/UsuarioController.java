@@ -5,16 +5,20 @@
  */
 package com.repositoriounia.controlador;
 
+import com.repositoriounia.dao.DAOException;
 import com.repositoriounia.dao.UsuarioDAO;
 import com.repositoriounia.dao.UsuarioDAOFactory;
 import com.repositoriounia.modelo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,7 +40,7 @@ public class UsuarioController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, DAOException {
         response.setContentType("text/html;charset=UTF-8");
         String accion=request.getParameter("accion");
         fabricate =new UsuarioDAOFactory();
@@ -44,9 +48,9 @@ public class UsuarioController extends HttpServlet {
         
         switch(accion)
         {
-            case "1":
+            case "validar":validar(request,response);
                 break;
-            case "2":
+            case "cerrarsesion":cerrarsesion(request,response);
                 break;
             case "3":
                 break;
@@ -73,7 +77,11 @@ public class UsuarioController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -87,7 +95,11 @@ public class UsuarioController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (DAOException ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -99,5 +111,42 @@ public class UsuarioController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void validar(HttpServletRequest request, HttpServletResponse response) throws DAOException, IOException {
+        HttpSession sesion=request.getSession();
+        System.out.println("ingreso a opcion");
+      objU=new Usuario();
+      objU.setUsuario(request.getParameter("usuario"));
+      objU.setPassword(request.getParameter("clave"));
+        System.out.println("buscando");
+      Usuario usu1=daote.validar(objU);
+       
+     
+       if (usu1 != null){
+             System.out.println("entro al if principal");
+            
+             sesion.setAttribute("sesion",usu1);
+            if(usu1.getTipo().name()=="A"){
+                System.out.println("entro al if  de administrador");
+                response.sendRedirect("publicacion_2.jsp");
+            }
+            else if(usu1.getTipo().name()=="U"){
+                 System.out.println("entro al if  de usuario");
+                response.sendRedirect("Publicaciones_1.jsp");
+            }
+        }
+        else{
+             response.sendRedirect("error.jsp");
+        }
+      
+      
+    }
+
+    private void cerrarsesion(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession sesion=request.getSession();
+         Usuario   usu=(Usuario)sesion.getAttribute("sesion");
+        sesion.removeAttribute("sesion");
+        response.sendRedirect("login.jsp");
+    }
 
 }

@@ -9,7 +9,7 @@
 <html><head>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="UTF-8">
-  <title>TouchPDF</title>
+  <title></title>
   
   <link href="css/pdf/jquery.touchPDF.css" rel="stylesheet" type="text/css"/>
  

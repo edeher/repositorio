@@ -4,6 +4,7 @@
     Author     : Mi Laptop
 --%>
 
+<%@page import="com.repositoriounia.modelo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +33,7 @@
         <!-- select2 -->
   <link href="css/select/select2.min.css" rel="stylesheet">
 </head>
+
 <body class="nav-md">
 
 	<div class="container body">
@@ -44,7 +46,7 @@
 			<!-- top navigation -->
 			 <div class="top_nav">
 
-                     <%@include file="cabecera.jspf" %>
+                     <%@include file="cabecera_1.jspf" %>
 
                 </div>
 			<!-- /top navigation -->

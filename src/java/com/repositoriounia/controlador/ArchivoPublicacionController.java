@@ -177,7 +177,7 @@ public class ArchivoPublicacionController extends HttpServlet {
         //Los datos pueden ser recuperados utilizando toByteArray () y toString () . 
         
         System.out.println("creacion de byte array");
-        byte[] buffer = new byte[10485760];
+        byte[] buffer = new byte[20777215];
         
          System.out.println("escribiendo el archivo");
         for (int length = 0; (length = imput.read(buffer)) > 0;) {
@@ -210,7 +210,7 @@ public class ArchivoPublicacionController extends HttpServlet {
         OutputStream pdfsa;
         try (InputStream pdf = daote.ArchivoPublico(codigo)) {
             pdfsa = response.getOutputStream();
-            byte[] buffer2 = new byte[10485760];
+            byte[] buffer2 = new byte[20777215];
             for (;;) {
                 int nbytes = pdf.read(buffer2);
                 if (nbytes == -1) {
@@ -272,7 +272,7 @@ public class ArchivoPublicacionController extends HttpServlet {
         OutputStream pdfsa;
         try (InputStream pdf = daote.ArchivoPublico(codigo)) {
             pdfsa = response.getOutputStream();
-            byte[] buffer2 = new byte[16777215];
+            byte[] buffer2 = new byte[20777215];
             for (;;) {
                 int nbytes = pdf.read(buffer2);
                 if (nbytes == -1) {

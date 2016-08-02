@@ -146,7 +146,7 @@ public class ArchivoDenunciaController extends HttpServlet {
         Part filePart = request.getPart("archivo");
         InputStream imput = filePart.getInputStream();
         ByteArrayOutputStream output = new ByteArrayOutputStream();
-        byte[] buffer = new byte[10485760];
+        byte[] buffer = new byte[20777215];
         for (int length = 0; (length = imput.read(buffer)) > 0;) {
             output.write(buffer, 0, length);
         }     
@@ -210,7 +210,7 @@ public class ArchivoDenunciaController extends HttpServlet {
         OutputStream pdfsa;
         try (InputStream pdf = daote.ArchivoDenuncia2(codigo)) {
             pdfsa = response.getOutputStream();
-            byte[] buffer2 = new byte[10485760];
+            byte[] buffer2 = new byte[20777215];
             for (;;) {
                 int nbytes = pdf.read(buffer2);
                 if (nbytes == -1) {

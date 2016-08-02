@@ -228,5 +228,44 @@ public class UsuarioDAOJDBC implements UsuarioDAO{
         }
         return true;    
     }
+
+    @Override
+    public Usuario validar(Usuario objUs) throws DAOException {
+       try{
+        CallableStatement st=con.prepareCall("{call sp_usuario_validar(?,?)}");
+            st.setString(1,objUs.getUsuario());
+            st.setString(2,objUs.getPassword());
+              ResultSet rs = st.executeQuery();
+            if (!rs.next()) {
+                return null;
+            }
+           
+            return (
+                    new Usuario(
+                            rs.getInt("idUsuario"),
+                           new Persona(
+                            rs.getInt("idPersona"),
+                           rs.getString("nombres"),
+                            rs.getString("apellidos"),
+                            rs.getString("dni"),
+                            Sexo.valueOf(rs.getString("sexo")),
+                            rs.getString("direccion"),
+                            rs.getString("telefono"),
+                            rs.getString("correo")
+                           ),
+                            
+                            rs.getString("usuario"),
+                            null,
+                            TipoUsuario.valueOf(rs.getString("tipo"))
+                            )
+                            
+                            
+                   );
+            
+        } catch (SQLException se) {
+            
+            throw new DAOException("Error buscando usuario en DAO", se);
+        } 
+    }
     
 }

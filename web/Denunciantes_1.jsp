@@ -42,19 +42,8 @@
 			<!-- top navigation -->
 			 <div class="top_nav">
 
-                    <div class="nav_menu">
-                        <nav class="" role="navigation">
-                            <!--<img src="images/LOGO UNIA.png" alt="" height="70px" width="60px"/>-->
+                    <%@include file="cabecera_1.jspf" %>
 
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="">
-                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <img src="images/img.jpg" alt="">John Doe
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
 
                 </div>
 			<!-- /top navigation -->

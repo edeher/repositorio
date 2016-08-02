@@ -171,6 +171,17 @@ public class Persona {
         return "Persona{" + "idPersona=" + idPersona + ", nombres=" + nombres + ", apellidos=" + apellidos + ", dni=" + dni + ", sexo=" + sexo + ", direccion=" + direccion + ", telefono=" + telefono + ", correro=" + correro  + '}';
     }
 
+    public Persona(int idPersona, String nombres, String apellidos, String dni, Sexo sexo, String direccion, String telefono, String correro) {
+        this.idPersona = idPersona;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.dni = dni;
+        this.sexo = sexo;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.correro = correro;
+    }
+
     
     
 }

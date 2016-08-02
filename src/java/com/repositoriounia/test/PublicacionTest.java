@@ -24,11 +24,11 @@ public class PublicacionTest {
      */
     public static void main(String[] args) throws DAOException{
         // TODO code application logic here
-//        crearpublicacion();
+        crearpublicacion();
 //        modificarpublicacion();
 //        eliminarpublicacion();
 //        leerpublicacion();
-        leertodo();
+//        leertodo();
 //        crearpublicacionleer();
 //        modificarpublicacionleer();
 //        leertodoxlinea();
@@ -45,7 +45,7 @@ public class PublicacionTest {
           Date fec = new Date(fe.parse("2016-02-20").getTime());
           
                 objPu.getLineaInvestigacion().setIdLineaInvestigacion(1);
-                objPu.setTitulo("buqueda de algas");
+                objPu.setTitulo("AÑO año ÁRBOL árbol");
                 objPu.setFechaPublicacion(fec);
              
               

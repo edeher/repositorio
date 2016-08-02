@@ -371,7 +371,7 @@
             }
             if (nombre == 'btnVerArchivo') {
                 $('#iframepdf').attr('src', 'ArchivoPublicacionController?accion=verArchivo&idArchivo=' + data[0]);
-                $('.modal-lg').css('width', '1420px');
+                $('.modal-lg').css('width', '1350px');
 
                 $('#miModal1').modal('show');
                 $('#iframepdf').contentWindow.location.reload(true);

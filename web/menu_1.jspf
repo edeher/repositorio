@@ -31,9 +31,7 @@
                                             <li><a href="Denuncia_1.jsp"><i class="fa fa-table"></i> Denuncias </a></li>
                                             <li><a href="TemasSugeridos_1.jsp"><i class="fa fa-table"></i>Temas Sugeridos </a></li>
                                             <li><a href="ArchivosSolicitados_1.jsp"><i class="fa fa-table"></i> Archivos Solicitados </a></li>
-                                            <li><a href="Facultades_1.jsp"><i class="fa fa-table"></i>Facultades </a></li>
-                                            <li><a href="Escuelas_1.jsp"><i class="fa fa-table"></i>Escuelas </a></li>
-                                        </ul>
+                                              </ul>
                                     </li>
 
 

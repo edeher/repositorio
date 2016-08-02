@@ -4,6 +4,7 @@
     Author     : Mi Laptop
 --%>
 
+<%@page import="com.repositoriounia.modelo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +31,8 @@
         <link href="js/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="js/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
 </head>
+
+
 <body class="nav-md">
 
 	<div class="container body">
@@ -40,9 +43,9 @@
                         <!-- /menu lateral -->
                         
 			<!-- top navigation -->
-			 <div class="top_nav">
+			<div class="top_nav">
 
-                     <%@include file="cabecera.jspf" %>
+                    <%@include file="cabecera_1.jspf" %>
 
                 </div>
 			<!-- /top navigation -->

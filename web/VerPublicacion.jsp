@@ -336,7 +336,7 @@
             
             if (nombre == 'btnVerArchivo1') {
                 $('#iframepdf').attr('src', 'pdf.jsp?codigo=' + data[0]);
-                $('.modal-lg').css('width', '1420px');
+                $('.modal-lg').css('width', '1350px');
                 $('#miModal1').modal('show');
                 $('#iframepdf').contentWindow.location.reload(true);
             }

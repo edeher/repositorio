@@ -92,7 +92,7 @@
                 <!-- top navigation -->
                 <div class="top_nav">
 
-                     <%@include file="cabecera.jspf" %>
+                     <%@include file="cabecera_1.jspf" %>
 
                 </div>
 

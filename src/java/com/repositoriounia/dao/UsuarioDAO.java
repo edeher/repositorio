@@ -19,6 +19,7 @@ public interface UsuarioDAO {
     public boolean eliminar (int idUsuario) throws DAOException;
     public Usuario leerxid(int idUsuario)throws DAOException;
     public Usuario [] leertodo() throws DAOException;
+    public Usuario validar(Usuario objUs)throws DAOException;
             
             
     

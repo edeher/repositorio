@@ -29,7 +29,8 @@ public class UsuarioTest {
 //        modificarUsuario1();
 //        eliminarusuario();
 //        leerusuario();
-        leertodo();
+//        leertodo();
+        validar();
     }
      public static void crearUsuario() throws DAOException
     {
@@ -140,5 +141,21 @@ public class UsuarioTest {
 	      System.out.println(" "+usuv1.toString());
 	  
 	  }
+	}
+         public static void validar()throws DAOException
+	{
+		UsuarioDAOFactory fabricate= new UsuarioDAOFactory();
+                 UsuarioDAO daote= fabricate.metodoDAO();
+                 
+                  Usuario objAu = new Usuario();
+          
+            objAu.setUsuario("edeher");
+             objAu.setPassword("poderoso12(12)");
+                 
+                 
+	   Usuario autorr=daote.validar(objAu);
+	 System.out.println(" "+autorr.toString());
+        
+	    
 	}
 }
