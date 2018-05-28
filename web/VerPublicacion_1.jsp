@@ -4,6 +4,7 @@
     Author     : Mi Laptop
 --%>
 
+<%@page import="com.repositoriounia.modelo.Usuario"%>
 <%@page import="com.repositoriounia.modelo.DescripcionArchivo"%>
 <%@page import="com.repositoriounia.modelo.ArchivoPublicacion"%>
 <%@page import="com.repositoriounia.dao.ArchivoPublicacionDAO"%>
@@ -57,6 +58,18 @@
               <![endif]-->
 
     </head>
+    <%
+         
+          Usuario   usu=(Usuario)session.getAttribute("sesion");
+            if(usu==null){%>
+        <jsp:forward page="sesioninvalida.jsp"/>
+        
+        
+    <%}%>
+
+    
+    
+    %>
     <%
         PublicacionDAOFactory fabricate = new PublicacionDAOFactory();
         PublicacionDAO daote = fabricate.metodoDAO();

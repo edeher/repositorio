@@ -64,7 +64,7 @@
                             <div>
                                 <input type="password" class="form-control" placeholder="Contraseña" required=""  name="clave"/>
                             </div>
-                            <div>
+                            <div >
                                 <input class="btn btn-default submit" type="submit" value="Ingresar" />
                                 
                                 <!--  <a class="reset_pass" href="#">Olvidaste tu Contraseña?</a>-->
@@ -78,9 +78,14 @@
                                 <div class="clearfix"></div>
                                 <br />
                                 <div>
-                                    <h1><i class="fa fa-lock" style="font-size: 26px;"></i> Bienvenido!</h1>
+                                    <h1><i class="fa fa-lock" style="font-size: 26px;"></i> Bienvenidos!</h1>
 
                                     <p>©2016 Todos Los derechos Reservados. Vicepresidencia de Investigacion UNIA</p>
+                                </div>
+                                <div>
+                                    <h1><a href="index.jsp"><i class="fa fa-send-o" style="font-size: 26px;"></i> Inicio</a></h1>
+
+                                    
                                 </div>
                             </div>
                         </form>
@@ -117,6 +122,7 @@
 
                                     <p>©2015 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
                                 </div>
+                                
                             </div>
                         </form>
                         <!-- form -->

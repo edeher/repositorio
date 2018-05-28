@@ -4,6 +4,9 @@
     Author     : Mi Laptop
 --%>
 
+<%@page import="com.repositoriounia.modelo.AreaInvestigacion"%>
+<%@page import="com.repositoriounia.dao.AreaInvestigacionDAO"%>
+<%@page import="com.repositoriounia.dao.AreaInvestigacionDAOFactory"%>
 <%@page import="com.repositoriounia.modelo.LineaInvestigacion"%>
 <%@page import="com.repositoriounia.dao.LineaInvestigacionDAOFactory"%>
 <%@page import="com.repositoriounia.dao.LineaInvestigacionDAO"%>
@@ -39,11 +42,11 @@
     </head>
      <%
        
-        int idLineaInvestigacion = Integer.parseInt(request.getParameter("idLineaInvestigacion"));
-        LineaInvestigacionDAOFactory fabricate = new LineaInvestigacionDAOFactory();
-        LineaInvestigacionDAO daote = fabricate.metodoDAO();
+        int idAreaInvestigacion = Integer.parseInt(request.getParameter("idAreaInvestigacion"));
+        AreaInvestigacionDAOFactory fabricate = new AreaInvestigacionDAOFactory();
+        AreaInvestigacionDAO daote = fabricate.metodoDAO();
         
-        LineaInvestigacion linea=daote.leerxid(idLineaInvestigacion);
+        AreaInvestigacion area=daote.leerxid(idAreaInvestigacion);
     %>
     <body class="nav-md">
 
@@ -74,7 +77,7 @@
                                 <hr>   
                                 <div class="row x_title">
                                     <div class="col-md-6">
-                                        <h3><%=linea.getDescripcion() %> <small></small></h3>
+                                        <h3><%=area.getDescripcion() %> <small></small></h3>
                                     </div>
                                     <div class="col-md-6" align="right"> 
                                         <P aling="rigth" ><div class="icon"><a id='btnSugerir' href='#' ><i class='fa fa-plus' data-toggle='tooltip' data-placement='top' title='PROPONER TEMA DE INVESTIGACION'></i></a>
@@ -178,7 +181,7 @@
                             "data": null,
                             "defaultContent": '<button name="btnVer"  data-toggle="tooltip" data-placement="right" title="VER"><a><i class="fa fa-search"></i></a></button>'}
                     ],
-                    "ajax": "PublicacionController?accion=ObtenerTodosxLinea&idLineaInvestigacion="+<%=idLineaInvestigacion%>,
+                    "ajax": "PublicacionController?accion=ObtenerTodosxArea&idAreaInvestigacion="+<%=idAreaInvestigacion%>,
                     "initComplete": function () {
                         //activate the bootstrap toggle js
                         $('[data-toggle="tooltip"]').tooltip({

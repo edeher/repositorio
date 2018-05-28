@@ -162,9 +162,9 @@
                 var nombre = $(this).attr('name');
                 var data = table.row( $(this).parents('tr') ).data();
                 
-                if(nombre=='btnEditar'){
+                if(nombre=='btnVer'){
                    // $('.modal-lg').css('width', '700px');
-                    mostrarModal('ModificarArea.jsp?codigo='+data[0]);
+                    window.location.href = 'PublicacionesxArea.jsp?idAreaInvestigacion=' + data[0];
                 }
                                     
                 

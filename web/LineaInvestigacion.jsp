@@ -161,8 +161,8 @@
             $('#datatable-responsive tbody').on( 'click', 'button', function () {
                 var nombre = $(this).attr('name');
                 var data = table.row( $(this).parents('tr') ).data();
-                if(nombre=='btnEditar'){
-                     mostrarModal('ModificarLinea.jsp?codigo='+data[0]);
+                if(nombre=='btnVer'){
+                     window.location.href = 'PublicacionesxLinea.jsp?idLineaInvestigacion=' + data[0];
                 }
                                     
                              
