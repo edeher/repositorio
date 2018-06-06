@@ -119,7 +119,7 @@
                                         <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
                                             <div class="panel">
                                                 <a class="panel-heading" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                    <h4 class="panel-title">AUTORES</h4>
+                                                    <h4 class="panel-title">AUTORES1</h4>
                                                 </a>
                                                 <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                                     <div class="panel-body">

@@ -165,9 +165,11 @@ public class AutorPublicacionController extends HttpServlet {
        objAuPu.getPublicacion().setIdPublicacion(Integer.parseInt(request.getParameter("idPublicacion1")));
        
        objAuPu.setTipoautor(TipoAutor.valueOf(request.getParameter("tipoautor")));
+       
         System.out.println("idAutor "+Integer.parseInt(request.getParameter("idAutor1")));
         System.out.println("idPublicacion "+Integer.parseInt(request.getParameter("idPublicacion1")));
         System.out.println("tipo autor "+TipoAutor.valueOf(request.getParameter("tipoautor")));
+        
        AutorPublicacion autorpu=daote.crearverileer2(objAuPu);
        try (PrintWriter pw = new PrintWriter(response.getOutputStream())) {
                  if(autorpu==null){

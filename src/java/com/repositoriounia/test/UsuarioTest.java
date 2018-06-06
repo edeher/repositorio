@@ -23,14 +23,14 @@ public class UsuarioTest {
      */
     public static void main(String[] args) throws DAOException{
         // TODO code application logic here
-//        crearUsuario();
+        crearUsuario();
 //        crearUsuario1();
 //        modificarUsuario();
 //        modificarUsuario1();
 //        eliminarusuario();
 //        leerusuario();
 //        leertodo();
-        validar();
+//        validar();
     }
      public static void crearUsuario() throws DAOException
     {
@@ -50,7 +50,7 @@ public class UsuarioTest {
                objAu.setUsuario("edercin");
                objAu.setPassword("poderoso12");
                objAu.setTipo(TipoUsuario.I);
-              
+              System.out.println(" "+objAu.toString());
               
               daote.crear(objAu);
                

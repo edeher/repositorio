@@ -31,20 +31,20 @@
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
             </button>
-            <h4 class="modal-title" id="myModalLabel">Nuevo Investigador </h4>
+            <h4 class="modal-title" id="myModalLabel">Nuevo Investigador 1 </h4>
 
         </div>
         <div class="modal-body">  
             <!--cabeceras de pestañas-->
             <ul id="myTabs" class="nav nav-tabs bar_tabs" role="tablist">
                 <li role="presentation" class="active">
-                    <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">
-                        Autor existente
+                    <a href="#tab_content1" role="tab"  id="home-tab" data-toggle="tab" aria-expanded="true">
+                        Autor existente 1
                     </a>
                 </li>               
                 <li role="presentation" class="">
                     <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">
-                        Crear Nuevo Autor
+                        Crear Nuevo Autor2
                     </a>
                 </li>                
             </ul>
@@ -75,10 +75,10 @@
 
                                         <div class="form-group">      
                                             <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">NOMBRES</label>
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">NOMBRES1</label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
                                                     <input type="hidden" name="idAutor1"id="idAutor1" value="" />
-                                                    <input type="hidden" name="idPublicacion1"id="" value="<%=idPublicacion%>" />
+                                                    <input type="hidden" name="idPublicacion1" id="" value="<%=idPublicacion%>" />
                                                     <input name="nombres1" id="nombres1"class="form-control has-feedback-left" readonly="readonly" type="text" class="form-control" value="">
                                                 </div>
                                             </div>

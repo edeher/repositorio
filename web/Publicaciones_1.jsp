@@ -64,7 +64,7 @@
                                 <hr>   
                                 <div class="row x_title">
                                     <div class="col-md-6">
-                                        <h3>PUBLICACIONES <small></small></h3>
+                                        <h3>PUBLICACIONES 1<small></small></h3>
                                     </div>
                                     <div class="col-md-6" align="right"> 
                                         <P aling="rigth" ><div class="icon"><a id='btnSugerir' href='#' ><i class='fa fa-plus' data-toggle='tooltip' data-placement='top' title='PROPONER TEMA DE INVESTIGACION'></i></a>

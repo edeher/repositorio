@@ -47,7 +47,7 @@ public class UsuarioDAOJDBC implements UsuarioDAO{
                             st.setString(9,objUs.getPassword());
                             st.setString(10,objUs.getTipo().name());
                     
-                           
+                           System.out.println(" "+objUs.toString());
                        
 	           if (st.execute()) //devuelve verdadero si fallo
             {
